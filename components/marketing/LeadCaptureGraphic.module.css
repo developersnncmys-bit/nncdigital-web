@@ -1,0 +1,154 @@
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+/* soft blue blob behind the person */
+.blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 84%;
+  height: 84%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 45%, #dbe8ff 0%, #cfe0ff 55%, #c4d8ff 100%);
+  border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%;
+  animation: morph 14s ease-in-out infinite;
+}
+@keyframes morph {
+  0%, 100% { border-radius: 46% 54% 50% 50% / 52% 48% 52% 48%; transform: translate(-50%, -50%) rotate(0deg); }
+  50% { border-radius: 54% 46% 52% 48% / 46% 54% 46% 54%; transform: translate(-50%, -50%) rotate(8deg); }
+}
+
+/* connector wires */
+.wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.wire {
+  fill: none;
+  stroke: rgba(11, 92, 255, 0.4);
+  stroke-width: 0.6;
+  stroke-dasharray: 3 3;
+  vector-effect: non-scaling-stroke;
+  animation: wireflow 0.8s linear infinite;
+}
+@keyframes wireflow { to { stroke-dashoffset: -6; } }
+
+/* central hub badge */
+.hub {
+  position: absolute;
+  top: 44%;
+  left: 55%;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: linear-gradient(140deg, #4d8bff, #0b5cff);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 22px -8px rgba(11, 92, 255, 0.8);
+  animation: floaty 5s ease-in-out infinite;
+  z-index: 3;
+}
+.hub svg { width: 20px; height: 20px; }
+
+/* person photo */
+.person {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62%;
+  height: 62%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 26px 50px -24px rgba(11, 26, 51, 0.55);
+  background: #eef4fe;
+  z-index: 2;
+}
+.person img { width: 100%; height: 100%; object-fit: cover; object-position: 58% 38%; display: block; }
+
+/* floating source cards */
+.card {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 132px;
+  padding: 10px 14px;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: 0 16px 32px -14px rgba(11, 26, 51, 0.4), 0 2px 6px rgba(11, 26, 51, 0.06);
+  animation: floaty 4.4s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+.brand {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+.brand svg { width: 17px; height: 17px; }
+.label { font-size: 14px; font-weight: 700; color: var(--ink); }
+.count {
+  position: absolute;
+  top: -9px;
+  right: 10px;
+  min-width: 22px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #6a4a00;
+  background: #ffd23d;
+  padding: 2px 7px;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px -3px rgba(255, 178, 0, 0.7);
+}
+
+/* learner avatars */
+.av {
+  position: absolute;
+  z-index: 4;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  background: #fff;
+  box-shadow: 0 12px 26px -12px rgba(11, 26, 51, 0.5);
+  animation: floaty 4.8s ease-in-out infinite;
+  animation-delay: var(--fd, 0s);
+}
+.av i {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+}
+
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+@media (max-width: 480px) {
+  .stage { max-width: 320px; }
+  .card { right: 0 !important; min-width: 104px; padding: 8px 10px; gap: 8px; }
+  .label { font-size: 12px; }
+  .brand { width: 26px; height: 26px; font-size: 14px; }
+  .count { font-size: 10px; }
+  .av { left: 0 !important; width: 44px; height: 44px; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .hub, .card, .av, .wire { animation: none; }
+}

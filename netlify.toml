@@ -1,0 +1,18 @@
+# Netlify config for the MAIN website (Git-based deploys).
+# The static export is produced by `npm run build` into ./out
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Serverless endpoint that sends the chat lead to WhatsApp. The static export
+# cannot do this itself: only the WhatsApp Business API sends without a human
+# tapping, and its token must never reach the browser.
+# Requires WHATSAPP_TOKEN, WHATSAPP_PHONE_ID and WHATSAPP_TO in the Netlify
+# environment. See netlify/functions/whatsapp-lead.mjs for the 24-hour window
+# and template rules.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

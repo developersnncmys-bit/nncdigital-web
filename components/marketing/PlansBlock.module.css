@@ -1,0 +1,289 @@
+.section {
+  padding: clamp(54px, 7vh, 96px) var(--pad);
+}
+
+/* Default layout: stacked (title centered on top, cards below). Used for
+   3-plan grids where the cards need the full container width. */
+.layout {
+  display: block;
+}
+
+/* Split layout: intro column on the left (headline + lead + note),
+   cards column on the right. Only applied when the block has <=2 plans. */
+.layoutSplit {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 1.6fr;
+  gap: clamp(32px, 4vw, 60px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .layoutSplit {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.intro {
+  min-width: 0;
+}
+
+/* Headline — defaults to the original centered treatment used by stacked
+   layouts. The .layoutSplit overrides below left-align it, enlarge it, and
+   add a navy accent bar above. */
+.title {
+  position: relative;
+  text-align: center;
+  max-width: 22ch;
+  margin: 0 auto;
+  font-size: clamp(26px, 3.2vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+/* Small navy bar accent above the title (hidden in stacked mode, shown in
+   split). Makes the heading feel highlighted without changing the words. */
+.titleAccent {
+  display: none;
+}
+
+.lead {
+  text-align: center;
+  max-width: 58ch;
+  margin: 16px auto 0;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: var(--grey);
+}
+
+/* --- Split layout overrides for the intro column --- */
+.layoutSplit .title {
+  text-align: left;
+  margin: 0;
+  max-width: 14ch; /* keep "Find the plan that fits." on 2 impactful lines */
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.05;
+}
+.layoutSplit .titleAccent {
+  display: block;
+  width: 48px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--navy);
+  margin-bottom: 20px;
+}
+.layoutSplit .lead {
+  text-align: left;
+  margin: 20px 0 0;
+  max-width: 42ch;
+}
+.layoutSplit .note {
+  text-align: left;
+  margin: 24px 0 0;
+  max-width: 42ch;
+}
+
+/* Grid — for stacked layout, self-sizes to 2 or 3 cards and centers.
+   For split layout (right column), stretches to fill the available space. */
+.grid {
+  margin: clamp(34px, 4vw, 52px) auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
+  justify-content: center;
+  gap: 24px;
+  align-items: stretch;
+}
+/* In split layout the grid is the right column — no top margin (headline
+   handles its own breathing room), no auto centering (fills the column),
+   and 2 cards get equal width so the pair feels balanced. */
+.layoutSplit .grid {
+  margin: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: stretch;
+}
+@media (max-width: 900px) {
+  .layoutSplit .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 380px));
+    justify-content: center;
+  }
+}
+
+/* ----- Card ----- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  color: var(--ink);
+  box-shadow: 0 4px 20px -8px rgba(11, 26, 51, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 50px -24px rgba(11, 26, 51, 0.18);
+}
+
+/* Highlighted card: navy border + stronger shadow, same white background. */
+.blue {
+  border: 2px solid var(--navy);
+  padding: 31px 27px 27px; /* -1px to counter 2px border so content lines up */
+  box-shadow: 0 24px 50px -22px rgba(11, 92, 255, 0.3);
+}
+.blue:hover {
+  box-shadow: 0 32px 70px -28px rgba(11, 92, 255, 0.45);
+}
+
+/* ----- Badge: centered on the card's top edge ----- */
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4a3b00;
+  background: #ffd23d;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px -6px rgba(255, 178, 0, 0.55);
+  white-space: nowrap;
+}
+
+/* ----- Header text ----- */
+.desc {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--grey);
+  min-height: 36px;
+}
+.name {
+  margin-top: 10px;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* ----- Price ----- */
+.priceRow {
+  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.amount {
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.per {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey);
+}
+.priceSub {
+  display: block;
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--grey-soft);
+}
+
+/* ----- CTA ----- */
+/* Standard: navy outline. Highlighted: navy filled. Shape is identical,
+   fill signals which one is recommended. */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 13px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  background: #fff;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.cta svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+.cta:hover {
+  transform: translateY(-1px);
+  background: var(--navy);
+  color: #fff;
+}
+.cta:hover svg { transform: translateX(3px); }
+
+.blue .cta {
+  background: var(--navy);
+  color: #fff;
+}
+.blue .cta:hover {
+  background: var(--navy-deep);
+  border-color: var(--navy-deep);
+}
+
+/* ----- Features ----- */
+.featHead {
+  display: block;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.features {
+  margin-top: 16px;
+  display: grid;
+  gap: 11px;
+}
+.features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.tick {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--navy-soft);
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tick svg { width: 12px; height: 12px; }
+
+/* ----- Footer note under the whole grid ----- */
+.note {
+  margin-top: clamp(28px, 3vw, 36px);
+  text-align: center;
+  font-size: 13px;
+  color: var(--grey-soft);
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 420px);
+  }
+}

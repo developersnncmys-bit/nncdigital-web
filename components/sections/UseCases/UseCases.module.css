@@ -1,0 +1,75 @@
+.section {
+  padding: clamp(70px, 9vh, 120px) var(--pad);
+}
+.grid {
+  margin-top: clamp(40px, 5vw, 60px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  padding: 30px 28px 26px;
+  box-shadow: var(--sh-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh);
+  border-color: var(--navy-3);
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  margin-bottom: 22px;
+}
+.icon svg {
+  width: 26px;
+  height: 26px;
+}
+.cardTitle {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.cardBody {
+  margin-top: 8px;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--grey);
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+.card:hover .link svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}

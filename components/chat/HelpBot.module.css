@@ -1,0 +1,350 @@
+/* ===== floating button ===== */
+/* Lifted from 24px: the site-wide WhatsApp chat launcher now occupies the
+   bottom-right corner, and the two buttons would otherwise sit on top of each
+   other. */
+.fab {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 70;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--navy);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 30px -8px rgba(11, 92, 255, 0.6), 0 4px 12px rgba(10, 11, 15, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.fab:hover { transform: translateY(-2px) scale(1.04); background: var(--navy-deep); }
+.fab svg { width: 26px; height: 26px; grid-area: 1 / 1; transition: opacity 0.2s ease, transform 0.3s ease; }
+.fabChat { opacity: 1; }
+.fabClose { opacity: 0; transform: rotate(-90deg); }
+.fabOpen .fabChat { opacity: 0; transform: rotate(90deg); }
+.fabOpen .fabClose { opacity: 1; transform: rotate(0); }
+
+/* ===== WhatsApp shortcut, stacked above the chat launcher ===== */
+.wa {
+  position: fixed;
+  right: 26px;
+  bottom: 96px;
+  z-index: 70;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 30px -10px rgba(37, 211, 102, 0.75), 0 4px 12px rgba(10, 11, 15, 0.18);
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+}
+.wa:hover { transform: translateY(-2px) scale(1.04); background: #1eb855; }
+.wa svg { width: 30px; height: 30px; }
+
+/* The chat panel occupies this spot once it opens, so step out of its way. */
+.waHidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(0.9); }
+
+.waTip {
+  position: absolute;
+  right: calc(100% + 12px);
+  white-space: nowrap;
+  background: var(--navy, #0b5cff);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px -6px rgba(10, 18, 40, 0.5);
+}
+.wa:hover .waTip, .wa:focus-visible .waTip { opacity: 1; transform: translateX(0); }
+
+/* ===== panel ===== */
+.panel {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  /* Sits above the fixed Navbar (z-index 200) so its header is never clipped by it. */
+  z-index: 210;
+  width: min(380px, calc(100vw - 32px));
+  /* Height is auto so compact mode shrinks to its content; max-height caps the
+     expanded view and leaves navbar clearance (190 = 96 bottom + ~80 navbar + 14). */
+  height: auto;
+  max-height: min(620px, calc(100vh - 190px));
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(10, 18, 40, 0.45), 0 10px 30px rgba(10, 11, 15, 0.12);
+  border: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: width 0.25s ease, opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Card-sized compact view: narrower + shorter avatar + tighter padding */
+.panelCompact { width: min(320px, calc(100vw - 32px)); }
+.panelCompact .head { padding: 12px 10px 10px 16px; }
+.panelCompact .avatarStage { height: 170px; }
+.panelCompact .speakBtn { padding: 8px 14px; font-size: 13px; bottom: 10px; }
+.panelCompact .compactIntro { padding: 12px 16px 4px; }
+.panelCompact .compactGreeting { font-size: 13px; }
+.panelCompact .inputRow { margin: 8px 12px 6px; }
+.panelCompact .disclaimer { padding: 0 14px 10px; font-size: 10.5px; }
+.panelOpen { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+/* header: white, dark text */
+.head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 16px 14px 12px 18px;
+  background: #fff;
+  color: var(--ink);
+}
+.headText { display: flex; align-items: baseline; gap: 8px; line-height: 1.2; margin-right: auto; }
+.headName { font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+.headRole { font-size: 13px; font-weight: 500; color: var(--grey); }
+.headClose,
+.headIcon {
+  background: transparent;
+  border: 0;
+  color: var(--grey);
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+.headClose:hover,
+.headIcon:hover { background: #f0f3f8; color: var(--ink); }
+.headClose svg,
+.headIcon svg { width: 18px; height: 18px; }
+
+/* compact intro: shown below the avatar when the chat is not expanded */
+.compactIntro {
+  flex: none;
+  padding: 16px 20px 8px;
+  background: #fff;
+}
+.compactGreeting {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ===== avatar stage: large hero area with Speak overlay ===== */
+.avatarStage {
+  flex: none;
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #c3dcff 0%, #e6effc 100%);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.avatarMedia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.avatarStage::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 90px;
+  background: linear-gradient(180deg, transparent, rgba(10, 18, 40, 0.18));
+  pointer-events: none;
+}
+.avatarStageSpeaking { box-shadow: inset 0 0 0 3px var(--navy); }
+.avatarStageListening { box-shadow: inset 0 0 0 3px #ef4444; }
+
+/* overlay Speak button */
+.speakBtn {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px -8px rgba(11, 92, 255, 0.65);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.speakBtn:hover { background: var(--navy-deep); transform: translateX(-50%) translateY(-1px); }
+.speakBtn svg { width: 16px; height: 16px; }
+.speakBtnOn {
+  background: #ef4444;
+  box-shadow: 0 10px 24px -8px rgba(239, 68, 68, 0.65);
+  animation: speakPulse 1.4s ease-in-out infinite;
+}
+.speakBtnOn:hover { background: #dc2626; }
+@keyframes speakPulse {
+  0%, 100% { box-shadow: 0 10px 24px -8px rgba(239, 68, 68, 0.65), 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 10px 24px -8px rgba(239, 68, 68, 0.65), 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+/* bottom disclaimer */
+.disclaimer {
+  flex: none;
+  margin: 0;
+  padding: 0 16px 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--grey);
+  background: #fff;
+  text-align: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .speakBtnOn { animation: none; }
+}
+
+/* body */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+.row { display: flex; }
+.rowUser { justify-content: flex-end; }
+.bubble {
+  max-width: 86%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 16px;
+}
+.bubbleBot {
+  background: #f3f5fa;
+  color: var(--ink);
+  border-bottom-left-radius: 5px;
+}
+.bubbleUser {
+  background: var(--navy);
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+.bubbleLink {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+  font-size: 13px; font-weight: 700; color: var(--navy);
+  background: #fff; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--navy-3);
+  transition: background 0.2s ease;
+}
+.bubbleLink:hover { background: var(--navy-soft); }
+.bubbleLink svg { width: 14px; height: 14px; }
+
+/* typing */
+.typing { display: inline-flex; gap: 4px; align-items: center; }
+.typing span {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--grey-soft);
+  animation: blink 1.2s infinite ease-in-out both;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: 0.25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+
+/* suggestion chips: lighter, text-first, like Piper's prompts */
+.chips { display: flex; flex-direction: column; align-items: stretch; gap: 2px; margin-top: 4px; padding-bottom: 6px; }
+.chip {
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 2px;
+  border-radius: 0;
+  transition: color 0.15s ease, padding-left 0.15s ease;
+}
+.chips .chip:first-child { border-top: 0; }
+.chip:hover { color: var(--navy-deep); padding-left: 4px; }
+
+/* input: single rounded pill with inline mic + send */
+.inputRow {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 10px 14px 8px;
+  padding: 4px 6px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.inputRow:focus-within { border-color: var(--navy); box-shadow: 0 0 0 3px var(--navy-soft); }
+.input {
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 10px 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  min-width: 0;
+}
+.input::placeholder { color: var(--grey-soft); }
+.inlineBtn {
+  flex: none;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: var(--grey);
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+.inlineBtn:hover:not(:disabled) { background: #f0f3f8; color: var(--navy); }
+.inlineBtn:disabled { opacity: 0.35; cursor: default; }
+.inlineBtn svg { width: 16px; height: 16px; }
+.inlineBtnOn {
+  background: #ef4444;
+  color: #fff;
+}
+.inlineBtnOn:hover:not(:disabled) { background: #dc2626; color: #fff; }
+
+@media (max-width: 480px) {
+  .fab { right: 16px; bottom: 16px; }
+  .wa { right: 18px; bottom: 84px; width: 52px; height: 52px; }
+  .wa svg { width: 28px; height: 28px; }
+  .waTip { display: none; }
+  .panel { right: 12px; left: 12px; bottom: 84px; width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa:hover { transform: none; }
+  .waHidden { transform: none; }
+  .panel { transition: opacity 0.15s ease; transform: none; }
+  .panelOpen { transform: none; }
+}

@@ -1,0 +1,33 @@
+.crumbs {
+  width: 100%;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--grey);
+  transition: color 0.2s ease;
+}
+.link:hover {
+  color: var(--navy);
+}
+.current {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sep {
+  width: 14px;
+  height: 14px;
+  color: var(--grey-soft);
+}

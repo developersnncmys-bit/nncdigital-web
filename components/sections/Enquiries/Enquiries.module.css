@@ -1,0 +1,126 @@
+.section {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: var(--section-pad) 0;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* ---- left copy ---- */
+.title {
+  margin-top: 22px;
+  max-width: 13ch;
+}
+.lead {
+  margin-top: 22px;
+  max-width: 500px;
+}
+.cta {
+  margin-top: 30px;
+}
+
+/* ---- right diagram ---- */
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.svg {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.4;
+}
+
+/* hub */
+.hubBg {
+  fill: var(--navy);
+}
+.hubPulse {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 2;
+  opacity: 0.4;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hubPulse 2.6s ease-out infinite;
+}
+@keyframes hubPulse {
+  0% { transform: scale(1); opacity: 0.4; }
+  70% { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+.hubNum {
+  fill: #fff;
+  font-family: var(--sans);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-anchor: middle;
+}
+.hubLabel {
+  fill: rgba(255, 255, 255, 0.78);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-anchor: middle;
+}
+
+/* channel chips */
+.chip {
+  fill: #fff;
+  stroke: var(--line-2);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 6px 16px rgba(11, 13, 18, 0.06));
+}
+.chipLabel {
+  fill: var(--ink);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.chipDot {
+  fill: var(--navy);
+}
+.chipDot[data-i='1'] { fill: var(--navy-2); }
+.chipDot[data-i='2'] { fill: var(--navy-3); }
+.chipDot[data-i='3'] { fill: var(--grey-soft); }
+
+/* flowing dots */
+.rider {
+  fill: var(--navy);
+  filter: drop-shadow(0 0 5px rgba(27, 58, 115, 0.6));
+}
+
+.caption {
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--grey-soft);
+  text-align: center;
+}
+
+@media (max-width: 940px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}

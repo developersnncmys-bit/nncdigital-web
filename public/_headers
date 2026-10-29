@@ -1,0 +1,57 @@
+# Netlify headers.
+#
+# Indexing note: the Travel CRM landing pages are open to search engines; the
+# rest of the site is still pre-launch and stays blocked. X-Robots-Tag is set
+# per path rather than as a /* default plus overrides, because when several
+# rules match a path Netlify can combine them — and a combined
+# "noindex ... index" resolves to the most restrictive, i.e. noindex. Listing
+# the blocked paths explicitly removes that ambiguity.
+#
+# Anything added under a NEW top-level path is indexable by default, so add it
+# to the blocked list below unless it is meant to be public.
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+
+# ---- pre-launch main site: keep out of search ----
+/
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/404
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/404.html
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/company/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/features/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/industries/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/legal/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/support/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/pricing/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/sitemap/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/thank-you/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/multi-center-training-institutes-crm/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+/img/*
+  X-Robots-Tag: noindex, noimageindex
+
+# ---- long-lived static assets ----
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/travel-crm/images/*
+  Cache-Control: public, max-age=31536000, immutable
+/travel-crm/doodles/*
+  Cache-Control: public, max-age=31536000, immutable
+/og/*
+  Cache-Control: public, max-age=31536000, immutable

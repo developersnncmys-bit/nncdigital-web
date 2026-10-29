@@ -1,0 +1,45 @@
+.chart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.areaTop {
+  stop-color: var(--navy);
+  stop-opacity: 0.18;
+}
+.areaBottom {
+  stop-color: var(--navy);
+  stop-opacity: 0;
+}
+
+.actual {
+  fill: none;
+  stroke: var(--navy);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.forecast {
+  fill: none;
+  stroke: var(--navy-3);
+  stroke-width: 2.2;
+  stroke-dasharray: 5 5;
+  stroke-linecap: round;
+}
+.dot {
+  fill: #fff;
+  stroke: var(--navy);
+  stroke-width: 2;
+}
+.today {
+  stroke: var(--line-2);
+  stroke-width: 1.4;
+  stroke-dasharray: 3 4;
+}
+.todayLabel {
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--grey-soft);
+}

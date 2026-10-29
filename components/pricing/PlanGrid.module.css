@@ -1,0 +1,75 @@
+/* ---- controls row ---- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* segmented billing-term control */
+.segment {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--paper-2);
+  border-radius: 999px;
+}
+.seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--grey);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.seg:hover {
+  color: var(--ink);
+}
+.segOn {
+  background: #fff;
+  color: var(--navy);
+  box-shadow: var(--sh-sm);
+}
+.best {
+  font-size: 11px;
+  font-weight: 800;
+  color: #0a7d3b;
+  background: #e3f6ea;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.currency {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey);
+}
+
+/* ---- cards ---- */
+.grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .segment { width: 100%; }
+  .seg { flex: 1; justify-content: center; padding: 9px 8px; }
+  .best { display: none; }
+}

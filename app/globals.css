@@ -1,0 +1,212 @@
+/* ============================================================
+   NNC CRM — EDITORIAL design system
+   Palette: white / dark-blue / black / grey (strict).
+   Bold, high-contrast, oversized type. --pos/--neg = deltas only.
+   ============================================================ */
+
+:root {
+  /* surfaces (Zoom: white + soft blue-grey) */
+  --white: #ffffff;
+  --paper: #f4f7fc;
+  --paper-2: #e9eff8;
+
+  /* ink — deep navy text & dark sections */
+  --black: #0b1a33;
+  --ink: #0b1a33;
+  --grey: #555d6e;
+  --grey-soft: #8a93a6;
+
+  /* brand — Zoom Blue */
+  --navy: #0b5cff;
+  --navy-deep: #0a4fe0;
+  --navy-soft: #e8f0ff;
+  --navy-2: #4d8bff;
+  --navy-3: #87b3ff;
+
+  /* lines */
+  --line: rgba(10, 11, 15, 0.12);
+  --line-2: rgba(10, 11, 15, 0.22);
+  --line-strong: rgba(10, 11, 15, 0.9);
+
+  /* financial deltas ONLY */
+  --pos: #1f7a53;
+  --neg: #b23b30;
+
+  /* radius — editorial = tighter corners */
+  --r-sm: 8px;
+  --r: 12px;
+  --r-lg: 18px;
+
+  /* shadow */
+  --sh-sm: 0 1px 2px rgba(10, 11, 15, 0.04), 0 4px 14px rgba(10, 11, 15, 0.05);
+  --sh: 0 10px 34px rgba(10, 11, 15, 0.09), 0 2px 6px rgba(10, 11, 15, 0.05);
+  --sh-lg: 0 40px 90px rgba(13, 34, 74, 0.18), 0 10px 28px rgba(10, 11, 15, 0.08);
+  --shadow-sm: var(--sh-sm);
+  --shadow: var(--sh);
+  --shadow-lg: var(--sh-lg);
+
+  --maxw: 1280px;
+  --pad: 28px;
+  --section-pad: clamp(70px, 9vh, 120px);
+
+  --sans: var(--font-jakarta), system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --mono: var(--font-mono), ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--grey);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  color: var(--black);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+p {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+::selection {
+  background: var(--black);
+  color: #fff;
+}
+
+/* fixed SVG grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* layout helpers */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* ---- type scale: bold but professional (not oversized) ---- */
+.display-xl {
+  font-size: clamp(40px, 5.2vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+.display-l {
+  font-size: clamp(30px, 3.8vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+.lead {
+  font-size: clamp(17px, 1.35vw, 21px);
+  font-weight: 400;
+  color: var(--grey);
+  line-height: 1.55;
+}
+.navy-text {
+  color: var(--navy);
+}
+
+/* mono accent — labels, indices, data */
+.mono {
+  font-family: var(--mono);
+}
+
+/* editorial label (eyebrow-like) */
+.label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-soft);
+}
+
+/* full-bleed hairline rule for section rhythm */
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 0;
+}
+
+/* dark/black editorial block */
+.section-dark {
+  background: var(--black);
+  color: rgba(255, 255, 255, 0.72);
+}
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
+  color: #fff;
+}
+
+/* focus ring */
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* anti-blank failsafe: if JS never runs, nothing stays invisible.
+   GSAP sets opacity:0 at runtime AFTER hydration; these guard the
+   no-JS / pre-hydration path so content is always shown. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

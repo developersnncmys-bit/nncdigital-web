@@ -1,0 +1,229 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #e8f0fc;
+  border-radius: 18px;
+  padding: 30px 28px 26px;
+  color: var(--ink);
+}
+
+/* highlighted (blue) plan */
+.blue {
+  background: var(--navy);
+  color: #fff;
+}
+
+.category {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  min-height: 38px;
+}
+.blue .category {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.name {
+  margin-top: 16px;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.blue .name {
+  color: #fff;
+}
+
+.priceRow {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.amount {
+  font-size: clamp(34px, 3.6vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.blue .amount {
+  color: #fff;
+}
+.per {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--grey);
+}
+.blue .per {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.gst {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--grey-soft);
+}
+.blue .gst {
+  color: rgba(255, 255, 255, 0.72);
+}
+.seats {
+  margin-top: 4px;
+  font-size: 13.5px;
+  color: var(--grey);
+}
+.blue .seats {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 22px;
+  padding: 13px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  background: var(--ink);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  background: #16294d;
+}
+.blue .cta {
+  background: #fff;
+  color: var(--navy);
+  border-color: #fff;
+}
+.blue .cta:hover {
+  background: #eef4ff;
+}
+
+/* collapsible features header */
+.featHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 26px;
+  padding: 18px 0 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(11, 26, 51, 0.12);
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.blue .featHead {
+  border-top-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.chev {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  transition: transform 0.25s ease;
+}
+.chevOpen {
+  transform: rotate(180deg);
+}
+
+.groups {
+  margin-top: 18px;
+  display: grid;
+  gap: 22px;
+}
+.group {
+}
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.blue .groupHead {
+  color: #fff;
+}
+.gicon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: rgba(11, 92, 255, 0.12);
+  color: var(--navy);
+  flex: none;
+}
+.gicon svg {
+  width: 16px;
+  height: 16px;
+}
+.blue .gicon {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.items {
+  margin-top: 12px;
+  padding-left: 2px;
+  display: grid;
+  gap: 10px;
+}
+.items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--grey);
+}
+.items strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.blue .items li {
+  color: rgba(255, 255, 255, 0.86);
+}
+.blue .items strong {
+  color: #fff;
+}
+.tick {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  color: var(--navy);
+}
+.blue .tick {
+  color: #fff;
+}
+.tick svg {
+  width: 16px;
+  height: 16px;
+}
+
+.more {
+  margin-top: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  align-self: flex-start;
+}
+.blue .more {
+  color: #fff;
+}

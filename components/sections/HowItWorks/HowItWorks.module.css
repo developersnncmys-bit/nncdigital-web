@@ -1,0 +1,67 @@
+.section {
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+  padding: clamp(70px, 9vh, 120px) var(--pad);
+}
+
+.steps {
+  margin-top: clamp(40px, 5vw, 60px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.step {
+  position: relative;
+}
+.well {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: var(--r);
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-sm);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+}
+.n {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.stepTitle {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.stepBody {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--grey);
+  max-width: 26ch;
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 460px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}

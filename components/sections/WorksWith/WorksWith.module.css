@@ -1,0 +1,42 @@
+.section {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  padding: 30px 0;
+}
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 40px;
+}
+.caption {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 38px;
+}
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #8a93a6;
+  transition: color 0.2s ease;
+}
+.logo:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

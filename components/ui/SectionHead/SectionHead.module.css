@@ -1,0 +1,25 @@
+.head {
+  max-width: 860px;
+}
+.title {
+  margin-top: 26px;
+}
+.lead {
+  max-width: 620px;
+  margin-top: 22px;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+.center .lead {
+  margin-inline: auto;
+}
+
+.inverse .title {
+  color: #fff;
+}
+.inverse .lead {
+  color: rgba(255, 255, 255, 0.72);
+}

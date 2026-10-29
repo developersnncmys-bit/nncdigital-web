@@ -1,0 +1,148 @@
+.grid {
+  margin-top: clamp(34px, 4vw, 52px);
+  display: grid;
+  /* --cols is set inline from JS based on item count (2 / 3 / 4). */
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: 20px;
+}
+
+/* Card: a product-feature card, not a photo tile.
+   Subtle but visible border, tighter radius, no shadow at rest. Hover is a
+   small lift with a hairline shadow — understated, B2B-appropriate. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r); /* 12px — tighter than the previous 18px */
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  border-color: var(--navy-3, #c7d6ff);
+  box-shadow: 0 10px 28px -14px rgba(11, 26, 51, 0.18);
+  transform: translateY(-2px);
+}
+a.card { color: inherit; text-decoration: none; }
+
+/* Media slot — image sits inside a padded container with a light tinted
+   backdrop. 16:9 landscape ratio matches wider illustrations/screenshots and
+   pairs well with the 2x2 card layout. */
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--paper, #f4f7fc);
+  border-bottom: 1px solid var(--line);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mediaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the slot; crop edges as needed */
+  object-position: center;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Placeholder — only shown on cards that have no image yet. Four tinted
+   backdrops cycle so a grid of icon-only placeholders still feels varied,
+   but kept understated so they do not scream "placeholder". */
+.mediaPlaceholder {
+  position: absolute;
+  inset: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+}
+.v1 { background: linear-gradient(135deg, #e6efff 0%, #cfdefc 100%); }
+.v2 { background: linear-gradient(135deg, #fdece2 0%, #f6d5bf 100%); }
+.v3 { background: linear-gradient(135deg, #e4efdf 0%, #cde0c2 100%); }
+.v4 { background: linear-gradient(135deg, #ebe4f5 0%, #d7c8ea 100%); }
+/* Flat variant — removes the colored pastel tiles and shows a single
+   centered animated icon in brand blue on a neutral paper backdrop. Opt-in
+   via `flat: true` on the featureGrid block. */
+.flat { background: var(--paper); }
+
+/* Compact card — no oversized square media box. Used by the flat variant
+   when a card has no image: the icon chip renders inline at the top of the
+   card body, so cards shrink to just header + 2–3 lines of copy. */
+.cardCompact { }
+.inlineIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: var(--navy);
+  background: var(--navy-soft);
+  margin-bottom: 4px;
+}
+.inlineIcon svg { width: 24px; height: 24px; }
+.cardCompact .cardBody { padding: 24px 24px 26px; }
+.cardCompact .title { font-size: 17px; }
+.cardCompact .body { font-size: 14.5px; }
+
+.mediaIcon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  color: var(--navy);
+  background: #fff;
+  box-shadow: 0 6px 18px -6px rgba(11, 26, 51, 0.18);
+}
+.mediaIcon svg { width: 28px; height: 28px; }
+
+/* Text block — more generous padding so the taller cards don't feel bottom-light. */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 28px 30px;
+}
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
+}
+.body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--grey);
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.link svg { width: 14px; height: 14px; transition: transform 0.2s ease; }
+.card:hover .link svg { transform: translateX(3px); }
+
+/* staggered scroll-in — kept subtle */
+.js .card { opacity: 0; transform: translateY(18px); }
+.js.in .card {
+  animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+@keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .card { opacity: 1; transform: none; animation: none; }
+  .card:hover { transform: none; }
+}

@@ -1,0 +1,133 @@
+.section {
+  padding: var(--section-pad) var(--pad);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: start;
+}
+
+/* ---- left intro (sticky) ---- */
+.aside {
+  position: sticky;
+  top: 110px;
+}
+.title {
+  margin-top: 18px;
+  max-width: 12ch;
+}
+.lead {
+  margin-top: 18px;
+  font-size: 16px;
+  color: var(--grey);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+.cta {
+  margin-top: 26px;
+}
+
+/* ---- accordion ---- */
+.list {
+  display: grid;
+  gap: 14px;
+}
+
+.item {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--sh-sm);
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.item:hover {
+  border-color: var(--line-2);
+}
+.item.open {
+  border-color: var(--navy);
+  box-shadow: inset 3px 0 0 var(--navy), var(--sh);
+  background: linear-gradient(180deg, var(--navy-soft), #fff 60%);
+}
+
+.q {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 18px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: clamp(20px, 2.2vw, 26px) clamp(20px, 2.4vw, 30px);
+}
+.num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--grey-soft);
+  transition: color 0.25s ease;
+}
+.open .num {
+  color: var(--navy);
+}
+.qText {
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.chev {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--paper-2);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s ease, background 0.25s ease, color 0.25s ease;
+}
+.chev svg {
+  width: 18px;
+  height: 18px;
+}
+.open .chev {
+  background: var(--navy);
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+.a {
+  padding: 0 clamp(20px, 2.4vw, 30px) clamp(22px, 2.4vw, 28px)
+    calc(clamp(20px, 2.4vw, 30px) + 12px + 18px);
+  font-size: 15.5px;
+  color: var(--grey);
+  line-height: 1.65;
+  max-width: 64ch;
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .aside {
+    position: static;
+  }
+  .a {
+    padding-left: clamp(20px, 2.4vw, 30px);
+  }
+}

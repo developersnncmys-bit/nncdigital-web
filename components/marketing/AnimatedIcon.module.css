@@ -1,0 +1,55 @@
+.svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+/* globe: orbiting dot */
+.orbit { transform-box: view-box; transform-origin: 12px 12px; animation: spin 4.5s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* reports: growing bars */
+.bar { transform-box: fill-box; transform-origin: bottom; animation: grow 1.7s ease-in-out infinite; }
+.bar2 { animation-delay: 0.22s; }
+.bar3 { animation-delay: 0.44s; }
+@keyframes grow { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(1); } }
+
+/* chat: typing dots */
+.dot { animation: bounce 1.3s ease-in-out infinite; }
+.dot2 { animation-delay: 0.16s; }
+.dot3 { animation-delay: 0.32s; }
+@keyframes bounce { 0%, 100% { transform: translateY(1px); opacity: 0.55; } 50% { transform: translateY(-1.5px); opacity: 1; } }
+
+/* pipeline: highlighter travelling through stages */
+.pdot { animation: ptravel 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes ptravel {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  50% { transform: translateX(8px); }
+  88% { opacity: 1; }
+  100% { transform: translateX(16px); opacity: 0; }
+}
+
+/* users: heartbeat + pulse ring */
+.heart { transform-box: fill-box; transform-origin: center; animation: heart 1.8s ease-in-out infinite; }
+@keyframes heart { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.1); } 45% { transform: scale(0.97); } }
+.ring2 { transform-box: fill-box; transform-origin: center; animation: ring 2.2s ease-out infinite; }
+@keyframes ring { 0% { transform: scale(0.5); opacity: 0.55; } 100% { transform: scale(1.25); opacity: 0; } }
+
+/* drawing strokes (forecast / security tick) */
+.draw { stroke-dasharray: 44; stroke-dashoffset: 44; animation: draw 2.6s ease-in-out infinite; }
+.draw2 { stroke-dasharray: 16; stroke-dashoffset: 16; animation: draw2 2.6s ease-in-out infinite; }
+@keyframes draw { 0% { stroke-dashoffset: 44; } 55% { stroke-dashoffset: 0; } 80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 44; } }
+@keyframes draw2 { 0%, 40% { stroke-dashoffset: 16; } 70% { stroke-dashoffset: 0; } 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 16; } }
+
+/* invoice: scanning line */
+.scan { transform-box: fill-box; transform-origin: center; animation: scan 2.2s ease-in-out infinite; }
+@keyframes scan { 0%, 100% { transform: translateY(-3px); opacity: 0.45; } 50% { transform: translateY(3px); opacity: 1; } }
+
+/* integrations: floating layers */
+.layer { transform-box: fill-box; transform-origin: center; animation: layer 2.4s ease-in-out infinite; }
+.layer2 { animation-delay: 0.3s; }
+@keyframes layer { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.6px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit, .bar, .dot, .pdot, .heart, .ring2, .draw, .draw2, .scan, .layer { animation: none; }
+  .bar, .heart, .layer, .scan { transform: none; }
+  .ring2, .pdot { opacity: 0; }
+  .draw, .draw2 { stroke-dashoffset: 0; }
+}

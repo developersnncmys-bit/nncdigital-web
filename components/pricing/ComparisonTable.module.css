@@ -1,0 +1,144 @@
+.wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: #fff;
+  box-shadow: var(--sh-sm);
+}
+
+.hint {
+  display: none;
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 16px 20px;
+}
+
+/* header */
+.featHead {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey-soft);
+  width: 40%;
+}
+.planHead {
+  text-align: center;
+  border-bottom: 1px solid var(--line-2);
+  vertical-align: bottom;
+  width: 20%;
+}
+.planName {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.planUsers {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-soft);
+}
+.popHead {
+  background: var(--navy-soft);
+  border-top-left-radius: var(--r-sm);
+  border-top-right-radius: var(--r-sm);
+}
+.popHead .planName {
+  color: var(--navy-deep);
+}
+
+/* group divider rows */
+.groupRow td {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--paper);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  border-top: 1px solid var(--line);
+}
+.row:hover .feat,
+.row:hover .cell {
+  background: rgba(27, 58, 115, 0.03);
+}
+.feat {
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.cell {
+  text-align: center;
+  font-size: 14px;
+}
+.popCell {
+  background: rgba(27, 58, 115, 0.05);
+}
+
+.yes {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(31, 122, 83, 0.12);
+  color: var(--pos);
+}
+.yes svg {
+  width: 13px;
+  height: 13px;
+}
+.no {
+  color: var(--grey-soft);
+  font-size: 16px;
+}
+.val {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+/* round the bottom of the popular column via last row cells */
+.row:last-child .popCell {
+  border-bottom-left-radius: var(--r-sm);
+  border-bottom-right-radius: var(--r-sm);
+}
+
+/* ---- mobile: tighter table + scroll hint ---- */
+@media (max-width: 640px) {
+  .hint { display: block; }
+  .table { min-width: 540px; }
+  .table th,
+  .table td { padding: 12px 12px; }
+  .feat { font-size: 13px; }
+  .cell, .val { font-size: 12.5px; }
+  .planName { font-size: 15px; }
+  .planUsers { font-size: 9.5px; }
+}

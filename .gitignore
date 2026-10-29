@@ -1,0 +1,56 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Next.js
+.next
+out
+next-env.d.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build archives and local working files — not source.
+# nncdigital.zip is ~2.3 GB and out.zip ~18 MB; GitHub rejects blobs over
+# 100 MB and committing them would bloat history permanently.
+*.zip
+shots/
+palette.png
+fix-growth.cjs
+fix-users.cjs
+
+# Dev-only video / build intermediates. Source clips downloaded for the hero
+# and training reels (stitch-*.mjs scripts), contact-sheet frames, and the
+# alternate static-export output directory. Big binaries — keep out of git.
+clips/
+clips-edu/
+sheet/
+sheet2/
+sheet3/
+sheet4/
+out-landing/
+
+# Image-staging folder used to drop PNGs before moving them into public/.
+# Not source; local only.
+Small-busi/
+
+# Local scratch
+scratchpad/
