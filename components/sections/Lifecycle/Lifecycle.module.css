@@ -5,12 +5,12 @@
 
 .title {
   text-align: center;
-  max-width: 18ch;
+  max-width: 22ch;
   margin: 0 auto;
-  font-size: clamp(30px, 4vw, 52px);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.06;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--ink);
 }
 .lead {
@@ -30,29 +30,55 @@
   gap: 8px;
   margin-top: clamp(34px, 4vw, 50px);
 }
+/* Register the custom property so it can animate (required for conic-
+   gradient border rotation). */
+@property --tab-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .tab {
-  /* Transparent border on all tabs so the active state can turn it on
-     without shifting the pill's size. */
-  border: 1px solid transparent;
+  /* 2px transparent border on all tabs so the active state can turn on an
+     equally-thick gradient border without shifting the pill's size.
+     Rounded-rectangle (14px) matches Zoom's softer-than-pill tab shape. */
+  border: 2px solid transparent;
   background: transparent;
   color: var(--grey);
   font-size: 15px;
   font-weight: 600;
-  padding: 11px 22px;
-  border-radius: 999px;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  padding: 10px 22px;
+  border-radius: 14px;
+  transition: color 0.2s ease;
 }
 .tab:hover {
   color: var(--ink);
 }
+/* Active tab: white interior with a conic-gradient border that spins
+   clockwise. The gradient includes a bright highlight stop so the rotation
+   reads clearly against the softer base. */
 .tabOn,
 .tabOn:hover {
-  background: #fff;
   color: var(--navy);
   font-weight: 700;
-  border-color: var(--line-2);
-  box-shadow: var(--sh-sm);
+  border-color: transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(
+      from var(--tab-angle),
+      var(--navy) 0deg,
+      var(--navy-3) 90deg,
+      #ffffff 180deg,
+      var(--navy-3) 270deg,
+      var(--navy) 360deg
+    ) border-box;
+  animation: tabBorderSpin 2.5s linear infinite;
+}
+@keyframes tabBorderSpin {
+  to { --tab-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tabOn, .tabOn:hover { animation: none; }
 }
 
 /* ---- panel ---- */
@@ -70,12 +96,12 @@
 }
 
 .pTitle {
-  font-size: clamp(24px, 2.8vw, 36px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-size: clamp(22px, 2.3vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
   color: var(--ink);
-  max-width: 16ch;
+  max-width: 20ch;
 }
 .pBody {
   margin-top: 16px;

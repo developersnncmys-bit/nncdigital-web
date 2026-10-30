@@ -1,17 +1,26 @@
+/* Default: transparent over the dark hero (homepage only, at scroll top).
+   Scrolled / non-homepage / drawer-open: solid white + blur.
+   The pre-hydration `html[data-scrolled]` flag (set in app/layout.js) catches
+   the hydration gap when the page is loaded already scrolled. */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 200;
-  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease,
-    border-color 0.3s ease, backdrop-filter 0.3s ease;
   padding: 18px 0;
   border-bottom: 1px solid transparent;
+  /* NO background/backdrop transition — the switch between transparent and
+     solid snaps instantly to avoid a visible "half-blended" window while
+     scrolling past the hero. Text colors keep their own smooth transitions. */
+  transition: padding 0.2s ease, border-color 0.2s ease;
 }
-.nav.scrolled {
+.nav.scrolled,
+:global(html[data-scrolled]) .nav {
   padding: 11px 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid var(--line);
 }
 
@@ -51,12 +60,10 @@
   color: rgba(255, 255, 255, 0.85);
   transition: color 0.3s ease;
 }
-.scrolled .brandText {
-  color: var(--ink);
-}
-.scrolled .brandLight {
-  color: var(--grey);
-}
+.scrolled .brandText,
+:global(html[data-scrolled]) .brandText { color: var(--ink); }
+.scrolled .brandLight,
+:global(html[data-scrolled]) .brandLight { color: var(--grey); }
 /* (legacy square mark removed — logo is now the standalone colored icon) */
 
 .links {
@@ -83,42 +90,74 @@
   background: #fff;
   transition: width 0.25s ease;
 }
-.link:hover {
-  color: #fff;
-}
-.link:hover::after {
-  width: 100%;
-}
-.scrolled .link {
-  color: var(--grey);
-}
-.scrolled .link::after {
-  background: var(--navy);
-}
-.scrolled .link:hover {
-  color: var(--ink);
-}
+.link:hover { color: #fff; }
+.link:hover::after { width: 100%; }
+.scrolled .link,
+:global(html[data-scrolled]) .link { color: var(--grey); }
+.scrolled .link::after,
+:global(html[data-scrolled]) .link::after { background: var(--navy); }
+.scrolled .link:hover,
+:global(html[data-scrolled]) .link:hover { color: var(--ink); }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
 }
+
+/* AI assistant button — sits beside the Book-a-Demo CTA. Padding / gap /
+   font metrics MATCH the shared Button component (components/ui/Button) so
+   the two buttons sit the same height and read as a matching pair. The soft
+   navy fill makes it clearly a secondary action, not a duplicate CTA. */
+.chatBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 26px;
+  border-radius: 8px;
+  border: 1.5px solid var(--navy);
+  background: var(--navy-soft);
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+.chatBtn:hover {
+  background: var(--navy);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(11, 92, 255, 0.28);
+}
+.chatBtnSpark {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  animation: chatBtnSparkPulse 2.4s ease-in-out infinite;
+}
+@keyframes chatBtnSparkPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.92; }
+  50% { transform: scale(1.12) rotate(8deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chatBtnSpark { animation: none; }
+}
+
 .signin {
   font-size: 14px;
   font-weight: 600;
   color: #fff;
   transition: color 0.2s ease;
 }
-.signin:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-.scrolled .signin {
-  color: var(--ink);
-}
-.scrolled .signin:hover {
-  color: var(--navy);
-}
+.signin:hover { color: rgba(255, 255, 255, 0.8); }
+.scrolled .signin,
+:global(html[data-scrolled]) .signin { color: var(--ink); }
+.scrolled .signin:hover,
+:global(html[data-scrolled]) .signin:hover { color: var(--navy); }
 
 /* hamburger */
 .burger {
@@ -131,9 +170,7 @@
   padding: 9px;
   transition: border-color 0.2s ease;
 }
-.burger:hover {
-  border-color: rgba(255, 255, 255, 0.55);
-}
+.burger:hover { border-color: rgba(255, 255, 255, 0.55); }
 .burger span {
   width: 20px;
   height: 2px;
@@ -141,12 +178,10 @@
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
-.scrolled .burger {
-  border-color: var(--line);
-}
-.scrolled .burger span {
-  background: var(--ink);
-}
+.scrolled .burger,
+:global(html[data-scrolled]) .burger { border-color: var(--line); }
+.scrolled .burger span,
+:global(html[data-scrolled]) .burger span { background: var(--ink); }
 
 .mobileMenu {
   display: flex;

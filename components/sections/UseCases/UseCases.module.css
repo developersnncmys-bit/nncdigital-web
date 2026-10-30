@@ -1,49 +1,169 @@
+/* Salesforce-style cards: large tinted visual area on top (icon + sparkles),
+   white card body below (title + body + underlined link). Each card gets its
+   own soft pastel tint so a grid of them feels varied, not templated. */
+
 .section {
   padding: clamp(70px, 9vh, 120px) var(--pad);
 }
+
 .grid {
   margin-top: clamp(40px, 5vw, 60px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
+
+/* "Explore Industry Solutions" CTA — sits centered below the industry card
+   grid. Same navy pill treatment as the HowItWorks CTA for consistency. */
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(32px, 4vw, 48px);
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cta:hover {
+  background: var(--navy-deep);
+  transform: translateY(-2px);
+}
+
 .card {
   display: flex;
   flex-direction: column;
   background: #fff;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-lg);
-  padding: 30px 28px 26px;
-  box-shadow: var(--sh-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(10, 11, 15, 0.06);
+  box-shadow:
+    0 1px 2px rgba(10, 11, 15, 0.04),
+    0 12px 32px -16px rgba(10, 11, 15, 0.1);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--sh);
-  border-color: var(--navy-3);
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 2px rgba(10, 11, 15, 0.04),
+    0 24px 48px -18px rgba(10, 11, 15, 0.18);
 }
-.icon {
-  display: grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 13px;
-  background: var(--navy-soft);
-  color: var(--navy);
-  margin-bottom: 22px;
+
+/* Visual area — photo-filled panel at the top. Concave scoop cut into the
+   bottom-center via an ::after pseudo element with the card body's white
+   background, creating the signature Salesforce "ribbon" curve. */
+.visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin: 10px 10px 0;
+  border-radius: 16px;
 }
-.icon svg {
-  width: 26px;
-  height: 26px;
+/* No bottom curve — every card uses the plain rounded-rectangle image treatment. */
+
+/* Two sparkles decorate the visual area — same cue as the Salesforce ref.
+   Positioned diagonally so the composition isn't symmetrical. */
+.sparkleA,
+.sparkleB {
+  position: absolute;
+  opacity: 0.65;
+  pointer-events: none;
+}
+.sparkleA {
+  top: 18%;
+  right: 18%;
+  width: 20px;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.sparkleB {
+  bottom: 20%;
+  left: 16%;
+  width: 14px;
+  height: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Per-industry stock photos (Unsplash) in the visual area — matches the
+   Salesforce reference where each card shows a real photograph. A soft dark
+   gradient overlay keeps the icon chip + sparkles readable on busy images. */
+.card:nth-child(1) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(1) .icon { color: #0b5cff; }
+
+.card:nth-child(2) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(2) .icon { color: #c15a1a; }
+
+.card:nth-child(3) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(3) .icon { color: #6b3fcf; }
+
+.card:nth-child(4) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(4) .icon { color: #1f7a53; }
+
+.card:nth-child(5) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(5) .icon { color: #c13a4a; }
+
+.card:nth-child(6) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+}
+.card:nth-child(6) .icon { color: #1a6f66; }
+
+/* Content area below the visual — bold title, body, underlined link CTA.
+   Padding-top is reduced to 14px so the title sits close to the scooped
+   bottom of the image (matches Salesforce where the title hugs the curve). */
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 24px 28px;
+  gap: 10px;
 }
 .cardTitle {
-  font-size: 19px;
-  font-weight: 800;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.2;
   color: var(--ink);
 }
 .cardBody {
-  margin-top: 8px;
+  margin: 0;
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--grey);
@@ -51,11 +171,14 @@
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  margin-top: 20px;
-  font-size: 14px;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
 }
 .link svg {
   width: 16px;
@@ -63,10 +186,15 @@
   transition: transform 0.2s ease;
 }
 .card:hover .link svg {
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
   .grid {
     grid-template-columns: 1fr;
     max-width: 460px;

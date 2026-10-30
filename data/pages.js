@@ -3,14 +3,17 @@
 
 const HOME = { label: 'Home', href: '/' }
 const img = (src, alt) => ({ type: 'image', src, alt })
+// Pre-launch audit: "Book a Demo" is the single primary CTA across the site
+// (secondary options are "Start free trial" or "See pricing"). Keeps header
+// and page body aligned instead of competing with two primary actions.
 const startCta = {
   title: 'Run your business on what is next',
-  sub: 'Start your free 30 day trial. No credit card required, cancel anytime.',
-  primary: { label: 'Start free trial', href: '#start' },
-  secondary: { label: 'See pricing', href: '/pricing' },
+  sub: 'Book a 30-minute demo on your own data, or start a free trial.',
+  primary: { label: 'Book a Demo', href: '#start' },
+  secondary: { label: 'Start free trial', href: '#start' },
 }
 const heroCtas = [
-  { label: 'Start free trial', href: '#start', trial: true },
+  { label: 'Book a Demo', href: '#start', trial: true },
   { label: 'See pricing', href: '/pricing', variant: 'ghost' },
 ]
 
@@ -219,7 +222,7 @@ export const FEATURES = {
   whatsapp: feat({
     name: 'WhatsApp engagement',
     metaTitle: 'WhatsApp CRM & Business Inbox | NNC CRM',
-    metaDescription: 'A full WhatsApp inbox built into your CRM. Reply, broadcast, automate and qualify leads 24/7 without any third party tools.',
+    metaDescription: 'A full WhatsApp inbox built into your CRM. Reply, broadcast, automate and qualify leads 24/7 — no extra apps needed.',
     title: 'India runs on WhatsApp. So does NNC CRM.',
     lead: 'If your CRM cannot do WhatsApp, it is missing the most important channel in the country. NNC CRM has a real WhatsApp inbox built in, where your whole team can read, reply, broadcast and automate, with every message tied to the right lead and deal.',
     img: '/img/feat-whatsapp.jpg', img2: '/img/scene-mobile.jpg',
@@ -291,7 +294,7 @@ export const COMPANY = {
         { value: 'Hyderabad', label: 'Regional office' },
       ] },
     ],
-    cta: { title: 'Build the CRM your business actually needs.', sub: 'Start your free trial, or talk to our team about the right plan for you.', primary: { label: 'Start free trial', href: '#start' }, secondary: { label: 'Contact us', href: '/company/contact' } },
+    cta: { title: 'Build the CRM your business actually needs.', sub: 'Book a 30-minute demo on your own data, or talk to our team about the right plan.', primary: { label: 'Book a Demo', href: '#start' }, secondary: { label: 'Contact us', href: '/company/contact' } },
   },
   careers: {
     ...cb('Careers', { lead: 'Join us and help Indian businesses grow.', metaTitle: "Careers at NNC | Build India's CRM With Us", metaDescription: 'Join NNC and help build the decision making CRM used across industries. Open roles in engineering, sales, support and marketing across four cities.' }),
@@ -367,7 +370,7 @@ export const COMPANY = {
   },
   contact: {
     ...cb('Contact sales', { lead: 'Talk to our team about NNC CRM.', metaTitle: 'Contact Sales | NNC CRM', metaDescription: 'Talk to the NNC team about the right plan for your business. Call 94227 99466, email hello@nncdigital.co.in, or book a quick demo.' }),
-    hero: { eyebrow: 'Contact', title: 'Let us find the right plan for you.', lead: 'Tell us how your business works and we will show you exactly which modules you need and what it will cost. No pressure, no jargon.', ctas: [{ label: 'Start free trial', href: '#start', trial: true }], media: img('/img/scene-support.jpg', 'Contact') },
+    hero: { eyebrow: 'Contact', title: 'Let us find the right plan for you.', lead: 'Tell us how your business works and we will show you exactly which modules you need and what it will cost. No pressure, no jargon.', ctas: [{ label: 'Book a Demo', href: '#start', trial: true }], media: img('/img/scene-support.jpg', 'Contact') },
     blocks: [
       { type: 'cards', title: 'Ways to reach us', items: [
         { icon: 'phone', title: 'Call us', body: '94227 99466, Monday to Saturday, 10am to 7pm.' },
@@ -419,7 +422,7 @@ export const SUPPORT = {
   },
   'getting-started': {
     ...sb('Getting started', { lead: 'Set up NNC CRM in minutes.', metaTitle: 'Getting Started | NNC CRM', metaDescription: 'Set up NNC CRM in minutes. Create your account, pick your plan, import data and go live, step by step.' }),
-    hero: { eyebrow: 'Support', title: 'Get set up in four steps.', lead: 'Four quick steps to set up NNC and start capturing every enquiry today.', ctas: [{ label: 'Start free trial', href: '#start', trial: true }] },
+    hero: { eyebrow: 'Support', title: 'Get set up in four steps.', lead: 'Four quick steps to set up NNC and start capturing every enquiry today.', ctas: [{ label: 'Book a Demo', href: '#start', trial: true }] },
     blocks: [
       { type: 'steps', title: 'Your first day with NNC', items: [
         { title: 'Create your account', body: 'Sign up in seconds, no credit card needed.' },
@@ -627,7 +630,7 @@ export const INDUSTRIES_OVERVIEW = {
       { value: '10+ years', label: 'building industry CRMs' },
       { value: '1 day', label: 'to go live' },
     ] },
-    { type: 'featureGrid', title: 'Choose your industry', lead: 'Every pack ships with the pipeline stages, fields and reports your industry needs. Open yours to see the version built for you.', items: [
+    { type: 'featureGrid', flat: true, title: 'Choose your industry', lead: 'Every pack ships with the pipeline stages, fields and reports your industry needs. Open yours to see the version built for you.', items: [
       { icon: 'sales', title: 'Sales teams', body: 'A CRM for sales teams: visual pipeline, daily call lists and live targets.', href: '/industries/sales-teams' },
       { icon: 'service', title: 'Service businesses', body: 'A service business CRM: every job from enquiry to invoice, plus repeat revenue.', href: '/industries/service-businesses' },
       { icon: 'manufacturing', title: 'Manufacturing', body: 'A manufacturing CRM: enquiry to quotation to dispatch to payment.', href: '/industries/manufacturing' },
@@ -639,9 +642,9 @@ export const INDUSTRIES_OVERVIEW = {
     ] },
     { type: 'split', kicker: 'Industry specific CRM', title: 'Why an industry specific CRM beats a generic one', body: 'A generic CRM hands you empty fields and a blank pipeline, then leaves the hard part to you. An industry specific CRM from NNC arrives already set up for how your sector sells, serves and gets paid, so your team is productive on day one.', bullets: ['The right pipeline stages, ready on day one', 'Fields and forms that match your business', 'The reports your industry actually uses', 'Go live in a day, not a quarter'], media: img('/img/scene-dashboard.jpg', 'Industry specific CRM dashboard') },
     { type: 'featureGrid', title: 'Built for the way your industry works', items: [
-      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.' },
-      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.' },
-      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.' },
+      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1.png', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
+      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2.png', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
+      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3.png', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
     ] },
     { type: 'faq', title: 'Industry CRM questions', items: [
       { q: 'What is an industry specific CRM?', a: 'An industry specific CRM ships with the pipeline stages, fields, automations and reports your sector needs, instead of a blank, generic setup. NNC CRM offers ready packs for eight industries so you go live faster.' },
@@ -1019,10 +1022,13 @@ export const CASE_STUDIES_OVERVIEW = {
     media: { type: 'component', name: 'crmDashboard' },
   },
   blocks: [
+    // Trust stats pulled per pre-launch audit — "2,000+ businesses" and
+    // "4.8/5 rating" were flagged as unprovable claims that ASCI or a
+    // competitor could challenge. Replaced with provable product facts.
     { type: 'stats', items: [
-      { value: '2,000+', label: 'businesses across India' },
-      { value: '4.8 / 5', label: 'average customer rating' },
-      { value: '1 day', label: 'typical go-live time' },
+      { value: '10+ years', label: 'building industry CRMs' },
+      { value: '5 verticals', label: 'with ready-built modules' },
+      { value: '30 days', label: 'free trial, no card needed' },
     ] },
     { type: 'cards', highlight: true, title: 'Stories by sector', lead: 'Open any scenario to see the challenge, the solution and the kind of outcome teams in that sector see on NNC CRM.', items: [
       { icon: 'globe', title: 'Travel agency scaling across branches', body: 'From spreadsheet quotes to a branded workspace that every branch shares.', href: '/case-studies/travel-agency-multi-branch' },

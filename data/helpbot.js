@@ -2561,5 +2561,196 @@ export const KB = [
       "label": "View plans",
       "href": "/pricing"
     }
+  },
+
+  // ---------------------------------------------------------------------------
+  // Small-talk / social — keeps the assistant from giving a hard "I don't know"
+  // when a visitor opens with "hi, how are you" or asks the usual chatbot
+  // questions ("who are you", "what can you do"). Each answer stays short and
+  // nudges back toward CRM topics so the chat still earns its keep.
+  // ---------------------------------------------------------------------------
+  {
+    "id": "small-talk-how-are-you",
+    "topic": "small-talk",
+    "intents": [
+      "how are you",
+      "how are things",
+      "how is it going",
+      "hows it going",
+      "how do you do",
+      "how have you been",
+      "you doing well",
+      "whats up",
+      "are you well"
+    ],
+    "question": "How are you?",
+    "answer": "Doing great, thanks for asking! Ready to help whenever you are. Want to hear about pricing, features, or the free trial?"
+  },
+  {
+    "id": "small-talk-who-are-you",
+    "topic": "small-talk",
+    "intents": [
+      "who are you",
+      "what are you",
+      "are you a bot",
+      "are you an ai",
+      "are you ai",
+      "are you a robot",
+      "are you a human",
+      "are you real",
+      "are you a person"
+    ],
+    "question": "Who are you?",
+    "answer": "I'm the NNC assistant, an AI built to help you learn about NNC CRM. Not a human, but happy to answer questions on pricing, features, industries and more."
+  },
+  {
+    "id": "small-talk-your-name",
+    "topic": "small-talk",
+    "intents": [
+      "your name",
+      "whats your name",
+      "what is your name",
+      "what are you called",
+      "do you have a name",
+      "may i know your name"
+    ],
+    "question": "What's your name?",
+    "answer": "I'm the NNC assistant — think of me as the friendly front desk for everything NNC CRM. How can I help?"
+  },
+  {
+    "id": "small-talk-what-can-you-do",
+    "topic": "small-talk",
+    "intents": [
+      "what can you do",
+      "what do you know",
+      "how can you help",
+      "what should i ask",
+      "what are you capable of",
+      "what are you good at",
+      "capabilities",
+      "what topics do you cover"
+    ],
+    "question": "What can you do?",
+    "answer": "I can answer questions about NNC CRM — pricing, plans, features, industries we serve, the free trial, booking a demo, and how to reach our team. Try one of the suggestions below or just ask."
+  },
+  {
+    "id": "small-talk-who-built-you",
+    "topic": "small-talk",
+    "intents": [
+      "who built you",
+      "who made you",
+      "who created you",
+      "who developed you",
+      "who designed you",
+      "who owns you"
+    ],
+    "question": "Who built you?",
+    "answer": "I was built by Nakshatra Namaha Creations (NNC Digital) — the same team behind NNC CRM. Based in India, building software for Indian businesses."
+  },
+  {
+    "id": "small-talk-where-is-nnc",
+    "topic": "small-talk",
+    "intents": [
+      "where are you located",
+      "where are you based",
+      "where is nnc",
+      "where is nnc located",
+      "where is nnc based",
+      "nnc location",
+      "nnc office",
+      "where are you from",
+      "nnc address"
+    ],
+    "question": "Where is NNC located?",
+    "answer": "NNC Digital is an Indian company serving businesses across India. For a demo or a visit, reach us at 94227 99466 or hello@nncdigital.co.in.",
+    "link": {
+      "label": "Contact us",
+      "href": "/support/contact"
+    }
+  },
+  {
+    "id": "small-talk-tell-me-about-yourself",
+    "topic": "small-talk",
+    "intents": [
+      "tell me about yourself",
+      "tell me about you",
+      "introduce yourself",
+      "about yourself",
+      "describe yourself",
+      "who am i speaking to"
+    ],
+    "question": "Tell me about yourself.",
+    "answer": "I'm the NNC assistant — an AI helper for the NNC CRM website. I'll walk you through plans, features, industries, and how to try NNC free. What would you like to explore first?"
+  },
+  {
+    "id": "small-talk-bye",
+    "topic": "small-talk",
+    "intents": [
+      "bye",
+      "goodbye",
+      "see you",
+      "see you later",
+      "take care",
+      "talk later",
+      "catch you later",
+      "i am leaving"
+    ],
+    "question": "Goodbye",
+    "answer": "Bye for now! If you have more questions later, I'll be right here. You can also reach the team on 94227 99466 or hello@nncdigital.co.in."
+  },
+  {
+    "id": "small-talk-nice-to-meet-you",
+    "topic": "small-talk",
+    "intents": [
+      "nice to meet you",
+      "pleased to meet you",
+      "pleasure to meet you",
+      "glad to meet you",
+      "good to meet you"
+    ],
+    "question": "Nice to meet you.",
+    "answer": "Nice to meet you too! What brought you to NNC today — pricing, features, or something else?"
+  },
+  {
+    "id": "small-talk-compliment",
+    "topic": "small-talk",
+    "intents": [
+      "you are great",
+      "you are awesome",
+      "you are cool",
+      "you are smart",
+      "you are helpful",
+      "good job",
+      "well done",
+      "nicely done"
+    ],
+    "question": "You're great!",
+    "answer": "Thanks, that's kind of you! Happy to keep helping — anything else you'd like to know about NNC CRM?"
+  },
+  {
+    "id": "small-talk-sorry",
+    "topic": "small-talk",
+    "intents": [
+      "sorry",
+      "my apologies",
+      "my bad",
+      "didnt mean",
+      "my mistake"
+    ],
+    "question": "Sorry!",
+    "answer": "No worries at all! Ask away whenever you're ready."
+  },
+  {
+    "id": "small-talk-joke",
+    "topic": "small-talk",
+    "intents": [
+      "tell me a joke",
+      "say a joke",
+      "crack a joke",
+      "funny",
+      "make me laugh"
+    ],
+    "question": "Tell me a joke.",
+    "answer": "Here's one: a sales rep walked into their CRM and found every lead already followed up — they thought they were dreaming. Turns out they'd finally switched to NNC. Want to see what we actually do?"
   }
 ]

@@ -7,64 +7,53 @@
   gap: 16px;
 }
 
-/* Segmented billing-term control.
-   Container: blue-gradient border via the dual-background trick (gradient on
-   the border-box layer, white on the padding-box layer, transparent border).
-   Active tab: filled navy pill, no shadow. */
+/* Segmented billing-term control — minimal and compact. Soft paper
+   container with no visible border; the active tab becomes a clean white
+   pill with a subtle shadow (iOS-style). */
 .segment {
   display: inline-flex;
-  padding: 5px;
-  gap: 4px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background:
-    linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(135deg, var(--navy) 0%, var(--navy-3) 100%) border-box;
+  padding: 4px;
+  gap: 2px;
+  border-radius: 10px;
+  background: var(--paper-2);
 }
 .seg {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-width: 150px;
-  padding: 10px 22px;
+  gap: 6px;
+  min-width: 128px;
+  padding: 9px 20px;
   border: 0;
   background: transparent;
   color: var(--grey);
   font-size: 14px;
-  font-weight: 700;
-  border-radius: 999px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .seg:hover {
   color: var(--ink);
 }
 .segOn,
 .segOn:hover {
-  background: var(--navy);
-  color: #fff;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(10, 11, 15, 0.06), 0 2px 6px -2px rgba(10, 11, 15, 0.08);
 }
-
-/* "Best value" chip sits inline next to the Yearly label. Green when the
-   tab is idle; flips to a translucent white when the pill is filled navy so
-   it reads cleanly against the dark background. */
+/* "Save X%" badge next to the Yearly label — small green text, no filled
+   chip. Keeps the pill clean. */
 .best {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 11.5px;
+  font-weight: 700;
   color: #0a7d3b;
-  background: #e3f6ea;
-  padding: 3px 7px;
-  border-radius: 999px;
-  line-height: 1;
+  letter-spacing: 0;
 }
-.segOn .best {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.22);
-}
+.best::before { content: '· '; opacity: 0.4; }
+.segOn .best { color: #0a7d3b; }
 
 .currency {
   font-size: 14px;

@@ -59,7 +59,7 @@ export default function Faq() {
           </p>
           <div className={styles.cta}>
             <Button href="#start" variant="primary">
-              Start free trial
+              Book a Demo
             </Button>
           </div>
         </aside>

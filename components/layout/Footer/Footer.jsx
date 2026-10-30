@@ -2,6 +2,17 @@ import { footer } from '@/data/content'
 import { travelPages } from '@/data/travelPages'
 import styles from './Footer.module.css'
 
+// Travel CRM footer column — reduced from 13 near-identical keyword links
+// (flagged as keyword stuffing in the pre-launch audit) to 4 pages that
+// serve genuinely different intents and audiences. The other 9 keyword
+// pages still exist for direct SEO landings; they just aren't linked here.
+const TRAVEL_FOOTER_SLUGS = [
+  'travel-crm',
+  'tour-operator-crm',
+  'travel-quotation-software',
+  'travel-itinerary-software',
+]
+
 // "travel agency crm" -> "Travel agency CRM". Sentence case with CRM kept in
 // capitals, which is also the most readable label for the link.
 const keywordLabel = (kw) =>
@@ -19,13 +30,12 @@ const SOCIAL = {
 }
 
 const HREF = {
-  // Products — mirrors the Products drawer in the nav. Car Care is omitted
-  // from the footer while it is still 'Coming soon' in the drawer.
+  // Products — mirrors the Products drawer in the nav.
   'NNC CRM': '/',
   'Travel CRM': '/travel-crm/',
   'Training Institutes CRM': '/multi-center-training-institutes-crm/',
+  'Car Studio CRM': '/car-studio-crm/',
   'Small Business CRM': '/small-business-crm/',
-  'Net Zero CRM': '/net-zero-crm/',
   Pricing: '/pricing',
   // Industries
   'Sales teams': '/industries/sales-teams',
@@ -110,18 +120,20 @@ export default function Footer() {
             </nav>
           ))}
 
-          {/* Travel CRM keyword pages. These links used to live in the travel
-              pages' own footer, which the site footer has replaced. Without
-              them those 13 pages are orphans — nothing on the site would link
-              to them, which is what made them discoverable in the first
-              place. Built from travelPages so labels and slugs cannot drift. */}
+          {/* Travel CRM column — 4 genuinely different pages instead of all
+              13 keyword variants. The remaining 9 are still live routes for
+              direct SEO landings, just not linked here. */}
           <nav className={styles.col} aria-label="Travel CRM">
             <h4 className={styles.colTitle}>Travel CRM</h4>
-            {Object.entries(travelPages).map(([slug, p]) => (
-              <a key={slug} href={`/${slug}/`} className={styles.colLink}>
-                {keywordLabel(p.keyword)}
-              </a>
-            ))}
+            {TRAVEL_FOOTER_SLUGS.map((slug) => {
+              const p = travelPages[slug]
+              if (!p) return null
+              return (
+                <a key={slug} href={`/${slug}/`} className={styles.colLink}>
+                  {keywordLabel(p.keyword)}
+                </a>
+              )
+            })}
           </nav>
         </div>
       </div>

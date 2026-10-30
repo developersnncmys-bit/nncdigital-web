@@ -230,18 +230,33 @@ export default function Navbar() {
   const solid = scrolled || pathname !== '/' || desktopDrawer !== null
 
   useEffect(() => {
-    const onScroll = () => {
-      if (tick.current) return
-      tick.current = true
-      requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 60)
-        tick.current = false
-      })
+    // On non-homepage routes there is no dark hero to float over — always
+    // solid, no scroll listener needed. Keep the `data-scrolled` attribute
+    // in sync so the pre-hydration CSS hint also reads "solid".
+    if (pathname !== '/') {
+      setScrolled(true)
+      document.documentElement.setAttribute('data-scrolled', '')
+      return undefined
     }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    // On homepage: transparent ONLY when scrollY is exactly 0. React stays
+    // the source of truth for both the `.scrolled` class and the
+    // `data-scrolled` attribute (set pre-hydration by layout.js). Keeping
+    // both in sync in a single update eliminates the race where the
+    // attribute was removed before React committed its state, causing a
+    // one-frame flash of a transparent nav over scrolled content.
+    const update = () => {
+      const isScrolled = window.scrollY > 0
+      setScrolled(isScrolled)
+      if (isScrolled) {
+        document.documentElement.setAttribute('data-scrolled', '')
+      } else {
+        document.documentElement.removeAttribute('data-scrolled')
+      }
+    }
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [pathname])
 
   // Close any open drawer when the route changes.
   useEffect(() => {
@@ -483,6 +498,25 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
+          {/* AI assistant entry point — a pill button alongside the CTA.
+              HelpBot listens for clicks on anything with [data-chat-open] and
+              opens the modal, so the behaviour is identical regardless of
+              where the trigger lives. */}
+          <button
+            type="button"
+            data-chat-open
+            className={styles.chatBtn}
+            aria-label="Open NNC AI assistant"
+          >
+            <svg className={styles.chatBtnSpark} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              {/* Main sparkle: concave-sided 4-point star so it reads as a
+                  sparkle, not a plus. Two small satellite stars add detail. */}
+              <path d="M12 2 Q11 11 2 12 Q11 13 12 22 Q13 13 22 12 Q13 11 12 2 Z" />
+              <circle cx="19" cy="5" r="1.3" />
+              <circle cx="5" cy="18" r="1" opacity="0.75" />
+            </svg>
+            <span>AI Agent</span>
+          </button>
           <Button href={nav.cta.href} variant="primary" arrow={false}>
             {nav.cta.label}
           </Button>

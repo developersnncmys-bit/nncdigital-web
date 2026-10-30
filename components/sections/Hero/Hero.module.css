@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: 150px 0 110px;
+  padding: 150px 0 70px;
   overflow: hidden;
   /* Zoom-style VERTICAL gradient: deep navy (top) -> light blue/white (bottom) */
   background: linear-gradient(
@@ -37,7 +37,7 @@
 
 /* ---- left copy ---- */
 .copy {
-  max-width: 560px;
+  max-width: 720px;
   /* pull the hero text left of the shared container padding (--pad: 28px) */
   margin-left: -48px;
 }
@@ -58,21 +58,21 @@
 }
 .title {
   margin-top: 20px;
-  font-size: clamp(38px, 5vw, 68px);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.03;
+  font-size: clamp(28px, 3.3vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
   color: #fff;
 }
 .accent {
   color: #bcd4ff;
 }
 .sub {
-  margin-top: 22px;
-  font-size: clamp(16px, 1.2vw, 18px);
-  line-height: 1.6;
+  margin-top: 14px;
+  font-size: clamp(14.5px, 1.05vw, 16px);
+  line-height: 1.55;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 52ch;
+  max-width: 60ch;
 }
 .sub strong {
   color: #fff;
@@ -85,7 +85,7 @@
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  margin-top: 34px;
+  margin-top: 24px;
   background: #fff;
   border-radius: 14px;
   padding: 16px 16px 16px 26px;
@@ -133,6 +133,23 @@
 }
 .priceBtn:hover {
   background: var(--navy-deep);
+  transform: translateY(-2px);
+}
+/* Secondary CTA on the pricing card — ghost/outlined, sits next to the
+   primary "Book a Demo" button. */
+.priceBtnGhost {
+  white-space: nowrap;
+  background: transparent;
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 13px 22px;
+  border-radius: 8px;
+  border: 1.5px solid var(--line-2);
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.priceBtnGhost:hover {
+  border-color: var(--navy);
   transform: translateY(-2px);
 }
 

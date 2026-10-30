@@ -15,11 +15,32 @@
 }
 .lead {
   text-align: center;
-  max-width: 54ch;
+  max-width: 60ch;
   margin: 18px auto 0;
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 1.6;
   color: var(--grey);
+}
+
+/* Solid navy "Watch CRM Demo" button — centered below the lead paragraphs,
+   same visual language as the hero's primary CTA. */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 28px auto 0;
+  padding: 14px 28px;
+  border-radius: 8px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cta:hover {
+  background: var(--navy-deep);
+  transform: translateY(-2px);
 }
 
 /* ---- backdrop stage ---- */

@@ -40,9 +40,15 @@ export default function Lifecycle() {
                 </li>
               ))}
             </ul>
-            <a className={styles.cta} href="#start" data-trial>
-              Start free trial
-            </a>
+            {t.cta && (
+              <a
+                className={styles.cta}
+                href={t.cta.href}
+                {...(t.cta.href === '#start' ? { 'data-trial': '' } : {})}
+              >
+                {t.cta.label}
+              </a>
+            )}
           </div>
           <div className={styles.media}>
             <div className={styles.mediaFrame}>

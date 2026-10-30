@@ -4,11 +4,19 @@ export default function Showcase() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <h2 className={styles.title}>See NNC CRM in action</h2>
+        <h2 className={styles.title}>See NNC CRM in Action</h2>
         <p className={styles.lead}>
-          Watch how teams capture every lead, forecast their growth and close
-          more, all in one place.
+          Discover how NNC CRM helps businesses capture leads, manage sales
+          pipelines, forecast growth and organise customer information through
+          one platform.
         </p>
+        <p className={styles.lead}>
+          Explore how this Customer Relationship Management Software simplifies
+          everyday business activities.
+        </p>
+        <a className={styles.cta} href="#start" data-trial>
+          Watch CRM Demo
+        </a>
 
         <div className={styles.stage}>
           <div className={styles.browser}>

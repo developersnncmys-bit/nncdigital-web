@@ -56,6 +56,16 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Pre-hydration scroll flag — runs before React hydrates so the Navbar
+            can show its solid state immediately if the page loads already
+            scrolled (e.g., refresh after scrolling, direct deep-link). Without
+            this, the nav flashes transparent for one frame while React catches
+            up with the real scroll position. */}
+        <Script id="nav-scroll-flag" strategy="beforeInteractive">
+          {`try{if(window.scrollY>0){document.documentElement.setAttribute('data-scrolled','')}}catch(e){}`}
+        </Script>
+      </head>
       <body suppressHydrationWarning>
         {/* Google tag (gtag.js) */}
         <Script

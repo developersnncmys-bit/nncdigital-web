@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   background: #fff;
-  border-radius: 18px;
-  padding: 34px 28px 26px;
+  border-radius: 20px;
+  padding: 30px 28px 28px;
   color: var(--ink);
   position: relative;
   overflow: hidden;
@@ -13,16 +13,6 @@
     0 12px 32px -14px rgba(10, 11, 15, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-/* grey accent stripe on top — identifies a plan card at a glance */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: rgba(10, 11, 15, 0.15);
-}
 .card:hover {
   transform: translateY(-4px);
   box-shadow:
@@ -30,21 +20,44 @@
     0 22px 44px -16px rgba(10, 11, 15, 0.14);
 }
 
-/* highlighted plan — same white card, but lifted higher with a navy accent
-   stripe and a navy-tinted shadow. No colour overrides on text — content
-   should look identical to the other cards. */
+/* Highlighted plan — visible 2px navy border + soft navy-tinted gradient
+   fading to white, like the "Premium" card in the reference. No translateY
+   lift: it misaligned every row of content with the other two cards. The
+   thicker border + tinted background + stronger shadow are already enough
+   to make this card read as "the recommended one". */
 .blue {
-  transform: translateY(-10px);
+  border: 2px solid var(--navy);
+  padding: 29px 27px 27px; /* -1px to compensate for the thicker border */
+  background: linear-gradient(180deg, var(--navy-soft) 0%, #fff 55%);
   box-shadow:
     0 1px 2px rgba(10, 11, 15, 0.04),
     0 28px 56px -18px rgba(11, 92, 255, 0.3);
 }
-.blue::before {
-  background: var(--navy);
-  height: 6px;
-}
 .blue:hover {
-  transform: translateY(-14px);
+  transform: translateY(-4px);
+}
+
+/* Tier pill at top-left — small anchor label like the "Basic / Premium /
+   Platinum" tags in the reference. Soft neutral by default; filled navy on
+   the highlighted plan so it reads as "the recommended one". */
+.tierPill {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 5px 12px;
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.blue .tierPill {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
 }
 
 .category {
@@ -52,7 +65,9 @@
   font-weight: 600;
   line-height: 1.35;
   color: var(--ink);
-  min-height: 38px;
+  /* Reserve space for 2 lines so a short category ("1 user" plan) and a
+     longer one line up the price/CTA/features header across cards. */
+  min-height: 42px;
 }
 
 .name {
@@ -94,34 +109,38 @@
   margin-top: 4px;
   font-size: 13.5px;
   color: var(--grey);
+  min-height: 20px;
 }
 
+/* Non-highlighted CTA: softer neutral button so the highlighted plan's filled
+   navy CTA is the clear "primary action" (matches the reference pattern). */
 .cta {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 22px;
   padding: 13px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 700;
   font-size: 15px;
-  background: var(--ink);
-  color: #fff;
-  border: 1.5px solid var(--ink);
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  background: var(--paper-2);
+  color: var(--ink);
+  border: 1px solid var(--line-2);
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
 .cta:hover {
   transform: translateY(-2px);
-  background: #16294d;
+  background: #fff;
+  border-color: var(--ink);
 }
-/* highlighted plan uses the brand navy for its CTA so the recommended
-   action pops against the other cards' dark ink CTA. */
 .blue .cta {
   background: var(--navy);
+  color: #fff;
   border-color: var(--navy);
 }
 .blue .cta:hover {
   background: var(--navy-deep);
+  border-color: var(--navy-deep);
 }
 
 /* collapsible features header */

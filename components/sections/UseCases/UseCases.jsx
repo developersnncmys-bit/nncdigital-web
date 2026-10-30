@@ -13,8 +13,17 @@ const ICONS = {
 }
 
 const Icon = ({ name }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {ICONS[name]}
+  </svg>
+)
+
+// Small decorative sparkle used in each card's visual — same cue as the
+// animated sparkles in the Salesforce reference. Static (no motion) to keep
+// the section visually calm.
+const Sparkle = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2 14 10 22 12 14 14 12 22 10 14 2 12 10 10z" />
   </svg>
 )
 
@@ -30,18 +39,25 @@ export default function UseCases() {
       <Reveal stagger={0.08} className={styles.grid}>
         {useCases.cards.map((c) => (
           <a className={styles.card} key={c.title} href={c.href}>
-            <span className={styles.icon}>
-              <Icon name={c.icon} />
-            </span>
-            <h3 className={styles.cardTitle}>{c.title}</h3>
-            <p className={styles.cardBody}>{c.body}</p>
-            <span className={styles.link}>
-              Learn more
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </span>
+            <div className={styles.visual} />
+            <div className={styles.content}>
+              <h3 className={styles.cardTitle}>{c.title}</h3>
+              <p className={styles.cardBody}>{c.body}</p>
+              <span className={styles.link}>
+                Learn more
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </div>
           </a>
         ))}
       </Reveal>
+      {useCases.cta && (
+        <div className={styles.ctaRow}>
+          <a className={styles.cta} href={useCases.cta.href}>
+            {useCases.cta.label}
+          </a>
+        </div>
+      )}
     </section>
   )
 }

@@ -54,7 +54,7 @@ const PAGE = {
         {
           name: 'Starter',
           desc: 'For lean teams getting their first CRM in place.',
-          price: '[Rs. 2,999]',
+          price: 'Rs. 2,999',
           per: '/ month',
           priceNote: '[For up to 5 users, billed annually]',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
@@ -73,7 +73,7 @@ const PAGE = {
           desc: 'For growing businesses that need a bit more.',
           badge: 'Most popular',
           highlight: true,
-          price: '[Rs. 5,999]',
+          price: 'Rs. 5,999',
           per: '/ month',
           priceNote: '[For up to 10 users, billed annually]',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
@@ -97,8 +97,8 @@ const PAGE = {
     {
       type: 'featureTabs',
       id: 'inside', // Target for the hero's "See what's inside" button.
-      title: 'See what Small Business CRM can do.',
-      lead: 'The essentials, done well. Everything a 1–10 person team needs on day one.',
+      title: 'A closer look inside.',
+      lead: 'The essentials, done well — from first enquiry to final invoice, in one simple workspace.',
       cta: { label: 'Book a Demo', href: '#start', trial: true },
       tabs: [
         {

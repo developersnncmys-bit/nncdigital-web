@@ -86,15 +86,23 @@ export const products = [
     ],
   },
   {
-    key: 'car-care-crm',
-    name: 'NNC Car Care Services CRM',
-    shortName: 'Car Care CRM',
+    key: 'car-studio-crm',
+    name: 'NNC Car Studio CRM',
+    shortName: 'Car Studio CRM',
     description:
-      'For car spas, car washes and premium coating studios — bookings, packages, slot management and customer history in one place.',
-    href: null,
+      'For car spas, detailing studios and premium coating centers — bookings, packages, slot management and customer history in one place.',
+    href: '/car-studio-crm/',
+    exploreLabel: 'Explore Car Studio CRM',
     icon: 'carcare',
-    comingSoon: true,
-    media: null,
+    media: { src: '/img/scene-dashboard.jpg', alt: 'NNC Car Studio CRM dashboard preview' },
+    subItems: [
+      { label: 'Enquiries', href: '/car-studio-crm/#enquiries' },
+      { label: 'Quotes', href: '/car-studio-crm/#quotes' },
+      { label: 'Appointments', href: '/car-studio-crm/#appointments' },
+      { label: 'Job cards', href: '/car-studio-crm/#jobcards' },
+      { label: 'Billing & cash', href: '/car-studio-crm/#billing' },
+      { label: 'Pricing', href: '/car-studio-crm/#pricing' },
+    ],
   },
   {
     key: 'small-business-crm',
@@ -115,25 +123,6 @@ export const products = [
       { label: 'Reports', href: '/small-business-crm/#reports' },
     ],
   },
-  {
-    key: 'net-zero-crm',
-    name: 'NNC Net Zero CRM',
-    shortName: 'Net Zero CRM',
-    description:
-      'The BRSR and ESG tracker for growing Indian businesses — energy, water, waste, workforce and Scope 1-2 emissions in one audit-ready workspace.',
-    href: '/net-zero-crm/',
-    exploreLabel: 'Explore Net Zero CRM',
-    icon: 'netzero',
-    media: { src: '/hero.jpg', alt: 'NNC Net Zero CRM dashboard preview' },
-    subItems: [
-      { label: 'Pricing', href: '/net-zero-crm/#pricing' },
-      { label: 'Energy & utilities', href: '/net-zero-crm/#energy' },
-      { label: 'Scope 1 & 2 emissions', href: '/net-zero-crm/#emissions' },
-      { label: 'Water & waste', href: '/net-zero-crm/#water-waste' },
-      { label: 'Workforce & social', href: '/net-zero-crm/#workforce' },
-      { label: 'BRSR reports', href: '/net-zero-crm/#reports' },
-    ],
-  },
 ]
 
 // Extra items shown below the product list in the drawer's left column.
@@ -144,11 +133,12 @@ export const productDrawerExtras = [
 
 export const hero = {
   eyebrow: 'The decision making CRM',
-  titlePre: "India's ",
-  titleNavy: 'most trusted',
-  titlePost: ' CRM, for every industry.',
-  leadStrong: 'Most CRMs make you fit your business into their software. NNC CRM does the opposite.',
-  lead: 'Answer a few questions about how you work, and we build you a CRM with only the modules you need. One platform for enquiries, pipeline, forecasting, billing and WhatsApp, and one simple subscription you can pay quarterly, every six months or yearly.',
+  titlePre: "CRM Software ",
+  titleNavy: 'in India',
+  titlePost: ' to Manage Leads, Sales and Customers.',
+  leadStrong: 'Looking for CRM Software in India that adapts to your business? NNC CRM brings enquiries, sales pipelines, forecasting, billing and WhatsApp engagement together in one flexible platform.',
+  lead: 'Choose the modules you need and manage your customer journey without adjusting your business processes to traditional CRM software.',
+  lead2: 'Whether you need Business CRM Software, Lead Management Software or a complete customer management solution, NNC CRM helps your team work smarter',
   ctas: [
     { label: 'Book a Demo', href: '#start', variant: 'primary' },
     { label: 'See it in action', href: '#decide', variant: 'ghost' },
@@ -219,10 +209,10 @@ export const decisions = {
 
 export const pricing = {
   eyebrow: 'Pricing',
-  title: 'Plans and pricing for every business',
-  lead: 'One transparent price by team size, not a per user bill that punishes you for growing. Pay quarterly, every six months or yearly. Start free, upgrade when you are ready.',
+  title: 'Flexible CRM Software Pricing for Every Business',
+  lead: 'Choose a plan that matches your business size and requirements. NNC CRM offers transparent pricing based on team size, without separate per-user billing.',
   note: 'Prices are by team size band, plus 18% GST. Start free, no credit card.',
-  compareLabel: 'Compare all features',
+  compareLabel: 'Compare All Features',
 }
 
 export const enquiries = {
@@ -262,73 +252,67 @@ export const whatsapp = {
     'Builds a recommended plan with a yearly price.',
     'Hands you a qualified lead, ready to close.',
   ],
-  cta: { label: 'Start free trial', href: '#start', variant: 'primary' },
+  cta: { label: 'Book a Demo', href: '#start', variant: 'primary' },
 }
 
 export const faq = {
   eyebrow: 'FAQ',
-  title: 'NNC CRM, answered.',
+  title: 'Frequently Asked Questions About NNC CRM',
   items: [
     {
-      q: 'Is NNC CRM for my industry?',
-      a: 'Yes. The platform is modular and we ship ready packs for education, manufacturing, healthcare, retail, real estate, service businesses and sales teams.',
+      q: 'What Is NNC CRM?',
+      a: 'NNC CRM is a flexible Customer Relationship Management Software platform that helps businesses manage enquiries, sales pipelines, customer information, forecasting, billing and WhatsApp engagement.',
     },
     {
-      q: 'How is the price decided?',
-      a: 'By team size, not per user. You pick a band of 1, 3 or 10 users, and the price is the same for everyone in that band.',
+      q: 'Is NNC CRM Suitable for Different Industries?',
+      a: 'Yes. NNC CRM supports sales teams, service businesses, manufacturing, retail, healthcare, education and real estate with flexible modules and workflows.',
     },
     {
-      q: 'Can I pay quarterly?',
-      a: 'Yes. Choose quarterly, six monthly or yearly billing. Yearly saves the most.',
+      q: 'How Much Does NNC CRM Cost?',
+      a: 'The Starter plan costs ₹14,999 per year, Growth costs ₹29,999 per year and Enterprise costs ₹59,999 per year. Pricing depends on team size and excludes 18% GST.',
     },
     {
-      q: 'Does WhatsApp really work inside the CRM?',
-      a: 'Yes. A real WhatsApp inbox is built in. No third party tools.',
+      q: 'Does NNC CRM Support WhatsApp Integration?',
+      a: 'Yes. WhatsApp engagement is included in Growth and Enterprise plans. NNC CRM also offers a WhatsApp demo with an assistant that qualifies business leads by asking five questions.',
     },
     {
-      q: 'Can I move my data from another CRM?',
-      a: 'Yes. Import from a spreadsheet or another CRM in a few clicks.',
-    },
-    {
-      q: 'Is there a free trial?',
-      a: 'Yes. Start free, no credit card needed.',
+      q: 'Can I Import My Existing Business Data?',
+      a: 'Yes. You can import your contacts, enquiries and existing pipelines into NNC CRM during setup.',
     },
   ],
 }
 
 export const finalCta = {
-  title: 'Build the CRM your business actually needs.',
-  sub: "Choose your plan, start your free trial, and run your business on what's next, not what's already happened.",
+  title: 'Build the CRM Your Business Actually Needs',
+  sub: 'Bring enquiries, sales pipelines, forecasting, billing and customer engagement together with NNC CRM.',
+  sub2: 'Choose your plan, start your free 30-day trial and discover a smarter way to manage your business with CRM Software in India.',
   ctas: [
-    { label: 'Start free trial', href: '#start', variant: 'invert-primary' },
-    { label: 'Try the WhatsApp demo', href: '#whatsapp', variant: 'invert-ghost' },
+    { label: 'Book a Demo', href: '#start', variant: 'invert-primary' },
+    { label: 'Try the WhatsApp Demo', href: 'https://wa.me/919164566466?text=I%20want%20to%20try%20the%20NNC%20CRM%20WhatsApp%20demo', variant: 'invert-ghost' },
   ],
-  // placeholder trust figures, replace with your real numbers before launch
-  stats: [
-    { value: '2,000+', label: 'businesses across India' },
-    { value: '4.8 / 5', label: 'average customer rating' },
-    { value: '30 days', label: 'free trial, no card needed' },
-  ],
+  // Trust figures intentionally removed — pre-launch audit flagged
+  // "2,000+ businesses" and "4.8/5 rating" as unprovable claims that ASCI
+  // or a competitor could challenge. Re-add only with verifiable numbers.
+  stats: [],
 }
 
 export const footer = {
   brandLine: 'The decision making CRM for every industry.',
   contactLabel: 'Get in touch',
-  phone: '94227 99466',
+  phone: '+91 94227 99466',
   email: 'hello@nncdigital.co.in',
   columns: [
     {
       title: 'Products',
       links: [
-        // Mirrors the Products drawer in the nav. Only live products appear
-        // here — Car Care is still 'Coming soon' in the drawer and is
-        // omitted, since a dead link in the footer reads worse than a visible
-        // gap.
+        // Mirrors the Products drawer in the nav. Car Studio CRM live as of
+        // 2026-10-30. Only live products appear here — a dead link in the
+        // footer reads worse than a visible gap.
         'NNC CRM',
         'Travel CRM',
         'Training Institutes CRM',
+        'Car Studio CRM',
         'Small Business CRM',
-        'Net Zero CRM',
         'Pricing',
       ],
     },
@@ -346,23 +330,22 @@ export const footer = {
     },
     {
       title: 'Company',
+      // Trimmed per pre-launch audit — removed Careers / Blog / Customer
+      // stories / Press until those pages carry real content, because empty
+      // pages hurt both trust and SEO.
       links: [
         'About us',
-        'Careers',
-        'Blog',
         'Partners',
-        'Customer stories',
         'Contact sales',
-        'Press',
       ],
     },
     {
       title: 'Support',
+      // Trimmed per pre-launch audit — removed API documentation and System
+      // status (no public API docs or status page exists yet).
       links: [
         'Help center',
         'Getting started',
-        'API documentation',
-        'System status',
         'Security',
         'Data privacy',
         'Contact support',
@@ -370,15 +353,15 @@ export const footer = {
     },
   ],
   social: ['linkedin', 'x', 'youtube', 'facebook', 'instagram'],
-  copyright: '© 2026 NNC Digital Solutions, Inc. All rights reserved.',
+  copyright: '© 2026 NNC Digital Solutions Pvt. Ltd. All rights reserved.',
   madeIn: 'Made in India',
+  // Removed 'Trust Center' and 'Cookie Settings' until those exist — pre-
+  // launch audit flagged dead links in the legal row.
   legal: [
     'Terms',
     'Privacy',
-    'Trust Center',
     'Acceptable Use',
     'Legal and Compliance',
-    'Cookie Settings',
     'Site Map',
   ],
 }

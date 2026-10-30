@@ -1,30 +1,69 @@
 .section {
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  padding: 30px 0;
+  padding: clamp(50px, 7vh, 90px) 0;
 }
+
+/* Two-column layout: title + body hugged to the far left, integrations to
+   the far right (space-between), so the eye travels across the full width
+   instead of two tightly-packed columns in the middle. */
 .inner {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
-  gap: 18px 40px;
+  align-items: start;
+  gap: clamp(32px, 5vw, 72px);
+}
+.copy { flex: 0 1 540px; }
+.integrations { flex: 0 1 auto; }
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  color: var(--ink);
+}
+.body {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: var(--grey);
+}
+
+/* Right column — "Integrations:" label stacked above the logo row. */
+.integrations {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 10px; /* nudges the label down to feel aligned with the h2 x-height */
 }
 .caption {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
 }
 .logos {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px 38px;
+  gap: 8px 16px;
 }
 .logo {
-  font-size: 21px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #8a93a6;
@@ -33,10 +72,13 @@
 .logo:hover {
   color: var(--ink);
 }
+.sep {
+  color: #cbd1dc;
+  font-weight: 400;
+  font-size: 18px;
+}
 
-@media (max-width: 760px) {
-  .inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+@media (max-width: 860px) {
+  .inner { grid-template-columns: 1fr; gap: 32px; }
+  .integrations { padding-top: 0; }
 }

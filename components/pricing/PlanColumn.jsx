@@ -45,6 +45,7 @@ export default function PlanColumn({ plan, term }) {
 
   return (
     <article className={`${styles.card} ${plan.highlight ? styles.blue : ''}`}>
+      <span className={styles.tierPill}>{plan.name}</span>
       <span className={styles.category}>{plan.category}</span>
       <span className={styles.name}>{plan.name}</span>
 

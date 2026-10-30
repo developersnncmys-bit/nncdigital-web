@@ -1,102 +1,109 @@
+/* Three-layer background that paints the blue pool and then fades it back
+   into pure white at both the top AND bottom edges, so the handoff to the
+   next (white) section is seamless — no visible horizontal line.
+   Order (first = on top): top fade → bottom fade → blue pool → base white. */
 .section {
-  background: var(--paper);
-  border-block: 1px solid var(--line);
+  position: relative;
+  background:
+    linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 25%),
+    linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(
+      ellipse 95% 60% at 50% 70%,
+      rgba(135, 179, 255, 0.6) 0%,
+      rgba(135, 179, 255, 0.2) 50%,
+      rgba(135, 179, 255, 0) 78%
+    ),
+    #ffffff;
   padding: clamp(70px, 9vh, 120px) var(--pad);
 }
 
-/* Wrapper positions the horizontal timeline behind the numbered badges.
-   The badges' Y-center and this timeline's top must match: badge sits 28px
-   above the card, is 56px tall → its vertical center is at the card's
-   top edge, which is where the timeline runs. */
-.stepsWrap {
-  position: relative;
-  margin-top: clamp(50px, 6vw, 72px);
-  padding-top: 28px;
-}
-.timeline {
-  position: absolute;
-  top: 28px; /* aligns with the vertical center of each numbered badge */
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background-image: linear-gradient(
-    to right,
-    var(--navy-3) 0,
-    var(--navy-3) 8px,
-    transparent 8px,
-    transparent 16px
-  );
-  background-size: 16px 2px;
-  background-repeat: repeat-x;
-  z-index: 0;
-}
-
 .steps {
-  position: relative;
+  margin-top: clamp(40px, 5vw, 60px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  z-index: 1;
+  gap: 20px;
 }
 
-/* Each step is a two-part stack: the circular numbered badge on top,
-   overlapping the card below it. The badge sits on the dashed timeline so
-   the four circles read as stops along a journey. */
-.step {
-  position: relative;
-  padding-top: 28px; /* leaves room for the badge that overlaps the card */
+/* "Start Your Free Trial" CTA row — sits centered below the four step cards. */
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(32px, 4vw, 48px);
 }
-.badge {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 8px;
   background: var(--navy);
   color: #fff;
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 24px -10px rgba(11, 92, 255, 0.5);
-  z-index: 2;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
-
-.card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  box-shadow: var(--sh-sm);
-  padding: 44px 24px 30px; /* top padding accommodates the badge overlap */
-  text-align: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-.step:hover .card {
-  border-color: var(--navy-3);
-  box-shadow: 0 14px 36px -18px rgba(11, 26, 51, 0.22);
+.cta:hover {
+  background: var(--navy-deep);
   transform: translateY(-2px);
 }
 
+/* Step card — pure white, soft diffuse shadow, no visible border. Taller
+   than default via min-height so all four cards align regardless of body
+   copy length. */
+.step {
+  position: relative;
+  background: #fff;
+  border: 0;
+  border-radius: var(--r-lg);
+  padding: 32px 28px 36px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 1px 2px rgba(10, 11, 15, 0.04),
+    0 12px 32px -14px rgba(11, 26, 51, 0.1);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.step:hover {
+  box-shadow:
+    0 1px 2px rgba(10, 11, 15, 0.04),
+    0 22px 48px -20px rgba(11, 26, 51, 0.22);
+  transform: translateY(-3px);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
 .iconChip {
-  display: inline-grid;
+  display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--r);
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
   background: var(--navy-soft);
   color: var(--navy);
-  margin-bottom: 16px;
+}
+.iconChip svg { width: 26px; height: 26px; }
+.stepNo {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-transform: uppercase;
 }
 
 .stepTitle {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin: 0 0 8px;
+  line-height: 1.3;
 }
 .stepBody {
   font-size: 14.5px;
@@ -108,11 +115,8 @@
 @media (max-width: 860px) {
   .steps {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 16px;
   }
-  /* Timeline only makes sense as a single horizontal flow — hide it when
-     the grid wraps to multiple rows. */
-  .timeline { display: none; }
 }
 @media (max-width: 460px) {
   .steps {

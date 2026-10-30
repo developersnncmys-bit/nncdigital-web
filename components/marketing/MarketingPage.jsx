@@ -6,7 +6,6 @@ import LeadCaptureGraphic from './LeadCaptureGraphic'
 import PlansBlock from './PlansBlock'
 import CompareTable from './CompareTable'
 import CRMDashboard from './CRMDashboard'
-import NetZeroDashboard from './NetZeroDashboard'
 import TestimonialsCarousel from './TestimonialsCarousel'
 import FeatureTabs from './FeatureTabs'
 import Testimonial from './Testimonial'
@@ -14,7 +13,6 @@ import styles from './MarketingPage.module.css'
 
 const HERO_COMPONENTS = {
   crmDashboard: CRMDashboard,
-  netZeroDashboard: NetZeroDashboard,
 }
 
 function HeroComponent({ name }) {

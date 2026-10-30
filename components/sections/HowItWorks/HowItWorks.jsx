@@ -8,28 +8,36 @@ export default function HowItWorks() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <SectionHead eyebrow={howItWorks.eyebrow} title={howItWorks.title} center />
-        <div className={styles.stepsWrap}>
-          {/* Dashed timeline that runs behind the numbered badges. */}
-          <span className={styles.timeline} aria-hidden="true" />
-          <Reveal stagger={0.1} className={styles.steps}>
-            {howItWorks.steps.map((s) => {
-              const Icon = icons[s.icon]
-              return (
-                <div className={styles.step} key={s.n}>
-                  <span className={styles.badge}>{s.n}</span>
-                  <div className={styles.card}>
-                    <span className={styles.iconChip}>
-                      {Icon && <Icon width={28} height={28} />}
-                    </span>
-                    <h3 className={styles.stepTitle}>{s.title}</h3>
-                    <p className={styles.stepBody}>{s.body}</p>
-                  </div>
+        <SectionHead
+          eyebrow={howItWorks.eyebrow}
+          title={howItWorks.title}
+          lead={howItWorks.lead}
+          center
+        />
+        <Reveal stagger={0.1} className={styles.steps}>
+          {howItWorks.steps.map((s) => {
+            const Icon = icons[s.icon]
+            return (
+              <div className={styles.step} key={s.n}>
+                <div className={styles.topRow}>
+                  <span className={styles.iconChip}>
+                    {Icon && <Icon width={24} height={24} />}
+                  </span>
+                  <span className={styles.stepNo}>Step {s.n}</span>
                 </div>
-              )
-            })}
-          </Reveal>
-        </div>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
+                <p className={styles.stepBody}>{s.body}</p>
+              </div>
+            )
+          })}
+        </Reveal>
+        {howItWorks.cta && (
+          <div className={styles.ctaRow}>
+            <a className={styles.cta} href={howItWorks.cta.href} data-trial>
+              {howItWorks.cta.label}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   )

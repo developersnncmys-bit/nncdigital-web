@@ -13,8 +13,8 @@ const PAGE = {
     title: 'The Best CRM for Training Institutes and Coaching Centers',
     lead: 'Manage admissions across all your centers in one place. Get complete visibility into every student journey and every branch, from the first enquiry to enrolment.',
     ctas: [
-      { label: 'Start free trial', href: '#start', trial: true },
-      { label: 'Book a demo', href: '/company/contact', variant: 'ghost' },
+      { label: 'Book a Demo', href: '#start', trial: true },
+      { label: 'See pricing', href: '/pricing', variant: 'ghost' },
     ],
     media: {
       type: 'video',
@@ -176,7 +176,7 @@ const PAGE = {
           desc: 'For a single center getting online',
           price: 'Rs 30,000',
           per: '/ year',
-          cta: { label: 'Start free trial', href: '#start', trial: true },
+          cta: { label: 'Book a Demo', href: '#start', trial: true },
           featuresHeader: 'Includes',
           features: ['Web LMS', 'Courses', 'Exams', 'Certificates', 'Capped students'],
         },
@@ -187,7 +187,7 @@ const PAGE = {
           per: '/ year',
           highlight: true,
           badge: 'Most popular',
-          cta: { label: 'Start free trial', href: '#start', trial: true },
+          cta: { label: 'Book a Demo', href: '#start', trial: true },
           featuresHeader: 'Everything in Starter, and',
           features: ['Live classes', 'Test series', 'WhatsApp fee collection'],
         },
@@ -294,9 +294,9 @@ const PAGE = {
   ],
   cta: {
     title: 'The CRM built for multi center training institutes',
-    sub: 'Start your free 30 day trial, or book a demo to see it run across all your centers.',
-    primary: { label: 'Start free trial', href: '#start' },
-    secondary: { label: 'Book a demo', href: '/company/contact' },
+    sub: 'Book a 30-minute demo on your own data, or start a free trial today.',
+    primary: { label: 'Book a Demo', href: '#start' },
+    secondary: { label: 'Start free trial', href: '#start' },
   },
 }
 

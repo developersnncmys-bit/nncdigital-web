@@ -2,46 +2,53 @@
   padding: var(--section-pad) var(--pad);
 }
 
-/* vibrant Zoom-blue gradient band, centered */
+/* Band uses the same navy→mid-blue gradient palette as the homepage hero
+   so the opening and closing surfaces of the page feel like one brand. */
 .band {
   position: relative;
   overflow: hidden;
-  border-radius: var(--r);
-  padding: clamp(56px, 7vw, 100px) clamp(28px, 5vw, 72px);
-  background: radial-gradient(120% 150% at 0% 0%, #3f74ff 0%, #0b5cff 42%, #0a44c8 100%);
-  box-shadow: 0 30px 70px -30px rgba(11, 92, 255, 0.55);
-  will-change: transform;
+  border-radius: var(--r-lg);
+  padding: clamp(72px, 9vw, 128px) clamp(28px, 5vw, 72px);
+  background: linear-gradient(
+    176deg,
+    #14264f 0%,
+    #1b3580 35%,
+    #2f59c0 100%
+  );
+  box-shadow: 0 40px 90px -40px rgba(20, 38, 79, 0.55);
   isolation: isolate;
 }
 
-/* soft white glow, top-right */
-.glow {
+/* Single soft blue spotlight from above the band — anchors the composition
+   without the busy "two glow orbs + floating chips" treatment from before. */
+.spotlight {
   position: absolute;
   z-index: 0;
-  width: 700px;
-  height: 700px;
-  top: -340px;
-  right: -180px;
+  width: 1100px;
+  height: 800px;
+  top: -480px;
+  left: 50%;
+  transform: translateX(-50%);
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(140px);
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.42),
-    rgba(255, 255, 255, 0.1) 55%,
+    rgba(77, 139, 255, 0.55),
+    rgba(77, 139, 255, 0.1) 55%,
     transparent 72%
   );
   pointer-events: none;
 }
 
-/* faint dotgrid texture */
+/* Faint dot grid — just enough texture to break up the solid navy. */
 .grid {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1.2px, transparent 1.2px);
-  background-size: 30px 30px;
-  -webkit-mask-image: radial-gradient(900px 520px at 50% 0%, #000, transparent 72%);
-  mask-image: radial-gradient(900px 520px at 50% 0%, #000, transparent 72%);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
+  mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
   pointer-events: none;
 }
 
@@ -54,26 +61,53 @@
   text-align: center;
 }
 
+/* Trust chips above the headline. Translucent-white glass pills so the
+   trust proof lands FIRST, before the ask — classic conversion pattern. */
+.trustRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.trustChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+.trustChip strong {
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
 .title {
   color: #fff;
-  max-width: 20ch;
+  max-width: 22ch;
   margin: 0;
-  font-size: clamp(34px, 4.6vw, 60px);
+  font-size: clamp(36px, 5vw, 64px);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.02;
 }
-
 .sub {
   margin: 20px 0 0;
-  max-width: 56ch;
+  max-width: 58ch;
   font-size: clamp(16px, 1.3vw, 19px);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.75);
 }
-
 .ctas {
-  margin-top: clamp(30px, 4vw, 44px);
+  margin-top: clamp(32px, 4vw, 48px);
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -81,50 +115,11 @@
   justify-content: center;
 }
 
-/* trust stats row */
-.stats {
-  margin-top: clamp(40px, 5vw, 60px);
-  padding-top: clamp(28px, 3.5vw, 40px);
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-  width: 100%;
-  max-width: 760px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.statValue {
-  font-size: clamp(26px, 3vw, 38px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #fff;
-  line-height: 1;
-}
-.statLabel {
-  font-size: 13.5px;
-  line-height: 1.4;
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 20ch;
-}
-
 @media (max-width: 620px) {
   .ctas > * {
     width: 100%;
     justify-content: center;
   }
-  .stats {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-  .stat {
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-items: baseline;
-  }
+  .trustRow { gap: 8px; }
+  .trustChip { font-size: 12px; padding: 6px 12px; }
 }

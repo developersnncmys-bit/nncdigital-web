@@ -13,7 +13,7 @@ export const metadata = {
 const WHY = [
   { icon: 'users', title: 'Priced by team size, not per seat', body: 'Add people without adding cost. One price per band of 1, 3 or 10 users.' },
   { icon: 'integrations', title: 'Modular, only what you need', body: 'Turn on the modules you need today and add the rest as you grow. Nothing to reinstall.' },
-  { icon: 'whatsapp', title: 'WhatsApp built in', body: 'A real WhatsApp inbox inside the CRM, with no third party tools to bolt on.' },
+  { icon: 'whatsapp', title: 'WhatsApp built in', body: 'A full WhatsApp inbox inside the CRM — no extra apps needed.' },
   { icon: 'forecast', title: 'Forecasting, not just history', body: 'See revenue 3, 6 and 12 months ahead, so you plan with numbers, not hope.' },
   { icon: 'invoice', title: 'Flexible billing', body: 'Pay quarterly, half yearly or yearly, and switch the term whenever it suits you.' },
   { icon: 'rocket', title: 'Live in a day', body: 'No long onboarding and no consultant fees. Most teams are up and running before lunch.' },
