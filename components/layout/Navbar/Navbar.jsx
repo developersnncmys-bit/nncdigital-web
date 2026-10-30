@@ -15,6 +15,153 @@ const DRAWERS = {
   },
 }
 
+// Sub-item icons for the Zoom-style grid in the drawer's right panel. Picked
+// by keyword against the sub-item label so content.js does not need per-item
+// icon fields. Falls back to the generic dot when no keyword matches.
+const SUBITEM_ICON = {
+  inbox: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+    </svg>
+  ),
+  funnel: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 4h18l-7 9v6l-4 2v-8L3 4z" />
+    </svg>
+  ),
+  trending: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 17l6-6 4 4 8-8" /><path d="M15 7h6v6" />
+    </svg>
+  ),
+  receipt: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 3h14v18l-3-2-3 2-3-2-3 2-2-2V3z" /><path d="M8 8h8M8 12h8M8 16h5" />
+    </svg>
+  ),
+  chat: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  ),
+  bars: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 20V10M18 20V4M6 20v-6" />
+    </svg>
+  ),
+  puzzle: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 3h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 2 2 0 0 0 0 4 2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2 2 2 0 0 0-4 0 2 2 0 0 1-2 2H3V5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2 2 2 0 0 0 4 0 2 2 0 0 1 2-2z" />
+    </svg>
+  ),
+  pin: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+    </svg>
+  ),
+  calendar: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+    </svg>
+  ),
+  check: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="M22 4 12 14.01l-3-3" />
+    </svg>
+  ),
+  sliders: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" />
+    </svg>
+  ),
+  users: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  ),
+  send: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z" />
+    </svg>
+  ),
+  zap: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  ),
+  leaf: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 4v6a8 8 0 0 1-16 0C4 6 10 2 20 4z" /><path d="M4 10c6-2 12 2 14 10" />
+    </svg>
+  ),
+  droplet: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2.69 5.64 9.05a9 9 0 1 0 12.73 0L12 2.69z" />
+    </svg>
+  ),
+  fileCheck: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M9 15l2 2 4-4" />
+    </svg>
+  ),
+  tag: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20.59 13.41 13.42 20.59a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" /><circle cx="7" cy="7" r="1.3" />
+    </svg>
+  ),
+  dot: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+    </svg>
+  ),
+}
+
+// Pick an icon from the sub-item label — longer keywords first so "sales
+// pipeline" matches `funnel` via "pipeline" rather than falling through.
+const SUBITEM_ICON_RULES = [
+  ['pricing', 'tag'],
+  ['enquir', 'inbox'],
+  ['pipeline', 'funnel'],
+  ['forecast', 'trending'],
+  ['invoice', 'receipt'],
+  ['invoicing', 'receipt'],
+  ['payment', 'receipt'],
+  ['accounting', 'receipt'],
+  ['whatsapp', 'chat'],
+  ['engagement', 'chat'],
+  ['report', 'bars'],
+  ['analytic', 'bars'],
+  ['dashboard', 'bars'],
+  ['analytics', 'bars'],
+  ['integration', 'puzzle'],
+  ['trip', 'pin'],
+  ['tour', 'pin'],
+  ['booking', 'calendar'],
+  ['task', 'check'],
+  ['central', 'sliders'],
+  ['control', 'sliders'],
+  ['journey', 'users'],
+  ['student', 'users'],
+  ['workforce', 'users'],
+  ['social', 'users'],
+  ['retention', 'users'],
+  ['outreach', 'send'],
+  ['energy', 'zap'],
+  ['utilit', 'zap'],
+  ['emission', 'leaf'],
+  ['scope', 'leaf'],
+  ['water', 'droplet'],
+  ['waste', 'droplet'],
+  ['brsr', 'fileCheck'],
+]
+const iconForSubItem = (label = '') => {
+  const l = label.toLowerCase()
+  for (const [kw, name] of SUBITEM_ICON_RULES) {
+    if (l.includes(kw)) return SUBITEM_ICON[name]
+  }
+  return SUBITEM_ICON.dot
+}
+
 // Minimal product icon set. Kept local so the Navbar does not pull from the
 // site-wide icon registry (which is tuned for feature icons, not product
 // badges). Each is a 24x24 stroked SVG, inherits color from CSS.
@@ -140,7 +287,6 @@ export default function Navbar() {
     const isOpen = desktopDrawer === l.drawer
     const activeProduct =
       drawer.items.find((p) => p.key === activeKey) || drawer.items[0]
-    const Icon = activeProduct ? PRODUCT_ICON[activeProduct.icon] : null
 
     return (
       <div
@@ -203,29 +349,34 @@ export default function Navbar() {
                 )}
               </aside>
 
-              {/* Right column: active product's detail */}
+              {/* Right column: active product's detail — Zoom-style header +
+                  icon-tile grid of sub-items (not a long description block). */}
               <section className={styles.drawerDetail}>
                 {activeProduct && (
                   <>
-                    <span className={styles.detailIcon}>{Icon}</span>
-                    <h3 className={styles.detailTitle}>
-                      {activeProduct.name}
-                      {activeProduct.comingSoon && <span className={styles.badgeInline}>Coming soon</span>}
-                    </h3>
-                    <p className={styles.detailDesc}>{activeProduct.description}</p>
-                    {activeProduct.href && (
-                      <a href={activeProduct.href} className={styles.detailExplore}>
-                        {activeProduct.exploreLabel || `Explore ${activeProduct.shortName}`}
-                        <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
-                          <path d="M3 6h6M6 3l3 3-3 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </a>
-                    )}
+                    <header className={styles.detailHeader}>
+                      <h3 className={styles.detailTitle}>
+                        {activeProduct.name}
+                        {activeProduct.comingSoon && <span className={styles.badgeInline}>Coming soon</span>}
+                      </h3>
+                      {activeProduct.description && (
+                        <p className={styles.detailTagline}>{activeProduct.description}</p>
+                      )}
+                      {activeProduct.href && (
+                        <a href={activeProduct.href} className={styles.detailExplore}>
+                          {activeProduct.exploreLabel || `Explore ${activeProduct.shortName}`}
+                          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+                            <path d="M3 6h6M6 3l3 3-3 3" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </a>
+                      )}
+                    </header>
                     {activeProduct.subItems && activeProduct.subItems.length > 0 && (
-                      <div className={styles.detailSubList}>
+                      <div className={styles.detailSubGrid}>
                         {activeProduct.subItems.map((s) => (
-                          <a key={s.label} href={s.href} className={styles.detailSubItem}>
-                            {s.label}
+                          <a key={s.label} href={s.href} className={styles.detailSubTile}>
+                            <span className={styles.detailSubTileIcon}>{iconForSubItem(s.label)}</span>
+                            <span className={styles.detailSubTileLabel}>{s.label}</span>
                           </a>
                         ))}
                       </div>

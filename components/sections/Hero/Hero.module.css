@@ -128,7 +128,7 @@
   font-weight: 700;
   font-size: 15px;
   padding: 13px 24px;
-  border-radius: 999px; /* pill — matches CTAs across the site */
+  border-radius: 8px;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 .priceBtn:hover {

@@ -34,9 +34,9 @@ const PAGE = {
       { label: "See what's inside", href: '#inside', variant: 'ghost' },
     ],
     media: {
-      type: 'image',
-      src: '/hero.jpg',
-      alt: 'A small business owner working on their phone',
+      type: 'video',
+      src: '/videos/small-business.mp4?v=2',
+      framed: true,
     },
   },
 
@@ -183,7 +183,7 @@ const PAGE = {
           icon: 'whatsapp',
           title: 'WhatsApp where your customers already are',
           body: 'Most Indian small-business buyers want to WhatsApp. We put that where the deal lives.',
-          image: '/small-busi/card2.png',
+          image: '/small-business-crm/images/card2.png',
           imageAlt: 'A WhatsApp conversation attached to a sales deal in NNC',
         },
         {
@@ -192,13 +192,6 @@ const PAGE = {
           body: 'The dashboard shows follow-ups due, payments overdue and new leads waiting — in that order.',
           image: '/small-business-crm/images/card3.png',
           imageAlt: 'The daily dashboard showing follow-ups, payments due and new leads',
-        },
-        {
-          icon: 'lock',
-          title: 'Your data stays yours',
-          body: 'Hosted in India, backed up daily. Export anything, any time. No lock-in, no games.',
-          image: '/small-business-crm/images/card4.png',
-          imageAlt: 'Encrypted data backup and export controls in NNC Small Business CRM',
         },
       ],
     },

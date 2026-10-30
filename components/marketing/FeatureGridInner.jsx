@@ -43,10 +43,10 @@ export default function FeatureGridInner({ items, flat = false }) {
   }, [])
 
   // Column count follows item count so no row ever has a lonely trailing card.
-  // 4 items → 2 cols (2x2 layout, wider cards for landscape illustrations).
+  // 4 items → 4 cols (compact 4-up row like Salesforce's Starter Suite).
   // 2 items → 2 cols. Everything else → 3 cols (fits 3 or 6 cleanly).
   // Responsive overrides below drop to 2 or 1 col on narrower screens.
-  const cols = items.length === 4 ? 2 : items.length === 2 ? 2 : 3
+  const cols = items.length === 4 ? 4 : items.length === 2 ? 2 : 3
 
   return (
     <div

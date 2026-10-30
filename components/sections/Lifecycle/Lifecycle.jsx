@@ -4,12 +4,6 @@ import { useState } from 'react'
 import { lifecycle } from '@/data/zoom'
 import styles from './Lifecycle.module.css'
 
-const Check = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20 6 9 17l-5-5" />
-  </svg>
-)
-
 export default function Lifecycle() {
   const [tab, setTab] = useState(0)
   const t = lifecycle.tabs[tab]
@@ -41,20 +35,19 @@ export default function Lifecycle() {
             <ul className={styles.bullets}>
               {t.bullets.map((b) => (
                 <li key={b}>
-                  <span className={styles.tick}>
-                    <Check />
-                  </span>
-                  {b}
+                  <span className={styles.dot} aria-hidden="true" />
+                  <span className={styles.bulletText}>{b}</span>
                 </li>
               ))}
             </ul>
-            <a className={styles.link} href="#start" data-trial>
+            <a className={styles.cta} href="#start" data-trial>
               Start free trial
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
           </div>
           <div className={styles.media}>
-            <img src={t.img} alt="" loading="lazy" />
+            <div className={styles.mediaFrame}>
+              <img src={t.img} alt="" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>

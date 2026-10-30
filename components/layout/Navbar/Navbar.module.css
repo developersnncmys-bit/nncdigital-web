@@ -221,16 +221,18 @@
   width: 100%;
 }
 
-/* Panel. Full-width band under the nav, like Salesforce. */
+/* Floating panel — Zoom-style: inset from the viewport edges with a gap
+   between it and the nav, rounded on all four corners, soft all-around
+   shadow. (Previously a full-bleed strip attached directly to the nav.) */
 .drawer {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  padding: 0 var(--pad) 28px;
+  top: calc(100% + 12px);
+  left: var(--pad);
+  right: var(--pad);
+  padding: 24px 32px 32px;
   background: #fff;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
   box-shadow: var(--sh-lg);
   animation: drawerIn 0.18s ease-out;
 }
@@ -240,10 +242,10 @@
 .drawer::before {
   content: '';
   position: absolute;
-  top: -24px;
+  top: -16px;
   left: 0;
   right: 0;
-  height: 24px;
+  height: 16px;
 }
 @keyframes drawerIn {
   from {
@@ -259,7 +261,6 @@
   width: 100%;
   max-width: var(--maxw);
   margin-inline: auto;
-  padding-top: 22px;
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 32px;
@@ -327,25 +328,20 @@
   color: var(--navy);
 }
 
-/* ---- Middle column: active product's detail ---- */
+/* ---- Right column: Zoom-style header + icon-tile sub-item grid ---- */
 .drawerDetail {
   padding: 4px 8px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
-.detailIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--navy-soft);
-  color: var(--navy);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.detailHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .detailTitle {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
@@ -355,43 +351,61 @@
   flex-wrap: wrap;
   gap: 10px;
 }
-.detailDesc {
+.detailTagline {
   margin: 0;
-  font-size: 14.5px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--grey);
-  max-width: 48ch;
+  max-width: 60ch;
 }
 .detailExplore {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: var(--navy);
   width: fit-content;
+  margin-top: 2px;
 }
 .detailExplore:hover {
   text-decoration: underline;
 }
-.detailSubList {
+.detailSubGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 4px 24px;
-  padding-top: 4px;
-  margin-top: 4px;
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
+  gap: 4px 32px;
 }
-.detailSubItem {
-  padding: 7px 0;
-  font-size: 14px;
-  font-weight: 600;
+.detailSubTile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 6px;
+  border-radius: 10px;
   color: var(--ink);
-  transition: color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.detailSubItem:hover {
+.detailSubTile:hover {
+  background: var(--navy-soft);
   color: var(--navy);
+}
+.detailSubTileIcon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  background: var(--navy-soft);
+}
+.detailSubTile:hover .detailSubTileIcon {
+  background: #fff;
+}
+.detailSubTileLabel {
+  font-size: 14.5px;
+  font-weight: 600;
 }
 .detailMuted {
   font-size: 13px;

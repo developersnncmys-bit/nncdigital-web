@@ -35,6 +35,7 @@ const PAGE = {
     },
     {
       type: 'featureGrid',
+      flat: true,
       title: 'One CRM for every center you run',
       lead: 'Bring admissions, students and performance from all your branches into a single, clear system.',
       items: [
@@ -155,6 +156,7 @@ const PAGE = {
     },
     {
       type: 'featureGrid',
+      flat: true,
       title: 'See performance from every angle',
       lead: 'Dashboards built for institutes that run more than one center.',
       items: [

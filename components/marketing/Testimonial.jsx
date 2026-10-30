@@ -1,6 +1,5 @@
-// Single large testimonial block — modeled on Salesforce's Starter Suite
-// customer quote (big photo/avatar on the left, large quote + attribution on
-// the right, soft tinted background band around the whole thing).
+// Single large testimonial block — centered editorial layout. The quote is
+// the hero; the attribution is a small avatar + name + role below.
 //
 // Shape expected on the block object:
 //   {
@@ -10,10 +9,8 @@
 //     role: 'Owner',
 //     company: 'Trenz Retail',
 //     initials: 'SP',          // fallback when no photo
-//     photo?: '/path.jpg',     // optional
+//     photo?: '/path.jpg',     // optional small avatar photo
 //     photoAlt?: '...',
-//     companyLogo?: '/path',   // optional small badge over the photo
-//     companyLogoAlt?: '...',
 //     cta?: { label, href },   // optional learn-more link
 //   }
 //
@@ -39,31 +36,18 @@ export default function Testimonial({ block }) {
   return (
     <section className={styles.section}>
       <div className="container">
-        <div className={styles.card}>
-          <div className={styles.photoWrap}>
-            {block.photo ? (
-              <img
-                src={block.photo}
-                alt={block.photoAlt || block.author || ''}
-                loading="lazy"
-                className={styles.photo}
-              />
-            ) : (
-              <div className={styles.photoFallback} aria-hidden="true">
-                <span className={styles.initials}>{block.initials || '•'}</span>
-              </div>
-            )}
-            {block.companyLogo && (
-              <span className={styles.logoBadge}>
-                <img src={block.companyLogo} alt={block.companyLogoAlt || block.company || ''} />
-              </span>
-            )}
-          </div>
-
-          <figure className={styles.content}>
-            <Quote />
-            <blockquote className={styles.quote}>{block.quote}</blockquote>
-            <figcaption className={styles.who}>
+        <figure className={styles.content}>
+          <Quote />
+          <blockquote className={styles.quote}>{block.quote}</blockquote>
+          <figcaption className={styles.who}>
+            <span className={styles.avatar} aria-hidden="true">
+              {block.photo ? (
+                <img src={block.photo} alt="" />
+              ) : (
+                <span>{block.initials || '•'}</span>
+              )}
+            </span>
+            <span className={styles.meta}>
               <strong className={styles.author}>{block.author}</strong>
               {(block.role || block.company) && (
                 <span className={styles.role}>
@@ -72,15 +56,15 @@ export default function Testimonial({ block }) {
                   {block.company}
                 </span>
               )}
-            </figcaption>
-            {block.cta && (
-              <a href={block.cta.href} className={styles.cta}>
-                {block.cta.label}
-                <Arrow />
-              </a>
-            )}
-          </figure>
-        </div>
+            </span>
+          </figcaption>
+          {block.cta && (
+            <a href={block.cta.href} className={styles.cta}>
+              {block.cta.label}
+              <Arrow />
+            </a>
+          )}
+        </figure>
       </div>
     </section>
   )

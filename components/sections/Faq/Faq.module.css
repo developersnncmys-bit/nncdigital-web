@@ -29,45 +29,33 @@
   margin-top: 26px;
 }
 
-/* ---- accordion ---- */
+/* ---- accordion — hairline dividers, no cards. */
 .list {
-  display: grid;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
 .item {
   position: relative;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  box-shadow: var(--sh-sm);
-  overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border-top: 1px solid var(--line);
 }
-.item:hover {
-  border-color: var(--line-2);
-}
-.item.open {
-  border-color: var(--navy);
-  box-shadow: inset 3px 0 0 var(--navy), var(--sh);
-  background: linear-gradient(180deg, var(--navy-soft), #fff 60%);
-}
+.item:last-child { border-bottom: 1px solid var(--line); }
 
 .q {
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  column-gap: 18px;
+  column-gap: 20px;
   text-align: left;
   background: none;
   border: none;
   cursor: pointer;
-  padding: clamp(20px, 2.2vw, 26px) clamp(20px, 2.4vw, 30px);
+  padding: 22px 4px;
 }
 .num {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.12em;
   color: var(--grey-soft);
@@ -77,32 +65,39 @@
   color: var(--navy);
 }
 .qText {
-  font-size: clamp(16px, 1.6vw, 20px);
+  font-size: clamp(16px, 1.4vw, 18px);
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.3;
   color: var(--ink);
 }
 
-.chev {
-  width: 34px;
-  height: 34px;
+/* +/- toggle — two bars; the vertical one rotates out when open. */
+.toggle {
+  position: relative;
+  width: 24px;
+  height: 24px;
   flex: none;
-  border-radius: 50%;
-  background: var(--paper-2);
-  color: var(--ink);
-  display: grid;
-  place-items: center;
-  transition: transform 0.3s ease, background 0.25s ease, color 0.25s ease;
+  color: var(--grey);
+  transition: color 0.2s ease;
 }
-.chev svg {
-  width: 18px;
-  height: 18px;
+.toggleBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease, background 0.2s ease;
 }
-.open .chev {
-  background: var(--navy);
-  color: #fff;
-  transform: rotate(180deg);
+.toggleBarV {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.open .toggle { color: var(--navy); }
+.open .toggleBarV {
+  transform: translate(-50%, -50%) rotate(0deg);
 }
 
 .panel {
@@ -111,12 +106,11 @@
   transition: max-height 0.4s ease;
 }
 .a {
-  padding: 0 clamp(20px, 2.4vw, 30px) clamp(22px, 2.4vw, 28px)
-    calc(clamp(20px, 2.4vw, 30px) + 12px + 18px);
+  padding: 0 4px 24px calc(13px + 20px + 4px);
   font-size: 15.5px;
   color: var(--grey);
   line-height: 1.65;
-  max-width: 64ch;
+  max-width: 68ch;
 }
 
 @media (max-width: 860px) {

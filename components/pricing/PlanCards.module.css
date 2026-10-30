@@ -90,7 +90,7 @@
   justify-content: center;
   margin-top: 18px;
   padding: 13px 20px;
-  border-radius: 999px; /* pill — matches CTAs across the site */
+  border-radius: 8px;
   font-weight: 700;
   font-size: 14px;
   background: var(--white);

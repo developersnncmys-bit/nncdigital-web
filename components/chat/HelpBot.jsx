@@ -121,11 +121,11 @@ const Collapse = () => (
 )
 
 // Built-in illustrated avatar used when no /public/assistant.{mp4,jpg} is
-// supplied. Flat-illustration style, aligns at the bottom of the stage so the
-// Speak-with-NNC button sits over the shoulders rather than the face.
-const AssistantSvg = ({ className }) => (
+// supplied. CSS animations provide idle breathing, periodic eye-blink, and
+// lip-sync-like mouth motion while `speaking` is true.
+const AssistantSvg = ({ className, speaking }) => (
   <svg
-    className={className}
+    className={`${className} ${speaking ? styles.svgSpeaking : ''}`}
     viewBox="0 0 380 240"
     preserveAspectRatio="xMidYMax slice"
     aria-hidden="true"
@@ -147,7 +147,7 @@ const AssistantSvg = ({ className }) => (
 
     <rect width="380" height="240" fill="url(#asst-bg)" />
 
-    <g transform="translate(190,0)">
+    <g className={styles.svgCharacter} transform="translate(190,0)">
       {/* shoulders / blazer */}
       <path d="M-130 240 Q-80 170 -40 170 L40 170 Q80 170 130 240 Z" fill="url(#asst-shirt)" />
       {/* white shirt + collar */}
@@ -155,47 +155,54 @@ const AssistantSvg = ({ className }) => (
       <path d="M-24 170 L-40 182 L-38 240 L-22 240 Z" fill="#111f3d" />
       <path d="M24 170 L40 182 L38 240 L22 240 Z" fill="#111f3d" />
 
-      {/* neck */}
-      <path d="M-14 150 L-14 180 Q0 192 14 180 L14 150 Z" fill="url(#asst-skin)" />
-      <path d="M-14 170 Q0 178 14 170" stroke="#d19278" strokeWidth="1" fill="none" opacity="0.5" />
+      {/* head group — gentle sway */}
+      <g className={styles.svgHead}>
+        {/* neck */}
+        <path d="M-14 150 L-14 180 Q0 192 14 180 L14 150 Z" fill="url(#asst-skin)" />
+        <path d="M-14 170 Q0 178 14 170" stroke="#d19278" strokeWidth="1" fill="none" opacity="0.5" />
 
-      {/* hair back layer */}
-      <path d="M-55 150 Q-62 70 0 50 Q62 70 55 150 Q50 175 36 180 L-36 180 Q-50 175 -55 150 Z" fill="#3a2614" />
+        {/* hair back layer */}
+        <path d="M-55 150 Q-62 70 0 50 Q62 70 55 150 Q50 175 36 180 L-36 180 Q-50 175 -55 150 Z" fill="#3a2614" />
 
-      {/* face */}
-      <ellipse cx="0" cy="110" rx="44" ry="54" fill="url(#asst-skin)" />
+        {/* face */}
+        <ellipse cx="0" cy="110" rx="44" ry="54" fill="url(#asst-skin)" />
 
-      {/* bangs */}
-      <path d="M-44 92 Q-46 48 0 42 Q46 48 44 92 Q34 74 18 82 Q10 72 0 72 Q-10 72 -18 82 Q-34 74 -44 92 Z" fill="#3a2614" />
+        {/* bangs */}
+        <path d="M-44 92 Q-46 48 0 42 Q46 48 44 92 Q34 74 18 82 Q10 72 0 72 Q-10 72 -18 82 Q-34 74 -44 92 Z" fill="#3a2614" />
 
-      {/* side hair strands */}
-      <path d="M-45 100 Q-55 135 -45 165 Q-52 145 -48 115 Z" fill="#2e1c0f" />
-      <path d="M45 100 Q55 135 45 165 Q52 145 48 115 Z" fill="#2e1c0f" />
+        {/* side hair strands */}
+        <path d="M-45 100 Q-55 135 -45 165 Q-52 145 -48 115 Z" fill="#2e1c0f" />
+        <path d="M45 100 Q55 135 45 165 Q52 145 48 115 Z" fill="#2e1c0f" />
 
-      {/* eyebrows */}
-      <path d="M-27 103 Q-18 98 -9 103" stroke="#3a2614" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-      <path d="M9 103 Q18 98 27 103" stroke="#3a2614" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        {/* eyebrows */}
+        <path d="M-27 103 Q-18 98 -9 103" stroke="#3a2614" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+        <path d="M9 103 Q18 98 27 103" stroke="#3a2614" strokeWidth="2.5" fill="none" strokeLinecap="round" />
 
-      {/* eyes */}
-      <ellipse cx="-17" cy="116" rx="3.6" ry="4.6" fill="#1a2a4a" />
-      <ellipse cx="17" cy="116" rx="3.6" ry="4.6" fill="#1a2a4a" />
-      <circle cx="-15.5" cy="114" r="1.1" fill="#fff" />
-      <circle cx="18.5" cy="114" r="1.1" fill="#fff" />
+        {/* eyes — blink animation */}
+        <g className={styles.svgEyes}>
+          <ellipse cx="-17" cy="116" rx="3.6" ry="4.6" fill="#1a2a4a" />
+          <ellipse cx="17" cy="116" rx="3.6" ry="4.6" fill="#1a2a4a" />
+          <circle cx="-15.5" cy="114" r="1.1" fill="#fff" />
+          <circle cx="18.5" cy="114" r="1.1" fill="#fff" />
+        </g>
 
-      {/* nose */}
-      <path d="M-2 126 Q-2 137 -6 141 Q0 144 6 141" stroke="#d19278" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        {/* nose */}
+        <path d="M-2 126 Q-2 137 -6 141 Q0 144 6 141" stroke="#d19278" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
 
-      {/* smile */}
-      <path d="M-14 148 Q0 158 14 148" stroke="#a94740" strokeWidth="2" fill="none" strokeLinecap="round" />
-      <path d="M-11 149 Q0 154 11 149 Z" fill="#d78983" opacity="0.65" />
+        {/* mouth — talks while `speaking` is true */}
+        <g className={styles.svgMouth}>
+          <path d="M-14 148 Q0 158 14 148" stroke="#a94740" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M-11 149 Q0 154 11 149 Z" fill="#d78983" opacity="0.65" />
+        </g>
 
-      {/* blush */}
-      <ellipse cx="-30" cy="132" rx="7" ry="4" fill="#f0988c" opacity="0.3" />
-      <ellipse cx="30" cy="132" rx="7" ry="4" fill="#f0988c" opacity="0.3" />
+        {/* blush */}
+        <ellipse cx="-30" cy="132" rx="7" ry="4" fill="#f0988c" opacity="0.3" />
+        <ellipse cx="30" cy="132" rx="7" ry="4" fill="#f0988c" opacity="0.3" />
 
-      {/* earrings */}
-      <circle cx="-45" cy="128" r="2" fill="#d4af37" />
-      <circle cx="45" cy="128" r="2" fill="#d4af37" />
+        {/* earrings */}
+        <circle cx="-45" cy="128" r="2" fill="#d4af37" />
+        <circle cx="45" cy="128" r="2" fill="#d4af37" />
+      </g>
     </g>
   </svg>
 )
@@ -231,7 +238,7 @@ export default function HelpBot({ showWhatsApp = true }) {
   // src silently stalls in some browsers instead of firing onError, so a HEAD
   // check up front is the reliable way to pick the right source.
   const [avatarVideoOk, setAvatarVideoOk] = useState(false)
-  const [avatarImageOk, setAvatarImageOk] = useState(false)
+  const [avatarImageSrc, setAvatarImageSrc] = useState('')
   const bodyRef = useRef(null)
   const inputRef = useRef(null)
   const timerRef = useRef(null)
@@ -316,10 +323,17 @@ export default function HelpBot({ showWhatsApp = true }) {
     let cancelled = false
     const check = (url) =>
       fetch(url, { method: 'HEAD' })
-        .then((r) => r.ok && !/text\/html/i.test(r.headers.get('content-type') || ''))
-        .catch(() => false)
-    check('/assistant.mp4').then((ok) => { if (!cancelled && ok) setAvatarVideoOk(true) })
-    check('/assistant.jpg').then((ok) => { if (!cancelled && ok) setAvatarImageOk(true) })
+        .then((r) => (r.ok && !/text\/html/i.test(r.headers.get('content-type') || '') ? url : null))
+        .catch(() => null)
+    check('/assistant.mp4').then((u) => { if (!cancelled && u) setAvatarVideoOk(true) })
+    // Prefer PNG (transparent 3D emoji) over JPG (user-supplied portrait). First
+    // one that exists wins; neither → built-in SVG.
+    ;(async () => {
+      for (const url of ['/assistant.png', '/assistant.jpg']) {
+        const found = await check(url)
+        if (!cancelled && found) { setAvatarImageSrc(found); break }
+      }
+    })()
     return () => { cancelled = true }
   }, [])
 
@@ -446,16 +460,16 @@ export default function HelpBot({ showWhatsApp = true }) {
               playsInline
               onError={() => setAvatarVideoOk(false)}
             />
-          ) : avatarImageOk ? (
+          ) : avatarImageSrc ? (
             <img
-              className={styles.avatarMedia}
-              src="/assistant.jpg"
+              className={`${styles.avatarMedia} ${styles.avatarImage} ${speaking ? styles.avatarImgSpeaking : ''}`}
+              src={avatarImageSrc}
               alt=""
               aria-hidden="true"
-              onError={() => setAvatarImageOk(false)}
+              onError={() => setAvatarImageSrc('')}
             />
           ) : (
-            <AssistantSvg className={styles.avatarMedia} />
+            <AssistantSvg className={styles.avatarMedia} speaking={speaking} />
           )}
           {micSupported && (
             <button

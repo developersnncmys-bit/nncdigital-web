@@ -6,6 +6,7 @@ import LeadCaptureGraphic from './LeadCaptureGraphic'
 import PlansBlock from './PlansBlock'
 import CompareTable from './CompareTable'
 import CRMDashboard from './CRMDashboard'
+import NetZeroDashboard from './NetZeroDashboard'
 import TestimonialsCarousel from './TestimonialsCarousel'
 import FeatureTabs from './FeatureTabs'
 import Testimonial from './Testimonial'
@@ -13,6 +14,7 @@ import styles from './MarketingPage.module.css'
 
 const HERO_COMPONENTS = {
   crmDashboard: CRMDashboard,
+  netZeroDashboard: NetZeroDashboard,
 }
 
 function HeroComponent({ name }) {
@@ -185,36 +187,37 @@ function Prose({ block }) {
 
 function Faq({ block }) {
   // Native <details>/<summary> gives us accordion behavior, keyboard support
-  // and screen-reader state announcements with no client-side state.
+  // and screen-reader state announcements with no client-side state. First
+  // item defaults to open so visitors land on an immediate answer.
   return (
     <section className={styles.block}>
       <div className="container">
-        {block.title && <h2 className={styles.blockTitle}>{block.title}</h2>}
-        <div className={styles.faq}>
-          {block.items.map((q) => (
-            <details className={styles.faqItem} key={q.q}>
-              <summary className={styles.faqQ}>
-                <span className={styles.faqQText}>{q.q}</span>
-                <svg
-                  className={styles.faqChevron}
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M6 9l6 6 6-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </summary>
-              <p className={styles.faqA}>{q.a}</p>
-            </details>
-          ))}
+        <div className={styles.faqLayout}>
+          <aside className={styles.faqSide}>
+            {block.title && <h2 className={styles.faqSideTitle}>{block.title}</h2>}
+            {block.lead && <p className={styles.faqSideLead}>{block.lead}</p>}
+            <div className={styles.faqContact}>
+              <p className={styles.faqContactText}>Still have questions? Our team is here to help.</p>
+              <a className={styles.faqContactLink} href="/company/contact">Contact us →</a>
+            </div>
+          </aside>
+          <div className={styles.faqList}>
+            {block.items.map((q, i) => (
+              <details className={styles.faqItem} key={q.q} open={i === 0}>
+                <summary className={styles.faqQ}>
+                  <span className={styles.faqNum}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className={styles.faqQText}>{q.q}</span>
+                  <span className={styles.faqToggle} aria-hidden="true">
+                    <span className={styles.faqToggleBar} />
+                    <span className={`${styles.faqToggleBar} ${styles.faqToggleBarV}`} />
+                  </span>
+                </summary>
+                <div className={styles.faqA}>
+                  <p>{q.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -309,6 +312,12 @@ export default function MarketingPage({ page }) {
               page.hero.media.type === 'component' ? (
                 <div className={styles.heroComponent}>
                   <HeroComponent name={page.hero.media.name} />
+                </div>
+              ) : page.hero.media.framed ? (
+                <div className={`${styles.heroMedia} ${styles.heroMediaFramed}`}>
+                  <div className={styles.heroFrame}>
+                    <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} />
+                  </div>
                 </div>
               ) : (
                 <div className={styles.heroMedia}>

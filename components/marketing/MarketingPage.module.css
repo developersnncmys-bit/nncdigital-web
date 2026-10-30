@@ -83,7 +83,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 26px;
-  border-radius: 999px;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 15px;
   border: 1.5px solid transparent;
@@ -122,10 +122,51 @@
   pointer-events: none;
 }
 .heroImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* When the hero media is a video, the whole container chain (outer media,
+   framed card, glass panel) sheds its forced 16:10 ratio and shrinks to the
+   video's intrinsic aspect ratio. Result: video fills the glass card with no
+   letterbox and no side clipping, regardless of the video's shape. */
+.heroMedia:has(video) { aspect-ratio: auto; }
+.heroMedia:has(video) .heroFrame { height: auto; }
+.heroMedia:has(video) video.heroImg { height: auto; object-fit: cover; }
 /* For UI screenshots that must be shown in full. Lightens the backdrop and
    insets the image slightly so the shot does not touch the frame edges. */
 .heroImgContain { width: 100%; height: 100%; object-fit: contain; display: block; padding: 12px; background: #fff; }
 .heroComponent { display: flex; align-items: center; justify-content: center; min-width: 0; }
+
+/* Framed hero variant — opt in via `media.framed: true` on the page data.
+   Outer card is a scenic mountain photo (Unsplash) with a soft blue tint
+   layered on top so the inner frosted-glass panel still reads well. The
+   inner `.heroFrame` is a frosted-glass panel holding the image/video. */
+.heroMediaFramed {
+  background:
+    linear-gradient(160deg, rgba(10, 79, 224, 0.35), rgba(135, 179, 255, 0.18)),
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+  padding: clamp(22px, 3vw, 36px);
+}
+/* The decorative blue halo isn't needed under the gradient — kill it. */
+.heroMediaFramed::before { display: none; }
+.heroFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 20px 48px -24px rgba(10, 30, 80, 0.45);
+  overflow: hidden;
+}
+/* Inside the frame, round the media's corners to nest cleanly in the glass
+   padding and drop the solid-white backdrop on contained screenshots. */
+.heroFrame .heroImg,
+.heroFrame .heroImgContain {
+  border-radius: calc(var(--r) - 4px);
+}
+.heroFrame .heroImgContain { padding: 0; background: transparent; }
 
 /* ===== generic block ===== */
 .block { padding: clamp(54px, 7vh, 96px) var(--pad); }
@@ -243,13 +284,13 @@
 .ccard:hover .clink svg { transform: translateX(4px); }
 
 /* ---- highlighted "spotlight" variant of the cards block ----
-   Neat top-down gradient: CTA blue (--navy) at the top where the heading
-   sits, through a mid sky blue, into near-white (--navy-soft) at the bottom
-   where the cards live. All tones come from the navy palette family — no
-   invented colors. Opt-in via `block.highlight = true`. */
+   Zoom-style deep rich blue — a smooth top-to-bottom gradient from near-black
+   navy into a saturated-but-not-flashy mid blue. Reads clearly as "blue" (not
+   "near-black navy"), with gradient depth that avoids the flat-vivid look of
+   a solid --navy. Opt-in via `block.highlight = true`. */
 .blockHighlight,
 .block.blockHighlight:nth-of-type(even) {
-  background: linear-gradient(180deg, #0a44c8 0%, #0b5cff 22%, #4d8bff 45%, #87b3ff 70%, #e8f0ff 100%);
+  background: linear-gradient(180deg, #1e3f85 0%, var(--navy) 25%, #4d8bff 50%, #87b3ff 75%, var(--navy-soft) 100%);
   color: #fff;
 }
 .blockHighlight .blockTitle { color: #fff; }
@@ -295,55 +336,142 @@
 .tmeta strong { font-size: 14.5px; color: var(--ink); }
 .trole { font-size: 13px; color: var(--grey); }
 
-/* faq — rendered as <details>/<summary> for native accordion behavior */
-.faq { margin-top: clamp(30px, 4vw, 46px); max-width: 760px; margin-inline: auto; display: grid; gap: 14px; }
-.faqItem {
-  background: #fff;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r);
-  padding: 0; /* padding moves onto summary + answer so the full header is clickable */
-  overflow: hidden;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+/* faq — 2-column layout: left side carries the section title + a contact
+   nudge, right side is a numbered list separated by hairline rules. No cards.
+   First item renders open by default (set via the <details open> attribute). */
+.faqLayout {
+  margin-top: clamp(30px, 4vw, 46px);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
 }
-.faqItem[open] {
-  border-color: var(--navy);
-  box-shadow: var(--sh);
-}
-.faqQ {
+.faqSide {
+  position: sticky;
+  top: 100px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 22px 24px;
-  cursor: pointer;
-  font-size: 16px;
+  flex-direction: column;
+  gap: 18px;
+}
+.faqSideTitle {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 42px);
   font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+.faqSideLead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--grey);
+  max-width: 32ch;
+}
+.faqContact {
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faqContactText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--grey);
+}
+.faqContactLink {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.faqList { display: flex; flex-direction: column; }
+.faqItem {
+  border-top: 1px solid var(--line);
+  padding: 0;
+}
+.faqItem:last-child { border-bottom: 1px solid var(--line); }
+.faqQ {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 4px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.01em;
   list-style: none; /* kills the default disclosure marker in Firefox */
 }
 .faqQ::-webkit-details-marker { display: none; } /* and in Chrome/Safari */
-.faqQText { flex: 1 1 auto; }
-.faqChevron {
+.faqNum {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--grey);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+.faqItem[open] .faqNum { color: var(--navy); }
+.faqQText { color: inherit; }
+
+/* +/- toggle built from two spans. Open state rotates the vertical bar out,
+   leaving a horizontal minus. */
+.faqToggle {
+  position: relative;
+  width: 22px;
+  height: 22px;
   flex: 0 0 auto;
   color: var(--grey);
-  transition: transform 0.2s ease, color 0.18s ease;
 }
-.faqItem[open] .faqChevron {
-  transform: rotate(180deg);
-  color: var(--navy);
+.faqToggleBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease, background 0.2s ease;
 }
+.faqToggleBarV {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.faqItem[open] .faqToggle { color: var(--navy); }
+.faqItem[open] .faqToggleBarV {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
 .faqA {
   margin: 0;
-  padding: 0 24px 22px;
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: var(--grey);
+  padding: 0 4px 24px calc(13px + 20px + 24px); /* indent under the question text, past the number */
   animation: faqAnswerIn 0.22s ease-out;
+}
+.faqA p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--grey);
+  max-width: 68ch;
 }
 @keyframes faqAnswerIn {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 860px) {
+  .faqLayout { grid-template-columns: 1fr; gap: 32px; }
+  .faqSide { position: static; }
+  .faqA { padding-left: 4px; }
 }
 
 /* ===== cta band ===== */
@@ -358,7 +486,7 @@
 .ctaTitle { position: relative; z-index: 1; color: #fff; font-size: clamp(28px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; max-width: 20ch; margin: 0 auto; }
 .ctaSub { position: relative; z-index: 1; margin: 16px auto 0; max-width: 52ch; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.6; color: rgba(255,255,255,0.88); }
 .ctaBtns { position: relative; z-index: 1; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.ctaPrimary, .ctaGhost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: transform 0.2s ease, background 0.2s ease; }
+.ctaPrimary, .ctaGhost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 8px; font-weight: 700; font-size: 15px; transition: transform 0.2s ease, background 0.2s ease; }
 .ctaPrimary svg, .ctaGhost svg { width: 16px; height: 16px; }
 .ctaPrimary { background: #fff; color: var(--navy); }
 .ctaPrimary:hover { transform: translateY(-2px); }
