@@ -166,22 +166,23 @@
   object-fit: cover;
   display: block;
 }
-/* Fluent 3D emoji is a square PNG with transparent background — center it on
-   the stage gradient and let it breathe/bob instead of filling the frame. */
+/* Real portrait: fill the stage, anchored at the top so the face stays visible
+   when the Speak button overlays the bottom. Subtle breathing + a lift when
+   TTS is speaking, so the avatar feels alive without jank. */
 .avatarImage {
-  object-fit: contain;
-  padding: 10px 0 0;
+  object-fit: cover;
+  object-position: 50% 20%;
   transform-origin: 50% 100%;
-  animation: imgBreath 4s ease-in-out infinite;
+  animation: imgBreath 4.5s ease-in-out infinite;
 }
-.avatarImgSpeaking { animation: imgTalk 0.42s ease-in-out infinite; }
+.avatarImgSpeaking { animation: imgTalk 0.5s ease-in-out infinite; }
 @keyframes imgBreath {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-2px) scale(1.012); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.008); }
 }
 @keyframes imgTalk {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-3px) scale(1.025); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
 }
 @media (prefers-reduced-motion: reduce) {
   .avatarImage, .avatarImgSpeaking { animation: none; }

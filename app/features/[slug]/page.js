@@ -2,8 +2,9 @@
 // Original code preserved in the block comment below so it can be restored or
 // used as a reference when the replacement page is wired up.
 //
-// generateStaticParams returns an empty array so no sub-routes are emitted
-// during the static export.
+// generateStaticParams returns a single disabled-stub slug — Next.js 15's
+// static-export mode rejects an empty array ("missing generateStaticParams"),
+// so we emit one invisible placeholder route instead.
 /*
 import { notFound } from 'next/navigation'
 import MarketingPage from '@/components/marketing/MarketingPage'
@@ -30,9 +31,10 @@ export default async function Page({ params }) {
 */
 
 export const metadata = { robots: { index: false, follow: false } }
+export const dynamicParams = false
 
 export function generateStaticParams() {
-  return []
+  return [{ slug: 'disabled' }]
 }
 
 export default function Page() {
