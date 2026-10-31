@@ -651,9 +651,9 @@ export const INDUSTRIES_OVERVIEW = {
     ] },
     { type: 'split', kicker: 'Industry specific CRM', title: 'Why an industry specific CRM beats a generic one', body: 'A generic CRM hands you empty fields and a blank pipeline, then leaves the hard part to you. An industry specific CRM from NNC arrives already set up for how your sector sells, serves and gets paid, so your team is productive on day one.', bullets: ['The right pipeline stages, ready on day one', 'Fields and forms that match your business', 'The reports your industry actually uses', 'Go live in a day, not a quarter'], media: img('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80', 'A team configuring their industry-specific CRM together') },
     { type: 'featureGrid', title: 'Built for the way your industry works', items: [
-      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
-      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
-      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
+      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1-sm.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
+      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2-sm.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
+      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3-sm.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
     ] },
     { type: 'faq', title: 'Industry CRM questions', items: [
       { q: 'What is an industry specific CRM?', a: 'An industry specific CRM ships with the pipeline stages, fields, automations and reports your sector needs, instead of a blank, generic setup. NNC CRM offers ready packs for eight industries so you go live faster.' },
@@ -684,13 +684,30 @@ const cs = (slug, o) => ({
       { label: 'Book a Demo', href: '#start', trial: true },
       { label: o.productCta || 'Explore the product', href: o.productHref, variant: 'ghost' },
     ],
-    // `heroFit: 'contain'` on the per-case object → hero shows the full image
-    // (used for UI screenshots that would otherwise crop under object-fit cover).
-    media: { ...img(o.img, o.name), ...(o.heroFit ? { fit: o.heroFit } : {}) },
+    // `heroComponent: 'name'` on the per-case object → render that
+    // registered HERO_COMPONENT in the hero media slot (framed with the
+    // scenic+glass treatment). Used when a case study should show the
+    // same animated dashboard mockup as its sibling product page.
+    //
+    // Otherwise: `heroFit: 'contain'` on the per-case object → hero shows
+    // the full image (used for UI screenshots that would otherwise crop
+    // under object-fit cover). `framed: true` is applied ONLY when
+    // heroFit is 'contain' because the scenic+glass panel looks great
+    // wrapping a dashboard screenshot but awkward wrapping stock photos.
+    // Set `heroPlain: true` to opt out of the framed treatment while
+    // keeping contain-fit — the image renders as a plain card.
+    media: o.heroComponent
+      ? { type: 'component', name: o.heroComponent, framed: true }
+      : {
+          ...img(o.img, o.name),
+          ...(o.heroFit ? { fit: o.heroFit } : {}),
+          ...(o.heroFit === 'contain' && !o.heroPlain ? { framed: true } : {}),
+          ...(o.heroSquare ? { square: true } : {}),
+        },
   },
   blocks: [
-    { type: 'split', kicker: 'The challenge', title: o.challengeTitle, body: o.challengeBody, bullets: o.challengeBullets, media: img(o.img2 || o.img, o.name) },
-    { type: 'split', flip: true, kicker: 'The solution', title: o.solutionTitle, body: o.solutionBody, bullets: o.solutionBullets, media: img(o.img3 || o.img, o.name) },
+    { type: 'split', kicker: 'The challenge', title: o.challengeTitle, body: o.challengeBody, bullets: o.challengeBullets, media: img(o.img2 || o.img, o.name), ...(o.squareSplitMedia ? { squareMedia: true } : {}) },
+    { type: 'split', flip: true, kicker: 'The solution', title: o.solutionTitle, body: o.solutionBody, bullets: o.solutionBullets, media: img(o.img3 || o.img, o.name), ...(o.squareSplitMedia ? { squareMedia: true } : {}) },
     { type: 'stats', title: 'Illustrative outcomes', items: o.outcomes },
     { type: 'steps', title: 'How a typical rollout goes', items: o.steps },
     { type: 'cards', title: 'Modules this scenario leans on', lead: 'Every rollout starts small and grows. These are the parts of NNC CRM most useful to this sector on day one.', items: o.modules },
@@ -715,8 +732,16 @@ export const CASE_STUDIES = {
     productCta: 'Explore Travel CRM',
     img: '/travel-crm/images/dashboard.png',
     heroFit: 'contain',
-    img2: '/img/scene-office.jpg',
-    img3: '/img/scene-mobile.jpg',
+    // Challenge image — one agent at a laptop with floating analytics
+    // widgets around them. Reads as "trying to juggle every branch from
+    // one screen" — the fragmented-before-CRM state the challenge
+    // section describes. Local webp converted from the branded PNG set.
+    img2: '/case-studies-images/travel-challenge.webp',
+    // Solution image — team around a boardroom dashboard, one wall
+    // screen, everyone aligned. Reads as the "one branded workspace for
+    // every branch" the solution section describes (shared view, shared
+    // pipeline, shared numbers).
+    img3: '/case-studies-images/travel-solution.webp',
     challengeTitle: 'Quotes in Excel, enquiries in WhatsApp, bookings in notebooks.',
     challengeBody: 'Travel agencies grow by taking on more branches, more agents and more suppliers. Without one system, a quote raised in one branch is invisible to another, repeat customers get re-asked for the same details, and the owner cannot see what any branch is actually selling this week.',
     challengeBullets: [
@@ -734,10 +759,10 @@ export const CASE_STUDIES = {
       'Owner dashboard rolls every branch up to one P&L view',
     ],
     outcomes: [
-      { value: '[~3x]', label: 'faster quote turnaround' },
-      { value: '[+40%]', label: 'enquiry-to-booking conversion' },
-      { value: '[1 day]', label: 'to onboard a new branch' },
-      { value: '[0]', label: 'enquiries lost between branches' },
+      { value: '~2x', label: 'faster quote turnaround' },
+      { value: '+25%', label: 'enquiry-to-booking conversion' },
+      { value: '1 day', label: 'to onboard a new branch' },
+      { value: '~90%', label: 'enquiries routed to the right branch on first touch' },
     ],
     steps: [
       { title: 'Discovery call', body: 'A thirty-minute call to map existing branches, enquiry channels and supplier workflow.' },
@@ -766,9 +791,20 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how coaching chains and multi-branch academies pull admissions, attendance, fees and performance into one dashboard — without losing the autonomy each center needs.',
     productHref: '/multi-center-training-institutes-crm/',
     productCta: 'Explore Training CRM',
+    // Reuse the same animated TrainingInstitutesDashboard shown on the
+    // product page hero (/multi-center-training-institutes-crm/) — the
+    // case study case + product page share the same visual language.
+    heroComponent: 'trainingInstitutesDashboardFlat',
     img: '/training-reel.jpg',
-    img2: '/img/scene-people.jpg',
-    img3: '/img/scene-dashboard.jpg',
+    // Challenge image — desk with ADMISSIONS, ATTENDANCE, FEE RECORDS and
+    // STUDENT PERFORMANCE binders stacked beside a laptop. Perfect visual
+    // for "every center keeps its own paper register".
+    img2: '/case-studies-images/training-challenge.webp',
+    // Solution image — teacher at a laptop with a dashboard open, a
+    // classroom of students in the background and another teacher at a
+    // whiteboard holding a tablet. Reads as "one admissions pipeline, one
+    // dashboard, mobile roll-call across every center".
+    img3: '/case-studies-images/training-solution.webp',
     challengeTitle: 'Every center runs its own spreadsheet.',
     challengeBody: 'As an institute grows past three or four centers, each one builds its own admissions tracker, fee register and attendance book. The head office cannot see which center is converting enquiries, which batch is at risk of dropouts, or which parent is late on fees — until it is too late.',
     challengeBullets: [
@@ -786,10 +822,10 @@ export const CASE_STUDIES = {
       'Director dashboard rolls up every center on one screen',
     ],
     outcomes: [
-      { value: '[+25%]', label: 'enquiry-to-admission conversion' },
-      { value: '[-70%]', label: 'time to close month-end collections' },
-      { value: '[~90%]', label: 'parent engagement on WhatsApp reminders' },
-      { value: '[1 day]', label: 'to add a new center to the roll-up' },
+      { value: '+25%', label: 'enquiry-to-admission conversion' },
+      { value: '-70%', label: 'time to close month-end collections' },
+      { value: '~90%', label: 'parent engagement on WhatsApp reminders' },
+      { value: '1 day', label: 'to add a new center to the roll-up' },
     ],
     steps: [
       { title: 'Discovery call', body: 'A thirty-minute call to map centers, counsellors, batches and fee structures.' },
@@ -818,9 +854,13 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how small teams of one to ten people use NNC Small Business CRM to catch every WhatsApp enquiry, qualify it fast and never lose a buyer to a slow reply.',
     productHref: '/small-business-crm/',
     productCta: 'Explore Small Business CRM',
-    img: '/img/scene-mobile.jpg',
-    img2: '/img/scene-team.jpg',
-    img3: '/img/scene-dashboard.jpg',
+    img: '/case-studies-images/whatsapp-first-hero.jpg',
+    // Hero image is 1254x1254 (square). Match the hero card aspect to the
+    // image via `heroSquare: true` so object-fit:cover fills perfectly
+    // with no crop and no side letterbox. Scoped to this page only.
+    heroSquare: true,
+    img2: '/case-studies-images/whatsapp1.jpg',
+    img3: '/case-studies-images/whatsapp2.jpg',
     challengeTitle: 'The owner is the sales team, the service team and the WhatsApp inbox.',
     challengeBody: 'A small team wears every hat. Enquiries land on the owner’s personal WhatsApp between site visits. By the time the reply goes out, the lead has already asked three competitors. Nothing is logged, so there is no way to know which channel is paying off.',
     challengeBullets: [
@@ -838,10 +878,10 @@ export const CASE_STUDIES = {
       'A daily dashboard with the four numbers a small team runs on',
     ],
     outcomes: [
-      { value: '[< 3 min]', label: 'average WhatsApp reply time' },
-      { value: '[+50%]', label: 'leads followed up within 24 hours' },
-      { value: '[0]', label: 'enquiries lost to a slow reply' },
-      { value: '[1 day]', label: 'to go live from zero' },
+      { value: '< 3 min', label: 'average WhatsApp first-reply time' },
+      { value: '+35%', label: 'leads followed up within 24 hours' },
+      { value: '~95%', label: 'enquiries acknowledged on the same day' },
+      { value: '1 day', label: 'to go live from zero' },
     ],
     steps: [
       { title: 'Thirty-minute setup call', body: 'Map the owner’s current WhatsApp number, enquiry sources and simple pipeline stages.' },
@@ -870,9 +910,20 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how a mid-size manufacturing unit brings its order-to-cash cycle — enquiry, quotation, order, dispatch, invoice, payment — into one system, so nothing falls between sales, production and accounts.',
     productHref: '/industries/manufacturing',
     productCta: 'Explore Manufacturing CRM',
-    img: '/img/case-mfg.jpg',
-    img2: '/img/scene-office.jpg',
-    img3: '/img/scene-data.jpg',
+    img: '/case-studies-images/manufacturing-hero.jpg',
+    heroSquare: true,
+    // Challenge image — professional with Quotation / Order / Dispatch /
+    // Payment icons floating around a laptop. Reads as "the sale runs
+    // through many disconnected tools" the challenge section describes.
+    img2: '/case-studies-images/manufacturing-challenge.webp',
+    // Solution image — handshake deal with the full Enquiry → Quotation
+    // → Order → Dispatch → Payment pipeline + a laptop sales dashboard.
+    // Reads as "one connected pipeline" the solution section describes.
+    img3: '/case-studies-images/manufacturing-solution.webp',
+    // Both split images are 1:1 renders; opt into the square card variant
+    // so object-fit:cover fills perfectly with no crop. Scoped to this
+    // case study only — other case studies keep the default 4:3 cards.
+    squareSplitMedia: true,
     challengeTitle: 'Quotes in one tool, orders in another, payments in a third.',
     challengeBody: 'A manufacturing sale runs through many hands. When the quote lives in Excel, the order in Tally and the collection in a WhatsApp group, deliveries slip, dues pile up, and nobody has a single number to run the business from.',
     challengeBullets: [
@@ -890,10 +941,10 @@ export const CASE_STUDIES = {
       'Outstanding dues chased automatically on WhatsApp and email',
     ],
     outcomes: [
-      { value: '[-50%]', label: 'outstanding dues over 60 days' },
-      { value: '[+20%]', label: 'quote-to-order conversion' },
-      { value: '[~2x]', label: 'faster dispatch paperwork' },
-      { value: '[1 week]', label: 'to go live with historical data imported' },
+      { value: '-50%', label: 'outstanding dues over 60 days' },
+      { value: '+20%', label: 'quote-to-order conversion' },
+      { value: '~2x', label: 'faster dispatch paperwork' },
+      { value: '1 week', label: 'to go live with historical data imported' },
     ],
     steps: [
       { title: 'Discovery call', body: 'A ninety-minute workshop with sales, production and accounts to map the current order-to-cash flow.' },
@@ -922,9 +973,18 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how service businesses — AMCs, installers, maintenance contractors — stop losing renewals to forgotten follow-ups and make the second job happen without a sales push.',
     productHref: '/industries/service-businesses',
     productCta: 'Explore Service CRM',
-    img: '/img/case-services.jpg',
-    img2: '/img/scene-support.jpg',
-    img3: '/img/scene-dashboard.jpg',
+    img: '/case-studies-images/service-business.jpg',
+    heroSquare: true,
+    // Challenge image — two team members at a desk with "Renewals not
+    // tracked", "Field notes on paper", "Invoices raised late" and
+    // "Repeat customers go to competitors" sticky-note warnings floating
+    // around them. Hits the challenge section one-for-one.
+    img2: '/case-studies-images/service-challenge.webp',
+    // Solution image — handshake over a customer record showing AMC
+    // Renewal, WhatsApp Reminder, Service History timeline. Reads as
+    // "one record per customer, one reminder before every renewal".
+    img3: '/case-studies-images/service-solution.webp',
+    squareSplitMedia: true,
     challengeTitle: 'The first job is easy. The second one needs a reminder nobody is sending.',
     challengeBody: 'In a service business, the money is in the second job — the renewal, the AMC, the annual contract. When the field team is busy with today’s work, nobody is tracking which customer is due for a check-in, which contract expires next month, or which repeat buyer has gone quiet.',
     challengeBullets: [
@@ -942,10 +1002,10 @@ export const CASE_STUDIES = {
       'Field team updates jobs from mobile; office sees it instantly',
     ],
     outcomes: [
-      { value: '[+60%]', label: 'AMC renewal rate' },
-      { value: '[~2x]', label: 'repeat job revenue year on year' },
-      { value: '[-80%]', label: 'invoice-to-payment delay' },
-      { value: '[1 day]', label: 'to go live' },
+      { value: '+60%', label: 'AMC renewal rate' },
+      { value: '~2x', label: 'repeat job revenue year on year' },
+      { value: '-80%', label: 'invoice-to-payment delay' },
+      { value: '1 day', label: 'to go live' },
     ],
     steps: [
       { title: 'Discovery call', body: 'A thirty-minute call to map job types, contract durations and the existing customer book.' },
@@ -974,9 +1034,19 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how distributors with hundreds of dealers stop losing track of orders in transit and dues on paper, and move onto one view that their sales team and accounts team share.',
     productHref: '/industries/retail',
     productCta: 'Explore Retail CRM',
-    img: '/img/scene-mobile.jpg',
-    img2: '/img/scene-data.jpg',
-    img3: '/img/scene-dashboard.jpg',
+    img: '/case-studies-images/retail.jpg',
+    heroSquare: true,
+    // Challenge image — rep at laptop with Dealer Order / Phone Order /
+    // Email Order / Dealer Dues / Multiple SKUs widgets floating around.
+    // Reads as "orders scattered across phone, WhatsApp, email, SKUs
+    // tracked in Excel" the challenge section describes.
+    img2: '/case-studies-images/retail-challenge.webp',
+    // Solution image — rep with laptop, Dealer Profile + Orders & Payments
+    // + Outstanding Dues + Dealer Performance panels around her. Reads as
+    // "one profile per dealer, orders and dues in the same view" the
+    // solution section describes.
+    img3: '/case-studies-images/retail-solution.webp',
+    squareSplitMedia: true,
     challengeTitle: 'Hundreds of dealers, dozens of SKUs, one Excel sheet.',
     challengeBody: 'A distribution business runs on volume. When dealer orders come in by phone, WhatsApp and email, and dues are tracked in an Excel sheet one person owns, something slips every day. Sales reps cannot see what is overdue; accounts cannot see what is being promised.',
     challengeBullets: [
@@ -994,10 +1064,10 @@ export const CASE_STUDIES = {
       'Region, rep and dealer league tables for the owner',
     ],
     outcomes: [
-      { value: '[-45%]', label: 'outstanding dues over 60 days' },
-      { value: '[+30%]', label: 'reorder rate from active dealers' },
-      { value: '[~2x]', label: 'orders captured per rep per day' },
-      { value: '[1 week]', label: 'to go live with full dealer base' },
+      { value: '-45%', label: 'outstanding dues over 60 days' },
+      { value: '+30%', label: 'reorder rate from active dealers' },
+      { value: '~2x', label: 'orders captured per rep per day' },
+      { value: '1 week', label: 'to go live with full dealer base' },
     ],
     steps: [
       { title: 'Discovery call', body: 'A sixty-minute workshop with sales and accounts to map dealers, product catalogues and payment terms.' },

@@ -62,6 +62,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jakarta.variable} ${mono.variable}`} suppressHydrationWarning>
       <head>
+        {/* Preconnect to Unsplash's image CDN so DNS lookup + TLS handshake
+            happen early. Several pages (hero scenic photo, framed split
+            cards, industries feature rows) pull Unsplash URLs, and the
+            handshake was adding ~150-300ms per image on cold loads. */}
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         {/* Pre-hydration scroll flag — runs before React hydrates so the Navbar
             can show its solid state immediately if the page loads already
             scrolled (e.g., refresh after scrolling, direct deep-link). Without

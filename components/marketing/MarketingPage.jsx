@@ -44,11 +44,26 @@ const Arrow = () => (
   </svg>
 )
 
-function Media({ media, className, containClassName }) {
+function Media({ media, className, containClassName, priority = false }) {
   if (!media) return null
   if (media.type === 'video') {
+    // Above-fold heroes pass priority=true → preload="auto" + fetchpriority
+    // so the hero video starts downloading as fast as possible. Everywhere
+    // else (Split blocks, below-fold media) uses preload="metadata" to
+    // avoid eagerly pulling multi-megabyte files the user may never see.
+    const preload = priority ? 'auto' : 'metadata'
     return (
-      <video className={className} autoPlay muted loop playsInline preload="auto" poster={media.poster} aria-hidden="true">
+      <video
+        className={className}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload={preload}
+        poster={media.poster}
+        aria-hidden="true"
+        {...(priority ? { fetchpriority: 'high' } : {})}
+      >
         <source src={media.src} type="video/mp4" />
       </video>
     )
@@ -107,7 +122,7 @@ function Split({ block }) {
             </ul>
           )}
         </div>
-        <div className={styles.splitMedia}>
+        <div className={`${styles.splitMedia} ${block.squareMedia ? styles.splitMediaSquare : ''}`}>
           <Media
             media={block.media}
             className={styles.splitImg}
@@ -360,12 +375,12 @@ export default function MarketingPage({ page }) {
               ) : page.hero.media.framed ? (
                 <div className={`${styles.heroMedia} ${styles.heroMediaFramed}`}>
                   <div className={styles.heroFrame}>
-                    <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} />
+                    <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} priority />
                   </div>
                 </div>
               ) : (
-                <div className={styles.heroMedia}>
-                  <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} />
+                <div className={`${styles.heroMedia} ${page.hero.media.square ? styles.heroMediaSquare : ''}`}>
+                  <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} priority />
                 </div>
               )
             )}
