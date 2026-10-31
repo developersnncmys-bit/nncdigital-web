@@ -1,0 +1,85 @@
+/* ---- backdrop stage ----
+   Hero-matching navy→mid-blue gradient. Same palette the homepage hero
+   uses so framed sections feel like a single brand surface. */
+.stage {
+  position: relative;
+  border-radius: clamp(18px, 2.2vw, 28px);
+  padding: clamp(28px, 5vw, 72px) clamp(16px, 4vw, 56px);
+  background: linear-gradient(
+    176deg,
+    #14264f 0%,
+    #1b3580 35%,
+    #2f59c0 100%
+  );
+  overflow: hidden;
+}
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(40% 50% at 15% 10%, rgba(150, 188, 255, 0.22), transparent 70%),
+    radial-gradient(45% 55% at 85% 90%, rgba(63, 116, 255, 0.3), transparent 70%);
+  pointer-events: none;
+}
+
+/* ---- browser mockup ----
+   Frosted-glass Mac window. Neutral white glass (no saturate) so the panel
+   reads as frosted rather than tinted blue. The dashboard inside (`.screen`)
+   stays transparent so the glass backdrop shows through the padding gap,
+   framing the dashboard like a picture inside a frosted frame. */
+.browser {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: clamp(14px, 1.6vw, 20px);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 40px 90px -30px rgba(7, 18, 43, 0.55),
+    0 10px 24px -12px rgba(7, 18, 43, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 44px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dots { display: inline-flex; gap: 7px; flex: none; }
+.dots i { width: 12px; height: 12px; border-radius: 50%; background: #d6dbe4; }
+.dots i:nth-child(1) { background: #ff5f57; }
+.dots i:nth-child(2) { background: #febc2e; }
+.dots i:nth-child(3) { background: #28c840; }
+.url {
+  flex: 0 1 auto;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--grey);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spacer { flex: none; width: 54px; }
+.screen {
+  padding: clamp(18px, 2.6vw, 32px);
+  background: transparent;
+}
+
+@media (max-width: 600px) {
+  .spacer { display: none; }
+  .url { max-width: 200px; }
+}

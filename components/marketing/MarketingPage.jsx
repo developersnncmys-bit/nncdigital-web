@@ -6,13 +6,31 @@ import LeadCaptureGraphic from './LeadCaptureGraphic'
 import PlansBlock from './PlansBlock'
 import CompareTable from './CompareTable'
 import CRMDashboard from './CRMDashboard'
+import TrainingInstitutesDashboard from './TrainingInstitutesDashboard'
+import IndustrySwitcher from './IndustrySwitcher'
 import TestimonialsCarousel from './TestimonialsCarousel'
 import FeatureTabs from './FeatureTabs'
 import Testimonial from './Testimonial'
 import styles from './MarketingPage.module.css'
 
+// Flat, compact variants — no 3D tilt, no decorative floating cards,
+// smaller base font-size. Used inside the scenic+glass framed hero
+// (see `media.framed: true` on product pages) where the external frame
+// already provides the visual chrome. Content shrinks to fit the panel
+// without touching the bottom edge.
+function TrainingInstitutesDashboardFlat() {
+  return <TrainingInstitutesDashboard flat showFloats={false} compact />
+}
+function CRMDashboardFlat() {
+  return <CRMDashboard flat showFloats={false} compact />
+}
+
 const HERO_COMPONENTS = {
   crmDashboard: CRMDashboard,
+  crmDashboardFlat: CRMDashboardFlat,
+  trainingInstitutesDashboard: TrainingInstitutesDashboard,
+  trainingInstitutesDashboardFlat: TrainingInstitutesDashboardFlat,
+  industrySwitcher: IndustrySwitcher,
 }
 
 function HeroComponent({ name }) {
@@ -30,7 +48,7 @@ function Media({ media, className, containClassName }) {
   if (!media) return null
   if (media.type === 'video') {
     return (
-      <video className={className} autoPlay muted loop playsInline preload="metadata" poster={media.poster} aria-hidden="true">
+      <video className={className} autoPlay muted loop playsInline preload="auto" poster={media.poster} aria-hidden="true">
         <source src={media.src} type="video/mp4" />
       </video>
     )
@@ -90,7 +108,11 @@ function Split({ block }) {
           )}
         </div>
         <div className={styles.splitMedia}>
-          <Media media={block.media} className={styles.splitImg} />
+          <Media
+            media={block.media}
+            className={styles.splitImg}
+            containClassName={styles.splitImgContain}
+          />
         </div>
       </div>
     </section>
@@ -294,12 +316,22 @@ const BLOCKS = {
 
 export default function MarketingPage({ page }) {
   const hasMedia = !!page.hero?.media
+  // Framed component heroes (e.g., the Training Institutes dashboard inside
+  // Framed heroes carry decorative outer padding + an inner glass panel,
+  // so the visible content (dashboard, video, screenshot) is only ~65%
+  // of the media box. In the default 51% media column that reads cramped.
+  // Any hero that opts into the framed treatment gets the wider column.
+  const mediaWidePref = hasMedia && page.hero.media.framed
   return (
     <main>
       <section className={`${styles.heroWrap} ${hasMedia ? '' : styles.heroCentered}`}>
         <div className="container">
           <Breadcrumbs items={page.breadcrumb} />
-          <div className={`${styles.hero} ${hasMedia ? styles.heroSplit : ''}`}>
+          <div
+            className={`${styles.hero} ${hasMedia ? styles.heroSplit : ''} ${
+              mediaWidePref ? styles.heroSplitMediaWide : ''
+            }`}
+          >
             <div className={styles.heroText}>
               {page.hero.eyebrow && <span className={styles.eyebrow}>{page.hero.eyebrow}</span>}
               <h1 className={styles.title}>{page.hero.title}</h1>
@@ -308,9 +340,23 @@ export default function MarketingPage({ page }) {
             </div>
             {hasMedia && (
               page.hero.media.type === 'component' ? (
-                <div className={styles.heroComponent}>
-                  <HeroComponent name={page.hero.media.name} />
-                </div>
+                // Component heroes can opt into the same scenic-photo +
+                // frosted-glass panel used for framed video/image heroes
+                // (e.g., Small Business CRM) by setting `media.framed:
+                // true`. Keeps the visual pattern consistent across
+                // product pages while letting the dashboard mockup render
+                // live inside the glass panel.
+                page.hero.media.framed ? (
+                  <div className={`${styles.heroMedia} ${styles.heroMediaFramed} ${styles.heroMediaComponentFramed}`}>
+                    <div className={`${styles.heroFrame} ${styles.heroFrameComponent}`}>
+                      <HeroComponent name={page.hero.media.name} />
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.heroComponent}>
+                    <HeroComponent name={page.hero.media.name} />
+                  </div>
+                )
               ) : page.hero.media.framed ? (
                 <div className={`${styles.heroMedia} ${styles.heroMediaFramed}`}>
                   <div className={styles.heroFrame}>

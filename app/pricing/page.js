@@ -1,6 +1,7 @@
 import PlanGrid from '@/components/pricing/PlanGrid'
 import ComparisonTable from '@/components/pricing/ComparisonTable'
 import FeatureGridInner from '@/components/marketing/FeatureGridInner'
+import Faq from '@/components/sections/Faq/Faq'
 import { pricing } from '@/data/content'
 import styles from './pricing.module.css'
 
@@ -20,9 +21,9 @@ const WHY = [
 ]
 
 const TRUST = [
-  { icon: 'security', title: 'A real track record', body: 'Ten years, 565+ delivered projects and paying clients. Not a runway and a prayer.' },
-  { icon: 'globe', title: 'Built and supported in India', body: 'Teams in four cities who understand how Indian businesses actually operate.' },
-  { icon: 'lock', title: 'Your data, secure and yours', body: 'Encrypted, backed up and protected by role based access. Export or delete it anytime.' },
+  { icon: 'security', title: 'A real track record', body: 'Ten years, 565+ delivered projects and paying clients. Not a runway and a prayer.', image: '/pricing/card1.webp', imageAlt: 'Ten year track record of delivered CRM projects for Indian businesses' },
+  { icon: 'globe', title: 'Built and supported in India', body: 'Teams in four cities who understand how Indian businesses actually operate.', image: '/pricing/card2.webp', imageAlt: 'NNC teams across four Indian cities supporting local businesses' },
+  { icon: 'lock', title: 'Your data, secure and yours', body: 'Encrypted, backed up and protected by role based access. Export or delete it anytime.', image: '/pricing/card3.webp', imageAlt: 'Encrypted and backed-up CRM data protected by role-based access controls' },
 ]
 
 const STATS = [
@@ -66,7 +67,7 @@ export default function PricingPage() {
         <p className={styles.sectionLead}>
           More than a price. These are the reasons businesses pick NNC CRM and stay.
         </p>
-        <FeatureGridInner items={WHY} />
+        <FeatureGridInner items={WHY} flat />
       </section>
 
       <section className={styles.trustWrap}>
@@ -88,17 +89,17 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className={`container ${styles.block}`}>
-        <h2 className={styles.sectionTitle}>Pricing questions, answered</h2>
-        <div className={styles.faq}>
-          {FAQ.map((f) => (
-            <div key={f.q} className={styles.faqItem}>
-              <h3 className={styles.faqQ}>{f.q}</h3>
-              <p className={styles.faqA}>{f.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <Faq
+        id="pricing-faq"
+        data={{
+          eyebrow: 'FAQ',
+          title: 'Pricing Questions, Answered',
+          lead:
+            "Everything you need to know about NNC CRM pricing. Can't find your answer? Start a free trial and ask us anything.",
+          items: FAQ,
+          cta: { label: 'Book a Demo', href: '#start' },
+        }}
+      />
 
       <section className={`container ${styles.cta}`}>
         <div className={styles.ctaBand}>

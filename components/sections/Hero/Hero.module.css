@@ -169,6 +169,20 @@
   object-fit: cover;
   display: block;
 }
+/* Parked wrapper for the HeroVisual (floating CRM cards). Not currently
+   mounted — see Hero.jsx comment. Keeps the class available so swapping
+   back is a one-line change. */
+.heroVisualWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .videoBadge {
   position: absolute;
   top: 14px;

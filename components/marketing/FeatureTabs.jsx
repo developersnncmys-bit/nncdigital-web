@@ -83,12 +83,27 @@ export default function FeatureTabs({ block }) {
           </div>
           {active.media && (
             <div className={styles.panelMedia}>
-              <img
-                src={active.media.src}
-                alt={active.media.alt || ''}
-                loading="lazy"
-                className={styles.mediaImg}
-              />
+              {/\.(mp4|webm|mov)(\?|$)/i.test(active.media.src) ? (
+                <video
+                  key={active.media.src /* force reload when tab switches */}
+                  className={styles.mediaImg}
+                  src={active.media.src}
+                  poster={active.media.poster || undefined}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  aria-label={active.media.alt || ''}
+                />
+              ) : (
+                <img
+                  src={active.media.src}
+                  alt={active.media.alt || ''}
+                  loading="lazy"
+                  className={styles.mediaImg}
+                />
+              )}
             </div>
           )}
         </div>

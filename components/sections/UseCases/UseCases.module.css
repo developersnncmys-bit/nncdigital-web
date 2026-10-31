@@ -1,6 +1,11 @@
-/* Salesforce-style cards: large tinted visual area on top (icon + sparkles),
-   white card body below (title + body + underlined link). Each card gets its
-   own soft pastel tint so a grid of them feels varied, not templated. */
+/* Industry cards — compact white cards with a soft-blue icon chip at top,
+   title + body + "Learn more" link below. Matches the live site's clean
+   iconographic treatment.
+   The Salesforce-style photo layout from an earlier iteration is preserved
+   below as commented CSS so it can be re-enabled by (a) switching
+   `.visual { display: none }` back to `display: block`, (b) un-commenting
+   the per-card `.card:nth-child(N) .visual` image rules, and (c) adding
+   back the `.visual` padding/positioning CSS. */
 
 .section {
   padding: clamp(70px, 9vh, 120px) var(--pad);
@@ -10,7 +15,7 @@
   margin-top: clamp(40px, 5vw, 60px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 /* "Explore Industry Solutions" CTA — sits centered below the industry card
@@ -38,30 +43,97 @@
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   background: #fff;
   border-radius: 20px;
-  overflow: hidden;
+  padding: 28px 26px 26px;
   text-decoration: none;
   color: inherit;
   border: 1px solid rgba(10, 11, 15, 0.06);
   box-shadow:
     0 1px 2px rgba(10, 11, 15, 0.04),
-    0 12px 32px -16px rgba(10, 11, 15, 0.1);
+    0 10px 28px -16px rgba(10, 11, 15, 0.08);
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
 }
 .card:hover {
   transform: translateY(-6px);
+  border-color: var(--navy-3);
   box-shadow:
     0 1px 2px rgba(10, 11, 15, 0.04),
-    0 24px 48px -18px rgba(10, 11, 15, 0.18);
+    0 22px 46px -18px rgba(11, 92, 255, 0.18),
+    0 32px 60px -32px rgba(11, 26, 51, 0.18);
 }
 
-/* Visual area — photo-filled panel at the top. Concave scoop cut into the
-   bottom-center via an ::after pseudo element with the card body's white
-   background, creating the signature Salesforce "ribbon" curve. */
+/* Icon chip — soft blue square with the industry icon in navy. Scales up
+   subtly on card hover. */
+.iconChip {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--navy-soft);
+  color: var(--navy);
+  margin-bottom: 12px;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease;
+}
+.iconChip svg { width: 26px; height: 26px; }
+.card:hover .iconChip {
+  transform: scale(1.06);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.cardBody {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--grey);
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+.card:hover .link svg {
+  transform: translateX(3px);
+}
+
+/* The empty `<div className={styles.visual} />` kept in the JSX reserves
+   the slot for the photo layout. Hidden by default so the card is pure
+   icon + text. Set `display: block` to bring the photo variant back. */
+.visual {
+  display: none;
+}
+
+/* ============================================================
+   PHOTO VARIANT (COMMENTED OUT — kept for easy re-enable).
+   Uncomment this block and set `.visual { display: block }` above to
+   restore the Salesforce-style tall-photo cards.
+   ============================================================ */
+
+/*
 .visual {
   position: relative;
   aspect-ratio: 16 / 9;
@@ -69,10 +141,7 @@
   margin: 10px 10px 0;
   border-radius: 16px;
 }
-/* No bottom curve — every card uses the plain rounded-rectangle image treatment. */
 
-/* Two sparkles decorate the visual area — same cue as the Salesforce ref.
-   Positioned diagonally so the composition isn't symmetrical. */
 .sparkleA,
 .sparkleB {
   position: absolute;
@@ -94,16 +163,12 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* Per-industry stock photos (Unsplash) in the visual area — matches the
-   Salesforce reference where each card shows a real photograph. A soft dark
-   gradient overlay keeps the icon chip + sparkles readable on busy images. */
 .card:nth-child(1) .visual {
   background:
     linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
     url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(1) .icon { color: #0b5cff; }
 
 .card:nth-child(2) .visual {
   background:
@@ -111,7 +176,6 @@
     url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(2) .icon { color: #c15a1a; }
 
 .card:nth-child(3) .visual {
   background:
@@ -119,7 +183,6 @@
     url('https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(3) .icon { color: #6b3fcf; }
 
 .card:nth-child(4) .visual {
   background:
@@ -127,7 +190,6 @@
     url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(4) .icon { color: #1f7a53; }
 
 .card:nth-child(5) .visual {
   background:
@@ -135,7 +197,6 @@
     url('https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(5) .icon { color: #c13a4a; }
 
 .card:nth-child(6) .visual {
   background:
@@ -143,51 +204,28 @@
     url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&auto=format&fit=crop&q=80')
       center / cover no-repeat;
 }
-.card:nth-child(6) .icon { color: #1a6f66; }
 
-/* Content area below the visual — bold title, body, underlined link CTA.
-   Padding-top is reduced to 14px so the title sits close to the scooped
-   bottom of the image (matches Salesforce where the title hugs the curve). */
-.content {
-  display: flex;
-  flex-direction: column;
-  padding: 14px 24px 28px;
-  gap: 10px;
+.card:nth-child(7) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
 }
-.cardTitle {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--ink);
+
+.card:nth-child(8) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
 }
-.cardBody {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--grey);
+
+.card:nth-child(9) .visual {
+  background:
+    linear-gradient(135deg, rgba(10, 30, 80, 0.15) 0%, rgba(10, 30, 80, 0.35) 100%),
+    url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
 }
-.link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--navy);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1.5px;
-}
-.link svg {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
-}
-.card:hover .link svg {
-  transform: translateX(3px);
-}
+*/
 
 @media (max-width: 900px) {
   .grid {

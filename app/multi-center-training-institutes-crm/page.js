@@ -16,11 +16,16 @@ const PAGE = {
       { label: 'Book a Demo', href: '#start', trial: true },
       { label: 'See pricing', href: '/pricing', variant: 'ghost' },
     ],
+    // Animated SVG product mockup inside the scenic-photo + frosted-glass
+    // framed hero treatment (same visual pattern as the Small Business CRM
+    // hero). `framed: true` wraps the component in a mountain-landscape
+    // backdrop with a glass panel; the `Flat` variant drops the 3D tilt
+    // and decorative floating cards since the external frame already
+    // supplies the visual chrome.
     media: {
-      type: 'video',
-      src: '/training-reel.mp4',
-      poster: '/training-reel.jpg',
-      alt: 'Training institutes and students using NNC Digital',
+      type: 'component',
+      name: 'trainingInstitutesDashboardFlat',
+      framed: true,
     },
   },
   blocks: [
@@ -90,7 +95,7 @@ const PAGE = {
         'Offers and updates reach all centers instantly',
         'No mixed messaging to parents and students',
       ],
-      media: img('/img/scene-dashboard.jpg', 'Shared information'),
+      media: img('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80', 'A coordinator checking course details across centers'),
     },
     {
       type: 'split',
@@ -102,7 +107,7 @@ const PAGE = {
         'Course interests, test scores and demographics in one place',
         'Shared across centers, never stuck on one person’s phone',
       ],
-      media: img('/img/scene-people.jpg', 'Student profiles'),
+      media: img('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80', 'A counsellor meeting with a prospective student'),
     },
     {
       type: 'split',
@@ -115,7 +120,7 @@ const PAGE = {
         'Clear funnel stages tailored to admissions',
         'A daily action list for every counsellor',
       ],
-      media: img('/img/scene-planning.jpg', 'Student journey tracking'),
+      media: img('https://images.unsplash.com/photo-1552581234-26160f608093?w=1200&auto=format&fit=crop&q=80', 'An admissions team mapping the enquiry-to-enrolment journey'),
     },
     {
       type: 'split',
@@ -127,7 +132,7 @@ const PAGE = {
         'Personalised messages to each group',
         'Better response rates, far less manual work',
       ],
-      media: img('/img/scene-data.jpg', 'Segmentation'),
+      media: img('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop&q=80', 'A student receiving a well-targeted admissions message'),
     },
     {
       type: 'split',
@@ -140,7 +145,9 @@ const PAGE = {
         'Automated reminders and follow up sequences',
         'Counsellors focus on conversations that convert',
       ],
-      media: img('/img/scene-mobile.jpg', 'Omnichannel campaigns'),
+      // Verified via Unsplash — person's hands using a phone (no brand
+       // logo). Replaces an earlier URL that rendered the Netflix mark.
+      media: img('https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=1200&auto=format&fit=crop&q=80', 'A student reading an admissions message on their phone'),
     },
     {
       type: 'split',
@@ -152,7 +159,9 @@ const PAGE = {
         'Targeted offers at the right time',
         'Higher retention and progression rates',
       ],
-      media: img('/img/scene-growth.jpg', 'Retention and cross sell'),
+      // Verified via Unsplash — three graduates tossing their caps.
+       // Replaces an earlier URL that was returning 404.
+      media: img('https://images.unsplash.com/photo-1607013407627-6ee814329547?w=1200&auto=format&fit=crop&q=80', 'A student progressing to the next course after retention outreach'),
     },
     {
       type: 'featureGrid',

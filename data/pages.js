@@ -26,7 +26,7 @@ const ind = (slug, o) => ({
   hero: { eyebrow: 'Industries', title: o.title, lead: o.lead, ctas: heroCtas, media: img(o.img, o.name) },
   blocks: [
     { type: 'split', kicker: 'The problem', title: o.splitTitle, body: o.splitBody, bullets: o.bullets, media: img(o.img2 || o.img, o.name) },
-    { type: 'featureGrid', title: `Built for ${o.name.toLowerCase()}`, items: o.features },
+    { type: 'featureGrid', flat: true, title: `Built for ${o.name.toLowerCase()}`, items: o.features },
     { type: 'stats', items: o.stats || [
       { value: '30 days', label: 'free trial on every plan' },
       { value: '1 day', label: 'typical setup time' },
@@ -159,7 +159,7 @@ const feat = (o) => ({
   breadcrumb: [HOME, featuresCrumb, { label: o.name }],
   hero: { eyebrow: 'Product', title: o.title, lead: o.lead, ctas: heroCtas, media: img(o.img, o.name) },
   blocks: [
-    { type: 'featureGrid', title: o.gridTitle || `What you get with ${o.name.toLowerCase()}`, items: o.features },
+    { type: 'featureGrid', flat: true, title: o.gridTitle || `What you get with ${o.name.toLowerCase()}`, items: o.features },
     o.split && { type: 'split', flip: true, kicker: o.split.kicker || 'How it helps', title: o.split.title, body: o.split.body, bullets: o.split.bullets, media: img(o.img2 || o.img, o.name) },
   ].filter(Boolean),
   cta: startCta,
@@ -300,7 +300,7 @@ export const COMPANY = {
     ...cb('Careers', { lead: 'Join us and help Indian businesses grow.', metaTitle: "Careers at NNC | Build India's CRM With Us", metaDescription: 'Join NNC and help build the decision making CRM used across industries. Open roles in engineering, sales, support and marketing across four cities.' }),
     hero: { eyebrow: 'Careers', title: 'Build the CRM the whole country runs on.', lead: 'We are a profitable, ten year product and services company building something used by businesses across India. If you want real ownership and real impact, come build with us.', ctas: [{ label: 'See open roles', href: '#roles', variant: 'ghost' }], media: img('/img/scene-people.jpg', 'Careers') },
     blocks: [
-      { type: 'featureGrid', title: 'Why work here', items: [
+      { type: 'featureGrid', flat: true, title: 'Why work here', items: [
         { icon: 'rocket', title: 'Real impact', body: 'Your work reaches thousands of businesses every day.' },
         { icon: 'users', title: 'Small team', body: 'Ownership from day one, no layers, no red tape.' },
         { icon: 'globe', title: 'Flexible', body: 'Work from anywhere in India with a results first culture.' },
@@ -329,7 +329,7 @@ export const COMPANY = {
     ...cb('Partners', { lead: 'Grow with NNC as an implementation or referral partner.', metaTitle: 'Partner Program | Resell & Refer NNC CRM', metaDescription: 'Agencies, consultants and resellers: earn recurring revenue by bringing NNC CRM to your clients. Refer, resell or build on our platform.' }),
     hero: { eyebrow: 'Partners', title: 'Grow your business by growing ours.', lead: 'If you serve businesses that need a CRM, partner with NNC. Refer clients, resell the platform or build on top of it, and earn recurring revenue while we handle the product.', ctas: [{ label: 'Become a partner', href: '#start', trial: true }], media: img('/img/scene-deal.jpg', 'Partners') },
     blocks: [
-      { type: 'featureGrid', title: 'Ways to partner', items: [
+      { type: 'featureGrid', flat: true, title: 'Ways to partner', items: [
         { icon: 'partners', title: 'Referral partner', body: 'Refer businesses and earn recurring commission.' },
         { icon: 'service', title: 'Implementation', body: 'Set up and customise NNC for local businesses.' },
         { icon: 'api', title: 'Technology', body: 'Build integrations on our open API.' },
@@ -339,7 +339,7 @@ export const COMPANY = {
   },
   customers: {
     ...cb('Customer stories', { lead: 'See how businesses grow with NNC CRM.', metaTitle: 'Customer Stories | NNC CRM Results & Reviews', metaDescription: 'See how academies, manufacturers, clinics and sales teams grow with NNC CRM. Real businesses, real results, verified reviews.' }),
-    hero: { eyebrow: 'Customers', title: 'Businesses that stopped losing leads.', lead: 'The proof of a CRM is not its feature list. It is what happens to the businesses that use it. Here are the institutes, factories and teams that run on NNC CRM.', ctas: heroCtas, media: { type: 'component', name: 'crmDashboard' } },
+    hero: { eyebrow: 'Customers', title: 'Businesses that stopped losing leads.', lead: 'The proof of a CRM is not its feature list. It is what happens to the businesses that use it. Here are the institutes, factories and teams that run on NNC CRM.', ctas: heroCtas, media: { type: 'component', name: 'crmDashboardFlat', framed: true } },
     blocks: [
       { type: 'stats', items: [
         { value: '32%', label: 'more enquiries converted on average' },
@@ -347,7 +347,7 @@ export const COMPANY = {
         { value: '2x', label: 'faster follow up response' },
         { value: '1 day', label: 'to go live' },
       ] },
-      { type: 'featureGrid', title: 'What every story has in common', lead: 'Different industries, the same pattern: catch every lead, follow up fast, and decide with real numbers.', items: [
+      { type: 'featureGrid', flat: true, title: 'What every story has in common', lead: 'Different industries, the same pattern: catch every lead, follow up fast, and decide with real numbers.', items: [
         { icon: 'enquiries', title: 'The challenge', body: 'Leads scattered across WhatsApp, calls and spreadsheets, with no follow up and no clear numbers.' },
         { icon: 'integrations', title: 'The solution', body: 'One CRM with the right modules turned on for their business, live in about a day.' },
         { icon: 'forecast', title: 'The result', body: 'More leads converted, faster collections, and decisions backed by real numbers.' },
@@ -437,7 +437,7 @@ export const SUPPORT = {
     ...sb('API documentation', { lead: 'Build on the NNC CRM API.', metaTitle: 'API Documentation | NNC CRM Developers', metaDescription: 'Build on NNC CRM. REST API and webhooks to connect leads, deals, invoices and more to your own systems.' }),
     hero: { eyebrow: 'Developers', title: 'The NNC CRM API.', lead: 'A clean REST API and webhooks to connect NNC with your own systems.', ctas: [{ label: 'Contact developer support', href: '/support/contact', variant: 'ghost' }] },
     blocks: [
-      { type: 'featureGrid', title: 'What you can build', items: [
+      { type: 'featureGrid', flat: true, title: 'What you can build', items: [
         { icon: 'api', title: 'REST API', body: 'Read and write leads, deals, contacts and invoices.' },
         { icon: 'integrations', title: 'Webhooks', body: 'Get notified the moment data changes in NNC.' },
         { icon: 'lock', title: 'Secure tokens', body: 'Scoped API keys you can rotate any time.' },
@@ -465,7 +465,7 @@ export const SUPPORT = {
     ...sb('Security', { lead: 'How NNC keeps your data safe.', metaTitle: 'Security | NNC CRM', metaDescription: 'How NNC CRM protects your data: encryption, access controls, backups and infrastructure hosted in India.' }),
     hero: { eyebrow: 'Trust', title: 'Your data, protected.', lead: 'Your business data is protected with encryption, strict access controls and regular backups.', ctas: [{ label: 'Read our privacy policy', href: '/legal/privacy', variant: 'ghost' }], media: img('/img/scene-dashboard.jpg', 'Security') },
     blocks: [
-      { type: 'featureGrid', title: 'How we protect your data', items: [
+      { type: 'featureGrid', flat: true, title: 'How we protect your data', items: [
         { icon: 'lock', title: 'Encrypted', body: 'Data is encrypted in transit and at rest.' },
         { icon: 'users', title: 'Role based access', body: 'People see only what they are allowed to.' },
         { icon: 'security', title: 'Backups', body: 'Automatic hourly backups keep your data safe.' },
@@ -506,6 +506,10 @@ const legal = (label, intro, sections, opts = {}) => ({
   metaDescription: opts.metaDescription || intro,
   breadcrumb: [HOME, legalCrumb, { label }],
   hero: { eyebrow: 'Legal', title: opts.h1 || label, lead: intro },
+  // `lastUpdated` is surfaced by the dedicated LegalPage layout under the
+  // hero title. Falls back to the shared default so every legal page carries
+  // a review date even when the entry does not override it.
+  lastUpdated: opts.lastUpdated || '31 October 2026',
   blocks: [{ type: 'prose', sections }],
   cta: null,
 })
@@ -538,10 +542,11 @@ export const LEGAL = {
     metaTitle: 'Legal & Compliance | NNC CRM',
     metaDescription: 'How NNC CRM meets its legal and regulatory obligations, including the DPDP Act 2023, GST, security and lawful data requests. Reach our compliance team.',
     breadcrumb: [HOME, legalCrumb, { label: 'Legal and Compliance' }],
+    lastUpdated: '31 October 2026',
     hero: {
       eyebrow: 'Legal',
       title: 'Legal and Compliance',
-      lead: 'How NNC CRM, operated by Nakshatra Namaha Creations, meets its legal and regulatory obligations, and how to reach our compliance team. Last reviewed June 2026.',
+      lead: 'How NNC CRM, operated by Nakshatra Namaha Creations, meets its legal and regulatory obligations, and how to reach our compliance team.',
     },
     blocks: [
       { type: 'prose', sections: [
@@ -594,7 +599,7 @@ export const FEATURES_OVERVIEW = {
       { value: '30 days', label: 'free trial, no credit card' },
       { value: '1 day', label: 'to go live' },
     ] },
-    { type: 'featureGrid', title: 'Explore the product', lead: 'Every module works on its own and gets stronger together. Open one to see what it does.', items: [
+    { type: 'featureGrid', flat: true, title: 'Explore the product', lead: 'Every module works on its own and gets stronger together. Open one to see what it does.', items: [
       { icon: 'enquiries', title: 'Enquiries', body: 'Catch every lead from every channel in one inbox.', href: '/features/enquiries' },
       { icon: 'pipeline', title: 'Sales pipeline', body: 'See every deal by stage, value and owner.', href: '/features/sales-pipeline' },
       { icon: 'forecast', title: 'Forecasting', body: 'Project revenue 3, 6 and 12 months ahead.', href: '/features/forecasting' },
@@ -616,20 +621,23 @@ export const FEATURES_OVERVIEW = {
 }
 
 export const INDUSTRIES_OVERVIEW = {
-  metaTitle: 'CRM by Industry: Education, Manufacturing, Healthcare | NNC',
-  metaDescription: 'Ready built CRM packs for education, manufacturing, healthcare, retail, real estate, service businesses and sales teams. Pick yours and go live today.',
+  metaTitle: 'CRM by Industry: Travel, Education, Manufacturing, Healthcare | NNC',
+  metaDescription: 'Ready built CRM packs for travel, training institutes, education, manufacturing, healthcare, retail, real estate, service businesses and sales teams. Pick yours and go live today.',
   breadcrumb: [HOME, { label: 'Industries' }],
   hero: {
     eyebrow: 'Industries', title: 'A CRM that already speaks your industry.',
     lead: 'Generic software makes you bend your business to fit it. NNC CRM ships ready built for the way your industry actually works, with the right stages, fields and reports already in place. Over ten years we have built CRMs for academies, factories, clinics and sales floors. Pick yours below.',
-    ctas: heroCtas, media: { type: 'video', src: '/hero-reel.mp4', poster: '/hero-reel.jpg' },
+    ctas: heroCtas, media: { type: 'component', name: 'industrySwitcher', framed: true },
   },
   blocks: [
     { type: 'stats', items: [
-      { value: '8 industries', label: 'ready built CRM packs' },
+      { value: '9 industries', label: 'ready built CRM packs' },
       { value: '10+ years', label: 'building industry CRMs' },
       { value: '1 day', label: 'to go live' },
     ] },
+    // Pre-launch audit (#10): grid must include every vertical the footer /
+    // FAQ promises. Travel points to the dedicated product page; Training to
+    // the multi-center product; Education to the generic industry page.
     { type: 'featureGrid', flat: true, title: 'Choose your industry', lead: 'Every pack ships with the pipeline stages, fields and reports your industry needs. Open yours to see the version built for you.', items: [
       { icon: 'sales', title: 'Sales teams', body: 'A CRM for sales teams: visual pipeline, daily call lists and live targets.', href: '/industries/sales-teams' },
       { icon: 'service', title: 'Service businesses', body: 'A service business CRM: every job from enquiry to invoice, plus repeat revenue.', href: '/industries/service-businesses' },
@@ -638,13 +646,14 @@ export const INDUSTRIES_OVERVIEW = {
       { icon: 'healthcare', title: 'Healthcare and clinics', body: 'A healthcare CRM: patients, appointments and follow ups, kept private.', href: '/industries/healthcare' },
       { icon: 'education', title: 'Education', body: 'An education CRM: admission enquiries, parent follow ups and fees.', href: '/industries/education' },
       { icon: 'realestate', title: 'Real estate', body: 'A real estate CRM: portal and ad leads, site visits and bookings.', href: '/industries/real-estate' },
-      { icon: 'users', title: 'Training institutes and coaching', body: 'A multi center CRM for coaching institutes and training centers.', href: '/multi-center-training-institutes-crm' },
+      { icon: 'travel', title: 'Travel and tourism', body: 'Trips, quotes, bookings and vouchers in one branded workspace.', href: '/travel-crm/' },
+      { icon: 'users', title: 'Training institutes and coaching', body: 'A multi center CRM for coaching institutes and training centers.', href: '/multi-center-training-institutes-crm/' },
     ] },
-    { type: 'split', kicker: 'Industry specific CRM', title: 'Why an industry specific CRM beats a generic one', body: 'A generic CRM hands you empty fields and a blank pipeline, then leaves the hard part to you. An industry specific CRM from NNC arrives already set up for how your sector sells, serves and gets paid, so your team is productive on day one.', bullets: ['The right pipeline stages, ready on day one', 'Fields and forms that match your business', 'The reports your industry actually uses', 'Go live in a day, not a quarter'], media: img('/img/scene-dashboard.jpg', 'Industry specific CRM dashboard') },
+    { type: 'split', kicker: 'Industry specific CRM', title: 'Why an industry specific CRM beats a generic one', body: 'A generic CRM hands you empty fields and a blank pipeline, then leaves the hard part to you. An industry specific CRM from NNC arrives already set up for how your sector sells, serves and gets paid, so your team is productive on day one.', bullets: ['The right pipeline stages, ready on day one', 'Fields and forms that match your business', 'The reports your industry actually uses', 'Go live in a day, not a quarter'], media: img('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80', 'A team configuring their industry-specific CRM together') },
     { type: 'featureGrid', title: 'Built for the way your industry works', items: [
-      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1.png', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
-      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2.png', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
-      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3.png', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
+      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
+      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
+      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
     ] },
     { type: 'faq', title: 'Industry CRM questions', items: [
       { q: 'What is an industry specific CRM?', a: 'An industry specific CRM ships with the pipeline stages, fields, automations and reports your sector needs, instead of a blank, generic setup. NNC CRM offers ready packs for eight industries so you go live faster.' },
@@ -1019,7 +1028,7 @@ export const CASE_STUDIES_OVERVIEW = {
     title: 'How businesses in your sector run on NNC CRM.',
     lead: 'The proof of a CRM is not its feature list — it is what happens to the business that uses it. The pages below are representative scenarios from the industries we serve, written to show the kind of change teams see in the first ninety days. Named customer stories are added as they are published, with permission.',
     ctas: heroCtas,
-    media: { type: 'component', name: 'crmDashboard' },
+    media: { type: 'component', name: 'crmDashboardFlat', framed: true },
   },
   blocks: [
     // Trust stats pulled per pre-launch audit — "2,000+ businesses" and
@@ -1042,7 +1051,7 @@ export const CASE_STUDIES_OVERVIEW = {
       'The challenge is almost always invisibility — nobody can see what is slipping',
       'The solution is a single pipeline the whole team actually keeps up to date',
       'The result is more leads converted, faster collections and clearer decisions',
-    ], media: img('/img/scene-dashboard.jpg', 'Teams reviewing a CRM dashboard') },
+    ], media: { type: 'image', src: '/case-study.png', alt: 'Teams reviewing a CRM dashboard', fit: 'contain' } },
     { type: 'featureGrid', flat: true, title: 'Why NNC CRM shows up in every story', items: [
       { icon: 'forecast', title: 'Live in a day', body: 'Workspace, data and training in one day — not a six-month implementation.' },
       { icon: 'whatsapp', title: 'WhatsApp built in', body: 'India runs on WhatsApp. We put it where the deal lives, not on a side tab.' },

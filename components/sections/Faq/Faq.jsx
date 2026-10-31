@@ -43,29 +43,36 @@ function Item({ item, index, open, onToggle }) {
   )
 }
 
-export default function Faq() {
+// `data` is an optional override. When omitted, the component uses the
+// site-wide `faq` object from data/content.js (the home-page FAQ). Other
+// pages (e.g. /pricing) pass their own { eyebrow, title, lead, items, cta }.
+export default function Faq({ data, id = 'faq' }) {
+  const d = data || faq
+  const lead =
+    d.lead ||
+    "Everything you need to know about NNC CRM. Can't find your answer? Start a free trial and ask us anything."
+  const ctaLabel = d.cta?.label || 'Book a Demo'
+  const ctaHref = d.cta?.href || '#start'
+
   const [openIndex, setOpenIndex] = useState(0)
   const toggle = (i) => setOpenIndex((cur) => (cur === i ? -1 : i))
 
   return (
-    <section className={`container ${styles.section}`} id="faq">
+    <section className={`container ${styles.section}`} id={id}>
       <div className={styles.inner}>
         <aside className={styles.aside}>
-          <Eyebrow>{faq.eyebrow}</Eyebrow>
-          <h2 className={`display-l ${styles.title}`}>{faq.title}</h2>
-          <p className={styles.lead}>
-            Everything you need to know about NNC CRM. Can&apos;t find your
-            answer? Start a free trial and ask us anything.
-          </p>
+          <Eyebrow>{d.eyebrow}</Eyebrow>
+          <h2 className={`display-l ${styles.title}`}>{d.title}</h2>
+          <p className={styles.lead}>{lead}</p>
           <div className={styles.cta}>
-            <Button href="#start" variant="primary">
-              Book a Demo
+            <Button href={ctaHref} variant="primary">
+              {ctaLabel}
             </Button>
           </div>
         </aside>
 
         <div className={styles.list}>
-          {faq.items.map((item, i) => (
+          {d.items.map((item, i) => (
             <Item
               key={i}
               item={item}

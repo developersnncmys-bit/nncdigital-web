@@ -48,6 +48,14 @@
   gap: clamp(40px, 5.5vw, 80px);
   align-items: center;
 }
+/* Media-heavy variant — when the right-side media is a framed dashboard
+   component (training hero), the dashboard's internal layout needs more
+   horizontal room than the default split allows. Shrinks the text column
+   and widens the media column so the dashboard breathes. */
+.heroSplitMediaWide {
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: clamp(32px, 4vw, 56px);
+}
 .heroCentered .hero {
   max-width: 760px;
   margin-inline: auto;
@@ -153,15 +161,43 @@
 .heroComponent { display: flex; align-items: center; justify-content: center; min-width: 0; }
 
 /* Framed hero variant — opt in via `media.framed: true` on the page data.
-   Outer card is a scenic mountain photo (Unsplash) with a soft blue tint
-   layered on top so the inner frosted-glass panel still reads well. The
-   inner `.heroFrame` is a frosted-glass panel holding the image/video. */
-.heroMediaFramed {
+   Outer card is a scenic mountain photo (Unsplash) shown with no tint
+   overlay — the photo reads as-is. The inner `.heroFrame` is a
+   frosted-glass panel holding the image/video.
+   Aspect ratio forced slightly taller (16:11) than the default 16:10 so
+   the dashboard inside has more vertical presence. Overrides the
+   `.heroMedia:has(video)` auto-ratio so video-framed heroes also pick up
+   the taller card. */
+.heroMediaFramed,
+.heroMediaFramed:has(video) {
+  aspect-ratio: 16 / 11;
   background:
-    linear-gradient(160deg, rgba(10, 79, 224, 0.35), rgba(135, 179, 255, 0.18)),
     url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&auto=format&fit=crop&q=80')
       center / cover no-repeat;
   padding: clamp(22px, 3vw, 36px);
+}
+/* Glass panel hugs the video (height auto) instead of filling the outer
+   card 100%. The outer scenic card keeps its taller 16:11 aspect, so the
+   mountain photo shows above and below the glass — but the glass itself
+   only occupies the video's actual height. No more frosted dead-zone.
+   Video-framed heroes (small-business, car-studio) get a tighter aspect
+   so there's less scenic photo peeking above and below the dashboard
+   video — the component-framed variants keep the default 16:11. */
+.heroMediaFramed:has(video) {
+  aspect-ratio: 16 / 9.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heroMediaFramed:has(video) .heroFrame {
+  width: 100%;
+  height: auto;
+}
+.heroMediaFramed:has(video) video.heroImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 /* The decorative blue halo isn't needed under the gradient — kill it. */
 .heroMediaFramed::before { display: none; }
@@ -185,6 +221,29 @@
   border-radius: calc(var(--r) - 4px);
 }
 .heroFrame .heroImgContain { padding: 0; background: transparent; }
+
+/* Component-framed variant — e.g. the Training Institutes CRM hero where
+   the animated dashboard mockup renders inside the scenic+glass frame.
+   Uses an aspect ratio tuned to the dashboard's natural proportions
+   (sidebar + KPIs + viewport ≈ 7:5) so the hero media doesn't tower over
+   the sibling text column. Dashboard fills the glass panel height-wise;
+   any overflow is clipped by the frame. */
+.heroMediaComponentFramed { aspect-ratio: 7 / 5; }
+.heroFrameComponent {
+  padding: 12px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r);
+}
+/* Dashboard fills the glass panel directly. The hero's media column is
+   widened via `.heroSplitMediaWide` so there's enough horizontal room
+   for the dashboard's internal layout (sidebar + 4-column pipeline +
+   table rows) without clipping or needing CSS-transform scale tricks. */
+.heroFrameComponent > * {
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--r) - 4px);
+}
 
 /* ===== generic block ===== */
 .block { padding: clamp(54px, 7vh, 96px) var(--pad); }
@@ -252,13 +311,59 @@
 .splitMedia { border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-lg); aspect-ratio: 4 / 3; background: var(--paper-2); }
 .splitGraphic { display: flex; align-items: center; justify-content: center; }
 .splitImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Contain variant — opt in by setting `fit: 'contain'` on the media
+   object. For product-UI screenshots the outer card gets the hero-style
+   navy→mid-blue gradient and the image sits inside a frosted glass panel
+   (via `.splitMedia::before`) so the screenshot looks framed on a brand
+   surface. Both the glass panel and the image have rounded corners. */
+.splitMedia:has(> .splitImgContain) {
+  /* Shorter aspect ratio tuned to the dashboard screenshot's natural
+     proportions. Default `.splitMedia` is 4:3 which left a big empty
+     glass dead-zone below the screenshot. */
+  aspect-ratio: 16 / 10;
+  /* Scenic mountain backdrop — same photo used by the hero's framed
+     treatment (`.heroMediaFramed`) so the two surfaces feel like one
+     brand language. */
+  background:
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&auto=format&fit=crop&q=80')
+      center / cover no-repeat;
+  padding: clamp(20px, 2.4vw, 32px);
+  position: relative;
+}
+.splitMedia:has(> .splitImgContain)::before {
+  content: '';
+  position: absolute;
+  inset: clamp(20px, 2.4vw, 32px);
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--r, 14px);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 10px 30px -12px rgba(5, 15, 45, 0.35);
+  pointer-events: none;
+  z-index: 0;
+}
+.splitImgContain {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  /* Trimmed padding so the screenshot fills most of the glass panel —
+     this is what makes the border-radius visibly round the image corners
+     (the previous large padding meant the rounded clip was happening on
+     empty space rather than on the screenshot edges). */
+  padding: clamp(6px, 0.8vw, 10px);
+  border-radius: var(--r, 14px);
+  background: transparent;
+}
 
 /* steps */
 .steps {
   margin-top: clamp(34px, 4vw, 52px);
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; counter-reset: s;
 }
-.step { }
 .stepNum { font-size: 14px; font-weight: 800; color: var(--navy); letter-spacing: 0.08em; }
 .stepTitle { margin-top: 12px; font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; }
 .stepBody { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--grey); }
@@ -305,8 +410,8 @@
   display: block;
   font-variant-numeric: tabular-nums;
   font-size: clamp(30px, 3vw, 42px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--ink);
   line-height: 1.1;
 }
@@ -342,7 +447,7 @@
    a solid --navy. Opt-in via `block.highlight = true`. */
 .blockHighlight,
 .block.blockHighlight:nth-of-type(even) {
-  background: linear-gradient(180deg, #1e3f85 0%, var(--navy) 25%, #4d8bff 50%, #87b3ff 75%, var(--navy-soft) 100%);
+  background: linear-gradient(180deg, #1a3773 0%, #1a4ca8 25%, #3a6fd4 50%, #7aa0d4 75%, var(--navy-soft) 100%);
   color: #fff;
 }
 .blockHighlight .blockTitle { color: #fff; }
@@ -528,13 +633,41 @@
 
 /* ===== cta band ===== */
 .ctaSection { padding: clamp(54px, 7vh, 96px) var(--pad); }
+/* Mirrors the home-page FinalCta `.band` — dark navy vertical gradient,
+   soft blue spotlight bloom from above, faint white dot-grid texture. */
 .ctaBand {
   position: relative; overflow: hidden; isolation: isolate;
-  border-radius: var(--r); padding: clamp(48px, 6vw, 80px) clamp(28px, 5vw, 64px);
-  background: radial-gradient(120% 150% at 0% 0%, #3f74ff 0%, #0b5cff 42%, #0a44c8 100%);
-  box-shadow: 0 30px 70px -30px rgba(11, 92, 255, 0.55); text-align: center;
+  border-radius: var(--r-lg); padding: clamp(72px, 9vw, 128px) clamp(28px, 5vw, 72px);
+  background: linear-gradient(176deg, #14264f 0%, #1b3580 35%, #2f59c0 100%);
+  box-shadow: 0 40px 90px -40px rgba(20, 38, 79, 0.55); text-align: center;
 }
-.ctaGlow { position: absolute; z-index: 0; width: 600px; height: 600px; top: -300px; right: -160px; border-radius: 50%; filter: blur(120px); background: radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%); pointer-events: none; }
+/* Repurposed from the previous white glow — now a soft blue spotlight
+   bloom from above, matching the home page. */
+.ctaGlow {
+  position: absolute; z-index: 0;
+  width: 1100px; height: 800px;
+  top: -480px; left: 50%; transform: translateX(-50%);
+  border-radius: 50%; filter: blur(140px);
+  background: radial-gradient(
+    circle,
+    rgba(77, 139, 255, 0.55),
+    rgba(77, 139, 255, 0.1) 55%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+/* Faint white dot grid — subtle texture over the navy. */
+.ctaBand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
+  mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
+  pointer-events: none;
+}
 .ctaTitle { position: relative; z-index: 1; color: #fff; font-size: clamp(28px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; max-width: 20ch; margin: 0 auto; }
 .ctaSub { position: relative; z-index: 1; margin: 16px auto 0; max-width: 52ch; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.6; color: rgba(255,255,255,0.88); }
 .ctaBtns { position: relative; z-index: 1; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }

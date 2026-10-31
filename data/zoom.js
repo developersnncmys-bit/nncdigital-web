@@ -75,7 +75,7 @@ export const howItWorks = {
     { n: '03', icon: 'vault', title: 'Import Your Data', body: 'Bring your contacts, enquiries and existing pipelines into NNC CRM.' },
     { n: '04', icon: 'mkt', title: 'Go Live Today', body: 'Start capturing leads and forecasting business growth from day one.' },
   ],
-  cta: { label: 'Start Your Free Trial', href: '#start' },
+  cta: { label: 'Book a Demo', href: '#start' },
 }
 
 export const useCases = {
@@ -83,6 +83,10 @@ export const useCases = {
   title: 'Business CRM software designed for your industry.',
   lead: 'Every business works differently. NNC CRM offers flexible modules and workflows to support different industries and their customer management requirements.',
   cta: { label: 'Explore Industry Solutions', href: '/industries' },
+  // Pre-launch audit: grid now mirrors what the footer and FAQ promise.
+  // Travel points to the dedicated product page; Training Institutes points
+  // to the multi-center CRM product; Education points to the generic
+  // industry page.
   cards: [
     { icon: 'sales', title: 'Sales teams', body: 'Track deals, manage opportunities and close sales faster.', href: '/industries/sales-teams' },
     { icon: 'service', title: 'Service businesses', body: 'Manage clients, projects and sales pipelines in one place.', href: '/industries/service-businesses' },
@@ -90,5 +94,8 @@ export const useCases = {
     { icon: 'manufacturing', title: 'Manufacturing', body: 'Manage enquiries, inventory, orders, dispatch and payments.', href: '/industries/manufacturing' },
     { icon: 'healthcare', title: 'Healthcare and clinics', body: 'Organise patient information, appointments and follow-ups.', href: '/industries/healthcare' },
     { icon: 'realestate', title: 'Real estate', body: 'Track property leads, site visits and bookings.', href: '/industries/real-estate' },
+    { icon: 'travel', title: 'Travel and tourism', body: 'Trips, bookings and vouchers in one branded workspace.', href: '/travel-crm/' },
+    { icon: 'education', title: 'Education', body: 'Admission enquiries, parent follow-ups and fees across centers.', href: '/industries/education' },
+    { icon: 'training', title: 'Training institutes', body: 'Multi-center admissions, student journeys and attendance.', href: '/multi-center-training-institutes-crm/' },
   ],
 }

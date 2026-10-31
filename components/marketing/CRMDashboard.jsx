@@ -7,8 +7,8 @@ import styles from './CRMDashboard.module.css'
 const ICON = {
   grid: 'M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z',
   funnel: 'M3 4h18l-7 8v6l-4 2v-8z',
-  cap: 'M22 9 12 5 2 9l10 4 10-4zM6 11v5c0 1 3 2.5 6 2.5S18 17 18 16v-5',
-  rupee: 'M7 4h10M7 9h10M7 4c5 0 7 1.5 7 4.5S11 13 7 13l7 7',
+  users: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75',
+  invoice: 'M6 2h9l5 5v15H6zM15 2v5h5M9 13h6M9 17h6',
   bell: 'M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0',
   search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3',
   plus: 'M12 5v14M5 12h14',
@@ -116,51 +116,57 @@ function Donut({ pct }) {
 }
 
 /* ---------------- module data ---------------- */
+// Generic sales / CRM content used for the homepage Showcase. Keeps the
+// visual chrome shared with TrainingInstitutesDashboard but swaps every
+// data point for pipeline / customer / invoice flavor.
 const MODULES = [
   { key: 'overview', label: 'Dashboard', icon: 'grid' },
-  { key: 'leads', label: 'Leads', icon: 'funnel' },
-  { key: 'students', label: 'Students', icon: 'cap' },
-  { key: 'fees', label: 'Fees', icon: 'rupee' },
+  { key: 'leads', label: 'Pipeline', icon: 'funnel' },
+  { key: 'students', label: 'Customers', icon: 'users' },
+  { key: 'fees', label: 'Invoices', icon: 'invoice' },
 ]
 
 const KPIS = [
   { label: 'Enquiries', to: 1240, delta: '+18%', spark: [4, 6, 5, 7, 8, 9, 11, 12] },
-  { label: 'Admissions', to: 412, delta: '+32%', spark: [2, 3, 3, 4, 5, 6, 8, 10] },
-  { label: 'Fees (mo)', to: 14.2, decimals: 1, prefix: '₹', suffix: 'L', delta: '+27%', spark: [5, 6, 6, 8, 9, 11, 13, 14] },
-  { label: 'Batches', to: 28, delta: '+4', spark: [18, 20, 21, 22, 24, 25, 27, 28] },
+  { label: 'Deals won', to: 86, delta: '+32%', spark: [2, 3, 3, 4, 5, 6, 8, 10] },
+  { label: 'Revenue (mo)', to: 18.4, decimals: 1, prefix: '₹', suffix: 'L', delta: '+27%', spark: [5, 6, 6, 8, 9, 11, 13, 14] },
+  { label: 'Follow-ups', to: 24, delta: 'today', spark: [18, 20, 21, 22, 24, 25, 27, 24] },
 ]
 
 const FEED = [
-  { who: 'Rohit M.', what: 'moved a lead to Demo', t: 'now', c: '#1877f2', ini: 'RM' },
-  { who: 'Sneha P.', what: 'collected ₹24,000 fees', t: '2m', c: '#16a34a', ini: 'SP' },
-  { who: 'Imran K.', what: 'enrolled in NEET 2025', t: '6m', c: '#a855f7', ini: 'IK' },
+  { who: 'Rohit M.', what: 'moved Nextgen Cars to Quoted', t: 'now', c: '#1877f2', ini: 'RM' },
+  { who: 'Sneha P.', what: 'collected ₹85,000 from ABC Ltd', t: '2m', c: '#16a34a', ini: 'SP' },
+  { who: 'Imran K.', what: 'closed Starlight Bakery (₹1.9L)', t: '6m', c: '#a855f7', ini: 'IK' },
 ]
 
 const PIPE = [
-  { col: 'New', n: 14, cards: [{ name: 'Aarav S.', sub: 'JEE Crash', amt: '₹38k' }, { name: 'Diya R.', sub: 'NEET 2025', amt: '₹52k' }] },
-  { col: 'Contacted', n: 9, cards: [{ name: 'Kabir N.', sub: 'Foundation', amt: '₹24k' }] },
-  { col: 'Demo', n: 6, cards: [{ name: 'Meera J.', sub: 'NEET 2025', amt: '₹52k' }, { name: 'Vivaan T.', sub: 'JEE Main', amt: '₹46k' }] },
-  { col: 'Enrolled', n: 4, won: true, cards: [{ name: 'Anaya P.', sub: 'NEET 2025', amt: '₹52k' }] },
+  { col: 'New', n: 14, cards: [{ name: 'Rohit Industries', sub: 'Manufacturing', amt: '₹2.4L' }, { name: 'Nextgen Cars', sub: 'Automotive', amt: '₹3.8L' }] },
+  { col: 'Contacted', n: 9, cards: [{ name: 'Luma Textiles', sub: 'Retail', amt: '₹1.6L' }] },
+  { col: 'Quoted', n: 6, cards: [{ name: 'ABC Logistics', sub: 'Logistics', amt: '₹5.2L' }, { name: 'Trenz Retail', sub: 'Retail', amt: '₹2.9L' }] },
+  { col: 'Won', n: 4, won: true, cards: [{ name: 'Starlight Bakery', sub: 'F&B', amt: '₹1.9L' }] },
 ]
 
+// Table rows for the "Customers" view (component still named Students for
+// backward-compatible CSS classnames). Each row shows a company, contact,
+// industry, status indicator and plan tier.
 const STUDENTS = [
-  { name: 'Aarav Sharma', course: 'JEE Crash', batch: 'B-12', status: 'active', fee: 'Paid' },
-  { name: 'Diya Reddy', course: 'NEET 2025', batch: 'B-07', status: 'active', fee: 'Paid' },
-  { name: 'Kabir Nair', course: 'Foundation', batch: 'B-15', status: 'pending', fee: 'Due ₹12k' },
-  { name: 'Meera Joshi', course: 'NEET 2025', batch: 'B-07', status: 'active', fee: 'Paid' },
-  { name: 'Vivaan Iyer', course: 'JEE Main', batch: 'B-09', status: 'pending', fee: 'Due ₹18k' },
+  { name: 'Rohit Industries', course: 'Rohit Sharma', batch: 'Manufacturing', status: 'active', fee: 'Growth' },
+  { name: 'Nextgen Cars', course: 'Priya Patel', batch: 'Automotive', status: 'active', fee: 'Growth' },
+  { name: 'ABC Logistics', course: 'Imran Khan', batch: 'Logistics', status: 'pending', fee: 'Trial' },
+  { name: 'Trenz Retail', course: 'Sneha Patil', batch: 'Retail', status: 'active', fee: 'Starter' },
+  { name: 'Starlight Bakery', course: 'Vikram Singh', batch: 'F&B', status: 'pending', fee: 'Trial' },
 ]
 
 const PENDING = [
-  { name: 'Kabir Nair', sub: 'Foundation · B-15', amt: '₹12,000' },
-  { name: 'Vivaan Iyer', sub: 'JEE Main · B-09', amt: '₹18,000' },
-  { name: 'Sara Khan', sub: 'NEET 2025 · B-07', amt: '₹24,000' },
+  { name: 'Rohit Industries', sub: 'INV-2026-089 · due in 3 days', amt: '₹1,20,000' },
+  { name: 'Nextgen Cars', sub: 'INV-2026-092 · due today', amt: '₹85,000' },
+  { name: 'ABC Logistics', sub: 'INV-2026-095 · due in 5 days', amt: '₹46,000' },
 ]
 
 const TOASTS = [
-  { ini: 'AP', c: '#16a34a', b: 'New admission', i: 'Anaya P. · NEET 2025' },
-  { ini: '₹', c: '#0b5cff', b: 'Fee collected', i: '₹24,000 · auto-receipt sent' },
-  { ini: 'RM', c: '#1877f2', b: 'Lead won', i: 'Rohit M. closed Aarav S.' },
+  { ini: 'SB', c: '#16a34a', b: 'Deal won', i: 'Starlight Bakery · ₹1.9L' },
+  { ini: '₹', c: '#0b5cff', b: 'Payment received', i: '₹85,000 · auto-receipt sent' },
+  { ini: 'RM', c: '#1877f2', b: 'Lead qualified', i: 'Nextgen Cars moved to Quoted' },
 ]
 
 /* ---------------- views ---------------- */
@@ -230,7 +236,7 @@ function Students() {
     <div className={styles.view}>
       <div className={styles.tableCard}>
         <div className={styles.thead}>
-          <span>Student</span><span>Course</span><span>Batch</span><span className={styles.tRight}>Fees</span>
+          <span>Customer</span><span>Contact</span><span>Industry</span><span className={styles.tRight}>Plan</span>
         </div>
         {STUDENTS.map((s, i) => (
           <div className={styles.trow} key={s.name} style={{ animationDelay: `${i * 70}ms` }}>
@@ -256,13 +262,13 @@ function Fees() {
         <div className={styles.collectCard} style={{ animationDelay: '60ms' }}>
           <Donut pct={79} />
           <div className={styles.feesMeta}>
-            <span className={styles.cBig}><Num to={14.2} decimals={1} prefix="₹" suffix="L" /></span>
-            <span className={styles.cLabel}>of ₹18.0L monthly target</span>
+            <span className={styles.cBig}><Num to={18.4} decimals={1} prefix="₹" suffix="L" /></span>
+            <span className={styles.cLabel}>collected of ₹23.0L invoiced</span>
             <span className={styles.cChip}>▲ 27% vs last month</span>
           </div>
         </div>
         <div className={styles.pending} style={{ animationDelay: '140ms' }}>
-          <div className={styles.cardHead}><span>Pending payments</span><span className={styles.pendTotal}>₹3.8L</span></div>
+          <div className={styles.cardHead}><span>Outstanding invoices</span><span className={styles.pendTotal}>₹4.6L</span></div>
           {PENDING.map((p, i) => (
             <div className={styles.pRow} key={p.name} style={{ animationDelay: `${220 + i * 90}ms` }}>
               <span className={styles.pInfo}><b>{p.name}</b><i>{p.sub}</i></span>
@@ -279,11 +285,28 @@ function Fees() {
 const VIEWS = { overview: Overview, leads: Leads, students: Students, fees: Fees }
 
 /* ---------------- shell ---------------- */
-export default function CRMDashboard() {
+// Props:
+//   showFloats — toggle the two decorative overlay cards ("+32% conversion"
+//     and "1,240 enquiries"). Great as hero accents; cluttered inside a
+//     tighter frame like the Showcase's Mac browser mockup.
+//   flat — disable the 3D card tilt + forced aspect ratio. Use when the
+//     dashboard is embedded inside another window chrome and should sit
+//     flat with natural height.
+//   compact — shrink the dashboard base font-size so every em-based
+//     element inside proportionally scales down. Combined with the fixed
+//     card height, this keeps all four views (Dashboard / Pipeline /
+//     Customers / Invoices) the SAME visual height instead of each
+//     stretching to its own natural content height.
+export default function CRMDashboard({ showFloats = true, flat = false, compact = false } = {}) {
   const ref = useRef(null)
   const [run, setRun] = useState(false)
   const [paused, setPaused] = useState(false)
   const [active, setActive] = useState(0)
+  // Previous view index — set briefly during a transition so the outgoing
+  // view can slide out to the left while the incoming view slides in from
+  // the right. Cleared to null after the ~550ms animation finishes.
+  const [prev, setPrev] = useState(null)
+  const prevRef = useRef(active)
   const [toast, setToast] = useState(0)
   const [showToast, setShowToast] = useState(false)
 
@@ -302,6 +325,19 @@ export default function CRMDashboard() {
     return () => clearInterval(id)
   }, [run, paused])
 
+  // Trigger the slide transition whenever `active` changes.
+  useEffect(() => {
+    if (prevRef.current === active) return undefined
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      prevRef.current = active
+      return undefined
+    }
+    setPrev(prevRef.current)
+    prevRef.current = active
+    const t = setTimeout(() => setPrev(null), 550)
+    return () => clearTimeout(t)
+  }, [active])
+
   useEffect(() => {
     if (!run) return undefined
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
@@ -319,7 +355,7 @@ export default function CRMDashboard() {
 
   return (
     <div
-      className={styles.stage}
+      className={`${styles.stage} ${flat ? styles.stageFlat : ''} ${compact ? styles.stageCompact : ''}`}
       ref={ref}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -349,7 +385,7 @@ export default function CRMDashboard() {
           </nav>
           <div className={styles.upsell}>
             <span className={styles.upIcon}><Svg d={ICON.bolt} /></span>
-            <span>Growth plan<i>3 users · live classes</i></span>
+            <span>Growth plan<i>3 users · WhatsApp built in</i></span>
           </div>
         </aside>
 
@@ -372,8 +408,21 @@ export default function CRMDashboard() {
             <span className={styles.crumbs}>NNC CRM · {MODULES[active].label}</span>
           </div>
 
-          <div className={styles.viewport} key={active}>
-            <View />
+          <div className={styles.viewport}>
+            {prev !== null && (() => {
+              const PrevView = VIEWS[MODULES[prev].key]
+              return (
+                <div className={`${styles.viewSlot} ${styles.viewExit}`} key={`exit-${prev}`}>
+                  <PrevView />
+                </div>
+              )
+            })()}
+            <div
+              className={`${styles.viewSlot} ${prev !== null ? styles.viewEnter : ''}`}
+              key={`enter-${active}`}
+            >
+              <View />
+            </div>
           </div>
 
           <span className={`${styles.toast} ${showToast ? styles.toastOn : ''}`} aria-hidden="true">
@@ -384,7 +433,10 @@ export default function CRMDashboard() {
         </div>
       </div>
 
-      {/* layered floating cards for depth */}
+      {/* layered floating cards for depth — hidden when the host context
+          is tight (e.g., inside the homepage Showcase's Mac browser frame) */}
+      {showFloats && (
+        <>
       <span className={styles.floatA} aria-hidden="true">
         <span className={styles.faRing}><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="var(--paper,#eef1f7)" strokeWidth="5" /><circle cx="18" cy="18" r="15" fill="none" stroke="#16a34a" strokeWidth="5" strokeLinecap="round" strokeDasharray="94.2" strokeDashoffset="30" transform="rotate(-90 18 18)" /></svg></span>
         <span className={styles.faText}><b>+32%</b><i>conversion rate</i></span>
@@ -398,6 +450,8 @@ export default function CRMDashboard() {
         </span>
         <span className={styles.faText}><b>1,240</b><i>enquiries this month</i></span>
       </span>
+        </>
+      )}
     </div>
   )
 }

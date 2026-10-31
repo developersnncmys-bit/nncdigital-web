@@ -123,9 +123,12 @@ const SUBITEM_ICON_RULES = [
   ['enquir', 'inbox'],
   ['pipeline', 'funnel'],
   ['forecast', 'trending'],
+  ['quote', 'receipt'],
   ['invoice', 'receipt'],
   ['invoicing', 'receipt'],
+  ['billing', 'receipt'],
   ['payment', 'receipt'],
+  ['cash', 'receipt'],
   ['accounting', 'receipt'],
   ['whatsapp', 'chat'],
   ['engagement', 'chat'],
@@ -136,7 +139,10 @@ const SUBITEM_ICON_RULES = [
   ['integration', 'puzzle'],
   ['trip', 'pin'],
   ['tour', 'pin'],
+  ['appointment', 'calendar'],
   ['booking', 'calendar'],
+  ['job card', 'fileCheck'],
+  ['job', 'fileCheck'],
   ['task', 'check'],
   ['central', 'sliders'],
   ['control', 'sliders'],
@@ -389,10 +395,15 @@ export default function Navbar() {
                     {activeProduct.subItems && activeProduct.subItems.length > 0 && (
                       <div className={styles.detailSubGrid}>
                         {activeProduct.subItems.map((s) => (
-                          <a key={s.label} href={s.href} className={styles.detailSubTile}>
+                          // Decorative preview tiles — not links. Most sub-item
+                          // anchors (#quotes, #appointments, etc.) don't resolve
+                          // on the product pages, and the `Explore` link above
+                          // already covers the "go to the product" action. These
+                          // tiles exist to show *what's inside* at a glance.
+                          <div key={s.label} className={styles.detailSubTile}>
                             <span className={styles.detailSubTileIcon}>{iconForSubItem(s.label)}</span>
                             <span className={styles.detailSubTileLabel}>{s.label}</span>
-                          </a>
+                          </div>
                         ))}
                       </div>
                     )}

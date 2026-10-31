@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from './TrialModal.module.css'
 import { contact } from '@/data/contact'
+import { INDIA_STATES, INDIA_STATES_DISTRICTS } from '@/data/indiaGeo'
 
 const SIZES = ['Just me', '2 to 10', '11 to 50', '51 to 200', '200+']
 const SLIDE_MS = 5000
@@ -30,11 +31,11 @@ function WaDemo() {
   return (
     <div className={styles.wa}>
       <div className={`${styles.waBub} ${styles.waBot} ${styles.waA}`}>Hi 👋 Welcome to NNC!</div>
-      <div className={`${styles.waBub} ${styles.waUser} ${styles.waB}`}>Sunrise Traders</div>
-      <div className={`${styles.waBub} ${styles.waBot} ${styles.waTyping} ${styles.waC}`}>
+      <div className={`${styles.waBub} ${styles.waUser} ${styles.waB}`}>Your business name</div>
+      <div className={`${styles.waBub} ${styles.waBot} ${styles.waTyping} ${styles.waC}`} aria-hidden="true">
         <i /><i /><i />
       </div>
-      <div className={`${styles.waBub} ${styles.waBot} ${styles.waD}`}>Your plan is ready ✓</div>
+      <div className={`${styles.waBub} ${styles.waBot} ${styles.waD}`}>A plan tailored to you</div>
     </div>
   )
 }
@@ -105,6 +106,8 @@ export default function TrialModal() {
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const [slide, setSlide] = useState(0)
+  // State needs to be lifted so the District dropdown can refresh its options.
+  const [state, setState] = useState('')
   const firstRef = useRef(null)
 
   useEffect(() => {
@@ -153,6 +156,8 @@ export default function TrialModal() {
     const phone = `${fd.get('code') || ''} ${fd.get('phone') || ''}`.trim()
     const company = (fd.get('company') || '').toString().trim()
     const teamSize = (fd.get('teamsize') || '').toString()
+    const stateVal = (fd.get('state') || '').toString()
+    const districtVal = (fd.get('district') || '').toString()
 
     const payload = {
       Name: name,
@@ -160,6 +165,8 @@ export default function TrialModal() {
       Phone: phone,
       Company: company,
       'Team size': teamSize,
+      State: stateVal,
+      District: districtVal,
       _subject: `New NNC Digital trial enquiry from ${name || 'website'}`,
       _template: 'table',
       _captcha: 'false',
@@ -171,7 +178,11 @@ export default function TrialModal() {
       phone,
       email,
       company,
-      requirements: [`Free trial request`, teamSize ? `Team size: ${teamSize}` : '']
+      requirements: [
+        `Free trial request`,
+        teamSize ? `Team size: ${teamSize}` : '',
+        stateVal && districtVal ? `Location: ${districtVal}, ${stateVal}` : stateVal ? `State: ${stateVal}` : '',
+      ]
         .filter(Boolean)
         .join('\n'),
       service: 'CRM & Custom Software',
@@ -202,7 +213,7 @@ export default function TrialModal() {
     } catch (err) {
       // Fallback: open the visitor's mail client addressed to the enquiry inbox.
       const body = encodeURIComponent(
-        `Name: ${payload.Name}\nEmail: ${payload.Email}\nPhone: ${payload.Phone}\nCompany: ${payload.Company}\nTeam size: ${payload['Team size']}`
+        `Name: ${payload.Name}\nEmail: ${payload.Email}\nPhone: ${payload.Phone}\nCompany: ${payload.Company}\nTeam size: ${payload['Team size']}\nState: ${payload.State}\nDistrict: ${payload.District}`
       )
       const subject = encodeURIComponent('NNC CRM trial enquiry')
       setError(
@@ -303,6 +314,34 @@ export default function TrialModal() {
                     <select name="teamsize" required defaultValue="">
                       <option value="" disabled>Select</option>
                       {SIZES.map((s) => (<option key={s}>{s}</option>))}
+                    </select>
+                  </label>
+                </div>
+                {/* State + District — District list depends on selected state.
+                    State is lifted to React so the dependent dropdown can refresh. */}
+                <div className={styles.row2}>
+                  <label className={styles.field}>
+                    <span>State</span>
+                    <select
+                      name="state"
+                      required
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                    >
+                      <option value="" disabled>Select state</option>
+                      {INDIA_STATES.map((s) => (<option key={s}>{s}</option>))}
+                    </select>
+                  </label>
+                  <label className={styles.field}>
+                    <span>District</span>
+                    <select name="district" required defaultValue="" disabled={!state}>
+                      <option value="" disabled>
+                        {state ? 'Select district' : 'Select a state first'}
+                      </option>
+                      {state &&
+                        INDIA_STATES_DISTRICTS[state]?.map((d) => (
+                          <option key={d}>{d}</option>
+                        ))}
                     </select>
                   </label>
                 </div>

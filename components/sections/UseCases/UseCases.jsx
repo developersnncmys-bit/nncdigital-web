@@ -10,6 +10,9 @@ const ICONS = {
   manufacturing: <><path d="M3 21h18" /><path d="M4 21V10l5 3V10l5 3V10l5 3v8M8 21v-4h3v4" /></>,
   healthcare: <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" />,
   realestate: <><path d="M3 21V8l9-5 9 5v13" /><path d="M9 21v-6h6v6M8 11h.01M16 11h.01" /></>,
+  education: <><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5a6 6 0 0 0 12 0v-5" /></>,
+  travel: <><path d="M17.8 19.2 16 11l3.5-3.5a2.12 2.12 0 0 0-3-3L13 8 4.8 6.2 2 9l6 2.5-2 2.5H3l-1 1 3 1.5L7 19l1-1v-3l2.5-2L13 19l1-1z" /></>,
+  training: <><path d="M3 9l9-4 9 4-9 4z" /><path d="M7 11v4a5 3 0 0 0 10 0v-4" /><path d="M21 9v4" /></>,
 }
 
 const Icon = ({ name }) => (
@@ -39,15 +42,21 @@ export default function UseCases() {
       <Reveal stagger={0.08} className={styles.grid}>
         {useCases.cards.map((c) => (
           <a className={styles.card} key={c.title} href={c.href}>
+            {/* Photo visual area kept in the DOM but hidden via CSS — flip
+                `.visual { display: none }` back to `display: block` and
+                un-comment the `.card:nth-child(N) .visual` image rules in
+                UseCases.module.css to bring the Salesforce-style photo
+                cards back. */}
             <div className={styles.visual} />
-            <div className={styles.content}>
-              <h3 className={styles.cardTitle}>{c.title}</h3>
-              <p className={styles.cardBody}>{c.body}</p>
-              <span className={styles.link}>
-                Learn more
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </span>
-            </div>
+            <span className={styles.iconChip} aria-hidden="true">
+              <Icon name={c.icon} />
+            </span>
+            <h3 className={styles.cardTitle}>{c.title}</h3>
+            <p className={styles.cardBody}>{c.body}</p>
+            <span className={styles.link}>
+              Learn more
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
           </a>
         ))}
       </Reveal>

@@ -1,3 +1,5 @@
+import CRMDashboard from '@/components/marketing/CRMDashboard'
+import BrowserFrame from '@/components/marketing/BrowserFrame'
 import styles from './Showcase.module.css'
 
 export default function Showcase() {
@@ -18,30 +20,16 @@ export default function Showcase() {
           Watch CRM Demo
         </a>
 
-        <div className={styles.stage}>
-          <div className={styles.browser}>
-            <div className={styles.bar}>
-              <span className={styles.dots} aria-hidden="true">
-                <i /><i /><i />
-              </span>
-              <span className={styles.url}>app.nnccrm.com</span>
-              <span className={styles.spacer} aria-hidden="true" />
-            </div>
-            <div className={styles.screen}>
-              <video
-                className={styles.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/showcase.jpg"
-                aria-hidden="true"
-              >
-                <source src="/showcase.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </div>
+        {/* Animated SVG product mockup inside a shared Mac browser frame.
+            CRMDashboard cycles through Dashboard → Pipeline → Customers →
+            Invoices every ~4s with live-updating KPIs, revenue chart,
+            pipeline, and toast notifications. `compact` keeps all four
+            views at the same fixed height and shrinks the content so
+            nothing clips or jumps. */}
+        <div className={styles.frameWrap}>
+          <BrowserFrame url="app.nnccrm.com">
+            <CRMDashboard showFloats={false} flat compact />
+          </BrowserFrame>
         </div>
       </div>
     </section>

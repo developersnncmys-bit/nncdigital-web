@@ -129,12 +129,55 @@
 .cta {
   margin-top: clamp(64px, 9vh, 100px);
 }
+/* Mirrors the home-page FinalCta `.band` — dark navy vertical gradient,
+   soft blue spotlight bloom from above, faint white dot-grid texture.
+   Pseudo-elements handle the overlays so the JSX stays untouched. */
 .ctaBand {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   text-align: center;
-  background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+  background: linear-gradient(176deg, #14264f 0%, #1b3580 35%, #2f59c0 100%);
   border-radius: var(--r-lg);
-  padding: clamp(48px, 6vw, 80px) 28px;
-  box-shadow: var(--sh-lg);
+  padding: clamp(72px, 9vw, 128px) clamp(28px, 5vw, 72px);
+  box-shadow: 0 40px 90px -40px rgba(20, 38, 79, 0.55);
+}
+/* Spotlight bloom — soft blue glow from above the band. */
+.ctaBand::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  width: 1100px;
+  height: 800px;
+  top: -480px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  filter: blur(140px);
+  background: radial-gradient(
+    circle,
+    rgba(77, 139, 255, 0.55),
+    rgba(77, 139, 255, 0.1) 55%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+/* Faint dot grid — subtle texture over the navy. */
+.ctaBand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
+  mask-image: radial-gradient(1000px 600px at 50% 30%, #000, transparent 75%);
+  pointer-events: none;
+}
+/* Content needs to sit above the overlays. */
+.ctaBand > * {
+  position: relative;
+  z-index: 1;
 }
 .ctaBand h2 {
   color: #fff;

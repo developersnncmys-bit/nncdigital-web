@@ -411,6 +411,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4px 32px;
 }
+/* Decorative preview tiles — no hover, no cursor change. Rendered as a
+   plain <div> in JSX (not a link) because the sub-item anchors mostly do
+   not resolve and the parent "Explore" link already covers navigation. */
 .detailSubTile {
   display: flex;
   align-items: center;
@@ -418,11 +421,6 @@
   padding: 10px 6px;
   border-radius: 10px;
   color: var(--ink);
-  transition: background 0.15s ease, color 0.15s ease;
-}
-.detailSubTile:hover {
-  background: var(--navy-soft);
-  color: var(--navy);
 }
 .detailSubTileIcon {
   flex: 0 0 auto;
@@ -434,9 +432,6 @@
   justify-content: center;
   color: var(--navy);
   background: var(--navy-soft);
-}
-.detailSubTile:hover .detailSubTileIcon {
-  background: #fff;
 }
 .detailSubTileLabel {
   font-size: 14.5px;

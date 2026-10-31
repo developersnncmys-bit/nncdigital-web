@@ -288,34 +288,18 @@ export default function HelpBot({ showWhatsApp = true }) {
       const scroller = findScroller(e.target)
       if (scroller) scroller.scrollTop += deltaY
     }
-    // Belt: capture-phase wheel/touch trap (above).
-    // Braces: lock the html's overflow while the pointer is over the panel.
-    // Chrome's scroll-chain prevention through preventDefault isn't reliable,
-    // but overflow:hidden on html absolutely stops the viewport from moving.
-    // We restore it as soon as the pointer leaves so the page is scrollable
-    // again outside the chat.
-    const html = document.documentElement
-    const prevOverflow = html.style.overflow
-    const lock = () => { html.style.overflow = 'hidden' }
-    const unlock = () => { html.style.overflow = prevOverflow }
-    const onEnter = (e) => { if (panel.contains(e.target)) lock() }
-    const onLeave = (e) => {
-      // relatedTarget is where the pointer went; if it's not inside the panel
-      // (or null, as happens when the pointer leaves the window), unlock.
-      if (!e.relatedTarget || !panel.contains(e.relatedTarget)) unlock()
-    }
+    // The capture-phase wheel/touch trap plus `data-lenis-prevent` on the
+    // panel is sufficient to stop the page from scrolling behind the modal.
+    // An earlier version toggled `html.style.overflow = 'hidden'` on pointer
+    // enter/leave, which hid the native scrollbar and caused the page to shift
+    // horizontally every time the cursor crossed the modal edge — removed.
     document.addEventListener('wheel', onWheel, { passive: false, capture: true })
     document.addEventListener('touchstart', onTouchStart, { passive: true, capture: true })
     document.addEventListener('touchmove', onTouchMove, { passive: false, capture: true })
-    panel.addEventListener('pointerenter', onEnter)
-    panel.addEventListener('pointerleave', onLeave)
     return () => {
       document.removeEventListener('wheel', onWheel, { capture: true })
       document.removeEventListener('touchstart', onTouchStart, { capture: true })
       document.removeEventListener('touchmove', onTouchMove, { capture: true })
-      panel.removeEventListener('pointerenter', onEnter)
-      panel.removeEventListener('pointerleave', onLeave)
-      html.style.overflow = prevOverflow
     }
   }, [open])
 
@@ -602,18 +586,21 @@ export default function HelpBot({ showWhatsApp = true }) {
       </button>
       */}
 
-      {/* Dim overlay behind the expanded (centred) modal so the panel stands out
-          from the page. Not rendered in compact mode — the pill shouldn't need
-          one. Clicking it collapses back to the compact pill. */}
+      {/* Dim overlay behind the centred modal. Clicking it closes the chat
+          entirely — the compact pill is intentionally not reachable from the
+          nav flow, so a backdrop click should never land us there. */}
       <div
         className={`${styles.backdrop} ${open && expanded ? styles.backdropOn : ''}`}
         aria-hidden="true"
-        onClick={() => setExpanded(false)}
+        onClick={() => setOpen(false)}
       />
 
       <div
         ref={panelRef}
-        className={`${styles.panel} ${open ? styles.panelOpen : ''} ${expanded ? styles.panelExpanded : styles.panelCompact}`}
+        // Always rendered as the centred expanded modal — the compact pill is
+        // intentionally unreachable. If we ever bring the two-step launch back,
+        // swap this back to `${expanded ? styles.panelExpanded : styles.panelCompact}`.
+        className={`${styles.panel} ${open ? styles.panelOpen : ''} ${styles.panelExpanded}`}
         role="dialog"
         aria-label="NNC help chat"
         aria-hidden={!open}

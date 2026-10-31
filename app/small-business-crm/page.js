@@ -35,7 +35,7 @@ const PAGE = {
     ],
     media: {
       type: 'video',
-      src: '/videos/small-business.mp4?v=2',
+      src: '/videos/small-business.mp4?v=3',
       framed: true,
     },
   },
@@ -111,7 +111,7 @@ const PAGE = {
             'Assigned to the right person the moment it lands',
             'Nothing sits unclaimed',
           ],
-          media: { src: '/img/scene-dashboard.jpg', alt: 'A sales lead landing in the enquiries inbox' },
+          media: { src: '/img/product/sb-enquiries.mp4', alt: 'A sales lead landing in the enquiries inbox' },
         },
         {
           key: 'pipeline',
@@ -123,19 +123,7 @@ const PAGE = {
             'Follow-up date and owner on every deal',
             'Drill into any stage to see only those deals',
           ],
-          media: { src: '/img/scene-team.jpg', alt: 'A sales team reviewing the pipeline together' },
-        },
-        {
-          key: 'whatsapp',
-          label: 'WhatsApp',
-          title: 'A real WhatsApp inbox, inside your CRM.',
-          body: 'Reply from the same screen as the deal. Templates, auto-replies and broadcast campaigns, with every message logged against the contact.',
-          bullets: [
-            'Two-way WhatsApp against each lead and customer',
-            'Templates and auto-replies for the common asks',
-            'Broadcast campaigns with opt-in / opt-out tracking',
-          ],
-          media: { src: '/img/scene-mobile.jpg', alt: 'A business owner replying on WhatsApp from the CRM' },
+          media: { src: '/img/product/sb-pipeline.mp4', alt: 'A sales team reviewing the pipeline together' },
         },
         {
           key: 'invoicing',
@@ -147,7 +135,7 @@ const PAGE = {
             'Payment reminders on the dates you choose',
             'Downloadable receipts and ledgers',
           ],
-          media: { src: '/img/scene-dashboard.jpg', alt: 'A GST invoice being raised against a deal' },
+          media: { src: '/img/product/sb-invoicing.mp4', alt: 'A GST invoice being raised against a deal' },
         },
         {
           key: 'reports',
@@ -159,7 +147,7 @@ const PAGE = {
             'Compare today vs last week vs last month',
             'Export any list to a spreadsheet',
           ],
-          media: { src: '/img/scene-team.jpg', alt: 'An owner reviewing the day on the reports dashboard' },
+          media: { src: '/img/product/sb-reports.mp4', alt: 'An owner reviewing the day on the reports dashboard' },
         },
       ],
     },
@@ -169,6 +157,7 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'featureGrid',
+      flat: true,
       title: 'Built for the way a small team actually works.',
       lead: 'Lightweight, honest, and designed to be useful on day one — not after a six-week implementation.',
       items: [
@@ -176,21 +165,21 @@ const PAGE = {
           icon: 'rocket',
           title: 'Start fast, see value faster',
           body: 'Set up your workspace, import a CSV and start logging deals the same morning. No consultants required.',
-          image: '/small-business-crm/images/card1.png',
+          image: '/small-business-crm/images/card1.webp',
           imageAlt: 'A small-business owner setting up NNC Small Business CRM on day one',
         },
         {
           icon: 'whatsapp',
           title: 'WhatsApp where your customers already are',
           body: 'Most Indian small-business buyers want to WhatsApp. We put that where the deal lives.',
-          image: '/small-business-crm/images/card2.png',
+          image: '/small-business-crm/images/card2.webp',
           imageAlt: 'A WhatsApp conversation attached to a sales deal in NNC',
         },
         {
           icon: 'reports',
           title: 'Know what to do today',
           body: 'The dashboard shows follow-ups due, payments overdue and new leads waiting — in that order.',
-          image: '/small-business-crm/images/card3.png',
+          image: '/small-business-crm/images/card3.webp',
           imageAlt: 'The daily dashboard showing follow-ups, payments due and new leads',
         },
       ],

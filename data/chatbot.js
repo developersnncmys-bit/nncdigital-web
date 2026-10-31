@@ -33,16 +33,18 @@ export const chatbot = {
     "Perfect 🎯 I've built a recommended plan for you — {modules} for {team} users at {price}/year. Want the breakdown?",
 }
 
-// Pre-scripted sample exchange shown in the phone mock (illustrative).
+// Pre-scripted sample exchange shown in the phone mock (illustrative only —
+// generic placeholders so it never ends up in a Google snippet looking like
+// a real customer).
 export const sampleChat = [
   { from: 'bot', text: "Hi 👋 Welcome to NNC! Let's set you up in under a minute." },
   { from: 'bot', text: "What's the name of your business?" },
-  { from: 'user', text: 'Sunrise Traders' },
+  { from: 'user', text: '[Your business name]' },
   { from: 'bot', text: 'Which industry are you in?' },
-  { from: 'user', text: 'Retail' },
+  { from: 'user', text: '[Your industry]' },
   { from: 'bot', text: 'What do you most want to improve?' },
-  { from: 'user', text: 'Enquiries & Forecasting' },
-  { from: 'bot', text: "Perfect 🎯 I've built a plan: Enquiries + Forecasting + Reports for 6 users at ₹64,999/year. Want the breakdown?" },
+  { from: 'user', text: '[Enquiries, Sales, Forecasting…]' },
+  { from: 'bot', text: "Perfect 🎯 I've built a plan tailored to your business. Want the breakdown?" },
 ]
 
 // Maps a priority answer to a module id (used by recommendation logic).

@@ -59,7 +59,7 @@ export default function PlanColumn({ plan, term }) {
       </span>
 
       <a href="#start" data-trial className={styles.cta}>
-        Start free trial
+        Book a Demo
       </a>
 
       <button

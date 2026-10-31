@@ -6,6 +6,67 @@
   aspect-ratio: 1 / 0.82;
   perspective: 1800px;
 }
+/* Flat variant — used when the dashboard is embedded inside another window
+   chrome (e.g., the homepage Showcase's Mac browser mockup) or inside a
+   framed hero. Drops the 3D tilt and the forced aspect ratio so the card
+   sits upright. Kept to a compact min-height so the whole mockup doesn't
+   tower over the sibling hero-text column. */
+.stageFlat {
+  max-width: 100%;
+  aspect-ratio: auto;
+  min-height: 420px;
+  perspective: none;
+}
+/* Compact variant — stacks on top of `.stageFlat`.
+   Two things happen:
+   1. Base font-size shrinks to 10px so every em-based element inside
+      (KPIs, pipeline cards, table rows, donut, feed) proportionally scales
+      down ≈23% — content "shrinks and fits" instead of towering.
+   2. The card gets a FIXED height (not min-height) so all four views —
+      Dashboard, Pipeline, Customers, Invoices — occupy the exact same
+      visual space, no jarring height jumps when the view cycles. Content
+      that would overflow is clipped by the card's existing overflow:hidden. */
+.stageCompact { min-height: 0; height: 100%; }
+.stageCompact .card {
+  font-size: 10px;
+  min-height: 0;
+  height: 400px;
+}
+/* Viewport fills the remaining card height after .top + .viewHead; any
+   view-specific content that would exceed this gets clipped cleanly. */
+.stageCompact .viewport {
+  overflow: hidden;
+}
+
+/* Content tiles get an aggressive size reduction so the Dashboard view's
+   KPIs + chart + feed stop dominating, and the Fees donut + big ₹ amount
+   fit comfortably. Sidebar, headers, nav labels stay at their normal
+   compact size — this only targets content-area tiles. */
+.stageCompact .kpis { gap: 6px; }
+.stageCompact .kpi { padding: 7px 9px; gap: 2px; border-radius: 10px; }
+.stageCompact .kLabel { font-size: 0.75em; }
+.stageCompact .kVal { font-size: 1.15em; }
+.stageCompact .kDelta { font-size: 0.7em; }
+.stageCompact .spark { width: 42px; height: 14px; }
+.stageCompact .chartCard,
+.stageCompact .feed,
+.stageCompact .collectCard,
+.stageCompact .pending,
+.stageCompact .tableCard {
+  padding: 9px 10px;
+  border-radius: 11px;
+}
+.stageCompact .cardHead { margin-bottom: 6px; font-size: 0.9em; }
+.stageCompact .panelRow { gap: 8px; }
+.stageCompact .feedItem { padding: 4px 0; gap: 6px; }
+.stageCompact .fAv { width: 20px; height: 20px; font-size: 0.72em; }
+.stageCompact .fText { font-size: 0.82em; }
+.stageCompact .fTime { font-size: 0.72em; }
+.stageCompact .donutWrap { width: 74px; height: 74px; }
+.stageCompact .donutCenter b { font-size: 1.1em; }
+.stageCompact .cBig { font-size: 1.4em; }
+.stageCompact .cLabel { font-size: 0.78em; }
+.stageCompact .cChip { font-size: 0.7em; padding: 2px 7px; }
 .glow {
   position: absolute;
   inset: 2%;
@@ -15,6 +76,7 @@
   border-radius: 32px;
   z-index: 0;
 }
+.stageFlat .glow { display: none; }
 
 .card {
   position: absolute;
@@ -34,6 +96,22 @@
   will-change: transform;
 }
 .stage:hover .card { transform: rotateX(0deg) rotateY(0deg); }
+/* Flat variant — card sits inside the parent frame with no tilt and a
+   softer drop shadow. A visible hairline border makes all four rounded
+   corners read with equal clarity (previously the top-right looked less
+   rounded than the top-left because the white main area had less contrast
+   against the glass backdrop than the dark navy sidebar did). */
+.stageFlat .card {
+  position: relative;
+  inset: auto;
+  transform: none;
+  box-shadow:
+    0 10px 30px -14px rgba(10, 20, 50, 0.3),
+    0 2px 6px -2px rgba(10, 20, 50, 0.12);
+  border-color: rgba(10, 20, 50, 0.18);
+  border-radius: 18px;
+  min-height: 380px;
+}
 
 /* ===== sidebar ===== */
 .side {
@@ -88,11 +166,16 @@
 /* ===== body ===== */
 .body { position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; background: linear-gradient(180deg, #fbfcfe, #f6f8fc); }
 
+/* NOTE: `backdrop-filter` was removed from this element. It created a new
+   stacking context inside the parent `.card` which has `overflow: hidden` +
+   `border-radius`, and the browser rendered the top-right corner as square
+   (backdrop-filter escapes the parent's rounded clip in some browsers).
+   Since the card is opaque, the blur added nothing visible but broke the
+   corner radius visually. Solid background now. */
 .top {
   display: flex; align-items: center; gap: 8px;
   padding: 11px 15px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
+  background: #fdfdff;
   border-bottom: 1px solid var(--line, #e7ebf2);
 }
 .searchBox {
@@ -125,8 +208,48 @@
 .viewTitle { margin: 0; font-size: 1.4em; font-weight: 800; letter-spacing: -0.025em; color: var(--ink, #0b1a33); }
 .crumbs { font-size: 0.82em; color: var(--grey-soft, #8a96a8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.viewport { flex: 1; min-height: 0; padding: 11px 17px 17px; }
+.viewport {
+  flex: 1;
+  min-height: 0;
+  padding: 11px 17px 17px;
+  position: relative;
+  overflow: hidden;
+}
 .view { height: 100%; display: flex; flex-direction: column; gap: 11px; }
+
+/* Slide-between-views animation. During a transition the outgoing view
+   (`.viewExit`) is positioned absolutely on top of the viewport and slides
+   out to the left; the incoming view (`.viewEnter`) slides in from the
+   right. After ~550ms the previous view is unmounted and only the current
+   view remains (sans animation class, so it just sits normally). */
+.viewSlot {
+  width: 100%;
+  height: 100%;
+}
+.viewExit {
+  position: absolute;
+  inset: 11px 17px 17px 17px;
+  z-index: 2;
+  pointer-events: none;
+  animation: viewSlideOut 550ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.viewEnter {
+  position: relative;
+  z-index: 1;
+  animation: viewSlideIn 550ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes viewSlideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-24%); opacity: 0; }
+}
+@keyframes viewSlideIn {
+  from { transform: translateX(24%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .viewExit, .viewEnter { animation: none; }
+  .viewExit { display: none; }
+}
 
 /* ===== shared ===== */
 .cardHead { display: flex; align-items: center; justify-content: space-between; font-weight: 700; color: var(--ink, #0b1a33); margin-bottom: 9px; }

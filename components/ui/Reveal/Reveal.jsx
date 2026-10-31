@@ -26,7 +26,15 @@ export default function Reveal({
       const targets =
         stagger > 0 ? Array.from(ref.current.children) : ref.current
 
-      if (reduce) {
+      // Only hide elements that are still BELOW the fold on mount. If the
+      // element is already in view OR the user has already scrolled past it
+      // (fast scroll, deep-link, link preview), leave it visible — previously
+      // these cases could end up stuck at opacity:0 because ScrollTrigger
+      // waits for the element to re-enter from the bottom.
+      const rect = ref.current.getBoundingClientRect()
+      const belowFold = rect.top > window.innerHeight * 0.95
+
+      if (reduce || !belowFold) {
         gsap.set(targets, { opacity: 1, y: 0 })
         return
       }
@@ -39,7 +47,7 @@ export default function Reveal({
         ease: 'power3.out',
         delay,
         stagger,
-        scrollTrigger: { trigger: ref.current, start },
+        scrollTrigger: { trigger: ref.current, start, once: true },
       })
     },
     { scope: ref, dependencies: [] }

@@ -34,7 +34,7 @@ const PAGE = {
     ],
     media: {
       type: 'video',
-      src: '/videos/car-studio.mp4?v=1',
+      src: '/videos/car-studio.mp4?v=2',
       framed: true,
     },
   },
@@ -91,8 +91,9 @@ const PAGE = {
     },
 
     // -----------------------------------------------------------------------
-    // Tabbed feature showcase. Images reuse /img/scene-* stock photos until
-    // real product screenshots are captured.
+    // Tabbed feature showcase. Each tab plays a real screen-recording of the
+    // product module. FeatureTabs auto-detects .mp4 and renders a muted,
+    // looping <video> inline.
     // -----------------------------------------------------------------------
     {
       type: 'featureTabs',
@@ -111,7 +112,7 @@ const PAGE = {
             'Lead tagged with vehicle, service interest and budget',
             'Followup reminders due today, tomorrow, this week',
           ],
-          media: { src: '/img/scene-dashboard.jpg', alt: 'Enquiries list with hot and warm leads tagged by vehicle' },
+          media: { src: '/img/product/cs-enquiries.mp4', alt: 'Enquiries list with hot and warm leads tagged by vehicle' },
         },
         {
           key: 'quotes',
@@ -123,7 +124,7 @@ const PAGE = {
             'Package bundling and discount rules',
             'Quote followups with status (sent / viewed / approved)',
           ],
-          media: { src: '/img/scene-planning.jpg', alt: 'A quote being prepared with services and package pricing' },
+          media: { src: '/img/product/cs-quotes.mp4', alt: 'A quote being prepared with services and package pricing' },
         },
         {
           key: 'appointments',
@@ -135,7 +136,7 @@ const PAGE = {
             'Auto WhatsApp confirmations and reminders',
             'Reschedule or reassign without losing history',
           ],
-          media: { src: '/img/scene-planning.jpg', alt: 'Appointment calendar showing today\'s bookings across bays' },
+          media: { src: '/img/product/cs-appointments.mp4', alt: 'Appointment calendar showing today\'s bookings across bays' },
         },
         {
           key: 'jobcards',
@@ -147,7 +148,7 @@ const PAGE = {
             'Status flow: Opened → In Progress → Work Completed → Delivered',
             'Overdue alerts and estimated delivery tracking',
           ],
-          media: { src: '/img/scene-team.jpg', alt: 'A running job card with technician assigned and status updating' },
+          media: { src: '/img/product/cs-jobcards.mp4', alt: 'A running job card with technician assigned and status updating' },
         },
         {
           key: 'billing',
@@ -159,7 +160,7 @@ const PAGE = {
             'Pending invoices and pending payments at a glance',
             'Branch-wise petty cash with user wallet transfers',
           ],
-          media: { src: '/img/scene-growth.jpg', alt: 'Invoice and petty cash view with branch-wise cash flow' },
+          media: { src: '/img/product/cs-billing.mp4', alt: 'Invoice and petty cash view with branch-wise cash flow' },
         },
       ],
     },
@@ -169,6 +170,7 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'featureGrid',
+      flat: true,
       title: 'Built for the way a car studio actually runs.',
       lead: 'Multi-bay, multi-branch and messy on the floor — the CRM handles it without turning your day into a spreadsheet.',
       items: [
@@ -176,21 +178,21 @@ const PAGE = {
           icon: 'rocket',
           title: 'One screen for every branch',
           body: 'Switch branches from the top bar or roll up every studio into one dashboard. Revenue, running jobs and petty cash — side by side, by location.',
-          image: '/Car-studio/Card1.png',
+          image: '/Car-studio/Card1.webp',
           imageAlt: 'Multi-branch car studio dashboard showing revenue, running jobs and petty cash across every location',
         },
         {
           icon: 'whatsapp',
           title: 'Customers kept close on WhatsApp',
           body: 'Quotes, booking confirmations, pickup messages and festive offers all go out on the channel your customers actually open.',
-          image: '/Car-studio/card2.png',
+          image: '/Car-studio/card2.webp',
           imageAlt: 'WhatsApp conversation with a car studio customer showing booking confirmation and pickup message',
         },
         {
           icon: 'reports',
           title: 'Know every number that matters',
           body: 'Revenue by branch, by service and by technician. Pending payments, cash in and cash out — ready for your morning review.',
-          image: '/Car-studio/card3.png',
+          image: '/Car-studio/card3.webp',
           imageAlt: 'Car studio reports dashboard with revenue by branch, service and technician, plus pending payments and cash flow',
         },
       ],

@@ -4,6 +4,12 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from '@/lib/gsap'
 import { hero } from '@/data/content'
+// HeroVisual (four floating glass CRM cards animation) is temporarily
+// parked. The component + its CSS live at ./HeroVisual.jsx and
+// ./HeroVisual.module.css and are ready to re-enable — swap the <video>
+// below back to <HeroVisual /> and uncomment this import. Kept in the
+// tree deliberately per the user's request to save it for later.
+// import HeroVisual from './HeroVisual'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -61,7 +67,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* stitched product reel */}
+        {/* Hero media. Currently the original stitched product reel.
+            The decorative <HeroVisual /> animation (floating glass CRM
+            cards) is parked at ./HeroVisual.jsx — swap the markup below
+            with `<HeroVisual />` and switch `.videoCard` to
+            `.heroVisualWrap` when ready to use it. */}
         <div className={styles.videoCard}>
           <video
             className={styles.video}

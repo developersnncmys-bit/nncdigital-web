@@ -4,7 +4,7 @@ import { Figtree, JetBrains_Mono } from 'next/font/google'
 import SmoothScroll from '@/components/providers/SmoothScroll'
 import SiteChrome from '@/components/layout/SiteChrome'
 import VisitorTracker from '@/components/analytics/VisitorTracker'
-import { SITE_URL } from '@/lib/site'
+import { SITE_URL, IS_LIVE } from '@/lib/site'
 
 // Figtree — closest free match to Zoom's geometric grotesque (Almaden Sans / Happy Display)
 const jakarta = Figtree({
@@ -37,11 +37,16 @@ export const metadata = {
     shortcut: '/nnc-mark.png',
     apple: '/nnc-mark.png',
   },
+  // Sitewide indexing default. On the live domain (nncdigital.co.in) pages
+  // are indexable unless they override this; everywhere else (localhost,
+  // preview URLs, staging) the whole site stays private. Individual pages
+  // that must always stay noindex (case studies, car studio, small business,
+  // net zero stub, features, thank-you) keep their own explicit override.
   robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: { index: false, follow: false, noimageindex: true },
+    index: IS_LIVE,
+    follow: IS_LIVE,
+    nocache: !IS_LIVE,
+    googleBot: { index: IS_LIVE, follow: IS_LIVE, noimageindex: !IS_LIVE },
   },
   openGraph: { title: TITLE, description: DESC, type: 'website', locale: 'en_US' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC },
