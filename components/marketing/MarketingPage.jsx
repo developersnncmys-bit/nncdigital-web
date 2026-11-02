@@ -379,7 +379,7 @@ export default function MarketingPage({ page }) {
                   </div>
                 </div>
               ) : (
-                <div className={`${styles.heroMedia} ${page.hero.media.square ? styles.heroMediaSquare : ''}`}>
+                <div className={`${styles.heroMedia} ${page.hero.media.square ? styles.heroMediaSquare : ''} ${page.hero.media.squareLg ? styles.heroMediaSquareLg : ''}`}>
                   <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} priority />
                 </div>
               )

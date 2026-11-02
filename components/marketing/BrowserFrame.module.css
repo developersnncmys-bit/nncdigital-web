@@ -82,4 +82,14 @@
 @media (max-width: 600px) {
   .spacer { display: none; }
   .url { max-width: 200px; }
+  /* On narrow phones the outer navy stage + inner screen padding were
+     squeezing the embedded dashboard enough that KPI labels like
+     "Follow-ups" and "Deals won" clipped mid-word, and the invoices
+     list / donut layout felt crammed. Minimise the stage and screen
+     padding here so the dashboard uses nearly the full phone width —
+     scoped to this frame only, so other pages are untouched
+     (BrowserFrame is only used by the homepage Showcase). */
+  .stage { padding: 10px 2px; border-radius: 14px; }
+  .screen { padding: 4px; }
+  .bar { height: 34px; padding: 0 8px; gap: 6px; }
 }

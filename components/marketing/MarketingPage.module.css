@@ -162,6 +162,15 @@
   max-width: 480px;
   margin-inline: auto;
 }
+/* Larger-square variant — opt-in via `media.squareLg: true` on the page
+   data (via `ind({ heroSquareLg: true })`). Only used by the Manufacturing
+   industry page so far; adds ~100px over the default `.heroMediaSquare`
+   without affecting the pages that use the 480px square. */
+.heroMediaSquareLg {
+  aspect-ratio: 1 / 1;
+  max-width: 580px;
+  margin-inline: auto;
+}
 .heroMedia:has(video) { aspect-ratio: auto; }
 .heroMedia:has(video) .heroFrame { height: auto; }
 .heroMedia:has(video) video.heroImg { height: auto; object-fit: cover; }
@@ -712,4 +721,24 @@
 }
 @media (max-width: 560px) {
   .fgrid, .cgrid, .tgrid, .steps { grid-template-columns: 1fr; }
+  /* On narrow phones the chained padding (scenic card + glass panel +
+     component wrapper) was squeezing the embedded dashboards enough that
+     labels like "Dispatched" and KPI headers truncated mid-word. Tighten
+     the framed-hero padding chain so the dashboard inside has room to
+     breathe. Scoped to `.heroMediaFramed` + `.heroFrameComponent` — these
+     only wrap hero dashboards; standard image/video heroes and non-hero
+     sections are untouched. Desktop unaffected. */
+  .heroMediaFramed, .heroMediaFramed:has(video) { padding: 10px; }
+  .heroFrame { padding: 6px; }
+  .heroFrameComponent { padding: 6px; }
+  /* The 7:5 aspect-ratio was giving the component-framed hero a card
+     only ~235px tall on a 393px viewport — not enough to seat the
+     dashboard's compact card, so the sidebar's lower nav items and
+     content area were clipping. Swap to a tall mobile ratio that gives
+     a DEFINITE height (~1.55× the width) so the inner glass panel's
+     `height: 100%` resolves and the frosted panel fills the whole
+     scenic card — AND the dashboard's bottom tile (activity feed /
+     outstanding invoices) sits with breathing room above the glass
+     edge rather than touching it. */
+  .heroMediaComponentFramed { aspect-ratio: 1 / 1.55; }
 }

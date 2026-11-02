@@ -51,3 +51,13 @@
 .frameWrap {
   margin-top: clamp(22px, 3vw, 34px);
 }
+
+/* On narrow phones, break out of the parent .container's 28px side
+   padding so the browser mockup can run almost edge-to-edge — the
+   dashboard inside picks up another ~48px of horizontal room without
+   touching the global container padding. */
+@media (max-width: 600px) {
+  .frameWrap {
+    margin-inline: calc(var(--pad, 28px) * -1 + 8px);
+  }
+}

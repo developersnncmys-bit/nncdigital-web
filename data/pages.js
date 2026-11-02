@@ -23,9 +23,25 @@ const ind = (slug, o) => ({
   metaTitle: o.metaTitle || `${o.name} CRM | NNC CRM`,
   metaDescription: o.metaDescription || o.lead,
   breadcrumb: [HOME, industriesCrumb, { label: o.name }],
-  hero: { eyebrow: 'Industries', title: o.title, lead: o.lead, ctas: heroCtas, media: img(o.img, o.name) },
+  // `heroComponent` opts into a framed dashboard-mockup hero (same visual
+  // language as /multi-center-training-institutes-crm/) instead of a plain
+  // image. Used on the education page because the TrainingInstitutesDashboard
+  // already renders admissions / students / fees — a one-to-one fit.
+  hero: {
+    eyebrow: 'Industries',
+    title: o.title,
+    lead: o.lead,
+    ctas: heroCtas,
+    media: o.heroComponent
+      ? { type: 'component', name: o.heroComponent, framed: true }
+      : {
+          ...img(o.img, o.name),
+          ...(o.heroSquare ? { square: true } : {}),
+          ...(o.heroSquareLg ? { squareLg: true } : {}),
+        },
+  },
   blocks: [
-    { type: 'split', kicker: 'The problem', title: o.splitTitle, body: o.splitBody, bullets: o.bullets, media: img(o.img2 || o.img, o.name) },
+    { type: 'split', kicker: 'The problem', title: o.splitTitle, body: o.splitBody, bullets: o.bullets, media: img(o.img2 || o.img, o.name), ...(o.squareSplitMedia ? { squareMedia: true } : {}) },
     { type: 'featureGrid', flat: true, title: `Built for ${o.name.toLowerCase()}`, items: o.features },
     { type: 'stats', items: o.stats || [
       { value: '30 days', label: 'free trial on every plan' },
@@ -43,7 +59,16 @@ export const INDUSTRIES = {
     metaDescription: 'Give your sales team a pipeline they will use, daily call lists and live targets. Close more deals and chase fewer dead leads.',
     title: 'A CRM your sales team will open every morning.',
     lead: 'Sales tools fail when reps see them as admin. NNC CRM flips that. It tells each rep who to call today, keeps the pipeline updated with a drag, and shows the manager the truth without a single status meeting.',
-    img: '/img/case-sales.jpg', img2: '/img/scene-deal.jpg',
+    // Hero: sales rep with headset at laptop running NNC CRM, open-plan
+    // sales floor behind. Reads as "sales team opens NNC every morning".
+    // Problem: sales lead with tablet, Lead Capture / Team Pipeline /
+    // Follow-up Reminders panels — one-to-one onto the three bullets.
+    img: '/img/industries/sales-hero.webp',
+    img2: '/img/industries/sales-problem.webp',
+    // Both source images are 1:1 renders → square cards for pixel-perfect
+    // fit under object-fit:cover. Scoped to this page only.
+    heroSquare: true,
+    squareSplitMedia: true,
     splitTitle: 'Stop losing deals in spreadsheets and chat threads',
     splitBody: 'When leads live in notebooks, inboxes and WhatsApp, deals go cold. NNC keeps every opportunity in one pipeline your whole team can see.',
     bullets: ['Every lead captured from web, WhatsApp, calls and walk ins', 'One pipeline the whole team can see', 'Reminders so no follow up ever slips'],
@@ -59,7 +84,14 @@ export const INDUSTRIES = {
     metaDescription: 'Track every job from enquiry to invoice and protect your repeat revenue with automatic follow ups. Built for service businesses.',
     title: 'Every job tracked. Every repeat protected.',
     lead: 'For a service business, the money is in the second job, the renewal, the annual contract. NNC CRM tracks each job from first enquiry to paid invoice, then reminds you to come back before the customer forgets you.',
-    img: '/img/case-services.jpg', img2: '/img/scene-support.jpg',
+    // Hero source is 1:1 → square card for pixel-perfect fit. `heroSquareLg`
+    // bumps the square to a wider max-width scoped to this page only, so
+    // other heroSquare pages (healthcare, small-business case) stay at
+    // the standard 480px cap.
+    img: '/case-studies-images/service-business.jpg',
+    img2: '/case-studies-images/service-challenge.webp',
+    heroSquare: true,
+    heroSquareLg: true,
     splitTitle: 'One place for clients, work and money',
     splitBody: 'Service teams juggle enquiries, delivery and billing across tools. NNC ties them together so nothing falls between the cracks.',
     bullets: ['Track every client and project in one view', 'Turn approved work into invoices in a click', 'See what is owed and what is overdue'],
@@ -75,7 +107,13 @@ export const INDUSTRIES = {
     metaDescription: 'Manage enquiries, quotations, orders, dispatch and collections across your whole operation, end to end. A CRM built for manufacturers.',
     title: 'Connect orders, dispatch and payments.',
     lead: 'A manufacturing sale runs through too many hands: enquiry, quotation, negotiation, order, production, dispatch, payment. When that lives across calls, email and paper, things break. NNC CRM puts the whole chain on one screen, so nothing falls between departments.',
-    img: '/img/case-mfg.jpg', img2: '/img/scene-office.jpg',
+    // Local manufacturing photos from the case-studies-images set.
+    // `*-challenge.webp` is tuned for the "The Problem" split block.
+    // Hero image is a 1:1 render → use the larger square hero variant so
+    // object-fit:cover fills perfectly with no crop. Scoped to this page.
+    img: '/case-studies-images/manufacturing-hero.jpg',
+    img2: '/case-studies-images/manufacturing-challenge.webp',
+    heroSquareLg: true,
     splitTitle: 'From enquiry to dispatch, without the chaos',
     splitBody: 'Quotes in one tool, orders in another, payments in a third. NNC brings the full order to cash cycle into a single system.',
     bullets: ['Quotations and orders linked to every buyer', 'Dispatch and inventory in sync', 'Collections and outstanding tracked automatically'],
@@ -91,7 +129,10 @@ export const INDUSTRIES = {
     metaDescription: 'Manage dealer orders, billing, GST and collections in one view. A CRM built for retail and distribution businesses.',
     title: 'Orders, dealers and collections, in one view.',
     lead: 'Distribution runs on volume and trust. You cannot afford a missed order or a forgotten payment. NNC CRM keeps every dealer, every order and every rupee outstanding on one screen, so your team sells more and collects faster.',
-    img: '/img/scene-mobile.jpg', img2: '/img/scene-data.jpg',
+    img: '/case-studies-images/retail.jpg', img2: '/case-studies-images/retail-challenge.webp',
+    // Hero image is a 1:1 render — use the larger square hero so
+    // object-fit:cover fills with no crop. Scoped to this page.
+    heroSquareLg: true,
     splitTitle: 'Turn one time buyers into regulars',
     splitBody: 'Walk in, phone, WhatsApp or online, NNC captures every customer and order so you can bring them back again and again.',
     bullets: ['Every customer and order in one profile', 'WhatsApp offers and reorder reminders', 'Stock and catalog connected to sales'],
@@ -107,7 +148,18 @@ export const INDUSTRIES = {
     metaDescription: 'Manage patient enquiries, appointments and follow ups with care and privacy built in. A CRM made for clinics and healthcare.',
     title: 'Care that follows up, every time.',
     lead: 'In healthcare, a missed follow up is more than lost revenue. NNC CRM makes sure every patient enquiry is answered, every appointment is remembered and every follow up happens, with privacy treated as seriously as you treat your patients.',
-    img: '/img/scene-people.jpg', img2: '/img/scene-support.jpg',
+    // Hero: doctor holding a tablet showing NNC CRM with Appointment
+    // Reminders / Follow-ups via WhatsApp / Patient Data Privacy /
+    // Reports widgets — literal product preview.
+    img: '/img/industries/healthcare-hero.webp',
+    // Problem: nurse on tablet with Patient Record / Appointment
+    // Reminder / Payments & Packages panels — maps one-to-one onto the
+    // three problem-section bullets.
+    img2: '/img/industries/healthcare-problem.webp',
+    // Both source images are 1:1 renders → use square cards for a
+    // pixel-perfect fit under object-fit:cover. Scoped to this page only.
+    heroSquare: true,
+    squareSplitMedia: true,
     splitTitle: 'Never miss a follow up again',
     splitBody: 'Appointments in a diary, patients in a register, reminders in your head. NNC brings it together so patients always come back on time.',
     bullets: ['Patient records and history in one place', 'Appointment and follow up reminders on WhatsApp', 'Payments and packages tracked per patient'],
@@ -123,7 +175,15 @@ export const INDUSTRIES = {
     metaDescription: 'Track admission enquiries, follow up with parents on WhatsApp and manage fees in one place. A CRM built for schools and academies.',
     title: 'A CRM for coaching and education.',
     lead: 'Admissions season is won by the institute that follows up fastest. NNC CRM captures every admission enquiry, keeps parents updated on WhatsApp and manages fees, so your counsellors convert more and your office runs calmer.',
-    img: '/img/scene-team.jpg', img2: '/img/scene-dashboard.jpg',
+    // Hero: reuse the animated TrainingInstitutesDashboard (admissions /
+    // students / fees screens) framed on the scenic+glass panel — a direct
+    // visual preview of what this industry page is selling.
+    heroComponent: 'trainingInstitutesDashboardFlat',
+    img: '/img/scene-team.jpg',
+    // Problem section: ADMISSIONS / ATTENDANCE / FEE RECORDS / STUDENT
+    // PERFORMANCE binders next to a laptop. Maps one-to-one onto "every
+    // admission enquiry captured", "follow up reminders" and "fees tracked".
+    img2: '/case-studies-images/training-challenge.webp',
     splitTitle: 'Convert more admission enquiries',
     splitBody: 'Enquiries come from ads, referrals and walk ins, then go cold without follow up. NNC keeps every prospective student warm until they join.',
     bullets: ['Every admission enquiry captured and assigned', 'Follow up reminders for counsellors', 'Fees and instalments tracked per student'],
@@ -139,7 +199,16 @@ export const INDUSTRIES = {
     metaDescription: 'Capture every site and portal enquiry, qualify buyers faster and follow up on WhatsApp so no hot lead is ever lost. A CRM for real estate.',
     title: 'Never lose a hot buyer to slow follow up.',
     lead: 'In real estate, the first agent to respond usually wins the deal. NNC CRM pulls in leads from portals, ads, your website and walk ins, qualifies them fast and keeps your team following up on WhatsApp until the site visit is booked.',
-    img: '/img/scene-office.jpg', img2: '/img/scene-deal.jpg',
+    // Hero: agent closing a deal with a client, model building on desk —
+    // "first agent to respond wins the deal" story. Problem: agent walking
+    // a couple through a tablet with Lead Capture / Site Visits /
+    // Bookings & Payments panels, one-to-one onto the three bullets.
+    img: '/img/industries/real-estate-hero.webp',
+    img2: '/img/industries/real-estate-problem.webp',
+    // Both source images are 1:1 renders → use square cards for a
+    // pixel-perfect fit under object-fit:cover. Scoped to this page only.
+    heroSquare: true,
+    squareSplitMedia: true,
     splitTitle: 'Follow every lead to the close',
     splitBody: 'Property leads are expensive and easy to lose. NNC makes sure every enquiry gets a site visit, a follow up and a fair shot at closing.',
     bullets: ['Leads captured from portals, ads and referrals', 'Site visits scheduled and reminded', 'Bookings and payment milestones tracked'],
