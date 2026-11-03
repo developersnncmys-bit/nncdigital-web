@@ -58,7 +58,7 @@ export const products = [
     href: '/travel-crm/',
     exploreLabel: 'Explore Travel CRM',
     icon: 'travel',
-    media: { src: '/travel-crm/images/dashboard.png', alt: 'NNC Travel CRM owner dashboard' },
+    media: { src: '/travel-crm/images/dashboard.webp', alt: 'NNC Travel CRM owner dashboard' },
     subItems: [
       { label: 'Trips', href: '/travel-crm/#trips' },
       { label: 'Bookings', href: '/travel-crm/#bookings' },

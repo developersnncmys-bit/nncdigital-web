@@ -69,7 +69,7 @@ export const navLinks = [
 // these from the files on disk, so re-capturing at 2x needs no hand edits.
 export const heroShots = {
   dashboard: {
-    src: '/travel-crm/images/dashboard.png',
+    src: '/travel-crm/images/dashboard.webp',
     alt: 'Owner dashboard showing sales stats, follow-ups, payments due and trips',
     w: 1365,
     h: 686,
@@ -325,7 +325,7 @@ export const featureRows = [
     kicker: 'OWNER DASHBOARD',
     title: 'Open the day already knowing what it holds',
     note: 'your 9 am check-in',
-    shot: { src: '/travel-crm/images/dashboard.png', alt: 'Owner dashboard', w: 1365, h: 686 },
+    shot: { src: '/travel-crm/images/dashboard.webp', alt: 'Owner dashboard', w: 1365, h: 686 },
     items: [
       {
         icon: 'LayoutDashboard',

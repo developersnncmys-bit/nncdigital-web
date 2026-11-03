@@ -71,7 +71,19 @@ function Media({ media, className, containClassName, priority = false }) {
   // `fit: 'contain'` is for UI screenshots that must be shown in full. Only
   // honored when the caller supplies a dedicated class for that mode.
   const cls = media.fit === 'contain' && containClassName ? containClassName : className
-  return <img className={cls} src={media.src} alt={media.alt || ''} loading="lazy" />
+  // Above-fold hero images need to download immediately — lazy-loading the
+  // first paint element wastes LCP. Below-fold images (split blocks, cards)
+  // stay lazy.
+  const imgLoading = priority ? 'eager' : 'lazy'
+  return (
+    <img
+      className={cls}
+      src={media.src}
+      alt={media.alt || ''}
+      loading={imgLoading}
+      {...(priority ? { fetchpriority: 'high' } : {})}
+    />
+  )
 }
 
 function Ctas({ ctas, onLight }) {

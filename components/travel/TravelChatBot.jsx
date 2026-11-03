@@ -30,7 +30,7 @@ const WA_NUMBER = '919164566466'
 const ENQUIRY_EMAIL = contact.enquiryEmail
 // What visitors are told to write to.
 const PUBLIC_EMAIL = contact.email
-const CRM_ENDPOINT = 'https://newadminpanelbackendrender26.onrender.com/api/website-enquiry'
+const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
 
 const QUESTIONS = [

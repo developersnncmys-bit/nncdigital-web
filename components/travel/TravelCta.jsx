@@ -19,7 +19,7 @@ const ENQUIRY_EMAIL = contact.enquiryEmail
 // What visitors are told to write to.
 const PUBLIC_EMAIL = contact.email
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
-const CRM_ENDPOINT = 'https://newadminpanelbackendrender26.onrender.com/api/website-enquiry'
+const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 
 export default function TravelCta({ page }) {
   const router = useRouter()

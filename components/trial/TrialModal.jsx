@@ -18,7 +18,7 @@ const ENQUIRY_EMAIL = contact.enquiryEmail
 // What visitors are told to write to.
 const PUBLIC_EMAIL = contact.email
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
-const CRM_ENDPOINT = 'https://newadminpanelbackendrender26.onrender.com/api/website-enquiry'
+const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 
 const Check = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

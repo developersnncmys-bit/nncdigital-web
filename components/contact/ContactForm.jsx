@@ -18,7 +18,7 @@ const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
 // NNC CRM backend — public enquiry endpoint. Saves the enquiry into the CRM under
 // the "Enquire NNC Digital" tab (site:'nncdigital') + sends the admin/confirmation
 // emails via the CRM's SMTP (info@nakshatranamahacreations.com).
-const CRM_ENDPOINT = 'https://newadminpanelbackendrender26.onrender.com/api/website-enquiry'
+const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 const SIZES = ['Just me', '2 to 10', '11 to 50', '51 to 200', '200+']
 
 const Check = () => (

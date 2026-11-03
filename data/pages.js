@@ -799,7 +799,7 @@ export const CASE_STUDIES = {
     lead: 'A representative scenario of how growing travel agencies move from spreadsheets and WhatsApp threads to one branded workspace for every branch, every quote and every payment.',
     productHref: '/travel-crm/',
     productCta: 'Explore Travel CRM',
-    img: '/travel-crm/images/dashboard.png',
+    img: '/travel-crm/images/dashboard.webp',
     heroFit: 'contain',
     // Challenge image — one agent at a laptop with floating analytics
     // widgets around them. Reads as "trying to juggle every branch from
