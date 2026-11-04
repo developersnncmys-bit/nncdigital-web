@@ -30,29 +30,83 @@ export const travelPages = {
   'travel-crm': {
     keyword: 'travel crm',
     angle: 'Flagship. The owner’s daily decisions, answered by the modules.',
-    metaTitle: 'Travel CRM for Tour Operators & DMCs | NNC Travel CRM',
+    metaTitle: 'Travel CRM Software for Tour Operators & Travel Agencies | NNC Digital',
     metaDescription:
-      'A travel CRM for tour operators and DMCs: trip pipeline, quotes, vouchers and payments in one workspace. Rs. 590 per user per month, minimum 10 users.',
-    pill: 'Travel CRM | for tour operators and DMCs',
-    h1: { lines: ['Your travel CRM,', 'every decision'], tail: '', underline: 'on one screen' },
-    lead: 'A travel CRM built around trips, not deals. Bookings, accounting and tasks sit beside the pipeline, with the quotes, vouchers, payments and numbers behind them, so the next move is on the screen rather than in someone’s head. Built and supported in India by Nakshatra Namaha Creations.',
-    secondaryCta: { label: 'See what’s inside', href: '#inside' },
+      'Simplify travel business management with NNC Travel CRM. Manage tour enquiries, travel quotations, itineraries, bookings, payments and accounting in one platform.',
+    pill: 'Travel CRM | Built for Tour Operators and DMCs',
+    h1: { lines: ['Travel CRM Software for', 'Tour Operators, Travel Agencies'], tail: '', underline: 'and DMCs' },
+    lead: 'Running a travel business means managing enquiries, preparing tour packages, coordinating bookings, and tracking payments. NNC Travel CRM brings these activities together in one workspace, helping tour operators, travel agencies, and destination management companies manage every trip with greater visibility. Create travel quotations, organize day-wise itineraries, manage bookings, monitor instalments, and keep your team aligned with a travel management CRM designed around the way your business works. Built and supported in India by Nakshatra Namaha Creations.',
+    secondaryCta: { label: 'Explore Travel CRM Features', href: '#features' },
     heroNotes: ['reuse the quote that won', 'who still owes you'],
     decisions: {
       kicker: 'DECISIONS, NOT DATA DUMPS',
-      titleLines: ['Every morning starts with', 'the same five questions'],
-      lead: 'Your team already has the answers somewhere, in a chat, a notebook or someone’s memory. NNC Travel CRM keeps each one a click away, on the screen they work in all day.',
+      titleLines: ['Start every day with a clear', 'view of your travel business'],
+      lead: 'Travel enquiries, quotations, payments, and upcoming trips can quickly become difficult to track across different tools. NNC Travel CRM software brings your daily travel operations into one dashboard, helping your team understand what needs attention first.',
       cap: 'WHERE EACH ONE IS ANSWERED',
       note: 'answered, not filed',
+      items: [
+        {
+          icon: 'Bell',
+          q: 'Which travel enquiry needs attention?',
+          where: 'TRIPS · PENDING FOLLOW-UPS',
+          a: 'See the follow-ups scheduled for today, yesterday, and the next 7 days. Each trip has an assigned sales person and follow-up date, helping your team stay on top of travel enquiries.',
+        },
+        {
+          icon: 'LayoutDashboard',
+          q: 'How is our travel sales pipeline performing?',
+          where: 'DASHBOARD · TRIP SALES STATS',
+          a: 'Monitor leads, quotations, revenue, and conversion across today, this week, or this month. Understand how your travel sales pipeline is progressing.',
+        },
+        {
+          icon: 'RefreshCw',
+          q: 'Can we reuse a previous tour package?',
+          where: 'TRIPS · NEW QUOTE',
+          a: 'Find quotations created for the same destination and reuse their day-wise itineraries, hotels, transfers, and pricing to prepare another travel proposal.',
+        },
+        {
+          icon: 'Wallet',
+          q: 'Which travel payments are still pending?',
+          where: 'ACCOUNTING · INCOMING PAYMENTS',
+          a: 'Review upcoming, overdue, unverified, and paid amounts. Each payment is connected to its booking and guest for easier travel payment tracking.',
+        },
+        {
+          icon: 'FileText',
+          q: 'What is the profitability of each trip?',
+          where: 'ACCOUNTING · PROFIT REPORT',
+          a: 'Compare the amount billed against the trip cost for every booking. Review travel business margins using the profit report available within the CRM.',
+        },
+      ],
     },
     inside: {
       kicker: 'WHAT’S INSIDE',
-      title: 'Everything in the travel CRM',
-      lead: 'This is the whole product, not a starter tier. Every line below is in the CRM your team logs into on day one.',
+      title: 'One travel CRM for your entire trip management process',
+      lead: 'Manage travel enquiries, bookings, accounting, and team tasks through one connected travel business management system. NNC Travel CRM includes the complete product from day one, without separate paid add-on modules.',
     },
-    features: { kicker: 'MODULE BY MODULE', title: 'The screens behind each answer' },
-    builtFor: { title: 'Made for teams that sell travel every day' },
-    cta: { lines: ['See it running on'], underline: 'your own trips' },
+    features: { kicker: 'MODULE BY MODULE', title: 'Explore the travel CRM features behind every trip' },
+    builtFor: { title: 'Travel management software for different travel businesses' },
+    cta: { lines: ['Discover how Travel CRM'], underline: 'fits your business' },
+    faq: [
+      {
+        q: 'What is a travel CRM and how does it help tour operators?',
+        a: 'A Travel CRM helps travel businesses organize enquiries, quotations, bookings, payments, and customer information. NNC Travel CRM brings these activities together through Trips, Bookings, Accounting, and Tasks, with an owner dashboard and branded workspace.',
+      },
+      {
+        q: 'Is NNC Travel CRM suitable for travel agencies and DMCs?',
+        a: 'Yes. The product is designed for tour operators, destination management companies, destination specialists, and growing travel agencies that manage enquiries, destination-based quotations, bookings, and trip operations.',
+      },
+      {
+        q: 'How much does travel CRM software cost?',
+        a: 'NNC Travel CRM costs Rs. 590 per user per month, with a minimum of 10 users. The starting plan is Rs. 5,900 before GST, or Rs. 6,962 per month including 18% GST for 10 users.',
+      },
+      {
+        q: 'Can I create travel quotations and day-wise itineraries?',
+        a: 'Yes. The CRM includes a quotation and itinerary builder. You can reuse previous quotations for the same destination or create custom day-wise itineraries with hotels, transfers, activities, and sightseeing.',
+      },
+      {
+        q: 'Can I manage travel payments and GST invoices?',
+        a: 'Yes. The accounting module supports incoming payment tracking, booking instalments, receipts, GST invoices, proforma invoices, and trip profit reports.',
+      },
+    ],
   },
 
   // -------------------------------------------------------------------------
