@@ -108,7 +108,7 @@ export default function PricingPage() {
         <div className={styles.ctaBand}>
           <h2>Start Your Free CRM Trial Today</h2>
           <p>
-            Explore NNC Digital's CRM Pricing Plans and discover a CRM solution suited to your team size and business needs. Start your 30-day free trial without a credit card. Choose quarterly, half-yearly or yearly billing when you're ready.
+            Explore NNC Digital&apos;s CRM Pricing Plans and discover a CRM solution suited to your team size and business needs. Start your 30-day free trial without a credit card. Choose quarterly, half-yearly or yearly billing when you&apos;re ready.
           </p>
           <a href="/#start" className={styles.ctaBtn} data-trial>
             Book a Demo
