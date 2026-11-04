@@ -48,7 +48,7 @@ const HREF = {
   // Company
   'About us': '/company/about',
   Careers: '/company/careers',
-  Blog: '/company/blog',
+  Blog: '/blog',
   Partners: '/company/partners',
   'Customer stories': '/company/customers',
   'Contact sales': '/company/contact',

@@ -6,15 +6,15 @@ export default function Showcase() {
   return (
     <section className={styles.section}>
       <div className="container">
-        <h2 className={styles.title}>See NNC CRM in Action</h2>
+        <h2 className={styles.title}>See NNC CRM Software in Action</h2>
         <p className={styles.lead}>
-          Discover how NNC CRM helps businesses capture leads, manage sales
-          pipelines, forecast growth and organise customer information through
-          one platform.
+          Explore how NNC Digital&apos;s CRM Software in India manages leads,
+          sales pipelines, forecasting and customer information.
         </p>
         <p className={styles.lead}>
-          Explore how this Customer Relationship Management Software simplifies
-          everyday business activities.
+          A centralized dashboard displays enquiries, deals, revenue and
+          follow-ups, making everyday tasks easier with Customer Relationship
+          Management Software.
         </p>
         <a className={styles.cta} href="#start" data-trial>
           Watch CRM Demo

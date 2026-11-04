@@ -11,9 +11,10 @@ import MarketingPage from '@/components/marketing/MarketingPage'
 // All placeholder numbers wrap in [brackets] per project convention; replace
 // before adding /car-studio-crm/ to lib/site.js INDEXABLE_PREFIXES.
 export const metadata = {
-  title: 'NNC Car Studio CRM | NNC Digital',
+  title: 'Car Studio CRM Software for Car Detailing Studios | NNC',
   description:
-    'The CRM for car studios, detailing centers and multi-branch car care chains — enquiries, quotes, appointments, job cards, billing and branch-wise petty cash in one workspace.',
+    "Manage enquiries, bookings, job cards, billing and multiple branches with NNC Digital's Car Studio CRM. Explore features, pricing and book a demo.",
+  alternates: { canonical: '/car-studio-crm/' },
   robots: { index: false, follow: false },
 }
 
@@ -26,11 +27,11 @@ const PAGE = {
 
   hero: {
     eyebrow: 'Car Studio CRM',
-    title: 'Run every bay, every branch, from one screen.',
-    lead: 'From the first enquiry to the final invoice — bookings, quotes, job cards, services, inventory and petty cash across every branch, in one workspace built for car studios.',
+    title: 'Car Studio CRM – Manage Every Bay and Branch from One Screen',
+    lead: "Manage your entire car studio with NNC Digital's Car Studio CRM. From customer enquiries to final invoices, streamline appointments, quotations, job cards, services, inventory and petty cash across all branches through one centralized workspace.",
     ctas: [
       { label: 'Book a Demo', href: '#start', trial: true },
-      { label: "See what's inside", href: '#inside', variant: 'ghost' },
+      { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
     ],
     media: {
       type: 'video',
@@ -45,45 +46,43 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'plans',
-      title: 'Find the plan that fits your studio.',
-      lead: 'Two straightforward tiers. Pay monthly or save with annual billing. No contracts, cancel anytime.',
-      note: 'Prices shown are indicative and exclusive of 18% GST. Final pricing is confirmed before launch.',
+      title: 'Find the Right Car Studio CRM Plan for Your Business',
+      lead: 'Choose a Car Studio CRM plan designed for single-branch detailing studios or multi-branch car care businesses. Flexible monthly and annual billing options are available, with no long-term contracts.',
+      note: 'Prices are indicative, exclude 18% GST and are based on annual billing. Monthly billing is available at a premium. Final pricing is confirmed before launch.',
       plans: [
         {
           name: 'Studio',
-          desc: 'For single-branch car spas and detailing studios.',
+          desc: 'For single-branch car spas and detailing studios',
           price: 'Rs. 3,999',
           per: '/ month',
-          priceNote: '[For one branch, up to 8 users, billed annually]',
+          priceNote: 'One branch · Up to 8 users · Billed annually',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
-          featuresHeader: "What's included",
+          featuresHeader: "What's Included",
           features: [
-            'Enquiries, quotes and followups in one inbox',
+            'Enquiry, quotation and follow-up management',
             'Appointment calendar with slot management',
-            'Job cards with technician assignment and status',
+            'Job cards with technician assignment',
             'Services, products and basic inventory',
             'GST invoicing and daily petty cash',
-            'One branch, up to [8] users',
             'Email and chat support',
           ],
         },
         {
           name: 'Chain',
-          desc: 'For multi-branch car studio groups.',
-          badge: 'Most popular',
+          desc: 'For multi-branch car studio groups',
+          badge: 'Most Popular',
           highlight: true,
           price: 'Rs. 8,999',
           per: '/ month',
-          priceNote: '[For up to 5 branches, 25 users, billed annually]',
+          priceNote: 'Up to 5 branches · 25 users · Billed annually',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
           featuresHeader: 'Everything in Studio, plus',
           features: [
-            'Multi-branch dashboard with roll-up KPIs',
-            'Branch-wise petty cash with wallet transfers',
-            'Attendance, leaves and shift management',
+            'Multi-branch dashboard with combined KPIs',
+            'Branch-wise petty cash and wallet transfers',
+            'Staff attendance, leaves and shift management',
             'Customer and vehicle history across branches',
-            'Custom quote templates and approval flows',
-            'Up to [5] branches and [25] users',
+            'Custom quotation templates and approval workflows',
             'Priority support and onboarding',
           ],
         },
@@ -98,54 +97,54 @@ const PAGE = {
     {
       type: 'featureTabs',
       id: 'inside',
-      title: 'A closer look inside.',
-      lead: 'The modules a working car studio actually runs on — enquiries, bookings, job cards and billing in the same workspace.',
+      title: 'A Closer Look Inside Car Studio CRM',
+      lead: "NNC Digital's Car Studio CRM brings essential car studio operations together, including enquiries, quotations, appointments, job cards and billing.",
       cta: { label: 'Book a Demo', href: '#start', trial: true },
       tabs: [
         {
           key: 'enquiries',
-          label: 'Enquiries & Followups',
-          title: 'Every walk-in and WhatsApp lead in one list.',
-          body: 'Capture leads with the car make, model and service they are asking about. Mark them Hot / Warm / Cold, set the next followup and never let an enquiry go stale.',
+          label: 'Enquiries & Follow-ups',
+          title: 'Manage Every Walk-In and WhatsApp Enquiry in One Place',
+          body: 'Capture and organize customer enquiries using Car Detailing CRM Software that records vehicle details, service interests, budgets and lead status.',
           bullets: [
-            'Auto-capture from WhatsApp, calls, forms and walk-ins',
-            'Lead tagged with vehicle, service interest and budget',
-            'Followup reminders due today, tomorrow, this week',
+            'Capture leads from WhatsApp, calls, forms and walk-ins',
+            'Categorize leads as Hot, Warm or Cold',
+            'Schedule follow-up reminders for today, tomorrow or later in the week',
           ],
           media: { src: '/img/product/cs-enquiries.mp4', alt: 'Enquiries list with hot and warm leads tagged by vehicle' },
         },
         {
           key: 'quotes',
           label: 'Quotes',
-          title: 'Build a branded quote in minutes.',
-          body: 'Pick services and products from your catalog, apply package discounts, and send a polished GST-ready quote on WhatsApp or email. Track opens, approvals and expiries.',
+          title: 'Create Professional Quotes with Car Studio CRM Software',
+          body: 'Generate branded quotations in minutes using our Car Studio CRM Software. Select services and products, apply package discounts, and share GST-ready quotes through WhatsApp or email. Track customer approvals and quotation status effortlessly.',
           bullets: [
-            'Service and product catalog with branch pricing',
-            'Package bundling and discount rules',
-            'Quote followups with status (sent / viewed / approved)',
+            'Service and product catalog with branch-wise pricing',
+            'Package bundling and discount management',
+            'Quotation tracking: Sent, Viewed and Approved',
           ],
           media: { src: '/img/product/cs-quotes.mp4', alt: 'A quote being prepared with services and package pricing' },
         },
         {
           key: 'appointments',
           label: 'Appointments',
-          title: 'Slot management without the back-and-forth.',
-          body: 'See the day across every bay and technician. Book, reschedule or reassign a slot in two clicks — customers get a WhatsApp confirmation and a reminder the morning of.',
+          title: 'Simplify Bookings with Car Studio Management Software',
+          body: 'Manage customer appointments, service bays and technician schedules with Car Studio CRM Software. View daily and weekly bookings, reschedule appointments, and send automated WhatsApp confirmations and reminders.',
           bullets: [
-            'Day, week and bay-view calendars',
-            'Auto WhatsApp confirmations and reminders',
-            'Reschedule or reassign without losing history',
+            'Daily, weekly and bay-wise booking calendars',
+            'Automated WhatsApp booking confirmations and reminders',
+            'Easy rescheduling and technician reassignment with booking history',
           ],
           media: { src: '/img/product/cs-appointments.mp4', alt: 'Appointment calendar showing today\'s bookings across bays' },
         },
         {
           key: 'jobcards',
           label: 'Job Cards',
-          title: 'From opened to delivered, every job tracked.',
-          body: 'Every booking becomes a job card with the vehicle, services, assigned technician and estimated delivery. Status updates roll up to the owner dashboard in real time.',
+          title: 'Track Every Service with Digital Job Card Management',
+          body: 'Manage vehicle servicing from start to delivery with Car Studio CRM Software. Create digital job cards with vehicle details, selected services, assigned technicians and estimated delivery times. Monitor job progress through real-time status updates.',
           bullets: [
-            'Technician assignment and workload view',
-            'Status flow: Opened → In Progress → Work Completed → Delivered',
+            'Technician assignment and workload tracking',
+            'Job status: Opened → In Progress → Work Completed → Delivered',
             'Overdue alerts and estimated delivery tracking',
           ],
           media: { src: '/img/product/cs-jobcards.mp4', alt: 'A running job card with technician assigned and status updating' },
@@ -153,12 +152,12 @@ const PAGE = {
         {
           key: 'billing',
           label: 'Billing & Cash',
-          title: 'GST invoices, petty cash and payments in one view.',
-          body: 'Raise GST or non-GST invoices from a job card. Record payments by mode, track pending collections, and manage branch-wise petty cash with user wallets and transfers.',
+          title: 'Simplify GST Billing with Car Studio CRM Software',
+          body: 'Manage invoices, payments and daily expenses using our Car Studio CRM Software. Generate GST and non-GST invoices directly from job cards, track pending payments, and monitor branch-wise petty cash and wallet transfers from one dashboard.',
           bullets: [
-            'GST and non-GST invoicing from the job card',
-            'Pending invoices and pending payments at a glance',
-            'Branch-wise petty cash with user wallet transfers',
+            'GST and non-GST invoice generation',
+            'Pending invoice and payment tracking',
+            'Branch-wise petty cash and user wallet management',
           ],
           media: { src: '/img/product/cs-billing.mp4', alt: 'Invoice and petty cash view with branch-wise cash flow' },
         },
@@ -171,27 +170,27 @@ const PAGE = {
     {
       type: 'featureGrid',
       flat: true,
-      title: 'Built for the way a car studio actually runs.',
-      lead: 'Multi-bay, multi-branch and messy on the floor — the CRM handles it without turning your day into a spreadsheet.',
+      title: 'Car Studio Management Software Built for Daily Operations',
+      lead: 'Simplify daily tasks with a Car Studio CRM designed for busy service bays, customer communication and business reporting.',
       items: [
         {
           icon: 'rocket',
-          title: 'One screen for every branch',
-          body: 'Switch branches from the top bar or roll up every studio into one dashboard. Revenue, running jobs and petty cash — side by side, by location.',
+          title: 'One Dashboard for Every Branch',
+          body: 'Switch between branches or view all studio operations in one dashboard. Monitor revenue, running jobs and petty cash across locations using centralized Multi-Branch Car Studio CRM capabilities.',
           image: '/Car-studio/Card1-sm.webp',
           imageAlt: 'Multi-branch car studio dashboard showing revenue, running jobs and petty cash across every location',
         },
         {
           icon: 'whatsapp',
-          title: 'Customers kept close on WhatsApp',
-          body: 'Quotes, booking confirmations, pickup messages and festive offers all go out on the channel your customers actually open.',
+          title: 'Keep Customers Connected Through WhatsApp',
+          body: 'Share quotations, appointment confirmations, vehicle pickup updates and festive offers through WhatsApp to maintain customer communication.',
           image: '/Car-studio/card2-sm.webp',
           imageAlt: 'WhatsApp conversation with a car studio customer showing booking confirmation and pickup message',
         },
         {
           icon: 'reports',
-          title: 'Know every number that matters',
-          body: 'Revenue by branch, by service and by technician. Pending payments, cash in and cash out — ready for your morning review.',
+          title: 'Track Every Number That Matters',
+          body: 'Monitor revenue by branch, service and technician. Review pending payments, cash inflow and expenses through the reporting dashboard.',
           image: '/Car-studio/card3-sm.webp',
           imageAlt: 'Car studio reports dashboard with revenue by branch, service and technician, plus pending payments and cash flow',
         },
@@ -204,12 +203,12 @@ const PAGE = {
     {
       type: 'split',
       kicker: 'MULTIPLE BRANCHES?',
-      title: 'One login. Every branch. Clean roll-up.',
-      body: 'Each branch runs its own enquiries, appointments and job cards — and the owner dashboard rolls them all up into one view. Petty cash, attendance and inventory stay branch-specific; revenue and KPIs come together.',
+      title: 'Manage Multiple Car Studio Branches with One Login',
+      body: "NNC Digital's Car Studio CRM helps multi-branch car care businesses manage individual studio operations while maintaining centralized business visibility. Each branch can handle its own enquiries, appointments, job cards and daily activities, while owners monitor combined performance.",
       bullets: [
-        'Branch-level users, services and pricing',
-        'Owner dashboard rolls up revenue and job cards',
-        'Branch-wise petty cash with transfers and audit trail',
+        'Manage branch-specific users, services and pricing',
+        'View consolidated revenue and job card performance',
+        'Track branch-wise petty cash, transfers and audit history',
       ],
       media: { type: 'image', src: '/showcase.jpg', alt: 'Multi-branch dashboard rolling up studios into one view' },
       flip: true,
@@ -220,25 +219,25 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'cards',
-      title: 'Three ways to get started.',
-      lead: 'See it in action on your own data, talk to a human, or watch a quick walkthrough — pick whichever fits.',
+      title: 'Three Simple Ways to Get Started with Car Studio CRM',
+      lead: "Explore NNC Digital's Car Studio CRM and discover how it supports your car detailing and service operations.",
       items: [
         {
           icon: 'rocket',
           title: 'Book a Demo',
-          body: 'Thirty-minute walkthrough on your own services and workflow. No credit card, no commitment.',
+          body: 'Schedule a 30-minute walkthrough using your own services and workflow. No credit card or commitment required.',
           href: '#start',
         },
         {
           icon: 'phone',
-          title: 'Talk to an expert',
-          body: 'Not sure where to start? Call us and we will help you figure out the right fit for your studio or chain.',
+          title: 'Talk to an Expert',
+          body: 'Discuss your studio requirements with our team and explore the suitable CRM plan for your business.',
           href: '/company/contact',
         },
         {
           icon: 'help',
-          title: 'Watch a demo',
-          body: 'See the main screens — enquiries, quotes, appointments, job cards and billing — before you book a call.',
+          title: 'Watch a Demo',
+          body: 'Explore the main CRM modules, including enquiries, quotations, appointments, job cards and billing, before booking a call.',
           href: '#demo',
         },
       ],
@@ -249,32 +248,28 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'faq',
-      title: 'Car Studio CRM — common questions.',
-      lead: 'Everything you need to know before booking a demo.',
+      title: 'Car Studio CRM – Frequently Asked Questions',
+      lead: "Everything you need to know about NNC Digital's Car Studio CRM before booking a demo.",
       items: [
         {
           q: 'Who is NNC Car Studio CRM built for?',
-          a: 'Car spas, detailing studios, coating centers and multi-branch car care chains. If you take appointments, assign jobs to technicians, raise invoices and want to see what each branch is doing — this is for you.',
+          a: "NNC Digital's Car Studio CRM is designed for car spas, car detailing studios, coating centers and multi-branch car care chains. It helps businesses manage customer appointments, technician assignments, job cards, invoices and branch activities.",
         },
         {
-          q: 'What modules does it include out of the box?',
-          a: 'Enquiries, followups, quotes, appointments, job cards, services, products and inventory, GST and non-GST invoicing, branch-wise petty cash, customer and vehicle history, attendance and leaves. The owner dashboard rolls up revenue, pending payments and running jobs across every branch.',
+          q: 'What features are included in Car Studio CRM?',
+          a: 'The software includes enquiry management, follow-ups, quotations, appointments, job cards, service and product management, inventory, invoicing and petty cash tracking. Additional multi-branch and staff management features are available in the Chain plan.',
         },
         {
-          q: 'Does it handle multiple branches?',
-          a: 'Yes. Each branch runs its own enquiries, appointments and job cards, with branch-specific users, pricing and petty cash. The owner dashboard rolls up revenue and KPIs across every branch so you see the whole chain at a glance.',
+          q: 'Can Car Studio CRM manage multiple branches?',
+          a: 'Yes. The Chain plan supports up to five branches and 25 users. Each branch can manage enquiries, appointments, job cards and pricing independently, while owners access consolidated revenue and performance reports.',
         },
         {
-          q: 'How much does it cost?',
-          a: 'Studio is [Rs. 3,999 per month] for a single branch with up to 8 users. Chain is [Rs. 8,999 per month] for up to 5 branches and 25 users. Both are billed annually and exclusive of 18% GST; monthly billing is available at a small premium. Final pricing is confirmed before launch.',
+          q: 'How much does NNC Car Studio CRM cost?',
+          a: 'The Studio plan starts at ₹3,999 per month for one branch and up to eight users. The Chain plan starts at ₹8,999 per month for up to five branches and 25 users. These indicative rates are billed annually and exclude 18% GST. Monthly billing is also available at a premium.',
         },
         {
-          q: 'How quickly can we go live?',
-          a: 'Most studios are live in a week. We import your service catalog, set up branches, users and bays, and run a short training session for your team. From there, your front desk can book, quote and raise invoices on day one.',
-        },
-        {
-          q: 'Can we migrate from Google Sheets or another CRM?',
-          a: 'Yes. We import your existing customers, vehicles, services and open enquiries from a spreadsheet or your current CRM. Historical invoices and job cards can be imported too, in a one-time migration before launch.',
+          q: 'Can I migrate existing customer and vehicle data to Car Studio CRM?',
+          a: 'Yes. NNC Digital supports importing existing customer records, vehicle details, services and open enquiries from spreadsheets or another CRM. Historical invoices and job cards can also be imported during a one-time migration before launch.',
         },
       ],
     },
@@ -282,10 +277,10 @@ const PAGE = {
 
   // Final CTA band rendered by MarketingPage's CtaBand.
   cta: {
-    title: 'Ready to see Car Studio CRM?',
-    sub: 'Book a 30-minute demo on your own services and branches. We will show you exactly how it fits your studio.',
+    title: 'Ready to Simplify Your Operations with Car Studio CRM?',
+    sub: "Manage enquiries, appointments, job cards, billing and multiple branches with NNC Digital's Car Studio CRM. Book a 30-minute demo using your own services and branch requirements to explore how the software fits your business.",
     primary: { label: 'Book a Demo', href: '#start' },
-    secondary: { label: 'Talk to sales', href: '/company/contact' },
+    secondary: { label: 'See Pricing', href: '/pricing' },
   },
 }
 

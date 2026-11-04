@@ -282,7 +282,7 @@ function CtaBand({ cta }) {
           {cta.sub && <p className={styles.ctaSub}>{cta.sub}</p>}
           <div className={styles.ctaBtns}>
             <a href={cta.primary?.href || '#start'} data-trial className={styles.ctaPrimary}>
-              {cta.primary?.label || 'Start free trial'}<Arrow />
+              {cta.primary?.label || 'Book a Demo'}<Arrow />
             </a>
             {cta.secondary && (
               <a href={cta.secondary.href} className={styles.ctaGhost}>

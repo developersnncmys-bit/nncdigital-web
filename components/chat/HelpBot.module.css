@@ -116,6 +116,41 @@
 .wa:hover { transform: translateY(-2px) scale(1.04); background: #1eb855; }
 .wa svg { width: 30px; height: 30px; }
 
+/* "Call us" floating button — same visual pattern as .wa (fixed round
+   56px bubble + hover tooltip) but navy fill to differentiate from the
+   green WhatsApp CTA. Stacks directly above `.chatFab` from
+   TravelChatBot (the actual green WhatsApp bubble you see site-wide —
+   HelpBot's own `.wa` is disabled via `showWhatsApp={false}` in
+   SiteChrome). `.chatFab` sits at right:22px, bottom:22px, h:58px, so
+   22 + 58 + 12 gap = 92px for this one. */
+.call {
+  position: fixed;
+  right: 22px;
+  bottom: 92px;
+  z-index: 70;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--navy, #0b5cff);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 12px 30px -10px rgba(11, 92, 255, 0.55),
+    0 4px 12px rgba(10, 11, 15, 0.18);
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+}
+.call:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: var(--navy-deep, #0a44c8);
+}
+.call svg { width: 26px; height: 26px; }
+/* Reuses `.waTip` + `.waHidden` from .wa — same hover-slide tooltip and
+   same hide-when-chat-opens behavior. */
+.call .waTip { color: #fff; background: var(--ink, #0b1a33); }
+.call:hover .waTip,
+.call:focus-visible .waTip { opacity: 1; transform: translateX(0); }
+
 /* The chat panel occupies this spot once it opens, so step out of its way. */
 .waHidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(0.9); }
 
@@ -675,6 +710,9 @@
   .fab { right: 16px; bottom: 16px; }
   .wa { right: 18px; bottom: 84px; width: 52px; height: 52px; }
   .wa svg { width: 28px; height: 28px; }
+  /* Mobile: stack above the TravelChatBot `.chatFab` (same ~22/22 bottom-right). */
+  .call { right: 18px; bottom: 92px; width: 52px; height: 52px; }
+  .call svg { width: 24px; height: 24px; }
   .waTip { display: none; }
   .panel { right: 12px; left: 12px; bottom: 84px; width: auto; }
 }

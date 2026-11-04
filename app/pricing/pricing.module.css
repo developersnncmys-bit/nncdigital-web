@@ -94,15 +94,26 @@
   padding: clamp(26px, 3.4vw, 38px) 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  /* Align every cell to the top so a wrapping value (e.g. "35+
+     Professionals") doesn't throw the row out of visual alignment. */
+  align-items: start;
 }
-.stat { text-align: center; }
+.stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .statValue {
   display: block;
-  font-size: clamp(28px, 3.2vw, 44px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  /* Dialed down from clamp(28px, 3.2vw, 44px) + weight 800 — the previous
+     size pushed "35+ Professionals" onto two lines. Smaller + lighter keeps
+     every stat on a single line and reads more refined. */
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--navy);
-  line-height: 1;
+  line-height: 1.15;
 }
 .statLabel { display: block; margin-top: 8px; font-size: 14px; color: var(--grey); }
 

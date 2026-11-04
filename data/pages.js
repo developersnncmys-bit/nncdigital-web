@@ -8,13 +8,13 @@ const img = (src, alt) => ({ type: 'image', src, alt })
 // and page body aligned instead of competing with two primary actions.
 const startCta = {
   title: 'Run your business on what is next',
-  sub: 'Book a 30-minute demo on your own data, or start a free trial.',
+  sub: 'Book a 30-minute demo on your own data, or explore pricing.',
   primary: { label: 'Book a Demo', href: '#start' },
-  secondary: { label: 'Start free trial', href: '#start' },
+  secondary: { label: 'See Pricing', href: '/pricing' },
 }
 const heroCtas = [
   { label: 'Book a Demo', href: '#start', trial: true },
-  { label: 'See pricing', href: '/pricing', variant: 'ghost' },
+  { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
 ]
 
 /* ============================ INDUSTRIES ============================ */
@@ -31,7 +31,10 @@ const ind = (slug, o) => ({
     eyebrow: 'Industries',
     title: o.title,
     lead: o.lead,
-    ctas: heroCtas,
+    // Shared `heroCtas` ("Book a Demo" + "See pricing") is the default;
+    // pages can override via `heroCtas` on the config (e.g. retail uses
+    // "Start Free Trial" per the SEO brief).
+    ctas: o.heroCtas || heroCtas,
     media: o.heroComponent
       ? { type: 'component', name: o.heroComponent, framed: true }
       : {
@@ -41,133 +44,262 @@ const ind = (slug, o) => ({
         },
   },
   blocks: [
-    { type: 'split', kicker: 'The problem', title: o.splitTitle, body: o.splitBody, bullets: o.bullets, media: img(o.img2 || o.img, o.name), ...(o.squareSplitMedia ? { squareMedia: true } : {}) },
-    { type: 'featureGrid', flat: true, title: `Built for ${o.name.toLowerCase()}`, items: o.features },
+    { type: 'split', kicker: o.splitKicker || 'The problem', title: o.splitTitle, body: o.splitBody, bullets: o.bullets, media: img(o.img2 || o.img, o.name), ...(o.squareSplitMedia ? { squareMedia: true } : {}) },
+    { type: 'featureGrid', flat: true, title: o.featuresTitle || `Built for ${o.name.toLowerCase()}`, lead: o.featuresLead, items: o.features },
     { type: 'stats', items: o.stats || [
       { value: '30 days', label: 'free trial on every plan' },
       { value: '1 day', label: 'typical setup time' },
       { value: '24x7', label: 'WhatsApp and email support' },
     ] },
+    // Optional FAQ block appended when the per-industry entry supplies
+    // `faq: { title?, lead?, items[] }`. Same renderer as every other FAQ
+    // block on the site — no new component.
+    ...(o.faq ? [{ type: 'faq', title: o.faq.title || 'Frequently Asked Questions', lead: o.faq.lead, items: o.faq.items }] : []),
   ],
-  cta: startCta,
+  cta: o.cta || startCta,
 })
 
 export const INDUSTRIES = {
   'sales-teams': ind('sales-teams', {
-    name: 'Sales teams',
-    metaTitle: 'CRM for Sales Teams | Pipeline & Activity | NNC CRM',
-    metaDescription: 'Give your sales team a pipeline they will use, daily call lists and live targets. Close more deals and chase fewer dead leads.',
-    title: 'A CRM your sales team will open every morning.',
-    lead: 'Sales tools fail when reps see them as admin. NNC CRM flips that. It tells each rep who to call today, keeps the pipeline updated with a drag, and shows the manager the truth without a single status meeting.',
-    // Hero: sales rep with headset at laptop running NNC CRM, open-plan
-    // sales floor behind. Reads as "sales team opens NNC every morning".
-    // Problem: sales lead with tablet, Lead Capture / Team Pipeline /
-    // Follow-up Reminders panels — one-to-one onto the three bullets.
+    name: 'Sales Teams',
+    metaTitle: 'CRM for Sales Teams to Manage Leads & Pipeline | NNC Digital',
+    metaDescription: 'Use NNC Digital CRM for Sales to capture leads, manage pipelines, track follow-ups, forecast revenue and improve sales team performance.',
+    title: 'CRM for Sales Teams to Manage Leads, Follow-Ups and Deals',
+    lead: 'Help your sales team stay organised with NNC Digital CRM for Sales. Capture leads, manage deal pipelines, schedule follow-ups and track sales opportunities from one platform. Give every sales representative a clearer view of daily priorities while helping managers monitor team performance.',
     img: '/img/industries/sales-hero.webp',
     img2: '/img/industries/sales-problem.webp',
-    // Both source images are 1:1 renders → square cards for pixel-perfect
-    // fit under object-fit:cover. Scoped to this page only.
     heroSquare: true,
     squareSplitMedia: true,
-    splitTitle: 'Stop losing deals in spreadsheets and chat threads',
-    splitBody: 'When leads live in notebooks, inboxes and WhatsApp, deals go cold. NNC keeps every opportunity in one pipeline your whole team can see.',
-    bullets: ['Every lead captured from web, WhatsApp, calls and walk ins', 'One pipeline the whole team can see', 'Reminders so no follow up ever slips'],
-    features: [
-      { icon: 'pipeline', title: 'Visual pipeline', body: 'Move deals through stages and always know what to chase next.' },
-      { icon: 'forecast', title: 'Sales forecasts', body: 'See expected revenue for the next 3, 6 and 12 months.' },
-      { icon: 'whatsapp', title: 'WhatsApp selling', body: 'Reach buyers where they reply, right from the deal.' },
+    splitKicker: 'The Challenge of Managing Sales Activities',
+    splitTitle: 'Stop Losing Deals in Spreadsheets and Chat Threads',
+    splitBody: 'Scattered leads and missed follow-ups can slow down sales. NNC Digital CRM for Sales brings customer enquiries, deal updates and follow-up activities into one organised pipeline.',
+    bullets: [
+      'Capture leads from websites, WhatsApp, calls and walk-ins',
+      'Manage opportunities with a Sales Pipeline CRM',
+      'Schedule reminders and track pending follow-ups',
+      'Monitor sales activities across your team',
+      'Keep customer and deal information organised',
     ],
+    featuresTitle: 'Built for Sales Teams',
+    featuresLead: 'NNC Digital Sales Management CRM helps teams manage leads, opportunities, follow-ups and sales performance efficiently.',
+    features: [
+      { icon: 'pipeline', title: 'Visual Sales Pipeline', body: 'Track deals across stages with Sales Pipeline CRM to identify opportunities and pending actions.' },
+      { icon: 'forecast', title: 'Sales Forecasts', body: 'Use Sales Forecasting CRM to estimate revenue for the next 3, 6 and 12 months and plan sales targets.' },
+      { icon: 'whatsapp', title: 'WhatsApp Selling', body: 'Manage buyer conversations and follow-ups with WhatsApp Sales CRM, keeping communication linked to each lead or deal.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is CRM for Sales?', a: 'CRM for Sales is a system that helps sales teams capture leads, manage opportunities, track follow-ups and monitor sales activities from one platform.' },
+        { q: 'Can NNC Digital help sales teams manage leads and deals?', a: 'Yes. NNC Digital helps your team organise customer enquiries, track deal stages and manage sales opportunities through a centralised pipeline.' },
+        { q: 'Does NNC Digital provide sales follow-up reminders?', a: 'Yes. Your team can manage follow-up activities and reminders to stay on top of customer enquiries and pending deals.' },
+        { q: 'Can I track sales performance and forecast revenue?', a: 'Yes. NNC Digital provides sales visibility and forecasting options to help managers review expected revenue and plan sales activities.' },
+        { q: 'Does NNC Digital support WhatsApp communication for sales teams?', a: 'Yes. Your team can communicate with buyers through WhatsApp and manage customer conversations as part of its sales follow-up process.' },
+      ],
+    },
+    cta: {
+      title: 'Give Your Sales Team a Better Way to Work',
+      sub: 'Start your free 30-day trial with no credit card required. Capture leads, manage pipelines, track follow-ups and monitor sales opportunities with NNC Digital CRM for Sales.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   'service-businesses': ind('service-businesses', {
-    name: 'Service businesses',
-    metaTitle: 'CRM for Service Businesses | Jobs & Repeat Revenue | NNC',
-    metaDescription: 'Track every job from enquiry to invoice and protect your repeat revenue with automatic follow ups. Built for service businesses.',
-    title: 'Every job tracked. Every repeat protected.',
-    lead: 'For a service business, the money is in the second job, the renewal, the annual contract. NNC CRM tracks each job from first enquiry to paid invoice, then reminds you to come back before the customer forgets you.',
-    // Hero source is 1:1 → square card for pixel-perfect fit. `heroSquareLg`
-    // bumps the square to a wider max-width scoped to this page only, so
-    // other heroSquare pages (healthcare, small-business case) stay at
-    // the standard 480px cap.
+    name: 'Service Businesses',
+    metaTitle: 'CRM for Service Business to Track Jobs & Payments | NNC Digital',
+    metaDescription: 'Use NNC Digital CRM for Service Businesses to manage clients, jobs, invoices, payments, renewals, and repeat business from one platform.',
+    title: 'CRM for Service Business to Manage Clients, Jobs and Payments',
+    lead: 'Manage client enquiries, service jobs, invoices and payment follow-ups with NNC Digital CRM for Service Business. Keep your daily operations organised, track repeat work and manage customer relationships from one platform.',
     img: '/case-studies-images/service-business.jpg',
     img2: '/case-studies-images/service-challenge.webp',
     heroSquare: true,
     heroSquareLg: true,
-    splitTitle: 'One place for clients, work and money',
-    splitBody: 'Service teams juggle enquiries, delivery and billing across tools. NNC ties them together so nothing falls between the cracks.',
-    bullets: ['Track every client and project in one view', 'Turn approved work into invoices in a click', 'See what is owed and what is overdue'],
-    features: [
-      { icon: 'enquiries', title: 'Client enquiries', body: 'Capture and qualify new work the moment it comes in.' },
-      { icon: 'invoice', title: 'Invoicing', body: 'Raise GST ready invoices and track payments in one place.' },
-      { icon: 'reports', title: 'Profit reports', body: 'Know which clients and services actually make money.' },
+    splitKicker: 'The Challenge of Managing Service Operations',
+    splitTitle: 'One Place for Clients, Work and Payments',
+    splitBody: 'Managing enquiries, service delivery, billing and collections across different tools can become difficult. NNC Digital CRM for Service Business brings these activities together to help your team stay organised.',
+    bullets: [
+      'Track clients and projects from one place with Client Management CRM',
+      'Monitor service jobs and work updates',
+      'Create invoices and manage payment records',
+      'Track pending and overdue payments',
+      'Manage renewals and repeat business opportunities',
     ],
+    featuresTitle: 'Built for Service Businesses',
+    featuresLead: 'NNC Digital Service Business CRM helps manage client relationships, job tracking, invoicing and payment follow-ups efficiently.',
+    features: [
+      { icon: 'enquiries', title: 'Client Enquiries', body: 'Capture enquiries, organise client details and manage follow-ups to improve lead tracking.' },
+      { icon: 'invoice', title: 'Invoicing and Payments', body: 'Generate GST-ready invoices and track payments using CRM with Invoicing features.' },
+      { icon: 'reports', title: 'Profit Reports', body: 'Monitor revenue, client activity and service performance with Profit Reports CRM for better business insights.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is CRM for Service Business?', a: 'CRM for Service Business is a system that helps service companies manage customer enquiries, client details, jobs, invoices, payments and renewals from one platform.' },
+        { q: 'Can NNC Digital help track service jobs and projects?', a: 'Yes. NNC Digital helps your team organise client details, projects, job updates, approved work and related payment information.' },
+        { q: 'Does NNC Digital support invoicing and payment tracking?', a: 'Yes. Your team can create GST-ready invoices, maintain billing records and track paid, pending and overdue payments.' },
+        { q: 'Can I manage customer renewals and repeat business?', a: 'NNC Digital helps organise customer records and follow-up activities, making it easier for your team to track renewal opportunities and maintain client relationships.' },
+        { q: 'How can a Service Business CRM improve daily operations?', a: 'A Service Business CRM brings client information, enquiries, job updates, invoices and payment records together, helping your team reduce scattered records and manage daily activities more efficiently.' },
+      ],
+    },
+    cta: {
+      title: 'Take Your Service Business Forward',
+      sub: 'Start your free 30-day trial with no credit card required. Manage clients, track jobs, create invoices, follow payments and organise renewals with NNC Digital CRM for Service Business.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   manufacturing: ind('manufacturing', {
     name: 'Manufacturing',
-    metaTitle: 'Manufacturing CRM | Enquiry to Dispatch | NNC CRM',
-    metaDescription: 'Manage enquiries, quotations, orders, dispatch and collections across your whole operation, end to end. A CRM built for manufacturers.',
-    title: 'Connect orders, dispatch and payments.',
-    lead: 'A manufacturing sale runs through too many hands: enquiry, quotation, negotiation, order, production, dispatch, payment. When that lives across calls, email and paper, things break. NNC CRM puts the whole chain on one screen, so nothing falls between departments.',
-    // Local manufacturing photos from the case-studies-images set.
-    // `*-challenge.webp` is tuned for the "The Problem" split block.
-    // Hero image is a 1:1 render → use the larger square hero variant so
-    // object-fit:cover fills perfectly with no crop. Scoped to this page.
+    metaTitle: 'Best CRM for Manufacturing Business | NNC Digital',
+    metaDescription: 'Use NNC Digital to manage manufacturing enquiries, quotations, orders, dispatch, GST billing, payments and collections.',
+    title: 'Best CRM for Manufacturing Business to Manage Orders, Dispatch and Payments',
+    lead: 'From enquiries and quotations to production, dispatch and collections, manufacturing involves multiple stages. NNC Digital offers the best CRM for manufacturing business to manage orders, customer details, billing and payments from one platform. Simplify order tracking, improve team coordination and keep your manufacturing sales process organised.',
     img: '/case-studies-images/manufacturing-hero.jpg',
     img2: '/case-studies-images/manufacturing-challenge.webp',
     heroSquareLg: true,
-    splitTitle: 'From enquiry to dispatch, without the chaos',
-    splitBody: 'Quotes in one tool, orders in another, payments in a third. NNC brings the full order to cash cycle into a single system.',
-    bullets: ['Quotations and orders linked to every buyer', 'Dispatch and inventory in sync', 'Collections and outstanding tracked automatically'],
-    features: [
-      { icon: 'pipeline', title: 'Order pipeline', body: 'Track every order from quote to dispatch to payment.' },
-      { icon: 'invoice', title: 'Billing and GST', body: 'Generate compliant invoices and e way documents fast.' },
-      { icon: 'reports', title: 'Production view', body: 'See pending orders, dispatch load and dues at a glance.' },
+    splitKicker: 'The Challenge of Managing Manufacturing Operations',
+    splitTitle: 'From Enquiry to Dispatch, Without the Chaos',
+    splitBody: 'Managing quotations, orders and payments across different tools can slow down your team. Manufacturing CRM Software helps bring these activities together in one connected system.',
+    bullets: [
+      'Manage quotations and orders linked to customer records',
+      'Track dispatch details and order updates',
+      'Monitor outstanding payments and collections',
+      'Improve coordination between sales, production, dispatch and accounts',
+      'Use an Order Management CRM to keep every order organised',
     ],
+    featuresTitle: 'Built for Manufacturing Businesses',
+    featuresLead: 'NNC Digital Manufacturing CRM helps businesses manage enquiries, orders, billing and payment follow-ups efficiently.',
+    features: [
+      { icon: 'pipeline', title: 'Order Pipeline', body: 'Track orders from quotation to dispatch and payment with Order Management CRM for better order visibility.' },
+      { icon: 'invoice', title: 'Billing and GST', body: 'Manage invoices, billing records and payments using CRM with Billing and GST features.' },
+      { icon: 'reports', title: 'Production and Dispatch View', body: 'Track pending orders, dispatch activities and payment dues with Production Management CRM and Dispatch Management CRM features.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is the best CRM for manufacturing business?', a: 'The best CRM for manufacturing business helps manufacturers manage customer enquiries, quotations, orders, billing, dispatch, payments and collections from one platform.' },
+        { q: 'Can NNC Digital track orders from quotation to payment?', a: 'NNC Digital helps your team organise customer quotations, track order progress, manage dispatch details and monitor payment status.' },
+        { q: 'Does NNC Digital support GST billing for manufacturing businesses?', a: 'NNC Digital supports billing and GST-related document management, helping businesses organise invoices and payment records.' },
+        { q: 'Can manufacturing CRM software help manage outstanding payments?', a: 'Yes. A Payment Tracking CRM helps your team monitor pending payments, maintain payment records and manage collection follow-ups.' },
+        { q: 'How can a manufacturing CRM improve business operations?', a: 'A Manufacturing CRM brings customer information, quotations, orders, billing and follow-ups together, helping teams stay organised and coordinate their activities more effectively.' },
+      ],
+    },
+    cta: {
+      title: 'Move Your Manufacturing Business Forward',
+      sub: 'Start your free 30-day trial with no credit card required. Manage enquiries, quotations, orders, dispatch, billing and collections with NNC Digital. Choose the best CRM for manufacturing business to keep your sales and order management organised.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   retail: ind('retail', {
     name: 'Retail and distribution',
-    metaTitle: 'Retail & Distribution CRM | Orders & Dealers | NNC CRM',
-    metaDescription: 'Manage dealer orders, billing, GST and collections in one view. A CRM built for retail and distribution businesses.',
-    title: 'Orders, dealers and collections, in one view.',
-    lead: 'Distribution runs on volume and trust. You cannot afford a missed order or a forgotten payment. NNC CRM keeps every dealer, every order and every rupee outstanding on one screen, so your team sells more and collects faster.',
+    metaTitle: 'CRM for Retail Business & Distribution | NNC Digital',
+    metaDescription: 'Use NNC Digital CRM for Retail Business to manage customers, dealers, orders, WhatsApp campaigns, collections, and distribution sales.',
+    title: 'Retail CRM Software to Manage Orders, Dealers and Payments',
+    lead: 'Distribution depends on repeat orders and timely collections. NNC Digital provides CRM for Retail Business to manage customers, dealers, orders and outstanding payments in one place. Simplify order tracking, avoid missed follow-ups and manage your distribution network more efficiently.',
     img: '/case-studies-images/retail.jpg', img2: '/case-studies-images/retail-challenge.webp',
     // Hero image is a 1:1 render — use the larger square hero so
     // object-fit:cover fills with no crop. Scoped to this page.
     heroSquareLg: true,
-    splitTitle: 'Turn one time buyers into regulars',
-    splitBody: 'Walk in, phone, WhatsApp or online, NNC captures every customer and order so you can bring them back again and again.',
-    bullets: ['Every customer and order in one profile', 'WhatsApp offers and reorder reminders', 'Stock and catalog connected to sales'],
-    features: [
-      { icon: 'retail', title: 'Customer profiles', body: 'A full history of what each customer buys and when.' },
-      { icon: 'whatsapp', title: 'WhatsApp campaigns', body: 'Send offers and festival greetings that drive reorders.' },
-      { icon: 'reports', title: 'Sales analytics', body: 'See best sellers, slow movers and top customers.' },
+    splitTitle: 'Turn One-Time Buyers into Regulars',
+    splitBody: 'Walk-in, phone, WhatsApp, or online, NNC Digital CRM for Retail Business captures every customer and order so your team can bring buyers back again and again.',
+    bullets: [
+      'Every customer and order in one profile',
+      'WhatsApp offers and reorder reminders',
+      'Stock and catalog connected to sales',
+      'Use CRM for Retail Business to keep retail and distribution sales organized',
     ],
+    featuresTitle: 'Built for Retail and Distribution',
+    featuresLead: 'NNC Digital CRM for Retail Business helps manage customers, dealers, orders, WhatsApp campaigns and sales performance efficiently.',
+    features: [
+      { icon: 'retail', title: 'Customer Profiles', body: 'Track purchase history and buying patterns with CRM for Retail Business to improve customer relationships and repeat sales.' },
+      { icon: 'whatsapp', title: 'WhatsApp Campaigns', body: 'Send offers, festival greetings and reorder reminders through WhatsApp to keep customers engaged.' },
+      { icon: 'reports', title: 'Sales Analytics', body: 'CRM for Retail Business helps identify best sellers, slow-moving products and top customers for better sales decisions.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is CRM for Retail Business?', a: 'CRM for Retail Business helps retail and distribution companies manage customers, dealers, orders, payments and repeat sales from one platform.' },
+        { q: 'Can NNC Digital help manage dealer orders and customer records?', a: 'Yes. NNC Digital helps organise dealer details, customer profiles, order history and sales activities in one place.' },
+        { q: 'Can I track outstanding payments and follow-ups?', a: 'Yes. Your team can monitor pending payments, set reminders and manage collection follow-ups more efficiently.' },
+        { q: 'Does NNC Digital support WhatsApp campaigns for retail businesses?', a: 'Yes. Your team can use WhatsApp to share offers, festival greetings and reorder reminders with customers.' },
+        { q: 'How can CRM software help improve repeat sales?', a: 'It helps your team maintain customer records, track previous orders and plan timely follow-ups, making it easier to encourage repeat purchases.' },
+      ],
+    },
+    cta: {
+      title: 'Run Your Business on What Is Next',
+      sub: "Start your free 30-day trial. No credit card required, cancel anytime. Choose CRM for Retail Business that helps you manage customer profiles, dealer orders, collections, WhatsApp campaigns, stock-linked sales, and distribution growth.",
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   healthcare: ind('healthcare', {
-    name: 'Healthcare and clinics',
-    metaTitle: 'Healthcare & Clinic CRM | Patients & Follow Ups | NNC',
-    metaDescription: 'Manage patient enquiries, appointments and follow ups with care and privacy built in. A CRM made for clinics and healthcare.',
-    title: 'Care that follows up, every time.',
-    lead: 'In healthcare, a missed follow up is more than lost revenue. NNC CRM makes sure every patient enquiry is answered, every appointment is remembered and every follow up happens, with privacy treated as seriously as you treat your patients.',
-    // Hero: doctor holding a tablet showing NNC CRM with Appointment
-    // Reminders / Follow-ups via WhatsApp / Patient Data Privacy /
-    // Reports widgets — literal product preview.
+    name: 'Healthcare and Clinics',
+    metaTitle: 'CRM Software for Healthcare Industry | NNC Digital',
+    metaDescription: 'Use NNC Digital CRM software for healthcare industry to manage patient enquiries, appointments, follow-ups, reminders, payments, and records.',
+    title: 'Healthcare CRM Software That Keeps Every Patient Follow-Up on Track',
+    lead: 'NNC Digital provides CRM software for healthcare industry to help clinics manage patient enquiries, appointments, reminders, payments and records in one place. Simplify patient communication, organise follow-ups and improve the overall patient experience with NNC Digital.',
     img: '/img/industries/healthcare-hero.webp',
-    // Problem: nurse on tablet with Patient Record / Appointment
-    // Reminder / Payments & Packages panels — maps one-to-one onto the
-    // three problem-section bullets.
     img2: '/img/industries/healthcare-problem.webp',
-    // Both source images are 1:1 renders → use square cards for a
-    // pixel-perfect fit under object-fit:cover. Scoped to this page only.
     heroSquare: true,
     squareSplitMedia: true,
-    splitTitle: 'Never miss a follow up again',
-    splitBody: 'Appointments in a diary, patients in a register, reminders in your head. NNC brings it together so patients always come back on time.',
-    bullets: ['Patient records and history in one place', 'Appointment and follow up reminders on WhatsApp', 'Payments and packages tracked per patient'],
-    features: [
-      { icon: 'enquiries', title: 'Patient enquiries', body: 'Capture every new patient enquiry and convert more of them.' },
-      { icon: 'whatsapp', title: 'Reminders', body: 'Automatic appointment and follow up reminders.' },
-      { icon: 'security', title: 'Private and safe', body: 'Role based access keeps patient data protected.' },
+    splitKicker: 'The Problem',
+    splitTitle: 'Never Miss a Follow-Up Again',
+    splitBody: 'Appointments in a diary, patients in a register, and reminders in your head can create confusion. NNC Digital CRM software for healthcare industry brings patient records, appointment reminders, and follow-ups into one connected system.',
+    bullets: [
+      'Patient records and history in one place',
+      'Appointment and follow-up reminders on WhatsApp',
+      'Payments and packages tracked per patient',
+      'Use CRM software for healthcare industry to keep clinic operations clear, organized, and timely',
     ],
+    featuresTitle: 'Built for Healthcare and Clinics',
+    featuresLead: 'Our CRM software for healthcare industry helps clinics manage patient enquiries, appointment follow-ups, payments, and data privacy efficiently.',
+    features: [
+      { icon: 'enquiries', title: 'Patient Enquiries', body: 'Capture and manage patient enquiries faster with CRM software for healthcare industry while tracking every interaction.' },
+      { icon: 'whatsapp', title: 'Reminders', body: 'CRM software for healthcare industry automates appointment reminders and follow-ups to reduce missed visits.' },
+      { icon: 'security', title: 'Private and Safe', body: 'NNC Digital CRM software for healthcare industry protects patient information through role-based access and better data control.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is CRM software for the healthcare industry?', a: 'CRM software for healthcare industry helps clinics manage patient enquiries, appointments, communication, reminders, payments and patient records from one platform.' },
+        { q: 'Can NNC Digital help clinics manage patient appointments?', a: 'Yes. NNC Digital helps clinics organise patient appointments, schedule reminders and manage follow-ups to keep daily activities on track.' },
+        { q: 'Does NNC Digital support WhatsApp appointment reminders?', a: 'Yes. Clinics can use WhatsApp reminders to communicate appointment updates and follow up with patients.' },
+        { q: 'Can I manage patient payments and packages with NNC Digital?', a: 'Yes. NNC Digital helps your team maintain patient payment records and track packages from one place.' },
+        { q: 'How does Healthcare CRM Software help improve clinic management?', a: 'Healthcare CRM Software brings patient enquiries, records, appointments and follow-ups together, helping clinic teams stay organised and manage patient communication more efficiently.' },
+      ],
+    },
+    cta: {
+      title: 'Run Your Business on What Is Next',
+      sub: 'Start your free 30-day trial. No credit card required, cancel anytime. Manage patient enquiries, appointments, WhatsApp reminders, payments and follow-ups with CRM software for healthcare industry. NNC Digital offers CRM for Healthcare to simplify patient communication and daily clinic operations.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   education: ind('education', {
     name: 'Education',
@@ -194,29 +326,53 @@ export const INDUSTRIES = {
     ],
   }),
   'real-estate': ind('real-estate', {
-    name: 'Real estate',
-    metaTitle: 'Real Estate CRM | Site Enquiries & Buyer Follow Up | NNC',
-    metaDescription: 'Capture every site and portal enquiry, qualify buyers faster and follow up on WhatsApp so no hot lead is ever lost. A CRM for real estate.',
-    title: 'Never lose a hot buyer to slow follow up.',
-    lead: 'In real estate, the first agent to respond usually wins the deal. NNC CRM pulls in leads from portals, ads, your website and walk ins, qualifies them fast and keeps your team following up on WhatsApp until the site visit is booked.',
-    // Hero: agent closing a deal with a client, model building on desk —
-    // "first agent to respond wins the deal" story. Problem: agent walking
-    // a couple through a tablet with Lead Capture / Site Visits /
-    // Bookings & Payments panels, one-to-one onto the three bullets.
+    name: 'Real Estate',
+    metaTitle: 'CRM for Real Estate Leads & Site Visits | NNC Digital',
+    metaDescription: 'Use NNC Digital CRM for Real Estate to capture property leads, schedule site visits, send WhatsApp follow-ups and track bookings.',
+    title: 'CRM for Real Estate to Manage Property Leads, Site Visits and Bookings',
+    lead: 'In real estate, quick responses and consistent follow-ups can make a difference. NNC Digital offers CRM for Real Estate to capture leads from property portals, ads, websites, referrals and walk-ins. Manage buyer enquiries, schedule site visits, send WhatsApp follow-ups and track bookings with one platform. Simplify your real estate lead management and keep every opportunity moving forward.',
     img: '/img/industries/real-estate-hero.webp',
     img2: '/img/industries/real-estate-problem.webp',
-    // Both source images are 1:1 renders → use square cards for a
-    // pixel-perfect fit under object-fit:cover. Scoped to this page only.
     heroSquare: true,
     squareSplitMedia: true,
-    splitTitle: 'Follow every lead to the close',
-    splitBody: 'Property leads are expensive and easy to lose. NNC makes sure every enquiry gets a site visit, a follow up and a fair shot at closing.',
-    bullets: ['Leads captured from portals, ads and referrals', 'Site visits scheduled and reminded', 'Bookings and payment milestones tracked'],
-    features: [
-      { icon: 'pipeline', title: 'Lead pipeline', body: 'See every lead by stage, project and budget.' },
-      { icon: 'whatsapp', title: 'Instant follow up', body: 'Respond on WhatsApp while the lead is still hot.' },
-      { icon: 'forecast', title: 'Booking forecast', body: 'Project bookings and revenue across your projects.' },
+    splitKicker: 'The Challenge of Managing Property Leads',
+    splitTitle: 'Follow Every Lead to the Close',
+    splitBody: 'Property enquiries need timely responses and regular follow-ups. NNC Digital CRM for Real Estate helps your team organise enquiries, plan site visits and track every buyer’s progress.',
+    bullets: [
+      'Capture leads from portals, ads, websites and referrals',
+      'Schedule and manage property site visits with reminders',
+      'Track bookings and payment milestones',
+      'Organise buyers, projects, budgets and follow-ups in one place',
+      'Manage your real estate sales pipeline more efficiently',
     ],
+    featuresTitle: 'Built for Real Estate Businesses',
+    featuresLead: 'NNC Digital Real Estate CRM Software helps builders, developers and agents manage property enquiries, follow-ups and bookings efficiently.',
+    features: [
+      { icon: 'pipeline', title: 'Lead Pipeline', body: 'Track leads by project, budget and sales stage with Real Estate Lead Management CRM to identify potential buyers and booking opportunities.' },
+      { icon: 'whatsapp', title: 'WhatsApp Follow-Ups', body: 'Use WhatsApp CRM for Real Estate to manage buyer conversations, send follow-ups and stay connected with prospects.' },
+      { icon: 'forecast', title: 'Booking Forecast', body: 'Monitor property bookings, payment milestones and sales opportunities for better sales pipeline visibility.' },
+    ],
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    faq: {
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'What is CRM for Real Estate?', a: 'CRM for Real Estate is a system that helps property businesses manage enquiries, buyer details, site visits, follow-ups, bookings and payment milestones from one platform.' },
+        { q: 'Can NNC Digital help manage property leads from multiple sources?', a: 'Yes. NNC Digital helps capture and organise enquiries from sources such as property portals, advertisements, websites, referrals and walk-ins.' },
+        { q: 'Does NNC Digital support WhatsApp follow-ups for property leads?', a: 'Yes. NNC Digital supports WhatsApp communication, helping your sales team manage buyer conversations and follow-ups.' },
+        { q: 'Can I track site visits and property bookings?', a: 'Yes. Your team can schedule site visits, set reminders and track booking stages and payment milestones.' },
+        { q: 'Who can use NNC Digital Real Estate CRM Software?', a: 'Builders, property developers, real estate agents and sales teams can use NNC Digital to organise property enquiries, manage buyers and track sales activities.' },
+      ],
+    },
+    cta: {
+      title: 'Take Your Real Estate Business Forward',
+      sub: 'Start your free 30-day trial with no credit card required. Manage property leads, schedule site visits, track booking stages and organise buyer follow-ups with CRM for Real Estate.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
 }
 
@@ -335,35 +491,64 @@ const cb = (label, o) => ({ metaTitle: o.metaTitle || `${label} | NNC CRM`, meta
 
 export const COMPANY = {
   about: {
-    metaTitle: 'About NNC | The Decision-Making CRM, Built in India',
-    metaDescription: 'NNC CRM is built by Nakshatra Namaha Creations, a ten year software company. We built one CRM right, after building it for hundreds of clients.',
+    metaTitle: 'About NNC Digital CRM | Our Story, Team & Experience',
+    metaDescription: 'Discover NNC Digital CRM, built by a team with 10+ years of software experience, 565+ projects delivered, 35+ in-house professionals and four offices across India.',
     breadcrumb: [HOME, companyCrumb, { label: 'About us' }],
     hero: {
       eyebrow: 'Company',
-      title: 'We built this CRM hundreds of times before we built it once.',
-      lead: 'For over ten years, our team at Nakshatra Namaha Creations built custom software for real estate firms, hospitals, academies, factories and agencies. Every client wanted roughly the same things: catch every lead, follow up on WhatsApp, send invoices, know what next month looks like. So we built it once, the right way, and made it available to everyone. That is NNC CRM.',
+      title: 'NNC Digital CRM – Built from Real Business Experience',
+      lead: 'Built on over 10 years of software development experience, NNC Digital CRM combines lead management, WhatsApp follow-ups, invoicing and automation in one practical platform. Developed by Nakshatra Namaha Creations, our Business CRM Software is shaped by real projects across multiple industries.',
       ctas: heroCtas,
-      media: img('/img/scene-team.jpg', 'The NNC team'),
+      media: img('/img/scene-planning.jpg', 'A professional working on business software — the real business experience behind NNC Digital CRM'),
     },
     blocks: [
-      { type: 'stats', items: [
-        { value: '10+', label: 'years building software' },
-        { value: '565+', label: 'projects delivered' },
-        { value: '35+', label: 'in house team' },
-        { value: '4', label: 'offices across India' },
+      // Section: Experience That Goes Beyond Building Software — stats row
+      // with a section heading per the brief.
+      { type: 'stats', title: 'Experience That Goes Beyond Building Software', lead: 'Our expertise comes from delivering software solutions for businesses across India.', items: [
+        { value: '10+ Years', label: 'Of custom software development experience' },
+        { value: '565+ Projects', label: 'Software projects delivered across industries' },
+        { value: '35+ Professionals', label: 'In-house team building business solutions' },
+        { value: '4 Offices', label: 'Bengaluru, Mumbai, Mysuru and Hyderabad' },
       ] },
+      // Section: Why We Built NNC Digital CRM — intro + "One Platform for
+      // Business Management" sub-heading with five key features.
       { type: 'prose', sections: [
-        { h: 'Why we built NNC CRM', p: ['We were rebuilding the same twenty features for every client. We decided to build them properly, with WhatsApp native, real automation doing real work, and pricing that fits how Indian businesses actually operate.'] },
-        { h: 'Not a runway. A track record.', p: ['We are not a venture funded startup with a 24 month clock. We are a company with paying clients, delivered projects and teams in four cities.'] },
+        { h: 'Why We Built NNC Digital CRM', p: [
+          'After developing similar CRM features for different clients, we created NNC Digital CRM to bring essential business tools into one platform.',
+          'Our CRM Software for Businesses simplifies daily operations with WhatsApp communication, automation, lead tracking and invoicing.',
+        ] },
+        { h: 'One Platform for Business Management', p: [
+          'NNC Digital CRM brings everyday business activities together in one connected workspace. Lead management, WhatsApp CRM, business automation, invoicing and reports — all in one place.',
+        ] },
+        { h: 'Not a Runway. A Track Record.', p: [
+          'NNC Digital CRM is backed by 565+ delivered projects, an experienced team and a presence across four Indian cities.',
+          'Real project experience — 565+ projects delivered across diverse business sectors. An experienced in-house team of 35+ professionals supports software development and delivery.',
+        ] },
       ] },
-      { type: 'stats', title: 'Where to find us', items: [
-        { value: 'Bengaluru', label: 'Head office' },
-        { value: 'Mumbai', label: 'Thane West' },
-        { value: 'Mysuru', label: 'Regional office' },
-        { value: 'Hyderabad', label: 'Regional office' },
+      // Section: Where to Find Us — four offices.
+      { type: 'stats', title: 'Where to Find Us', lead: "NNC Digital's offices across India.", items: [
+        { value: 'Bengaluru', label: 'Head office — our main business headquarters' },
+        { value: 'Mumbai', label: 'Thane West — supporting businesses in Mumbai' },
+        { value: 'Mysuru', label: 'Regional office — serving regional business requirements' },
+        { value: 'Hyderabad', label: 'Regional office — expanding business support in Hyderabad' },
+      ] },
+      // Section: FAQ — five questions per the brief. Uses the existing FAQ
+      // block renderer so no new component is introduced.
+      { type: 'faq', title: 'Frequently Asked Questions About NNC Digital CRM', items: [
+        { q: 'What is NNC Digital CRM?', a: 'NNC Digital CRM is a business CRM platform developed by Nakshatra Namaha Creations. It brings essential business capabilities together, including lead capture, WhatsApp follow-ups, invoicing, automation and reporting.' },
+        { q: 'Why did Nakshatra Namaha Creations build NNC Digital CRM?', a: 'After more than ten years of building custom software for different businesses, the team identified recurring requirements across projects. NNC Digital CRM was developed to bring these commonly needed capabilities together in one platform.' },
+        { q: 'How much experience does the NNC team have in software development?', a: 'The team has over 10 years of software-building experience, with 565+ projects delivered, 35+ in-house team members and four offices across India.' },
+        { q: 'Where is Nakshatra Namaha Creations located?', a: 'The company has four offices across India: Bengaluru (head office), Mumbai (Thane West), Mysuru and Hyderabad.' },
+        { q: 'How can I get started with NNC Digital CRM?', a: 'You can book a demo to understand the platform or visit the pricing page to explore available plans. You can also start the free trial through the website.' },
       ] },
     ],
-    cta: { title: 'Build the CRM your business actually needs.', sub: 'Book a 30-minute demo on your own data, or talk to our team about the right plan.', primary: { label: 'Book a Demo', href: '#start' }, secondary: { label: 'Contact us', href: '/company/contact' } },
+    // Section: Final CTA — "Build the CRM Your Business Actually Needs".
+    cta: {
+      title: 'Build the CRM Your Business Actually Needs',
+      sub: 'Manage leads, customer follow-ups, invoices and business activities with NNC Digital CRM. Explore our Business CRM Software, designed from real project experience to simplify everyday operations. Start your free trial or connect with our team to find the right CRM solution.',
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'Contact Us', href: '/company/contact' },
+    },
   },
   careers: {
     ...cb('Careers', { lead: 'Join us and help Indian businesses grow.', metaTitle: "Careers at NNC | Build India's CRM With Us", metaDescription: 'Join NNC and help build the decision making CRM used across industries. Open roles in engineering, sales, support and marketing across four cities.' }),
@@ -395,16 +580,40 @@ export const COMPANY = {
     cta: startCta,
   },
   partners: {
-    ...cb('Partners', { lead: 'Grow with NNC as an implementation or referral partner.', metaTitle: 'Partner Program | Resell & Refer NNC CRM', metaDescription: 'Agencies, consultants and resellers: earn recurring revenue by bringing NNC CRM to your clients. Refer, resell or build on our platform.' }),
-    hero: { eyebrow: 'Partners', title: 'Grow your business by growing ours.', lead: 'If you serve businesses that need a CRM, partner with NNC. Refer clients, resell the platform or build on top of it, and earn recurring revenue while we handle the product.', ctas: [{ label: 'Become a partner', href: '#start', trial: true }], media: img('/img/scene-deal.jpg', 'Partners') },
+    ...cb('Partners', { lead: 'Partner with NNC Digital.', metaTitle: 'NNC Digital Partner Program | Become a CRM Partner', metaDescription: 'Partner with NNC Digital to refer clients, implement CRM solutions or build integrations. Explore business partnership opportunities with NNC.' }),
+    hero: {
+      eyebrow: 'Partners',
+      title: 'Grow Your Business by Growing Ours',
+      lead: "Partner with NNC Digital and create new business opportunities with our CRM platform. Whether you want to refer clients, offer CRM implementation services or build technology integrations, our partner program gives you ways to grow with us. Build valuable business relationships and earn recurring revenue while we take care of the product.",
+      ctas: [{ label: 'Become a Partner', href: 'mailto:partners@nncdigital.co.in' }],
+      media: img('/img/scene-deal.jpg', 'Partners'),
+    },
     blocks: [
-      { type: 'featureGrid', flat: true, title: 'Ways to partner', items: [
-        { icon: 'partners', title: 'Referral partner', body: 'Refer businesses and earn recurring commission.' },
-        { icon: 'service', title: 'Implementation', body: 'Set up and customise NNC for local businesses.' },
-        { icon: 'api', title: 'Technology', body: 'Build integrations on our open API.' },
+      // Section: Ways to Partner — three partnership types from the brief.
+      // Each item's hook sits as the first line of the body so the
+      // featureGrid layout stays identical (no per-card CTA added — the
+      // single section CTA at the bottom covers all three paths).
+      { type: 'featureGrid', flat: true, title: 'Explore Ways to Partner with NNC Digital', lead: 'Choose a partnership approach that matches your business and expertise. Work with NNC Digital to introduce businesses to CRM solutions, support implementation or create technology integrations.', items: [
+        { icon: 'partners', title: 'Referral Partner', body: 'Turn business connections into opportunities. Refer businesses looking for CRM software and earn recurring commissions while we handle the product.' },
+        { icon: 'service', title: 'CRM Implementation Partner', body: 'Help businesses get started with NNC CRM. Set up and customise NNC CRM to meet local business requirements.' },
+        { icon: 'api', title: 'Technology Partner', body: 'Build and connect with NNC CRM. Build integrations and extend NNC CRM capabilities using our Open API.' },
+      ] },
+      // Section: FAQ — five questions per the brief, rendered by the
+      // existing FAQ block (same renderer used across other pages).
+      { type: 'faq', title: 'Frequently Asked Questions About the NNC Digital Partner Program', items: [
+        { q: 'What is the NNC Digital Partner Program?', a: 'The NNC Digital Partner Program allows businesses and professionals to collaborate with NNC by referring clients, providing CRM implementation services or building technology integrations.' },
+        { q: 'How can I become an NNC Digital referral partner?', a: 'You can become a referral partner by introducing businesses looking for CRM software to NNC Digital and earning recurring commission.' },
+        { q: 'What does an NNC CRM Implementation Partner do?', a: 'An implementation partner helps businesses set up and customise NNC CRM according to their business requirements.' },
+        { q: 'Can technology companies partner with NNC Digital?', a: 'Yes. Technology partners can build integrations and extend NNC CRM capabilities using its Open API to connect with other business tools.' },
+        { q: 'How can I apply for the NNC Digital Partner Program?', a: 'You can express your interest through the partnership form on the NNC Digital website. The team will get in touch to discuss the opportunity.' },
       ] },
     ],
-    cta: { title: 'Ready to partner?', sub: 'Tell us about your business and we will be in touch.', primary: { label: 'Contact our team', href: 'mailto:partners@nncdigital.co.in' } },
+    // Section: Final CTA — "Ready to Grow with NNC Digital?".
+    cta: {
+      title: 'Ready to Grow with NNC Digital?',
+      sub: "Have a business, network or technology solution that aligns with NNC CRM? Let's explore how we can work together. Tell us about your business and the partnership opportunity you have in mind. Our team will get in touch to discuss the next steps.",
+      primary: { label: 'Become a Partner', href: 'mailto:partners@nncdigital.co.in' },
+    },
   },
   customers: {
     ...cb('Customer stories', { lead: 'See how businesses grow with NNC CRM.', metaTitle: 'Customer Stories | NNC CRM Results & Reviews', metaDescription: 'See how academies, manufacturers, clinics and sales teams grow with NNC CRM. Real businesses, real results, verified reviews.' }),
@@ -690,48 +899,60 @@ export const FEATURES_OVERVIEW = {
 }
 
 export const INDUSTRIES_OVERVIEW = {
-  metaTitle: 'CRM by Industry: Travel, Education, Manufacturing, Healthcare | NNC',
-  metaDescription: 'Ready built CRM packs for travel, training institutes, education, manufacturing, healthcare, retail, real estate, service businesses and sales teams. Pick yours and go live today.',
+  metaTitle: 'Industry Specific CRM Software for Businesses | NNC',
+  metaDescription: "Explore NNC Digital's Industry Specific CRM Software for manufacturing, healthcare, education, real estate, sales and more. Book a demo today.",
   breadcrumb: [HOME, { label: 'Industries' }],
   hero: {
-    eyebrow: 'Industries', title: 'A CRM that already speaks your industry.',
-    lead: 'Generic software makes you bend your business to fit it. NNC CRM ships ready built for the way your industry actually works, with the right stages, fields and reports already in place. Over ten years we have built CRMs for academies, factories, clinics and sales floors. Pick yours below.',
+    eyebrow: 'Industries',
+    title: 'Industry Specific CRM Software Built for Your Business',
+    lead: "Manage your business with NNC Digital's Industry Specific CRM Software, designed with workflows, sales stages, fields and reports that match your industry's requirements. Backed by over 10 years of software development experience, NNC Digital offers CRM solutions for sales, manufacturing, healthcare, education, real estate and other business sectors.",
     ctas: heroCtas, media: { type: 'component', name: 'industrySwitcher', framed: true },
   },
   blocks: [
-    { type: 'stats', items: [
-      { value: '9 industries', label: 'ready built CRM packs' },
-      { value: '10+ years', label: 'building industry CRMs' },
-      { value: '1 day', label: 'to go live' },
+    // Section: Industry Highlights
+    { type: 'stats', title: 'CRM Solutions Designed for Different Industries', items: [
+      { value: '9 Industries', label: 'Ready-built CRM packs' },
+      { value: '10+ Years', label: 'Building industry CRM solutions' },
+      { value: '1 Day', label: 'To go live' },
     ] },
-    // Pre-launch audit (#10): grid must include every vertical the footer /
-    // FAQ promises. Travel points to the dedicated product page; Training to
-    // the multi-center product; Education to the generic industry page.
-    { type: 'featureGrid', flat: true, title: 'Choose your industry', lead: 'Every pack ships with the pipeline stages, fields and reports your industry needs. Open yours to see the version built for you.', items: [
-      { icon: 'sales', title: 'Sales teams', body: 'A CRM for sales teams: visual pipeline, daily call lists and live targets.', href: '/industries/sales-teams' },
-      { icon: 'service', title: 'Service businesses', body: 'A service business CRM: every job from enquiry to invoice, plus repeat revenue.', href: '/industries/service-businesses' },
-      { icon: 'manufacturing', title: 'Manufacturing', body: 'A manufacturing CRM: enquiry to quotation to dispatch to payment.', href: '/industries/manufacturing' },
-      { icon: 'retail', title: 'Retail and distribution', body: 'A retail and distribution CRM: dealers, orders and collections in one view.', href: '/industries/retail' },
-      { icon: 'healthcare', title: 'Healthcare and clinics', body: 'A healthcare CRM: patients, appointments and follow ups, kept private.', href: '/industries/healthcare' },
-      { icon: 'education', title: 'Education', body: 'An education CRM: admission enquiries, parent follow ups and fees.', href: '/industries/education' },
-      { icon: 'realestate', title: 'Real estate', body: 'A real estate CRM: portal and ad leads, site visits and bookings.', href: '/industries/real-estate' },
-      { icon: 'travel', title: 'Travel and tourism', body: 'Trips, quotes, bookings and vouchers in one branded workspace.', href: '/travel-crm/' },
-      { icon: 'users', title: 'Training institutes and coaching', body: 'A multi center CRM for coaching institutes and training centers.', href: '/multi-center-training-institutes-crm/' },
+    // Section: Choose Your Industry (9-card grid, order per brief).
+    { type: 'featureGrid', flat: true, title: 'Choose Industry Specific CRM Software for Your Business', lead: "Explore NNC Digital's Industry Specific CRM Software, designed with workflows, fields and reporting tools that support different business operations.", items: [
+      { icon: 'sales', title: 'CRM for Sales Teams', body: 'Manage sales enquiries, track opportunities and improve team coordination using CRM for Sales Teams with visual pipelines, daily call lists and sales target tracking.', href: '/industries/sales-teams' },
+      { icon: 'service', title: 'CRM for Service Businesses', body: 'Simplify service operations with Service Business CRM that manages customer enquiries, service jobs, invoicing and repeat business opportunities in one platform.', href: '/industries/service-businesses' },
+      { icon: 'manufacturing', title: 'CRM for Manufacturing', body: 'Organize manufacturing sales operations using Manufacturing CRM Software that tracks customer enquiries, quotations, dispatches and payments through a centralized workflow.', href: '/industries/manufacturing' },
+      { icon: 'retail', title: 'CRM for Retail and Distribution', body: 'Manage dealers, customer orders and payment collections with Retail and Distribution CRM designed to support everyday distribution and sales activities.', href: '/industries/retail' },
+      { icon: 'healthcare', title: 'CRM for Healthcare and Clinics', body: 'Manage patient enquiries, appointments and follow-ups with Healthcare CRM Software that helps clinics organize communication while maintaining patient information privacy.', href: '/industries/healthcare' },
+      { icon: 'education', title: 'CRM for Education', body: 'Simplify admission enquiries, parent communication, student follow-ups and fee management with Education CRM Software designed for educational institutions.', href: '/industries/education' },
+      { icon: 'realestate', title: 'CRM for Real Estate', body: 'Track property enquiries, leads from portals and advertisements, site visits and bookings using Real Estate CRM Software built for property sales workflows.', href: '/industries/real-estate' },
+      { icon: 'travel', title: 'CRM for Travel and Tourism', body: 'Manage travel enquiries, quotations, trip bookings and vouchers using Travel CRM Software that brings travel business operations into one branded workspace.', href: '/travel-crm/' },
+      { icon: 'users', title: 'CRM for Training Institutes and Coaching Centers', body: 'Manage student enquiries, admissions and multiple training centers with Training Institute CRM designed for coaching institutes and educational training businesses.', href: '/multi-center-training-institutes-crm/' },
     ] },
-    { type: 'split', kicker: 'Industry specific CRM', title: 'Why an industry specific CRM beats a generic one', body: 'A generic CRM hands you empty fields and a blank pipeline, then leaves the hard part to you. An industry specific CRM from NNC arrives already set up for how your sector sells, serves and gets paid, so your team is productive on day one.', bullets: ['The right pipeline stages, ready on day one', 'Fields and forms that match your business', 'The reports your industry actually uses', 'Go live in a day, not a quarter'], media: img('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80', 'A team configuring their industry-specific CRM together') },
-    { type: 'featureGrid', title: 'Built for the way your industry works', items: [
-      { icon: 'pipeline', title: 'Ready built workflows', body: 'Stages, fields and automations tuned to your sector, from day one.', image: '/Industries/card1-sm.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
-      { icon: 'reports', title: 'The right reports', body: 'The numbers your industry runs on, without building dashboards yourself.', image: '/Industries/card2-sm.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
-      { icon: 'whatsapp', title: 'WhatsApp follow up', body: 'Reach customers, patients, parents or buyers where they actually reply.', image: '/Industries/card3-sm.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
+    // Section: Industry Specific CRM — why it beats a generic CRM. Kept as the
+    // existing split block; the brief's four H3 subitems are condensed into
+    // bullets so the layout stays identical.
+    { type: 'split', kicker: 'Industry Specific CRM', title: 'Why Industry Specific CRM Software Is Better Than Generic CRM', body: "Generic CRM software often requires businesses to configure workflows, fields and reports from the beginning. NNC Digital's Industry Specific CRM Software comes with industry-focused configurations to help teams manage enquiries, customer interactions and business processes more efficiently.", bullets: ['Ready-to-use sales pipeline stages designed around your industry', 'Business-specific fields and forms that match your requirements', 'Industry-focused reports and analytics for your sector', 'Faster CRM implementation with preconfigured workflows'], media: img('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&auto=format&fit=crop&q=80', 'A team configuring their industry-specific CRM together') },
+    // Section: Built for the way your industry works (3 image cards).
+    { type: 'featureGrid', title: 'Industry Specific CRM Software Built Around Your Workflow', lead: "NNC Digital's Industry Specific CRM Software helps businesses manage customer relationships, sales activities and reporting through industry-focused features.", items: [
+      { icon: 'pipeline', title: 'Ready-Built CRM Workflows', body: 'Start with predefined pipeline stages, business fields and automation workflows suited to your industry.', image: '/Industries/card1-sm.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
+      { icon: 'reports', title: 'Reports That Match Your Business', body: 'Access relevant dashboards and performance reports without manually creating complex reporting systems.', image: '/Industries/card2-sm.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
+      { icon: 'whatsapp', title: 'WhatsApp Follow-Up Management', body: 'Connect with customers, patients, parents or buyers through WhatsApp communication integrated into your CRM workflow.', image: '/Industries/card3-sm.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
     ] },
-    { type: 'faq', title: 'Industry CRM questions', items: [
-      { q: 'What is an industry specific CRM?', a: 'An industry specific CRM ships with the pipeline stages, fields, automations and reports your sector needs, instead of a blank, generic setup. NNC CRM offers ready packs for eight industries so you go live faster.' },
-      { q: 'Do you have a CRM for manufacturing?', a: 'Yes. The NNC manufacturing CRM connects enquiry, quotation, order, dispatch and collections on one screen, with GST ready invoicing built in.' },
-      { q: 'Is there a CRM for healthcare or clinics?', a: 'Yes. The NNC healthcare CRM manages patient enquiries, appointments and follow ups, with role based access and privacy built in.' },
-      { q: 'Which industries does NNC CRM support?', a: 'Sales teams, service businesses, manufacturing, retail and distribution, healthcare and clinics, education, real estate, and multi center training institutes and coaching centers.' },
+    // Section: FAQ — 5 questions per brief.
+    { type: 'faq', title: 'Industry Specific CRM Software – Frequently Asked Questions', lead: "Explore common questions about NNC Digital's Industry Specific CRM Software and its applications across different business sectors.", items: [
+      { q: 'What is Industry Specific CRM Software?', a: 'Industry Specific CRM Software is customer relationship management software designed with workflows, fields, automation and reporting tools suited to a particular industry. NNC Digital offers ready-built CRM solutions for different business sectors to simplify implementation and daily operations.' },
+      { q: 'Does NNC Digital offer CRM software for manufacturing businesses?', a: 'Yes. NNC Digital provides Manufacturing CRM Software that helps businesses manage customer enquiries, quotations, dispatches and payments through a centralized workflow.' },
+      { q: 'Is NNC CRM suitable for healthcare businesses and clinics?', a: 'Yes. NNC Digital offers Healthcare CRM Software designed to manage patient enquiries, appointments and follow-up communication while maintaining patient information privacy.' },
+      { q: 'Which industries does NNC Digital CRM support?', a: 'NNC Digital provides Industry Specific CRM Software for nine categories: sales teams, service businesses, manufacturing, retail and distribution, healthcare, education, real estate, travel and tourism, and training institutes and coaching centers.' },
+      { q: 'What are the benefits of using Industry Specific CRM Software?', a: 'Industry Specific CRM Software provides predefined workflows, relevant business fields, industry-focused reports and customer communication features. These capabilities help businesses manage their operations without configuring every CRM process from the beginning.' },
     ] },
   ],
-  cta: startCta,
+  // Section: Final CTA — custom per the brief ("Grow Your Business…").
+  cta: {
+    title: 'Grow Your Business with Industry Specific CRM Software',
+    sub: "Choose NNC Digital's Industry Specific CRM Software to manage your sales processes, customer communication and business activities through industry-focused workflows. Book a 30-minute demo using your own business data or explore the platform with a free trial.",
+    primary: { label: 'Book a Demo', href: '#start' },
+    secondary: { label: 'See Pricing', href: '/pricing' },
+  },
 }
 
 /* ============================ CASE STUDIES ============================ */

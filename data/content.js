@@ -11,6 +11,7 @@ export const nav = {
     { label: 'Products', drawer: 'products' },
     { label: 'Industries', href: '/industries' },
     { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'FAQ', href: '/#faq' },
   ],
@@ -132,13 +133,13 @@ export const productDrawerExtras = [
 ]
 
 export const hero = {
-  eyebrow: 'The decision making CRM',
+  eyebrow: 'The Decision-Making CRM',
   titlePre: "CRM Software ",
   titleNavy: 'in India',
   titlePost: ' to Manage Leads, Sales and Customers.',
-  leadStrong: 'Looking for CRM Software in India that adapts to your business? NNC CRM brings enquiries, sales pipelines, forecasting, billing and WhatsApp engagement together in one flexible platform.',
-  lead: 'Choose the modules you need and manage your customer journey without adjusting your business processes to traditional CRM software.',
-  lead2: 'Whether you need Business CRM Software, Lead Management Software or a complete customer management solution, NNC CRM helps your team work smarter',
+  leadStrong: 'Looking for CRM Software in India that fits your business? NNC CRM brings enquiries, sales pipelines, forecasting, billing and WhatsApp engagement into one flexible platform.',
+  lead: 'Choose the modules you need and manage customer relationships without changing your workflows.',
+  lead2: 'From Business CRM Software to Lead Management Software, NNC CRM keeps your business organized.',
   ctas: [
     { label: 'Book a Demo', href: '#start', variant: 'primary' },
     { label: 'See it in action', href: '#decide', variant: 'ghost' },
@@ -209,9 +210,9 @@ export const decisions = {
 
 export const pricing = {
   eyebrow: 'Pricing',
-  title: 'Flexible CRM Software Pricing for Every Business',
-  lead: 'Choose a plan that matches your business size and requirements. NNC CRM offers transparent pricing based on team size, without separate per-user billing.',
-  note: 'Prices are by team size band, plus 18% GST. Start free, no credit card.',
+  title: 'Flexible CRM Software Pricing in India for Every Business',
+  lead: 'Choose affordable CRM Software in India with transparent pricing based on team size, without separate per-user charges within your plan.',
+  note: 'All plans include a free 30-day trial without a credit card. Prices exclude 18% GST.',
   compareLabel: 'Compare All Features',
 }
 
@@ -258,42 +259,47 @@ export const whatsapp = {
 export const faq = {
   eyebrow: 'FAQ',
   title: 'Frequently Asked Questions About NNC CRM',
+  lead: "Find answers about NNC Digital's CRM Software in India, features and pricing.",
   items: [
     {
-      q: 'What Is NNC CRM?',
-      a: 'NNC CRM is a flexible Customer Relationship Management Software platform that helps businesses manage enquiries, sales pipelines, customer information, forecasting, billing and WhatsApp engagement.',
+      q: 'What is NNC CRM?',
+      a: 'NNC CRM is flexible CRM Software in India that manages enquiries, sales pipelines, forecasting, billing and WhatsApp engagement in one platform.',
     },
     {
-      q: 'Is NNC CRM Suitable for Different Industries?',
-      a: 'Yes. NNC CRM supports sales teams, service businesses, manufacturing, retail, healthcare, education and real estate with flexible modules and workflows.',
+      q: 'Is NNC CRM suitable for different industries?',
+      a: 'Yes. NNC Digital offers Business CRM Software for sales, services, retail, manufacturing, healthcare, real estate, travel, education and training institutes.',
     },
     {
-      q: 'How Much Does NNC CRM Cost?',
-      a: 'The Starter plan costs ₹14,999 per year, Growth costs ₹29,999 per year and Enterprise costs ₹59,999 per year. Pricing depends on team size and excludes 18% GST.',
+      q: 'How much does NNC CRM cost?',
+      a: 'NNC CRM offers Starter at ₹14,999/year (1 user), Growth at ₹29,999/year (up to 3 users) and Enterprise at ₹59,999/year (up to 10 users). Prices exclude 18% GST.',
     },
     {
-      q: 'Does NNC CRM Support WhatsApp Integration?',
-      a: 'Yes. WhatsApp engagement is included in Growth and Enterprise plans. NNC CRM also offers a WhatsApp demo with an assistant that qualifies business leads by asking five questions.',
+      q: 'Does NNC CRM support WhatsApp integration?',
+      a: 'Yes. NNC CRM supports WhatsApp communication and follow-ups through its Growth and Enterprise plans.',
     },
     {
-      q: 'Can I Import My Existing Business Data?',
-      a: 'Yes. You can import your contacts, enquiries and existing pipelines into NNC CRM during setup.',
+      q: 'Can I import my existing business data into NNC CRM?',
+      a: 'Yes. Import your existing contacts, enquiries and sales pipelines to manage customer information in one place.',
     },
   ],
 }
 
 export const finalCta = {
   title: 'Build the CRM Your Business Actually Needs',
-  sub: 'Bring enquiries, sales pipelines, forecasting, billing and customer engagement together with NNC CRM.',
-  sub2: 'Choose your plan, start your free 30-day trial and discover a smarter way to manage your business with CRM Software in India.',
+  sub: "Manage enquiries, sales, forecasting, billing and customer engagement with NNC Digital's CRM Software in India.",
+  sub2: 'Choose your plan and start your free 30-day trial.',
   ctas: [
     { label: 'Book a Demo', href: '#start', variant: 'invert-primary' },
     { label: 'Try the WhatsApp Demo', href: 'https://wa.me/919164566466?text=I%20want%20to%20try%20the%20NNC%20CRM%20WhatsApp%20demo', variant: 'invert-ghost' },
   ],
-  // Trust figures intentionally removed — pre-launch audit flagged
-  // "2,000+ businesses" and "4.8/5 rating" as unprovable claims that ASCI
-  // or a competitor could challenge. Re-add only with verifiable numbers.
-  stats: [],
+  // Trust figures per the client-supplied content brief (Section 11 —
+  // "Trusted by Businesses Across India"). Verify the "2,000+" and
+  // "4.8/5" claims have a source document before public launch.
+  stats: [
+    { value: '2,000+', label: 'Businesses across India' },
+    { value: '4.8 / 5', label: 'Average customer rating' },
+    { value: '30 Days', label: 'Free trial, no credit card required' },
+  ],
 }
 
 export const footer = {
@@ -330,11 +336,13 @@ export const footer = {
     },
     {
       title: 'Company',
-      // Trimmed per pre-launch audit — removed Careers / Blog / Customer
-      // stories / Press until those pages carry real content, because empty
-      // pages hurt both trust and SEO.
+      // Trimmed per pre-launch audit — removed Careers / Customer stories /
+      // Press until those pages carry real content, because empty pages hurt
+      // both trust and SEO. Blog added back on 2026-11-02 when the /blog
+      // index + sample posts were scaffolded.
       links: [
         'About us',
+        'Blog',
         'Partners',
         'Contact sales',
       ],

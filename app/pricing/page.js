@@ -6,39 +6,43 @@ import { pricing } from '@/data/content'
 import styles from './pricing.module.css'
 
 export const metadata = {
-  title: 'NNC CRM Pricing | Pay Quarterly, Half-Yearly or Yearly',
+  title: 'CRM Pricing Plans in India | NNC Digital',
   description:
-    'Simple CRM pricing by team size, not per user. Pick Starter, Growth or Enterprise and pay quarterly, every six months or yearly. Start free, no credit card.',
+    "Explore NNC Digital's CRM Pricing Plans starting at ₹14,999/year. Compare Starter, Growth and Enterprise features. Start your free 30-day trial.",
+  alternates: { canonical: '/pricing' },
 }
 
+// "Why Businesses Choose NNC CRM Pricing Plans" — six reasons per brief.
 const WHY = [
-  { icon: 'users', title: 'Priced by team size, not per seat', body: 'Add people without adding cost. One price per band of 1, 3 or 10 users.' },
-  { icon: 'integrations', title: 'Modular, only what you need', body: 'Turn on the modules you need today and add the rest as you grow. Nothing to reinstall.' },
-  { icon: 'whatsapp', title: 'WhatsApp built in', body: 'A full WhatsApp inbox inside the CRM — no extra apps needed.' },
-  { icon: 'forecast', title: 'Forecasting, not just history', body: 'See revenue 3, 6 and 12 months ahead, so you plan with numbers, not hope.' },
-  { icon: 'invoice', title: 'Flexible billing', body: 'Pay quarterly, half yearly or yearly, and switch the term whenever it suits you.' },
-  { icon: 'rocket', title: 'Live in a day', body: 'No long onboarding and no consultant fees. Most teams are up and running before lunch.' },
+  { icon: 'users', title: 'Priced by Team Size, Not Per User', body: 'Choose a fixed team-size band for 1, 3 or 10 users without additional charges for each user within the selected plan.' },
+  { icon: 'integrations', title: 'Modular CRM for Your Requirements', body: 'Activate the CRM modules you need and add more features as your business requirements grow.' },
+  { icon: 'whatsapp', title: 'Built-In WhatsApp Engagement', body: 'Manage customer conversations through an integrated WhatsApp inbox, available with Growth and Enterprise plans.' },
+  { icon: 'forecast', title: 'Sales Forecasting and Analytics', body: 'Access revenue forecasts for 3, 6 and 12 months to support business planning and sales decisions.' },
+  { icon: 'invoice', title: 'Flexible CRM Billing Options', body: 'Choose quarterly, half-yearly or yearly billing based on your preferred payment schedule.' },
+  { icon: 'rocket', title: 'Quick CRM Setup', body: 'NNC Digital supports quick onboarding, with most teams able to start using the CRM within a day.' },
 ]
 
+// "Why Choose NNC Digital Solutions for Your CRM?" — three trust cards per brief.
 const TRUST = [
-  { icon: 'security', title: 'A real track record', body: 'Ten years, 565+ delivered projects and paying clients. Not a runway and a prayer.', image: '/pricing/card1.webp', imageAlt: 'Ten year track record of delivered CRM projects for Indian businesses' },
-  { icon: 'globe', title: 'Built and supported in India', body: 'Teams in four cities who understand how Indian businesses actually operate.', image: '/pricing/card2.webp', imageAlt: 'NNC teams across four Indian cities supporting local businesses' },
-  { icon: 'lock', title: 'Your data, secure and yours', body: 'Encrypted, backed up and protected by role based access. Export or delete it anytime.', image: '/pricing/card3.webp', imageAlt: 'Encrypted and backed-up CRM data protected by role-based access controls' },
+  { icon: 'security', title: 'A Proven Software Development Track Record', body: 'With over 10 years of software development experience and 565+ delivered projects, NNC Digital builds CRM solutions around business requirements.', image: '/pricing/card1.webp', imageAlt: 'Ten year track record of delivered CRM projects for Indian businesses' },
+  { icon: 'globe', title: 'Developed and Supported in India', body: "NNC Digital's teams across four Indian cities provide software support and understand local business operations.", image: '/pricing/card2.webp', imageAlt: 'NNC teams across four Indian cities supporting local businesses' },
+  { icon: 'lock', title: 'Secure Business Data Management', body: 'Protect business information through encryption, backups and role-based access. Export or delete your data when required.', image: '/pricing/card3.webp', imageAlt: 'Encrypted and backed-up CRM data protected by role-based access controls' },
 ]
 
 const STATS = [
-  { value: '10+', label: 'years building software' },
-  { value: '565+', label: 'projects delivered' },
-  { value: '35+', label: 'in house team' },
-  { value: '4', label: 'offices across India' },
+  { value: '10+ Years', label: 'Building software' },
+  { value: '565+ Projects', label: 'Delivered' },
+  { value: '35+ Professionals', label: 'In-house team' },
+  { value: '4 Offices', label: 'Across India' },
 ]
 
+// Five FAQs per the content brief.
 const FAQ = [
-  { q: 'Is the price per user?', a: 'No. You pay by team size band, so adding people in your band does not raise the price.' },
-  { q: 'Can I pay quarterly?', a: 'Yes. Choose quarterly, half yearly or yearly. You can change the term at renewal.' },
-  { q: 'What does multi tenant mean for me?', a: 'Each business or center runs in its own secure space within the platform, while head office keeps one view across all of them.' },
-  { q: 'Is GST included?', a: 'Prices are shown before tax. 18% GST applies on every plan.' },
-  { q: 'Is there a free trial?', a: 'Yes, with no credit card. Start free and upgrade when you are ready.' },
+  { q: 'Is NNC CRM pricing based on the number of users?', a: 'NNC Digital offers CRM Pricing Plans based on team-size bands instead of individual per-user charges. Starter supports 1 user, Growth supports up to 3 users and Enterprise supports up to 10 users.' },
+  { q: 'Can I pay for my CRM subscription quarterly?', a: 'Yes. NNC Digital supports quarterly, half-yearly and yearly billing options. You can change your billing term at renewal.' },
+  { q: 'What does multi-tenant CRM mean for my business?', a: 'Multi-tenant CRM allows each business or center to operate within its own secure space on the platform. Head offices can maintain centralized visibility across their centers.' },
+  { q: 'Is GST included in the CRM pricing?', a: 'No. All NNC Digital CRM Pricing Plans are displayed before tax. An additional 18% GST applies to Starter, Growth and Enterprise subscriptions.' },
+  { q: 'Does NNC Digital offer a free CRM trial?', a: 'Yes. NNC Digital provides a 30-day free trial without requiring a credit card. You can explore the CRM features and select a suitable subscription plan when ready.' },
 ]
 
 export default function PricingPage() {
@@ -47,7 +51,7 @@ export default function PricingPage() {
       <header className={`container ${styles.head}`}>
         <span className={styles.kicker}>/ Pricing</span>
         <h1 className={styles.title}>
-          Plans that scale with your team, <span className={styles.navy}>not your bill</span>.
+          Flexible CRM Pricing Plans That Scale with <span className={styles.navy}>Your Business</span>
         </h1>
         <p className={styles.sub}>{pricing.lead}</p>
       </header>
@@ -58,24 +62,23 @@ export default function PricingPage() {
       </div>
 
       <section className={`container ${styles.tableSection}`}>
-        <h2 className={styles.tableTitle}>Compare every feature</h2>
+        <h2 className={styles.tableTitle}>Compare CRM Pricing Plans and Features</h2>
         <ComparisonTable />
       </section>
 
       <section className={`container ${styles.block}`}>
-        <h2 className={styles.sectionTitle}>Why teams choose NNC CRM</h2>
+        <h2 className={styles.sectionTitle}>Why Businesses Choose NNC CRM Pricing Plans</h2>
         <p className={styles.sectionLead}>
-          More than a price. These are the reasons businesses pick NNC CRM and stay.
+          NNC Digital offers CRM Pricing Plans with flexible billing, essential business tools and features that support growing teams.
         </p>
         <FeatureGridInner items={WHY} flat />
       </section>
 
       <section className={styles.trustWrap}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>Why NNC Digital Solutions</h2>
+          <h2 className={styles.sectionTitle}>Why Choose NNC Digital Solutions for Your CRM?</h2>
           <p className={styles.sectionLead}>
-            NNC CRM is built by Nakshatra Namaha Creations, a ten year software company. We built this
-            CRM hundreds of times for clients before we built it once, the right way, for everyone.
+            Developed by Nakshatra Namaha Creations, NNC CRM combines software development experience with business-focused Customer Relationship Management Software.
           </p>
           <div className={styles.statsRow}>
             {STATS.map((s) => (
@@ -93,9 +96,9 @@ export default function PricingPage() {
         id="pricing-faq"
         data={{
           eyebrow: 'FAQ',
-          title: 'Pricing Questions, Answered',
+          title: 'CRM Pricing Plans – Frequently Asked Questions',
           lead:
-            "Everything you need to know about NNC CRM pricing. Can't find your answer? Start a free trial and ask us anything.",
+            "Explore answers to common questions about NNC Digital's CRM Pricing Plans, billing options and subscription features.",
           items: FAQ,
           cta: { label: 'Book a Demo', href: '#start' },
         }}
@@ -103,10 +106,12 @@ export default function PricingPage() {
 
       <section className={`container ${styles.cta}`}>
         <div className={styles.ctaBand}>
-          <h2>Start your free trial today.</h2>
-          <p>No credit card required. Free for 30 days, then pay quarterly, half yearly or yearly.</p>
+          <h2>Start Your Free CRM Trial Today</h2>
+          <p>
+            Explore NNC Digital's CRM Pricing Plans and discover a CRM solution suited to your team size and business needs. Start your 30-day free trial without a credit card. Choose quarterly, half-yearly or yearly billing when you're ready.
+          </p>
           <a href="/#start" className={styles.ctaBtn} data-trial>
-            Start free trial
+            Book a Demo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>
         </div>

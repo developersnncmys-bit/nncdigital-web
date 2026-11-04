@@ -1,0 +1,297 @@
+.main { background: #fff; }
+
+/* ===== hero ===== */
+/* Dark navy gradient, same as BlogIndex — keeps the two pages visually
+   paired. Stays dark throughout so the white title and meta stay legible
+   from top to bottom of the band. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  padding: clamp(56px, 7vw, 96px) 0 clamp(64px, 8vw, 110px);
+  background: linear-gradient(
+    180deg,
+    #0a1a33 0%,
+    #0d2a5a 40%,
+    #11397a 72%,
+    #1549a0 100%
+  );
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 50% at 80% 20%, rgba(80, 140, 255, 0.22), transparent 70%),
+    radial-gradient(60% 60% at 15% 85%, rgba(20, 60, 160, 0.3), transparent 65%);
+  pointer-events: none;
+}
+.heroInner { position: relative; z-index: 1; }
+
+.back {
+  /* `inline-flex` was keeping the chip beside the back link on the same
+     line. `flex` + `width: fit-content` makes the back link take its own
+     row so the chip falls underneath, correctly stacked above the H1. */
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: color 0.2s ease;
+}
+.back:hover { color: #fff; }
+.back svg { width: 14px; height: 14px; }
+
+.heroChip {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(30px, 4.6vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  max-width: 22ch;
+  /* Explicit white — a global h1 color rule elsewhere was winning over the
+     inherited `color: #fff` from `.hero`, leaving the title dark navy on
+     the dark hero. */
+  color: #fff;
+}
+
+.heroMeta {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+  flex-wrap: wrap;
+}
+.author { display: inline-flex; align-items: center; gap: 10px; }
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+}
+.heroDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* ===== body ===== */
+.body { padding: clamp(56px, 7vw, 96px) 0 clamp(72px, 9vw, 120px); }
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+
+/* ---- TOC ---- */
+.tocWrap { position: sticky; top: 100px; }
+.tocHead {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grey, #5b6472);
+  margin-bottom: 20px;
+}
+.tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tocItem { margin: 0; }
+.tocLink {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-left: 2px solid var(--line, #eef1f7);
+  padding-left: 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--grey, #5b6472);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tocLink:hover {
+  color: var(--navy, #0b5cff);
+  border-left-color: var(--navy, #0b5cff);
+}
+.tocDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grey, #9ba3b1);
+  margin-top: 7px;
+  flex: none;
+  transition: background 0.2s ease;
+}
+.tocLink:hover .tocDot { background: var(--navy, #0b5cff); }
+
+/* ---- content ---- */
+.content { min-width: 0; max-width: 72ch; }
+.lede {
+  margin: 0 0 clamp(32px, 4vw, 48px);
+  font-size: clamp(17px, 1.3vw, 20px);
+  line-height: 1.6;
+  color: var(--ink, #0a0b0f);
+  font-weight: 500;
+}
+.section { scroll-margin-top: 100px; }
+.section + .section { margin-top: clamp(40px, 4.5vw, 56px); }
+.sectionTitle {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink, #0a0b0f);
+}
+.p {
+  margin: 0 0 16px;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--grey, #3d4654);
+}
+.p:last-child { margin-bottom: 0; }
+.bullets {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bullets li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--grey, #3d4654);
+}
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--navy, #0b5cff);
+}
+
+/* ===== related ===== */
+.related {
+  background: var(--paper, #f6f8fc);
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+.relatedTitle {
+  margin: 0 0 clamp(28px, 3.5vw, 40px);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0a0b0f);
+}
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 24px 22px;
+  background: #fff;
+  border: 1px solid var(--line, #eef1f7);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.relatedCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--navy, #0b5cff);
+  box-shadow: 0 20px 36px -16px rgba(11, 92, 255, 0.18);
+}
+.relatedChip {
+  align-self: flex-start;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--navy, #0b5cff);
+}
+.relatedCardTitle {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--ink, #0a0b0f);
+}
+.relatedExcerpt {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--grey, #5b6472);
+  flex: 1;
+}
+.relatedLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy, #0b5cff);
+  margin-top: 4px;
+}
+.relatedLink svg { width: 13px; height: 13px; transition: transform 0.2s ease; }
+.relatedCard:hover .relatedLink svg { transform: translateX(3px); }
+
+/* ===== responsive ===== */
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; gap: 40px; }
+  .tocWrap { position: static; }
+  .toc {
+    padding: 20px 22px 8px;
+    border: 1px solid var(--line, #eef1f7);
+    border-radius: 14px;
+    background: var(--paper, #f6f8fc);
+  }
+  .tocLink { border-left: 0; padding-left: 0; }
+}
