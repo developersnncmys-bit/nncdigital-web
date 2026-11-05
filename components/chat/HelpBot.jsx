@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { KB, STARTERS, GREETING, CONTACT } from '@/data/helpbot'
-import { contact } from '@/data/contact'
 import styles from './HelpBot.module.css'
 
 const norm = (s) =>
@@ -172,14 +171,6 @@ const Collapse = () => (
 const WA_NUMBER = '919164566466'
 const WA_TEXT = 'Hi NNC, I would like to know more about NNC CRM.'
 const WA_HREF = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`
-
-// Phone icon for the "Call us" floating button that sits just above the
-// WhatsApp FAB. Same visual language, different color (navy vs green).
-const PhoneMark = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1Z"/>
-  </svg>
-)
 
 const WhatsAppMark = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -571,19 +562,10 @@ export default function HelpBot({ showWhatsApp = true }) {
       </a>
       )}
 
-      {/* Call-us floating button — stacked above the WhatsApp FAB. Same
-          hide-when-chat-opens behaviour. Opens the phone dialler via tel:
-          on mobile; on desktop it opens whatever default handler is set. */}
-      <a
-        className={`${styles.call} ${open ? styles.waHidden : ''}`}
-        href={contact.phoneHref}
-        aria-label={`Call NNC on ${contact.phone}`}
-        aria-hidden={open}
-        tabIndex={open ? -1 : 0}
-      >
-        <PhoneMark />
-        <span className={styles.waTip}>Call us</span>
-      </a>
+      {/* Call-us floating button lives in its own standalone component
+          mounted by SiteChrome, so it renders on every route — including
+          travel pages where this HelpBot isn't instantiated. Nothing to
+          render here. */}
 
       {/* Floating FAB moved to the Navbar. Any element with [data-chat-open]
           opens the modal via the document-level click listener above. Keeping

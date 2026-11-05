@@ -11,9 +11,9 @@ import FinalCta from '@/components/sections/FinalCta/FinalCta'
 // Homepage SEO per the client-supplied content brief. Overrides the
 // sitewide default in app/layout.js with the keyword-targeted title and
 // description for the "CRM Software in India" primary keyword.
-const HOME_TITLE = 'CRM Software in India for Sales & Leads | NNC Digital'
+const HOME_TITLE = 'CRM Software in India | Lead & Sales CRM - NNC Digital'
 const HOME_DESC =
-  "Explore NNC Digital's CRM Software in India to manage leads, sales, billing and WhatsApp engagement. Plans start at ₹14,999/year. Book a demo today."
+  "Discover NNC Digital's CRM Software in India to manage leads, sales, customers, billing, and WhatsApp communication. Plans start at ₹14,999/year."
 
 export const metadata = {
   title: HOME_TITLE,

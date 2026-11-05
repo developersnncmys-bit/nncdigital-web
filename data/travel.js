@@ -95,23 +95,28 @@ export const heroShots = {
 // Mirrors the real dashboard layout in images/dashboard.png. Values are sample
 // figures, bracketed so they never read as a customer result.
 export const morningScreen = {
-  greeting: 'Welcome back',
-  statsTitle: 'Trip Sales Stats',
+  greeting: 'Welcome Back',
+  subheading: 'Your Travel Business at a Glance',
+  statsTitle: 'Trip Sales Overview',
   periods: ['Today', 'Week', 'Month'],
   activePeriod: 'Month',
   stats: [
-    { label: 'Revenue', value: '[₹76,062]' },
-    { label: 'Leads', value: '[31]' },
-    { label: 'Quotes', value: '[37]' },
-    { label: 'Conversion', value: '[3%]' },
+    { label: 'Revenue', value: '₹76,062' },
+    { label: 'Leads', value: '31' },
+    { label: 'Quotes', value: '37' },
+    { label: 'Conversion', value: '3%' },
   ],
+  // Panel titles and columns match the Google Doc brief for this screen.
+  // Prior copy ("Pending Follow-ups" / "Due Incoming" / "Trips Starting" /
+  // "Trips Ending") drifted from the brief — restored here. Added the
+  // missing "Due" column on Incoming Payments.
   panels: [
-    { title: 'Pending Follow-ups', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
-    { title: 'Due Incoming', cols: ['Today', 'Yesterday'] },
-    { title: 'Trips Starting', cols: ['Today', 'Next 7 Days'] },
-    { title: 'Trips Ending', cols: ['Today', 'Prev 7 Days'] },
+    { title: 'Follow-ups to Complete', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
+    { title: 'Incoming Payments', cols: ['Today', 'Yesterday', 'Due'] },
+    { title: 'Upcoming Departures', cols: ['Today', 'Next 7 Days'] },
+    { title: 'Recent Trip Completions', cols: ['Today', 'Previous 7 Days'] },
   ],
-  note: 'Sample figures, shown in the layout your team opens on each morning.',
+  note: 'Sample figures displayed in the travel CRM dashboard layout.',
 }
 
 export const decisions = [
@@ -151,66 +156,79 @@ export const decisions = [
 // What's inside — the literal module map, taken from the product's own top nav.
 // ---------------------------------------------------------------------------
 
+// Each module carries TWO sub-headings under the H3 name to match the
+// Google Doc brief: `subtitle` is the bolded tagline, `lead` is the softer
+// one-liner that follows it. Rendered by TravelInside.jsx.
 export const modules = [
   {
     icon: 'ListChecks',
     name: 'Trips',
-    lead: 'Every enquiry, from first message to past trip.',
+    subtitle: 'Manage Every Travel Enquiry from First Contact to Completed Trip.',
+    lead: 'Organize your travel sales pipeline and maintain a complete record of every guest and trip.',
     items: [
-      'Seven stages: new query, in progress, converted, on trip, past, canceled and dropped',
-      'A sales person and a follow-up date on every trip',
-      'Search by trip id, guest name or phone number',
-      'Tags, filters and CSV upload for existing leads',
-      'Quotes, itineraries and an activities log per trip',
-      'WhatsApp the guest from the trip page',
+      'Seven trip stages: New Query, In Progress, Converted, On Trip, Past, Canceled, and Dropped',
+      'Assign trip ownership and follow-up dates',
+      'Search travel enquiries by trip ID, guest name, or phone number',
+      'Organize travel leads with tags and filters',
+      'Import existing travel enquiries through CSV uploads',
+      'Maintain quotations, itineraries, and activity logs for each trip',
+      'Contact guests through WhatsApp from the trip page',
     ],
   },
   {
     icon: 'Hotel',
     name: 'Bookings',
-    lead: 'Priced once, reused on every quote.',
+    subtitle: 'Build a Reusable Database for Travel Packages and Bookings.',
+    lead: 'Keep hotel, transport, and sightseeing information ready for future travel quotations.',
     items: [
-      'Hotel master with photos, star rating and location',
-      'Room types, meal plans (CP, MAP, AP) and check-in/check-out times',
-      'Child extra-bed age and payment preference per hotel',
-      'Transport and sightseeing saved by location',
-      'Trip, hotel and activity vouchers generated from the booking',
-      'Show or hide prices, branding and terms on each voucher',
+      'Hotel database with photos, star ratings, and locations',
+      'Room categories and meal plans (CP, MAP, AP)',
+      'Hotel check-in and check-out times',
+      'Child extra-bed age and payment preferences',
+      'Transport and sightseeing details organized by location',
+      'Generate trip, hotel, and activity vouchers',
+      'Control the display of prices, branding, and terms on vouchers',
     ],
   },
   {
     icon: 'Receipt',
     name: 'Accounting',
-    lead: 'What is owed, what is paid, what it earned.',
+    subtitle: 'Manage Travel Payments, Instalments, Invoices, and Trip Profitability.',
+    lead: 'Keep travel booking payments organized and maintain visibility into outstanding amounts.',
     items: [
-      'Incoming payments by upcoming, past 7 days, unverified, paid and overdue',
-      'Instalments logged against each booking, with the balance',
-      'Receipts and GST invoices against a logged payment',
-      'Proforma invoice before payment',
-      'Profit report per trip',
-      'Download any list',
+      'Categorize incoming payments as upcoming, past 7 days, unverified, paid, and overdue',
+      'Record booking instalments and track outstanding balances',
+      'Issue receipts and GST invoices against logged payments',
+      'Create proforma invoices before payment',
+      'Generate profit reports for each trip',
+      'Download payment and booking lists',
     ],
   },
   {
     icon: 'CalendarCheck',
     name: 'Tasks',
-    lead: 'Nothing waiting on someone remembering.',
+    subtitle: 'Keep Travel Operations Moving Without Missed Follow-ups.',
+    lead: 'Stay aligned on trips, payments, and bookings with shared tasks and alerts.',
     items: [
-      'Follow-ups with dates and owners',
-      'Comments on any trip, visible to the whole team',
-      'Alerts for bookings, payments and comments',
-      'Arrival and departure details per trip',
+      'Assign follow-up tasks with dates and owners',
+      'Add comments to trips for team communication',
+      'Receive alerts for bookings, payments, and comments',
+      'Maintain arrival and departure details for every trip',
     ],
   },
 ]
 
 export const workspace = {
   kicker: 'AND AROUND THEM',
+  // Titles + bodies match the Google Doc brief verbatim (previous copy had
+  // drifted from the brief: "Your branding" / "A login per user" / "Your
+  // own workspace" → "Branded Travel Workspace" / "Individual User
+  // Access" / "Cloud-Based Travel CRM").
   items: [
-    { icon: 'LayoutDashboard', title: 'Owner dashboard', body: 'Sales, follow-ups, payments due and trips starting or ending, on one screen.' },
-    { icon: 'Palette', title: 'Your branding', body: 'Your logo and contact details on every quote and voucher you send.' },
-    { icon: 'Users', title: 'A login per user', body: 'Sales, operations and accounts each get their own access.' },
-    { icon: 'Globe', title: 'Your own workspace', body: 'Runs at your own address, in the cloud, on any browser.' },
+    { icon: 'LayoutDashboard', title: 'Owner Dashboard', body: 'Get a consolidated view of travel sales, follow-ups, pending payments, and upcoming trips.' },
+    { icon: 'Palette', title: 'Branded Travel Workspace', body: 'Use your own branding on travel quotations and vouchers.' },
+    { icon: 'Users', title: 'Individual User Access', body: 'Provide separate logins for sales, operations, and accounting teams.' },
+    { icon: 'Globe', title: 'Cloud-Based Travel CRM', body: 'Access your travel management software through your own workspace on any browser.' },
   ],
 }
 
@@ -218,181 +236,186 @@ export const workspace = {
 // Feature rows — each headed by the decision it settles, then the module detail.
 // ---------------------------------------------------------------------------
 
+// Section 6 (MODULE BY MODULE) — titles and sub-points match the Google
+// Doc brief verbatim. Each row's H2 is the brief's bolded module tagline
+// and the three sub-H3s are the brief's module sub-headings.
 export const featureRows = [
   {
     num: '01',
     kicker: 'TRIPS',
-    title: 'Know what is live, and who is on it',
+    title: 'Manage Your Travel Pipeline with Better Visibility',
     note: 'every lead has an owner',
-    shot: { src: '/travel-crm/images/pipeline.png', alt: 'Trips list with status filters, sales person and tags', w: 1366, h: 685 },
+    shot: { src: '/travel-crm/images/pipeline.png', alt: 'Travel enquiry list with trip status, assigned sales person, and tags', w: 1366, h: 685 },
     items: [
       {
         icon: 'ListChecks',
-        title: 'Seven stages, with live counts',
-        body: 'New query, in progress, converted, on trip, past, canceled and dropped. Click a stage to see only those trips.',
+        title: 'Track Every Trip Stage',
+        body: 'View New Query, In Progress, Converted, On Trip, Past, Canceled, and Dropped. Select a stage to see the trips assigned to it.',
       },
       {
         icon: 'Users',
-        title: 'An owner on every row',
-        body: 'Each trip carries its sales person, status, tags and follow-up date, so nothing sits unclaimed.',
+        title: 'Assign Every Enquiry',
+        body: 'Each trip includes a sales person, status, tags, and follow-up date, making travel lead management easier for your team.',
       },
       {
         icon: 'Upload',
-        title: 'Find any trip, bring in any list',
-        body: 'Search by trip id, guest name or phone number, or upload a CSV of the enquiries you already have.',
+        title: 'Search and Import Travel Leads',
+        body: 'Find trips by ID, guest name, or phone number. Bring existing travel enquiries into the CRM through CSV uploads.',
       },
     ],
   },
   {
     num: '02',
     kicker: 'QUOTES AND ITINERARIES',
-    title: 'Send the quote that already won',
+    title: 'Create Travel Quotations Without Starting from Scratch',
     note: 'your logo, not ours',
     flip: true,
-    shot: { src: '/travel-crm/images/quote-builder.png', alt: 'Trip details page with suggested quotes', w: 1366, h: 683 },
+    shot: { src: '/travel-crm/images/quote-builder.png', alt: 'Travel quotation builder with destination details and suggested itineraries', w: 1366, h: 683 },
     float: { src: '/travel-crm/images/quote-cover.png', alt: 'Branded quote cover', w: 862, h: 682, width: 220 },
     items: [
       {
         icon: 'RefreshCw',
-        title: 'Start from one that worked',
-        body: 'The trip page suggests past quotes for the same destination, with the day-wise plan, hotels, ferries and price already in place.',
+        title: 'Reuse Successful Travel Proposals',
+        body: 'Find previous quotations for the same destination with their day-wise plans, hotels, ferries, and pricing already available.',
       },
       {
         icon: 'Palette',
-        title: 'Or build it custom, day by day',
-        body: 'Add hotels, transfers, activities and sightseeing as you go, and your logo and details land on every page.',
+        title: 'Customize Every Travel Itinerary',
+        body: 'Add hotels, transfers, activities, and sightseeing to create a personalized travel proposal for each guest.',
       },
       {
         icon: 'MessageCircle',
-        title: 'Send it however the guest replies',
-        body: 'Print, email or download a PDF, or WhatsApp the guest straight from the trip page.',
+        title: 'Share Professional Travel Quotations',
+        body: 'Print, email, or download quotations as PDFs. Share them with guests through WhatsApp from the trip page.',
       },
     ],
   },
   {
     num: '03',
     kicker: 'BOOKINGS',
-    title: 'Price it once, quote it forever',
+    title: 'Organize Travel Booking Details in One Place',
     note: 'set up once, quote forever',
-    shot: { src: '/travel-crm/images/hotels.png', alt: 'Hotel masters with meal plans and room types', w: 1366, h: 680 },
+    shot: { src: '/travel-crm/images/hotels.png', alt: 'Hotel database, booking details, and travel voucher generation', w: 1366, h: 680 },
     float: { src: '/travel-crm/images/voucher.png', alt: 'Booking confirmation voucher with sharing options', w: 596, h: 298, width: 300 },
     items: [
       {
         icon: 'Hotel',
-        title: 'A hotel master that holds the details',
-        body: 'Photos, star rating, room types, meal plans (CP, MAP, AP), check-in and check-out times, and child extra-bed age.',
+        title: 'Maintain Detailed Hotel Information',
+        body: 'Store hotel photos, ratings, room types, meal plans, check-in and check-out times, and child extra-bed details.',
       },
       {
         icon: 'Bus',
-        title: 'Transport and sightseeing by location',
-        body: 'Ferries, cabs and activities saved once against a destination, then pulled into any quote.',
+        title: 'Save Destination-Based Services',
+        body: 'Maintain transport, ferries, sightseeing, and activities by location for reuse in travel quotations.',
       },
       {
         icon: 'Ticket',
-        title: 'Vouchers straight from the booking',
-        body: 'Trip, hotel and activity vouchers, with prices, branding and terms shown or hidden as you choose.',
+        title: 'Generate Travel Booking Vouchers',
+        body: 'Create trip, hotel, and activity vouchers with customizable prices, branding, and terms.',
       },
     ],
   },
   {
     num: '04',
     kicker: 'ACCOUNTING',
-    title: 'See what is owed before you have to ask',
+    title: 'Keep Every Travel Payment Accounted For',
     note: 'no more notebook ledgers',
     flip: true,
-    shot: { src: '/travel-crm/images/payments.png', alt: 'Incoming payments list with paid and overdue status', w: 1366, h: 681 },
+    shot: { src: '/travel-crm/images/payments.png', alt: 'Travel payment tracking dashboard and instalment receipt details', w: 1366, h: 681 },
     float: { src: '/travel-crm/images/instalment.png', alt: 'Instalment detail with receipt', w: 650, h: 536, width: 220 },
     items: [
       {
         icon: 'Wallet',
-        title: 'Every payment has a status',
-        body: 'Upcoming, past 7 days, unverified, paid and overdue, each with its amount, due date and the booking behind it.',
+        title: 'Track Incoming Payments',
+        body: 'View upcoming, past 7 days, unverified, paid, and overdue payments along with their due dates and associated bookings.',
       },
       {
         icon: 'Receipt',
-        title: 'Instalments, receipts and GST invoices',
-        body: 'Log part payments against the trip, watch the balance fall, and raise a GST invoice against a payment once logged.',
+        title: 'Record Instalments and Generate Invoices',
+        body: 'Log part payments against bookings, track remaining balances, and generate receipts and GST invoices against logged payments.',
       },
       {
         icon: 'FileText',
-        title: 'Proforma up front, margin at the end',
-        body: 'Send a proforma before money moves, and check the profit report once the trip is done.',
+        title: 'Review Trip Profitability',
+        body: 'Create proforma invoices before payments and review profit reports after trips are completed.',
       },
     ],
   },
   {
     num: '05',
     kicker: 'OWNER DASHBOARD',
-    title: 'Open the day already knowing what it holds',
+    title: 'Get a Better View of Your Travel Business Performance',
     note: 'your 9 am check-in',
-    shot: { src: '/travel-crm/images/dashboard.webp', alt: 'Owner dashboard', w: 1365, h: 686 },
+    shot: { src: '/travel-crm/images/dashboard.webp', alt: 'Travel business dashboard with revenue, lead statistics, pending follow-ups, and payment information', w: 1365, h: 686 },
     items: [
       {
         icon: 'LayoutDashboard',
-        title: 'Revenue, leads, quotes, conversion',
-        body: 'The four numbers that say how the desk is doing, for today, this week or this month.',
+        title: 'Monitor Travel Sales Performance',
+        body: 'Review revenue, leads, quotations, and conversion for today, this week, or this month.',
       },
       {
         icon: 'Bell',
-        title: 'What needs you today',
-        body: 'Pending follow-ups and payments due for today, yesterday and the next 7 days, plus alerts for bookings and comments.',
+        title: 'Identify Pending Business Activities',
+        body: 'View follow-ups and payments due across today, yesterday, and the next 7 days, along with booking and comment alerts.',
       },
       {
         icon: 'CalendarCheck',
-        title: 'Trips starting and ending',
-        body: 'Plan pickups, check-ins and feedback calls before the day begins.',
+        title: 'Prepare for Upcoming Trips',
+        body: 'Review trips starting and ending to plan pickups, check-ins, and feedback calls.',
       },
     ],
   },
 ]
 
+// Section 7 (HOW IT WORKS) — step titles + bodies verbatim from the brief.
 export const steps = [
   {
     icon: 'Headset',
     step: 'STEP 1',
-    title: 'Live demo',
-    body: 'We walk your team through the CRM using trips like the ones you sell.',
+    title: 'Live Demo',
+    body: 'Explore NNC Travel CRM using travel scenarios similar to the trips and packages your team manages.',
   },
   {
     icon: 'PaletteOnDark',
     step: 'STEP 2',
-    title: 'Your workspace',
-    body: 'Your logo and details on quotes and vouchers, and a login for every user.',
+    title: 'Your Workspace',
+    body: 'Set up your company branding, quotations, vouchers, and individual user logins.',
   },
   {
     icon: 'UploadOnDark',
     step: 'STEP 3',
-    title: 'Your data loaded',
-    body: 'Hotels, transport, sightseeing and existing leads brought in, including CSV imports.',
+    title: 'Your Travel Data',
+    body: 'Load hotel, transport, sightseeing, and existing enquiry information, including CSV imports.',
   },
   {
     icon: 'UsersOnDark',
     step: 'STEP 4',
-    title: 'Team trained, go live',
-    body: 'Sales, operations and accounts learn their screens, then you run live trips.',
+    title: 'Team Training and Go Live',
+    body: 'Train sales, operations, and accounts teams on their respective CRM screens before managing live trips.',
   },
 ]
 
+// Section 9 (BUILT FOR) — titles + bodies verbatim from the brief.
 export const audiences = [
   {
     icon: 'MapPin',
-    title: 'Tour operators',
-    body: 'Domestic and island packages with ferries, hotels and cabs.',
+    title: 'Tour Operators',
+    body: 'Manage domestic and island tour packages with hotels, ferries, cabs, and travel quotations.',
   },
   {
     icon: 'Handshake',
-    title: 'DMCs',
-    body: 'Ground handling for agents, with supplier-ready vouchers.',
+    title: 'Destination Management Companies',
+    body: 'Organize ground handling for agents with supplier-ready vouchers and trip details.',
   },
   {
     icon: 'Globe',
-    title: 'Destination specialists',
-    body: 'Teams that sell one region deeply and quote it every day.',
+    title: 'Destination Specialists',
+    body: 'Manage travel enquiries and quotations for teams focused on specific destinations and regions.',
   },
   {
     icon: 'Users',
-    title: 'Growing travel agencies',
-    body: 'Ten or more people who need one shared view of every trip.',
+    title: 'Growing Travel Agencies',
+    body: 'Bring sales, operations, and accounting teams together with a shared view of every trip.',
   },
 ]
 

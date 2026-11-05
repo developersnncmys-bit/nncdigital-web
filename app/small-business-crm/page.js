@@ -14,7 +14,7 @@ import MarketingPage from '@/components/marketing/MarketingPage'
 export const metadata = {
   title: 'Small Business CRM Software for Sales & Leads | NNC',
   description:
-    "Manage leads, sales pipelines, WhatsApp conversations and invoices with NNC Digital's Small Business CRM. Explore affordable plans and book a demo.",
+    "Manage leads, sales pipelines, WhatsApp conversations and GST invoices with NNC Digital's Small Business CRM Software. Explore plans and book a demo.",
   alternates: { canonical: '/small-business-crm/' },
   robots: { index: false, follow: false },
 }
@@ -29,7 +29,11 @@ const PAGE = {
   hero: {
     eyebrow: 'Small Business CRM',
     title: 'Small Business CRM – Manage Leads, Sales and Customers in One Place',
-    lead: "Simplify daily operations with NNC Digital's Small Business CRM. Capture every enquiry, manage sales pipelines and stay connected with customers through one simple platform. Designed for teams of up to 10 users, with quick setup and affordable pricing.",
+    lead: [
+      "Simplify sales and customer management with NNC Digital's Small Business CRM. Manage enquiries, sales pipelines, WhatsApp conversations and customer information in one platform.",
+      'Our CRM Software for Small Businesses combines Lead Management Software, Sales Management CRM and Customer Relationship Management Software to streamline daily operations.',
+      'Built for startups and teams of up to 10 users, our Affordable CRM Software for Small Businesses offers flexible pricing and easy setup.',
+    ],
     ctas: [
       { label: 'Book a Demo', href: '#start', trial: true },
       { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
@@ -48,42 +52,45 @@ const PAGE = {
     // -----------------------------------------------------------------------
     {
       type: 'plans',
-      title: 'Find the Right Small Business CRM Plan for Your Team',
-      lead: 'Choose a Small Business CRM plan that fits your team size and sales requirements. Pay monthly or save with annual billing, with no long-term contracts.',
+      title: 'Affordable Small Business CRM Software Pricing for Your Team',
+      lead: [
+        'Choose a Small Business CRM plan that fits your team size, sales requirements and budget.',
+        'Our CRM Software for Startups and Small Teams offers flexible monthly and annual billing without long-term contracts.',
+      ],
       note: 'Prices are indicative, exclude 18% GST and are based on annual billing. Monthly billing is available at an additional cost. Final pricing is confirmed before launch.',
       plans: [
         {
           name: 'Starter',
-          desc: 'For small teams getting started with CRM Software',
+          desc: 'For Small Teams Getting Started with CRM Software · Manage essential sales activities with Small Business CRM Software.',
           price: 'Rs. 2,999',
           per: '/ month',
-          priceNote: 'Up to 5 users · Billed annually',
+          priceNote: 'Up to 5 Users · Billed Annually',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
           featuresHeader: "What's Included",
           features: [
-            'Centralized enquiry management',
-            'Sales pipeline with stages and owners',
-            'WhatsApp conversations linked to leads',
-            'Basic reports and dashboards',
-            'Email and chat support',
+            'Centralized Enquiry Management',
+            'Sales Pipeline with Stages and Owners',
+            'WhatsApp Conversations Linked to Leads',
+            'Basic Reports and Dashboards',
+            'Email and Chat Support',
           ],
         },
         {
           name: 'Pro',
-          desc: 'For growing small businesses',
+          desc: 'For Growing Small Businesses · Scale your business with advanced Sales Management CRM and Business Management CRM features.',
           badge: 'Most Popular',
           highlight: true,
           price: 'Rs. 5,999',
           per: '/ month',
-          priceNote: 'Up to 10 users · Billed annually',
+          priceNote: 'Up to 10 Users · Billed Annually',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
           featuresHeader: 'Everything in Starter, plus',
           features: [
-            'Sales forecasting and targets',
-            'GST invoicing and payment reminders',
-            'Custom fields, tags and workflows',
-            'Advanced reports with export',
-            'Priority support and onboarding',
+            'Sales Forecasting and Targets',
+            'GST Invoicing and Payment Reminders',
+            'Custom Fields, Tags and Workflows',
+            'Advanced Reports with Export',
+            'Priority Support and Onboarding',
           ],
         },
       ],
@@ -97,18 +104,18 @@ const PAGE = {
       type: 'featureTabs',
       id: 'inside', // Target for the hero's "See What's Inside" button.
       title: 'A Closer Look Inside Small Business CRM Software',
-      lead: "NNC Digital's Small Business CRM brings essential sales operations into one workspace, from customer enquiries to invoices and business reports.",
+      lead: "NNC Digital's Small Business CRM brings lead tracking, sales pipelines, invoicing and analytics into one centralized workspace. Our Business Management CRM and Customer Management Software help small businesses organize sales activities and improve customer relationships.",
       cta: { label: 'Book a Demo', href: '#start', trial: true },
       tabs: [
         {
           key: 'enquiries',
           label: 'Enquiries',
           title: 'Manage Every Customer Enquiry in One Inbox',
-          body: 'Capture and organize leads using Lead Management Software that connects enquiries from WhatsApp, website forms, phone calls and walk-ins.',
+          body: "Capture leads using NNC Digital's Lead Management Software and Small Business Lead Management Software. Our CRM with WhatsApp Integration for Small Business connects customer enquiries from WhatsApp, websites, phone calls and advertisements.",
           bullets: [
-            'Automatically capture enquiries from WhatsApp, forms, calls and ads',
+            'Capture enquiries from WhatsApp, forms, calls and ads',
             'Assign leads to the right team members',
-            'Track lead sources, ownership and next actions',
+            'Track lead sources, ownership and follow-ups',
           ],
           media: { src: '/img/product/sb-enquiries.mp4', alt: 'A sales lead landing in the enquiries inbox' },
         },
@@ -116,7 +123,7 @@ const PAGE = {
           key: 'pipeline',
           label: 'Sales Pipeline',
           title: 'Track Every Deal with Small Business CRM Software',
-          body: 'Manage your sales pipeline effortlessly with our Small Business CRM Software. Track deals by stage, monitor progress, assign owners and schedule follow-ups from one dashboard. Stay updated on opportunities and focus on deals ready to close.',
+          body: "Manage sales opportunities with NNC Digital's Small Business CRM Software. Our Sales Pipeline Management Software and Sales Tracking Software help track deal stages, assign sales owners and schedule follow-ups through one visual dashboard.",
           bullets: [
             'Visual sales pipeline with deal stages and values',
             'Deal ownership and follow-up date tracking',
@@ -128,7 +135,7 @@ const PAGE = {
           key: 'invoicing',
           label: 'Invoicing',
           title: 'Simplify GST Invoicing with Small Business CRM Software',
-          body: 'Create proforma and GST invoices directly from your sales deals using Small Business CRM Software. Manage customer billing, schedule payment reminders and download receipts and ledgers without switching between different systems.',
+          body: "Manage customer billing with NNC Digital's Small Business CRM Software. Our CRM Software with GST Invoicing and Small Business Invoice Management Software help create proforma invoices, generate GST bills and track payments directly from sales deals.",
           bullets: [
             'Proforma and GST invoice generation from deal pages',
             'Scheduled payment reminders',
@@ -140,9 +147,9 @@ const PAGE = {
           key: 'reports',
           label: 'Reports',
           title: 'Monitor Business Performance with Small Business CRM Software',
-          body: 'Make informed decisions with our Small Business CRM Software. Track revenue, leads, conversions and outstanding payments from a single business analytics dashboard. Compare performance across different periods and export reports for easier analysis.',
+          body: "Make informed decisions using NNC Digital's Small Business CRM Software. Our CRM Dashboard Software and Business Analytics Software help track revenue, leads, sales conversions and outstanding payments through centralized reports.",
           bullets: [
-            'Centralized dashboard for revenue, leads, conversions and outstanding payments',
+            'Dashboard for revenue, leads, conversions and outstanding payments',
             'Daily, weekly and monthly performance comparisons',
             'Spreadsheet export for business data and reports',
           ],
@@ -158,26 +165,29 @@ const PAGE = {
       type: 'featureGrid',
       flat: true,
       title: 'CRM Software Built for the Way Small Teams Work',
-      lead: "NNC Digital's Small Business CRM simplifies daily sales activities with easy setup, WhatsApp communication and clear business dashboards.",
+      lead: [
+        "NNC Digital's Small Business CRM simplifies sales tracking, customer communication and daily operations.",
+        'Our CRM for Small Teams combines easy setup, WhatsApp engagement and centralized reporting.',
+      ],
       items: [
         {
           icon: 'rocket',
           title: 'Start Fast and Manage Sales Efficiently',
-          body: 'Set up your CRM workspace, import existing leads through CSV files and begin tracking sales opportunities without complicated implementation.',
+          body: 'Set up your workspace, import leads through CSV files and track opportunities using Easy-to-Use CRM Software for Small Businesses.',
           image: '/small-business-crm/images/card1-sm.webp',
           imageAlt: 'A small-business owner setting up NNC Small Business CRM on day one',
         },
         {
           icon: 'whatsapp',
           title: 'Connect with Customers Through WhatsApp',
-          body: 'Manage customer conversations using WhatsApp CRM for Small Business. Keep WhatsApp communication connected to individual leads and sales opportunities for easy follow-ups.',
+          body: 'Manage customer conversations with WhatsApp CRM for Small Business. Link WhatsApp communication to leads and sales opportunities for organized follow-ups.',
           image: '/small-business-crm/images/card2-sm.webp',
           imageAlt: 'A WhatsApp conversation attached to a sales deal in NNC',
         },
         {
           icon: 'reports',
           title: 'Stay Updated with Your Daily Sales Activities',
-          body: 'Access a centralized dashboard showing pending follow-ups, overdue payments and new enquiries. Help your team prioritize important tasks without switching between multiple tools.',
+          body: 'Monitor enquiries, pending follow-ups and overdue payments using Small Business Sales Tracking Software and a centralized CRM Dashboard.',
           image: '/small-business-crm/images/card3-sm.webp',
           imageAlt: 'The daily dashboard showing follow-ups, payments due and new leads',
         },
@@ -191,12 +201,12 @@ const PAGE = {
       type: 'split',
       kicker: 'GROWING BEYOND SMALL BUSINESS?',
       title: 'Upgrade Your Small Business CRM as Your Business Grows',
-      body: 'When your team expands beyond 10 users or requires advanced features, upgrade from Small Business CRM to the full NNC CRM without losing existing information.',
+      body: "Scale your operations with NNC Digital's Small Business CRM and upgrade to advanced Customer Relationship Management Software when your team expands. Our Scalable Business CRM Software supports growing businesses with additional modules and advanced workflows.",
       bullets: [
         'Transfer existing leads, contacts and sales records',
-        'Add advanced modules based on business requirements',
+        'Add advanced CRM modules based on business requirements',
         'Continue using existing team logins and workflows',
-        'Scale your Customer Relationship Management Software as your operational needs increase',
+        'Upgrade your CRM Software for Small Businesses as your operational requirements increase',
       ],
       media: { type: 'image', src: '/showcase.jpg', alt: 'NNC CRM full product preview — placeholder image' },
       flip: true,
@@ -227,24 +237,27 @@ const PAGE = {
     {
       type: 'cards',
       title: 'Three Simple Ways to Get Started with Small Business CRM',
-      lead: "Explore NNC Digital's Small Business CRM through a product walkthrough, expert discussion or recorded demonstration.",
+      lead: [
+        "Explore NNC Digital's Small Business CRM through a personalized walkthrough, expert consultation or recorded product demonstration.",
+        'Discover how our Affordable CRM Software for Small Businesses supports lead management, sales tracking and customer communication.',
+      ],
       items: [
         {
           icon: 'rocket',
           title: 'Book a Demo',
-          body: 'Schedule a 30-minute demonstration using your own business data. Explore the platform without a credit card or commitment.',
+          body: 'Schedule a 30-minute walkthrough of our CRM Software for Small Businesses using your business data.',
           href: '#start',
         },
         {
           icon: 'phone',
           title: 'Talk to an Expert',
-          body: 'Discuss your business needs with our team and find the right CRM solution for your sales workflow.',
+          body: 'Discuss your sales requirements and find the right Small Business CRM Software plan for your team.',
           href: '/company/contact',
         },
         {
           icon: 'help',
           title: 'Watch a Demo',
-          body: 'Explore the key features, including enquiry management, sales pipelines, WhatsApp communication and reports, before booking a call.',
+          body: 'Explore our Sales Management CRM features, including enquiries, sales pipelines, WhatsApp communication and reporting.',
           href: '#demo',
         },
       ],
@@ -256,27 +269,27 @@ const PAGE = {
     {
       type: 'faq',
       title: 'Small Business CRM – Frequently Asked Questions',
-      lead: "Find answers to common questions about NNC Digital's Small Business CRM, pricing, features and implementation.",
+      lead: "Find answers about NNC Digital's Small Business CRM, pricing, integrations and sales management features.",
       items: [
         {
           q: 'What is NNC Small Business CRM?',
-          a: "NNC Digital's Small Business CRM is a customer relationship management platform designed for teams of 1 to 10 users. It helps businesses capture enquiries, track sales opportunities, manage WhatsApp conversations and monitor sales activities through a centralized dashboard.",
+          a: "NNC Digital's Small Business CRM is Customer Relationship Management Software for teams of up to 10 users. It helps manage leads, sales pipelines, WhatsApp conversations, customer information and sales reports in one platform.",
         },
         {
           q: 'How is Small Business CRM different from the full NNC CRM?',
-          a: 'Small Business CRM focuses on essential features like lead management, sales pipelines, WhatsApp communication and reporting. The full NNC CRM supports additional requirements such as custom modules, advanced automation and more complex billing workflows as businesses grow.',
+          a: 'Our CRM Software for Small Businesses focuses on lead management, sales tracking, WhatsApp communication and reporting. The full NNC CRM offers additional modules, advanced automation and more complex business workflows.',
         },
         {
           q: 'How much does Small Business CRM cost?',
-          a: 'The Starter plan costs ₹2,999 per month for up to 5 users, while the Pro plan costs ₹5,999 per month for up to 10 users. Both prices are based on annual billing and exclude 18% GST. Monthly billing is available at a premium, with final pricing confirmed before launch.',
+          a: 'NNC Digital offers Affordable CRM Software for Small Businesses starting at ₹2,999/month for up to 5 users and ₹5,999/month for up to 10 users. Prices are based on annual billing and exclude 18% GST.',
         },
         {
           q: 'How quickly can I start using NNC Small Business CRM?',
-          a: 'NNC Digital states that most teams can start using the CRM within a day. Setup includes importing existing leads through CSV files, applying business branding and providing team training.',
+          a: "NNC Digital's Easy-to-Use CRM Software for Small Businesses allows most teams to get started within a day, including CSV lead imports, business branding and team training.",
         },
         {
           q: 'Can I upgrade Small Business CRM when my team grows?',
-          a: 'Yes. Businesses expanding beyond 10 users can upgrade to the full NNC CRM. Existing leads, deals, contacts, invoicing history and team logins can be carried over during the upgrade.',
+          a: 'Yes. Our Scalable Business CRM Software allows growing teams to upgrade to the full NNC CRM while retaining leads, sales records, customer information, invoices and existing team logins.',
         },
       ],
     },
@@ -284,10 +297,14 @@ const PAGE = {
 
   // Final CTA band rendered by MarketingPage's CtaBand.
   cta: {
-    title: 'Ready to Simplify Your Sales with Small Business CRM?',
-    sub: "Manage leads, sales pipelines, WhatsApp conversations and invoices with NNC Digital's Small Business CRM. Book a 30-minute demo using your own business data to explore how the platform fits your team.",
+    title: 'Grow Your Business with Affordable Small Business CRM Software',
+    sub: [
+      "Simplify customer management, sales pipelines and invoicing with NNC Digital's Small Business CRM.",
+      'Our CRM Software for Small Businesses combines Lead Management Software, Sales Management CRM, WhatsApp CRM for Small Business and Business Management CRM features in one platform.',
+      'Book a demo and discover how the right Customer Relationship Management Software can support your business growth.',
+    ],
     primary: { label: 'Book a Demo', href: '#start' },
-    secondary: { label: 'See Pricing', href: '/pricing' },
+    secondary: { label: "See What's Inside", href: '#inside' },
   },
 }
 

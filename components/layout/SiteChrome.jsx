@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer/Footer'
 import TrialModal from '@/components/trial/TrialModal'
 import HelpBot from '@/components/chat/HelpBot'
 import TravelChatBot from '@/components/travel/TravelChatBot'
+import CallFab from '@/components/layout/CallFab/CallFab'
 import { faq } from '@/data/content'
 import { SITE_URL } from '@/lib/site'
 import { travelPageSlugs } from '@/data/travelPages'
@@ -83,6 +84,11 @@ export default function SiteChrome({ children }) {
           band above the footer — kept because it is tested and may be wanted
           again, but the sticky widget is what ships. */}
       <TravelChatBot />
+
+      {/* "Call us" floating button — site-wide, stacked above the WhatsApp
+          bubble. Independent of HelpBot so it renders on travel routes too
+          (where HelpBot is suppressed via the `ownJsonLd` branch below). */}
+      <CallFab />
 
       {/* The travel pages run their own demo flow plus the chat above, so the
           trial modal and help bot would be a third and fourth way to start the

@@ -1,28 +1,33 @@
 // Content for the Zoom-style homepage sections.
 
 export const worksWith = {
-  title: 'Connect CRM Software with Your Business Tools',
-  body: "NNC Digital's CRM Software in India connects familiar platforms to simplify customer communication, payments and daily business activities.",
+  title: 'Connect CRM Software with Your Everyday Business Tools',
+  // Rendered as separate <p> blocks so each sentence sits on its own line
+  // with spacing between them, instead of running together.
+  body: [
+    "NNC Digital's CRM Software in India connects your everyday applications to simplify customer communication, payments and business operations.",
+    'Our CRM Integration Software and Cloud-Based CRM Software help manage sales activities and customer information from one centralized platform.',
+  ],
   caption: 'Integrations',
   items: ['WhatsApp', 'Gmail', 'Razorpay', 'Tally', 'Shopify'],
 }
 
 export const lifecycle = {
-  title: 'One CRM for Your Entire Customer Journey',
-  lead: 'Manage enquiries, sales opportunities and customer relationships with CRM Software in India, all through one platform.',
+  title: 'One CRM Software to Manage Your Entire Customer Journey',
+  lead: "Manage enquiries, sales opportunities and customer relationships with NNC Digital's CRM Software in India. Our Sales and Lead Management Software helps businesses track leads, organize sales pipelines and automate follow-ups.",
   tabs: [
     {
       label: 'Enquiries',
-      title: 'Capture Every Enquiry. Never Miss an Opportunity.',
-      body: "Capture leads from websites, WhatsApp, calls and walk-ins in one shared pipeline. NNC Digital's Lead Management Software organizes enquiries, sales stages and follow-ups.",
-      bullets: ['Omnichannel Lead Capture', 'Automatic Pipeline Stages', 'Tasks and Reminders'],
+      title: 'Capture Every Enquiry with Lead Management Software',
+      body: "Capture leads from websites, WhatsApp, calls and walk-ins with Lead Management CRM Software. NNC Digital's Customer Lead Management Software organizes enquiries, sales stages and follow-ups in one shared pipeline.",
+      bullets: ['Omnichannel Lead Capture', 'Lead Tracking and Management', 'Sales Pipeline Management', 'Automatic Pipeline Stages', 'Tasks and Reminders'],
       cta: { label: 'Book a Demo', href: '#start' },
       img: '/img/feat-enquiries.jpg',
     },
     {
       label: 'Sales',
       title: 'Manage Sales and Close Deals Faster',
-      body: 'Track opportunities, monitor sales progress and manage targets with integrated Sales Management Software.',
+      body: "Track sales opportunities, monitor deals and achieve business targets with NNC Digital's Sales Management Software. Our Sales CRM Software simplifies pipeline tracking, forecasting and sales performance analysis.",
       bullets: ['Sales Pipeline Management', 'Deal Tracking', 'Goal and Target Tracking', 'Sales Forecasting', 'Advanced Analytics'],
       cta: { label: 'Explore Sales Features', href: '/industries/sales-teams' },
       img: 'https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=1600',
@@ -30,7 +35,7 @@ export const lifecycle = {
     {
       label: 'Relationships',
       title: 'Build Better Customer Relationships',
-      body: "Manage customer information, invoices, payments and engagement activities with NNC's Client Management Software.",
+      body: "Manage customer information, invoices, payments and communication with NNC Digital's Client Management Software. Our Customer Relationship Management Software simplifies customer engagement, billing and reporting through one centralized Business CRM Software platform.",
       bullets: ['Contacts and Companies', 'Invoicing and Payments', 'GST-Ready Documents', 'WhatsApp Engagement', 'Reports and Dashboards'],
       cta: { label: 'Discover NNC CRM', href: '/' },
       img: '/img/feat-whatsapp.jpg',
@@ -68,33 +73,38 @@ export const featureRows = [
 export const howItWorks = {
   eyebrow: 'How It Works',
   title: 'Get Started with CRM Software in India in Minutes, Not Months',
-  lead: 'Set up your CRM workspace, choose a plan and import your business data in four simple steps.',
+  lead: "NNC Digital's Easy-to-Use CRM Software simplifies lead management, sales tracking and customer relationships. Set up your Online CRM Software in India in four simple steps.",
   steps: [
-    { n: '01', icon: 'roles', title: 'Create Your Account', body: 'Sign up for free. No credit card required.' },
-    { n: '02', icon: 'sales', title: 'Choose Your Plan', body: 'Select a plan for 1, 3 or 10 users.' },
-    { n: '03', icon: 'vault', title: 'Import Your Data', body: 'Import contacts, enquiries and existing sales pipelines.' },
-    { n: '04', icon: 'mkt', title: 'Go Live Today', body: 'Start managing leads, tracking sales and forecasting growth.' },
+    { n: '01', icon: 'roles', title: 'Create Your CRM Account', body: 'Sign up for a free trial. No credit card required.' },
+    { n: '02', icon: 'sales', title: 'Choose Your CRM Pricing Plan', body: 'Select an affordable CRM Software Plan for 1, 3 or up to 10 users.' },
+    { n: '03', icon: 'vault', title: 'Import Your Customer Data', body: 'Import contacts, enquiries and sales pipelines into your Customer Database Management Software.' },
+    { n: '04', icon: 'mkt', title: 'Go Live and Manage Your Business', body: 'Start managing leads, tracking sales and forecasting growth.' },
   ],
   cta: { label: 'Book a Demo', href: '#start' },
 }
 
 export const useCases = {
   eyebrow: 'Industries',
-  title: 'Business CRM Software Designed for Your Industry',
-  lead: 'NNC Digital provides Industry Specific CRM Software with flexible workflows for different business requirements.',
+  title: 'Industry-Specific Business CRM Software for Every Growing Business',
+  // Rendered by SectionHead as two separate <p> blocks so the keyword-rich
+  // "From CRM Software…" line sits on its own paragraph with spacing above.
+  lead: [
+    'NNC Digital offers Industry-Specific CRM Software in India with flexible workflows for different business needs.',
+    'From CRM Software for Small Businesses to multi-location enterprises, manage customers, sales and daily operations through one platform.',
+  ],
   cta: { label: 'Explore Industry Solutions', href: '/industries' },
-  // Nine industries per the home-page content brief. Travel, Education and
-  // Training Institutes have their own product pages; the rest link to
-  // their /industries/ pages.
+  // Nine industries per the home-page content brief. Each card title now
+  // leads with the sector + its SEO-friendly CRM descriptor so the grid
+  // doubles as internal keyword signals.
   cards: [
-    { icon: 'sales', title: 'Sales Teams', body: 'Manage deals, opportunities and sales pipelines with Sales Management CRM.', href: '/industries/sales-teams' },
-    { icon: 'service', title: 'Service Businesses', body: 'Manage clients, projects and sales pipelines in one place.', href: '/industries/service-businesses' },
-    { icon: 'retail', title: 'Retail and Distribution', body: 'Organize customer enquiries, sales activities and invoicing.', href: '/industries/retail' },
-    { icon: 'manufacturing', title: 'Manufacturing', body: 'Track enquiries, inventory, orders, dispatches and payments.', href: '/industries/manufacturing' },
-    { icon: 'healthcare', title: 'Healthcare and Clinics', body: 'Manage patient information, appointments and follow-ups.', href: '/industries/healthcare' },
-    { icon: 'realestate', title: 'Real Estate', body: 'Track property enquiries, site visits and bookings.', href: '/industries/real-estate' },
-    { icon: 'travel', title: 'Travel and Tourism', body: 'Manage travel enquiries, bookings and vouchers.', href: '/travel-crm/' },
-    { icon: 'education', title: 'Education', body: 'Organize admission enquiries, parent follow-ups and fees.', href: '/industries/education' },
-    { icon: 'training', title: 'Training Institutes', body: 'Manage multi-center admissions, student journeys and attendance.', href: '/multi-center-training-institutes-crm/' },
+    { icon: 'sales', title: 'Sales Teams — Sales CRM Software', body: 'Track deals, opportunities and targets with Sales Pipeline Management Software.', href: '/industries/sales-teams' },
+    { icon: 'service', title: 'Service Businesses — Service Management CRM', body: 'Manage enquiries, projects and billing with CRM Software for Service Businesses.', href: '/industries/service-businesses' },
+    { icon: 'retail', title: 'Retail and Distribution — Retail CRM Software', body: 'Organize customers, sales orders and invoicing with CRM Software for Retail and Distribution Businesses.', href: '/industries/retail' },
+    { icon: 'manufacturing', title: 'Manufacturing — Manufacturing CRM Software', body: 'Track quotations, inventory, orders and payments with CRM Software for Manufacturing Companies.', href: '/industries/manufacturing' },
+    { icon: 'healthcare', title: 'Healthcare and Clinics — Healthcare CRM Software', body: 'Manage patient records, appointments and follow-ups with CRM Software for Clinics and Healthcare Businesses.', href: '/industries/healthcare' },
+    { icon: 'realestate', title: 'Real Estate — Real Estate CRM Software', body: 'Track property enquiries, site visits and bookings with Real Estate Lead Management Software.', href: '/industries/real-estate' },
+    { icon: 'travel', title: 'Travel and Tourism — Travel CRM Software', body: 'Manage travel enquiries, bookings and vouchers with CRM Software for Travel Agencies and Tour Operators.', href: '/travel-crm/' },
+    { icon: 'education', title: 'Education — Education CRM Software', body: 'Organize admissions, parent follow-ups and fees with CRM Software for Educational Institutions.', href: '/industries/education' },
+    { icon: 'training', title: 'Training Institutes — Institute Management CRM', body: 'Manage admissions, attendance and student records with CRM Software for Training Institutes.', href: '/multi-center-training-institutes-crm/' },
   ],
 }

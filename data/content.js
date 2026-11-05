@@ -136,10 +136,10 @@ export const hero = {
   eyebrow: 'The Decision-Making CRM',
   titlePre: "CRM Software ",
   titleNavy: 'in India',
-  titlePost: ' to Manage Leads, Sales and Customers.',
-  leadStrong: 'Looking for CRM Software in India that fits your business? NNC CRM brings enquiries, sales pipelines, forecasting, billing and WhatsApp engagement into one flexible platform.',
-  lead: 'Choose the modules you need and manage customer relationships without changing your workflows.',
-  lead2: 'From Business CRM Software to Lead Management Software, NNC CRM keeps your business organized.',
+  titlePost: ' to Manage Leads, Sales, and Customers.',
+  leadStrong: 'Looking for the Best CRM Software in India? NNC Digital offers flexible CRM Software in India to manage leads, sales pipelines, forecasting, billing and WhatsApp communication in one platform.',
+  lead: 'Built for startups, small businesses and enterprises, our Business CRM Software simplifies customer management, sales tracking and follow-ups.',
+  lead2: 'From Lead Management Software and Sales CRM Software to complete Customer Relationship Management Software, NNC CRM adapts to your business workflows.',
   ctas: [
     { label: 'Book a Demo', href: '#start', variant: 'primary' },
     { label: 'See it in action', href: '#decide', variant: 'ghost' },
@@ -210,8 +210,13 @@ export const decisions = {
 
 export const pricing = {
   eyebrow: 'Pricing',
-  title: 'Flexible CRM Software Pricing in India for Every Business',
-  lead: 'Choose affordable CRM Software in India with transparent pricing based on team size, without separate per-user charges within your plan.',
+  title: 'Affordable CRM Software Pricing in India for Every Business',
+  // Rendered as separate <p> blocks so the "Our Business CRM Software Plans…"
+  // keyword-rich sentence sits on its own paragraph with spacing above.
+  lead: [
+    'Choose Affordable CRM Software in India with flexible CRM Software Pricing Plans for freelancers, startups and growing enterprises.',
+    'Our Business CRM Software Plans offer transparent pricing based on team size, without additional per-user charges within your selected plan.',
+  ],
   note: 'All plans include a free 30-day trial without a credit card. Prices exclude 18% GST.',
   compareLabel: 'Compare All Features',
 }
@@ -258,36 +263,41 @@ export const whatsapp = {
 
 export const faq = {
   eyebrow: 'FAQ',
-  title: 'Frequently Asked Questions About NNC CRM',
-  lead: "Find answers about NNC Digital's CRM Software in India, features and pricing.",
+  title: 'Frequently Asked Questions About CRM Software in India',
+  lead: "Explore NNC Digital's Business CRM Software, features, integrations and pricing.",
   items: [
     {
-      q: 'What is NNC CRM?',
-      a: 'NNC CRM is flexible CRM Software in India that manages enquiries, sales pipelines, forecasting, billing and WhatsApp engagement in one platform.',
+      q: 'What is NNC CRM Software, and how does it help businesses?',
+      a: 'NNC CRM is flexible CRM Software in India that manages enquiries, sales pipelines, forecasting, billing and customer relationships through one platform.',
     },
     {
-      q: 'Is NNC CRM suitable for different industries?',
-      a: 'Yes. NNC Digital offers Business CRM Software for sales, services, retail, manufacturing, healthcare, real estate, travel, education and training institutes.',
+      q: 'Which CRM Software is suitable for small businesses in India?',
+      a: 'NNC Digital offers CRM Software for Small Businesses in India with lead management, sales tracking, invoicing and reporting for startups and growing teams.',
     },
     {
-      q: 'How much does NNC CRM cost?',
-      a: 'NNC CRM offers Starter at ₹14,999/year (1 user), Growth at ₹29,999/year (up to 3 users) and Enterprise at ₹59,999/year (up to 10 users). Prices exclude 18% GST.',
+      q: 'How much does CRM Software cost in India?',
+      a: 'NNC Digital offers Affordable CRM Software in India starting at ₹14,999/year for 1 user, ₹29,999/year for up to 3 users and ₹59,999/year for up to 10 users. Prices exclude 18% GST.',
     },
     {
-      q: 'Does NNC CRM support WhatsApp integration?',
-      a: 'Yes. NNC CRM supports WhatsApp communication and follow-ups through its Growth and Enterprise plans.',
+      q: 'Does NNC CRM support WhatsApp integration and lead management?',
+      a: 'Yes. Our CRM Software with WhatsApp Integration supports customer communication and follow-ups through Growth and Enterprise plans.',
     },
     {
-      q: 'Can I import my existing business data into NNC CRM?',
-      a: 'Yes. Import your existing contacts, enquiries and sales pipelines to manage customer information in one place.',
+      q: 'Can I import existing customer data into NNC CRM Software?',
+      a: "Yes. NNC Digital's Customer Relationship Management Software allows you to import contacts, enquiries and sales pipelines into one workspace.",
     },
   ],
 }
 
 export const finalCta = {
-  title: 'Build the CRM Your Business Actually Needs',
-  sub: "Manage enquiries, sales, forecasting, billing and customer engagement with NNC Digital's CRM Software in India.",
-  sub2: 'Choose your plan and start your free 30-day trial.',
+  title: 'Grow Your Business with CRM Software Built for Your Needs',
+  // Rendered as separate <p> blocks so the "From Lead Management Software…"
+  // keyword-rich sentence sits on its own paragraph with spacing above.
+  sub: [
+    "Simplify customer management, sales tracking and billing with NNC Digital's CRM Software in India.",
+    'From Lead Management Software and Sales CRM Software to forecasting and WhatsApp engagement, our Affordable Business CRM Software keeps your operations connected.',
+  ],
+  sub2: 'Start your free 30-day trial today.',
   ctas: [
     { label: 'Book a Demo', href: '#start', variant: 'invert-primary' },
     { label: 'Try the WhatsApp Demo', href: 'https://wa.me/919164566466?text=I%20want%20to%20try%20the%20NNC%20CRM%20WhatsApp%20demo', variant: 'invert-ghost' },

@@ -63,7 +63,13 @@ export default function FinalCta() {
           )}
 
           <h2 className={styles.title}>{finalCta.title}</h2>
-          <p className={styles.sub}>{finalCta.sub}</p>
+          {Array.isArray(finalCta.sub)
+            ? finalCta.sub.map((p, i) => (
+                <p key={i} className={styles.sub}>
+                  {p}
+                </p>
+              ))
+            : finalCta.sub && <p className={styles.sub}>{finalCta.sub}</p>}
           {finalCta.sub2 && <p className={styles.sub}>{finalCta.sub2}</p>}
 
           <div className={styles.ctas}>

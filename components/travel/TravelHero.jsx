@@ -13,7 +13,7 @@ import { UnderlineHeroFlex } from './TravelArtFlex'
 import { pricing, heroShots } from '@/data/travel'
 
 export default function TravelHero({ page }) {
-  const { pill, h1, lead, secondaryCta, heroNotes } = page
+  const { pill, h1, tagline, lead, secondaryCta, heroNotes } = page
 
   return (
     <section className={s.hero}>
@@ -32,7 +32,7 @@ export default function TravelHero({ page }) {
 
       <div className={`${s.wrap} ${s.grid}`}>
         <div>
-          <span className={s.pill}>{pill}</span>
+          {pill && <span className={s.pill}>{pill}</span>}
 
           <h1>
             {h1.lines.map((line) => (
@@ -55,6 +55,7 @@ export default function TravelHero({ page }) {
             </span>
           </h1>
 
+          {tagline && <p className={s.tagline}>{tagline}</p>}
           <p className={s.lead}>{lead}</p>
 
           <div className={s.ctaRow}>

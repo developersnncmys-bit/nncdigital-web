@@ -26,7 +26,13 @@ export default function PlansBlock({ block }) {
                 {block.title}
               </h2>
             )}
-            {block.lead && <p className={styles.lead}>{block.lead}</p>}
+            {Array.isArray(block.lead)
+              ? block.lead.map((p, i) => (
+                  <p key={i} className={styles.lead}>
+                    {p}
+                  </p>
+                ))
+              : block.lead && <p className={styles.lead}>{block.lead}</p>}
             {isSplit && block.note && <p className={styles.note}>{block.note}</p>}
           </div>
 

@@ -2,12 +2,12 @@ import { Fragment } from "react"
 import s from "./TravelLanding.module.css"
 import { SwooshWide } from "./TravelArt"
 import * as Icons from "./TravelIcons"
-import { decisions as baseDecisions, morningScreen } from "@/data/travel"
+import { decisions as baseDecisions, morningScreen as baseMorningScreen } from "@/data/travel"
 
 // The left panel rebuilds the real dashboard layout from images/dashboard.png in
 // markup so it stays crisp; its figures are bracketed sample data, never a
 // customer result.
-function MorningScreen() {
+function MorningScreen({ screen }) {
   return (
     <div className={`${s.stage} ${s.morning}`}>
       <div className={s.deco}>
@@ -15,23 +15,23 @@ function MorningScreen() {
       </div>
 
       <div className={s.morningBar}>
-        <b>{morningScreen.greeting}</b>
-        <span>Your desk, this morning</span>
+        <b>{screen.greeting}</b>
+        <span>{screen.subheading || 'Your desk, this morning'}</span>
       </div>
 
       <div className={s.statCard}>
         <div className={s.statHead}>
-          <b>{morningScreen.statsTitle}</b>
+          <b>{screen.statsTitle}</b>
           <div className={s.periods}>
-            {morningScreen.periods.map((p) => (
-              <span key={p} className={p === morningScreen.activePeriod ? s.on : undefined}>
+            {screen.periods.map((p) => (
+              <span key={p} className={p === screen.activePeriod ? s.on : undefined}>
                 {p}
               </span>
             ))}
           </div>
         </div>
         <div className={s.statRow}>
-          {morningScreen.stats.map((st) => (
+          {screen.stats.map((st) => (
             <div key={st.label}>
               <small>{st.label}</small>
               <b>{st.value}</b>
@@ -41,7 +41,7 @@ function MorningScreen() {
       </div>
 
       <div className={s.miniGrid}>
-        {morningScreen.panels.map((p) => (
+        {screen.panels.map((p) => (
           <div className={s.mini} key={p.title}>
             <b>{p.title}</b>
             <div className={s.miniCols}>
@@ -53,7 +53,7 @@ function MorningScreen() {
         ))}
       </div>
 
-      <p className={s.src}>{morningScreen.note}</p>
+      <p className={s.src}>{screen.note}</p>
     </div>
   )
 }
@@ -61,6 +61,10 @@ function MorningScreen() {
 export default function TravelDecisions({ page }) {
   const d = page.decisions
   const items = d.items || baseDecisions
+  // Page-level override: per-page briefs sometimes rename the dashboard
+  // mockup's subheading, stats title or panel labels. Merge over the shared
+  // base so a page only lists the fields it changes.
+  const screen = { ...baseMorningScreen, ...(d.morningScreen || {}) }
 
   return (
     <section className={s.problem} id="decisions">
@@ -87,10 +91,12 @@ export default function TravelDecisions({ page }) {
         </div>
 
         <div className={s.body}>
-          <MorningScreen />
+          <MorningScreen screen={screen} />
 
           <div className={s.leak}>
             <div className={s.cap}>{d.cap}</div>
+            {d.capTitle && <h2 className={s.capTitle}>{d.capTitle}</h2>}
+            {d.capLead && <p className={s.capLead}>{d.capLead}</p>}
             <div className={`${s.hand} ${s.decisionNote}`}>{d.note}</div>
 
             <div className={s.decisionList}>

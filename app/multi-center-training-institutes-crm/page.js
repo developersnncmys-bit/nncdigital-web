@@ -11,7 +11,11 @@ const PAGE = {
   hero: {
     eyebrow: 'Training Institutes & Coaching Centers',
     title: 'Best CRM for Training Institutes and Coaching Centers',
-    lead: "Manage admissions, student enquiries and branch operations with NNC Digital's CRM for Training Institutes. Track every student journey from initial enquiry to enrolment while maintaining complete visibility across all your centers through one centralized platform.",
+    lead: [
+      "Simplify enquiries, admissions, courses and branch operations with NNC Digital's CRM for Training Institutes.",
+      'Our Training Institute Management Software combines Student Admission Management Software, Education CRM Software and Learning Management System (LMS) features in one platform.',
+      'From leads to enrolment, our CRM for Coaching Centers simplifies student and multi-branch management.',
+    ],
     ctas: [
       { label: 'Book a Demo', href: '#start', trial: true },
       { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
@@ -42,21 +46,24 @@ const PAGE = {
       type: 'featureGrid',
       flat: true,
       title: 'One CRM for Every Center You Run',
-      lead: 'Manage admissions, students and branch performance with a centralized CRM for Training Institutes that brings all your centers together.',
+      lead: [
+        "Manage student admissions, branch operations and performance with NNC Digital's Multi-Center Training Institutes CRM.",
+        'Our CRM for Training Institutes brings student records, communication and admissions into one centralized Institute Management Software platform.',
+      ],
       items: [
-        { icon: 'globe', title: 'Centralized Control', body: 'Manage all your centers, student records and admission activities through one dashboard.' },
-        { icon: 'reports', title: 'Complete Visibility', body: 'Monitor enquiries, admissions and revenue across every branch in real time.' },
-        { icon: 'whatsapp', title: 'Targeted Outreach', body: 'Connect with prospective students through automated WhatsApp, SMS and email communication.' },
-        { icon: 'pipeline', title: 'Student Journeys', body: 'Track students from their first enquiry to enrolment and future course progression.' },
-        { icon: 'users', title: 'Student Retention', body: 'Identify students ready for their next program and engage them with relevant offers.' },
-        { icon: 'forecast', title: 'Center Analytics', body: 'Compare branch performance and counsellor activities through centralized reports.' },
+        { icon: 'globe', title: 'Centralized Control', body: 'Manage multiple branches, student profiles and admission activities with Multi-Center Management Software.' },
+        { icon: 'reports', title: 'Complete Visibility', body: 'Monitor student enquiries, enrolments and revenue across centers using Education CRM Software.' },
+        { icon: 'whatsapp', title: 'Targeted Outreach', body: 'Engage prospective students through automated WhatsApp, SMS and email communication.' },
+        { icon: 'pipeline', title: 'Student Journeys', body: 'Track enquiries, admissions and course progression with Student Lifecycle Management Software.' },
+        { icon: 'users', title: 'Student Retention', body: 'Identify opportunities for advanced courses and improve engagement with Student Retention Management Software.' },
+        { icon: 'forecast', title: 'Center Analytics', body: 'Compare branch admissions, counsellor activities and revenue using centralized Institute Performance Analytics.' },
       ],
     },
     {
       type: 'dataflow',
       config: {
         title: 'Complete Student Data Capture Across All Centers',
-        lead: 'Maintain accurate student information with a CRM for Training Institutes that keeps records synchronized across branches and headquarters. Create individual student profiles containing contact details, student IDs and campus information, ensuring consistent access to updated records.',
+        lead: "Centralize student information with NNC Digital's CRM for Training Institutes and keep records organized across branches. Our Student Management Software maintains student profiles, contact details, IDs and campus information in one accessible Student Database Management System.",
         student: {
           name: 'Aarav Sharma',
           initials: 'AS',
@@ -77,11 +84,11 @@ const PAGE = {
       type: 'leadCapture',
       kicker: 'Capture Every Enquiry',
       title: 'Zero Lead Leakage Across All Your Centers',
-      body: 'Capture enquiries from multiple platforms using a Student Lead Management CRM and organize them in one centralized inbox.',
+      body: "Capture and organize admissions enquiries with NNC Digital's Student Lead Management CRM. Our Student Enquiry Management Software helps coaching centers track prospects, assign leads and manage follow-ups.",
       bullets: [
-        'Collect leads from Facebook, Google, webinars, websites and WhatsApp',
+        'Capture student leads from Facebook, Google, webinars, websites and WhatsApp',
         'Automatically assign enquiries to the right center and counsellor',
-        'Track student leads across branches without missing follow-ups',
+        'Track admissions leads and follow-ups with Lead Management Software for Training Institutes',
       ],
     },
     {
@@ -89,10 +96,10 @@ const PAGE = {
       flip: true,
       kicker: 'One Source of Truth',
       title: 'Keep Course Information Consistent Across Every Center',
-      body: 'Manage course details, batch schedules, fees and current offers using centralized Training Institute Management Software.',
+      body: 'Manage courses, batches, fees and offers with centralized Training Institute Management Software. Our Course Management Software and Coaching Center Management Software keep academic information consistent across branches.',
       bullets: [
-        'Maintain standard course, batch and fee information',
-        'Share updates and offers across centers instantly',
+        'Maintain updated course details, batch schedules and fee structures',
+        'Share course updates and promotional offers across centers',
         'Ensure consistent communication with students and parents',
       ],
       media: img('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80', 'A coordinator checking course details across centers'),
@@ -101,11 +108,11 @@ const PAGE = {
       type: 'split',
       kicker: 'Know Your Students',
       title: 'Get a 360-Degree View of Every Student',
-      body: "Access complete student information through NNC Digital's CRM for Training Institutes, allowing counsellors to continue conversations with full context.",
+      body: "Access complete student profiles with NNC Digital's CRM for Training Institutes. Our Student Relationship Management Software gives counsellors a centralized view of enquiries, course interests and communication history.",
       bullets: [
         'Review previous calls, messages and center visits',
-        'Access course interests, test scores and demographics',
-        'Maintain shared student histories across branches',
+        'Access course preferences, test scores and student details',
+        'Maintain shared student records using Student Information Management Software',
       ],
       media: img('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop&q=80', 'A counsellor meeting with a prospective student'),
     },
@@ -114,11 +121,11 @@ const PAGE = {
       flip: true,
       kicker: 'Track the Journey',
       title: 'Follow Every Step from Enquiry to Enrolment',
-      body: "Simplify admissions with Student Admission Management Software that tracks every prospective student's progress.",
+      body: "Simplify your admission process with Student Admission Management Software that tracks every prospect from enquiry to enrolment. NNC Digital's Admission Management CRM helps counsellors manage communication, admission stages and follow-up activities.",
       bullets: [
-        'Automatically log student interactions',
-        'Monitor enquiry, contacted, demo and enrolled stages',
-        'Provide daily follow-up action lists for counsellors',
+        'Automatically record student interactions',
+        'Track enquiry, contacted, demo and enrolled stages',
+        'Manage daily follow-ups with Student Admission Tracking Software',
       ],
       media: img('https://images.unsplash.com/photo-1552581234-26160f608093?w=1200&auto=format&fit=crop&q=80', 'An admissions team mapping the enquiry-to-enrolment journey'),
     },
@@ -126,11 +133,11 @@ const PAGE = {
       type: 'split',
       kicker: 'Smart Segmentation',
       title: 'Reach the Right Students with the Right Message',
-      body: 'Use Education CRM Software to group students according to their interests and admission stages for more relevant communication.',
+      body: "Use NNC Digital's Education CRM Software to segment students based on course interests, admission stages and branch locations. Our Student Engagement CRM simplifies personalized communication and targeted admission campaigns.",
       bullets: [
-        'Segment students by course, center, score or funnel stage',
-        'Send personalized messages to different student groups',
-        'Reduce repetitive manual communication',
+        'Segment student leads by course, center, scores and admission stage',
+        'Send personalized WhatsApp, SMS and email messages',
+        'Reduce manual work with Student Communication Management Software',
       ],
       media: img('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop&q=80', 'A student receiving a well-targeted admissions message'),
     },
@@ -139,11 +146,11 @@ const PAGE = {
       flip: true,
       kicker: 'Omnichannel Campaigns',
       title: 'Manage Admissions Campaigns Across Every Channel',
-      body: "NNC Digital's CRM for Training Institutes brings WhatsApp, SMS, email and calls into one communication workflow.",
+      body: "NNC Digital's CRM for Training Institutes connects WhatsApp, SMS, email and calls in one communication workflow. Our Admission Marketing CRM helps coaching centers manage student enquiries, automated follow-ups and admissions campaigns.",
       bullets: [
-        'Manage multiple communication channels centrally',
-        'Schedule automated reminders and follow-ups',
-        'Help counsellors focus on student admissions',
+        'Manage student communication through multiple channels',
+        'Schedule admission reminders and automated follow-ups',
+        'Improve counsellor productivity with CRM Automation Software',
       ],
       // Verified via Unsplash — person's hands using a phone (no brand
        // logo). Replaces an earlier URL that rendered the Netflix mark.
@@ -153,11 +160,11 @@ const PAGE = {
       type: 'split',
       kicker: 'Grow Existing Revenue',
       title: 'Turn One Course into the Next',
-      body: 'Support student retention with a Coaching Institute CRM that identifies opportunities for continued learning and course progression.',
+      body: "Increase student engagement and course progression with NNC Digital's Coaching Institute CRM. Our Student Retention Management Software helps institutes identify students interested in advanced programs and continued learning.",
       bullets: [
-        'Identify students ready for advanced courses',
-        'Share targeted offers at relevant stages',
-        'Encourage continued enrolment across programs',
+        'Identify students eligible for advanced courses',
+        'Share personalized course recommendations and offers',
+        'Support repeat enrolments through Student Lifecycle Management',
       ],
       // Verified via Unsplash — three graduates tossing their caps.
        // Replaces an earlier URL that was returning 404.
@@ -167,22 +174,28 @@ const PAGE = {
       type: 'featureGrid',
       flat: true,
       title: 'See Performance from Every Angle',
-      lead: 'Track admissions and branch operations using a CRM for Training Institutes with centralized performance dashboards.',
+      lead: [
+        "Monitor admissions, counsellor productivity and branch performance with NNC Digital's CRM for Training Institutes.",
+        'Our Training Institute Analytics Software provides centralized reports to track enquiries, conversions and revenue.',
+      ],
       items: [
-        { icon: 'reports', title: 'Overall Performance', body: 'View student enquiries, admissions and revenue across all centers.' },
-        { icon: 'integrations', title: 'Source Performance', body: 'Identify marketing channels and campaigns generating student enquiries.' },
-        { icon: 'forecast', title: 'Center Performance', body: 'Compare branch and counsellor performance side by side.' },
+        { icon: 'reports', title: 'Overall Performance', body: 'Track student enquiries, admissions and revenue using Admission Management Reports.' },
+        { icon: 'integrations', title: 'Source Performance', body: 'Identify top-performing channels and campaigns with Student Lead Tracking Software.' },
+        { icon: 'forecast', title: 'Center Performance', body: 'Compare branch performance and counsellor productivity through Multi-Center CRM Analytics.' },
       ],
     },
     {
       type: 'plans',
-      title: 'Simple Pricing for Training Institutes',
-      lead: 'Choose a CRM for Training Institutes plan that supports your admissions, courses, exams and learning requirements.',
+      title: 'Affordable CRM for Training Institutes – Simple Pricing Plans',
+      lead: [
+        "Choose NNC Digital's CRM for Training Institutes with flexible pricing for coaching centers, training academies and educational institutions.",
+        'Our Training Institute Management Software combines admissions, course management, exams and Learning Management System (LMS) features.',
+      ],
       note: 'Prices are annual, plus 18% GST. A free trial is available without a credit card.',
       plans: [
         {
           name: 'Starter',
-          desc: 'For a single center getting online',
+          desc: 'For a single center getting online · An essential Training Institute CRM Software plan for managing courses, students and online learning.',
           price: 'Rs 30,000',
           per: '/ year',
           cta: { label: 'Book a Demo', href: '#start', trial: true },
@@ -191,7 +204,7 @@ const PAGE = {
         },
         {
           name: 'Growth',
-          desc: 'For institutes ready to scale',
+          desc: 'For institutes ready to scale · Advanced Coaching Center Management Software with online learning, assessments and fee collection.',
           price: 'Rs 75,000 to 90,000',
           per: '/ year',
           highlight: true,
@@ -202,7 +215,7 @@ const PAGE = {
         },
         {
           name: 'Enterprise',
-          desc: 'White-labelled and fully yours',
+          desc: 'White-labelled and fully yours · Scalable Multi-Center Training Institutes CRM with custom branding and centralized institute management.',
           price: 'Custom',
           per: '',
           priceNote: 'Tailored to your institute',
@@ -214,8 +227,8 @@ const PAGE = {
     },
     {
       type: 'compareTable',
-      title: 'Everything Each Plan Includes',
-      lead: 'Explore the features available across Starter, Growth and Enterprise plans, combining CRM for Training Institutes with a Learning Management System (LMS).',
+      title: 'Compare CRM for Training Institutes Plans and Features',
+      lead: 'Explore Starter, Growth and Enterprise plans combining CRM for Training Institutes, Student Admission Management Software and Learning Management System (LMS) features.',
       plans: ['Starter', 'Growth', 'Enterprise'],
       popularIndex: 1,
       groups: [
@@ -293,28 +306,33 @@ const PAGE = {
     },
     {
       type: 'faq',
-      title: 'Frequently Asked Questions',
+      title: 'Frequently Asked Questions About CRM for Training Institutes',
+      lead: "Find answers about NNC Digital's CRM for Training Institutes, admissions, coaching center management and LMS features.",
       items: [
-        { q: 'Which is the best CRM for training institutes?', a: 'NNC Digital offers a CRM for Training Institutes designed to manage student enquiries, admissions, communication and branch operations. Its centralized system supports training institutes and coaching centers in organizing student information and tracking performance.' },
-        { q: 'How do you promote a coaching center?', a: 'Coaching centers can generate enquiries through Google, Facebook, websites, webinars and WhatsApp. NNC Digital helps capture these enquiries, assign them to counsellors and manage follow-ups through centralized admissions workflows.' },
-        { q: 'Which is the best CRM for coaching centers?', a: 'NNC Digital provides a CRM for Coaching Centers with lead management, student admission tracking, communication workflows and performance analytics. Multi-center management is available under the Enterprise plan.' },
-        { q: 'Can NNC Digital CRM manage admissions across multiple branches?', a: "Yes. NNC Digital's Enterprise plan supports multi-center management, helping institutes organize student records, admission activities and branch performance through a centralized platform." },
-        { q: 'Does NNC Digital provide CRM and LMS features together?', a: 'Yes. NNC Digital combines student admission management with LMS capabilities such as courses, video lessons, exams and certificates. Live classes, test series and additional learning features are available in Growth and Enterprise plans.' },
+        { q: 'Which is the best CRM for training institutes?', a: 'NNC Digital offers a CRM for Training Institutes that manages student enquiries, admissions, follow-ups and branch operations. Its Training Institute Management Software helps coaching centers organize student records and track performance through one platform.' },
+        { q: 'How do you promote a coaching center?', a: "Coaching centers can generate admission leads through Google Ads, Facebook, websites, webinars and WhatsApp. NNC Digital's Student Lead Management CRM captures enquiries, assigns counsellors and simplifies follow-ups using Admission Management Software." },
+        { q: 'Which is the best CRM for coaching centers?', a: 'NNC Digital provides a CRM for Coaching Centers with student lead tracking, admissions management, communication automation and analytics. Its Coaching Center Management Software also supports multi-center management through the Enterprise plan.' },
+        { q: 'Can NNC Digital CRM manage admissions across multiple branches?', a: "Yes. NNC Digital's Multi-Center Training Institutes CRM supports centralized student records, admission tracking and branch performance management through its Enterprise plan." },
+        { q: 'Does NNC Digital provide CRM and LMS features together?', a: 'Yes. NNC Digital combines Education CRM Software with a Learning Management System (LMS) to manage student admissions, courses, video lessons, exams and certificates. Growth and Enterprise plans include advanced learning features.' },
       ],
     },
   ],
   cta: {
     title: 'The CRM Built for Multi-Center Training Institutes',
-    sub: "Simplify student enquiries, admissions and branch operations with NNC Digital's CRM for Training Institutes. Book a 30-minute demo to explore the platform using your own data, or start your free trial today.",
+    sub: [
+      "Simplify admissions, student engagement and branch management with NNC Digital's CRM for Training Institutes.",
+      'Our Training Institute Management Software combines Student Lead Management CRM, Student Admission Management Software and Learning Management System (LMS) features in one centralized platform.',
+      'Book a 30-minute demo or start your free trial today.',
+    ],
     primary: { label: 'Book a Demo', href: '#start' },
-    secondary: { label: 'See Pricing', href: '/pricing' },
+    secondary: { label: 'Start Free Trial', href: '#start' },
   },
 }
 
 export const metadata = {
   title: 'CRM for Training Institutes & Coaching Centers | NNC',
   description:
-    "Manage student leads, admissions and multiple branches with NNC Digital's CRM for Training Institutes. Explore features, pricing and book a demo.",
+    "Manage student leads, admissions, courses and branches with NNC Digital's CRM for Training Institutes. Explore CRM & LMS features and book a demo.",
   alternates: { canonical: '/multi-center-training-institutes-crm/' },
 }
 

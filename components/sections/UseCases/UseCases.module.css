@@ -69,21 +69,21 @@
     0 32px 60px -32px rgba(11, 26, 51, 0.18);
 }
 
-/* Icon chip — soft blue square with the industry icon in navy. Scales up
+/* Icon chip — navy square with the industry icon in white. Scales up
    subtly on card hover. */
 .iconChip {
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: var(--navy-soft);
-  color: var(--navy);
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: var(--navy);
+  color: #fff;
   margin-bottom: 12px;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.3s ease;
 }
-.iconChip svg { width: 26px; height: 26px; }
+.iconChip svg { width: 20px; height: 20px; }
 .card:hover .iconChip {
   transform: scale(1.06);
 }

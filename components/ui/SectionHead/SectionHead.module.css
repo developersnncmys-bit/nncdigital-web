@@ -5,8 +5,10 @@
   margin-top: 26px;
 }
 .lead {
-  max-width: 620px;
-  margin-top: 22px;
+  max-width: 580px;
+  margin-top: 20px;
+  font-size: clamp(14.5px, 1.1vw, 17px);
+  line-height: 1.6;
 }
 
 .center {

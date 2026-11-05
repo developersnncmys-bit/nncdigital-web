@@ -134,10 +134,14 @@ export default function TravelCta({ page }) {
               </span>
             </span>
           </h2>
-          <p className={s.lead}>
-            Book a live demo for your team. We will show the full flow, from a new enquiry to a paid,
-            vouchered booking.
-          </p>
+          {(page.cta.leads || [
+            'See how NNC Travel CRM can support your travel sales, booking management, quotations, and accounting workflow.',
+            'Book a live demo for your team. We will demonstrate the complete process, from a new travel enquiry to a paid booking with vouchers.',
+          ]).map((para, i) => (
+            <p key={i} className={s.lead} style={i > 0 ? { marginTop: 14 } : undefined}>
+              {para}
+            </p>
+          ))}
 
           <a className={s.contact} href={contactDetails.callHref}>
             <span className={s.badge}>
@@ -195,8 +199,8 @@ export default function TravelCta({ page }) {
           <span className={`${s.hand} ${s.talk}`} aria-hidden="true">
             let&rsquo;s talk!
           </span>
-          <h3>Request your demo</h3>
-          <p>Tell us a little about your team.</p>
+          <h3>{page.cta.formTitle || 'Request Your Travel CRM Demo'}</h3>
+          <p>{page.cta.formLead || 'Tell us a little about your travel business.'}</p>
 
           <input
             type="text"

@@ -2,12 +2,17 @@ import s from "./TravelLanding.module.css"
 import { SwooshMid } from "./TravelArt"
 import * as Icons from "./TravelIcons"
 import { CheckBadge } from "./TravelIcons"
-import { modules, workspace } from "@/data/travel"
+import { modules as baseModules, workspace as baseWorkspace } from "@/data/travel"
 
 // Trips / Bookings / Accounting / Tasks are the product own top-level nav, so
 // this section answers "what is in it" without paraphrase.
 export default function TravelInside({ page }) {
   const c = page.inside
+  // Per-page overrides — a brief can replace the shared Trips/Bookings/etc.
+  // module copy or the AND-AROUND-THEM workspace cards without touching the
+  // other pages' content.
+  const modules = c.modules || baseModules
+  const workspace = c.workspace || baseWorkspace
   return (
     <section className={s.inside} id="inside">
       <div className={s.wrap}>
@@ -38,7 +43,8 @@ export default function TravelInside({ page }) {
                   </span>
                   <div>
                     <h3>{m.name}</h3>
-                    <p>{m.lead}</p>
+                    {m.subtitle && <p className={s.modSubtitle}>{m.subtitle}</p>}
+                    {m.lead && <p>{m.lead}</p>}
                   </div>
                 </div>
                 <ul>

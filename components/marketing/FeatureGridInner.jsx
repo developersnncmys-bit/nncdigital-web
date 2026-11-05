@@ -89,10 +89,18 @@ export default function FeatureGridInner({ items, flat = false }) {
                 </span>
               )}
               <h3 className={styles.title}>{it.title}</h3>
-              <p className={styles.body}>{it.body}</p>
+              {Array.isArray(it.body) ? (
+                it.body.map((p, j) => (
+                  <p key={j} className={styles.body}>
+                    {p}
+                  </p>
+                ))
+              ) : (
+                <p className={styles.body}>{it.body}</p>
+              )}
               {it.href && (
                 <span className={styles.link}>
-                  Learn more <Arrow />
+                  {it.linkLabel || 'Learn more'} <Arrow />
                 </span>
               )}
             </div>

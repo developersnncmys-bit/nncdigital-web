@@ -4,6 +4,12 @@ import { faqItems as baseFaq, contactDetails } from "@/data/travel"
 
 export default function TravelFaq({ page }) {
   const items = page.faq || baseFaq
+  // Per-page overrides for the FAQ side column — brief can swap the H2
+  // and the support lead. Falls back to the travel-crm defaults.
+  const h2 = page.faqTitle || 'Questions travel owners ask us'
+  const supportLead =
+    page.faqLead ||
+    `Still unsure? Call ${contactDetails.call} or WhatsApp ${contactDetails.whatsapp} and we will walk you through it.`
 
   return (
     <section className={s.faq} id="faq">
@@ -16,13 +22,10 @@ export default function TravelFaq({ page }) {
             </span>
           </span>
           <h2>
-            Questions travel owners ask us
+            {h2}
             <span className={s.dot}>.</span>
           </h2>
-          <p className={`${s.lead} ${s.muted}`}>
-            Still unsure? Call {contactDetails.call} or WhatsApp {contactDetails.whatsapp} and we
-            will walk you through it.
-          </p>
+          <p className={`${s.lead} ${s.muted}`}>{supportLead}</p>
           <span className={`${s.hand} ${s.n}`}>happy to help</span>
         </div>
 

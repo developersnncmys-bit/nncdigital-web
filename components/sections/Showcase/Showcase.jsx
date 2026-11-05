@@ -12,9 +12,13 @@ export default function Showcase() {
           sales pipelines, forecasting and customer information.
         </p>
         <p className={styles.lead}>
-          A centralized dashboard displays enquiries, deals, revenue and
-          follow-ups, making everyday tasks easier with Customer Relationship
-          Management Software.
+          Our CRM Dashboard Software gives you a centralized view of enquiries,
+          deals, revenue and follow-ups.
+        </p>
+        <p className={styles.lead}>
+          With Sales Tracking Software, Customer Management CRM and Business
+          Management CRM Software, your team can monitor performance and make
+          informed decisions.
         </p>
         <a className={styles.cta} href="#start" data-trial>
           Watch CRM Demo

@@ -328,7 +328,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 86px 0 90px;
+  padding: 128px 0 90px;
   background: linear-gradient(180deg, #fff 62%, #eef3fb 100%);
 }
 .hero .grid {
@@ -337,16 +337,30 @@
   gap: 20px;
   align-items: start;
 }
+/* Short bold tagline between H1 and lead (brief's "Your travel business,
+   connected from enquiry to departure."). */
+.tagline {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+/* Reads as a plain uppercase eyebrow (same visual language as the
+   "INDUSTRIES" / "CASE STUDY" eyebrows across the rest of the site)
+   instead of a filled chip. Keeps the same markup so the TravelHero
+   component doesn't need to change. */
 .pill {
   display: inline-block;
-  padding: 7px 16px;
-  border-radius: 20px;
-  background: #e8f0ff;
-  border: 1px solid var(--blue);
-  color: var(--blue-dark);
+  padding: 0;
+  margin-bottom: 20px;
+  background: transparent;
+  border: 0;
+  color: var(--blue, var(--navy));
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 .page h1 {
   font-size: 64px;
@@ -569,6 +583,23 @@
   letter-spacing: 1.5px;
   color: var(--navy);
 }
+/* Section 4 H2 and lead (brief: "Five Everyday Travel Business Decisions,
+   One CRM" + paragraph). Sits above the 5 decision cards on the right of
+   the dashboard mock. */
+.capTitle {
+  margin: 10px 0 10px;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.capLead {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
 .leak .diagram {
   position: relative;
   height: 260px;
@@ -673,6 +704,35 @@
 .center {
   text-align: center;
 }
+/* Section 6 lead paragraph — sits under the H2 and above the five feature
+   rows. Mirrors the brief's second line under "Explore the Travel CRM
+   Features Behind Every Trip". */
+.featuresLead {
+  max-width: 720px;
+  margin: 18px auto 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+/* Section 7 (HOW IT WORKS) lead — identical typography to .featuresLead,
+   kept as a separate class in case the "how" section ever needs a
+   different scale. */
+.howLead {
+  max-width: 720px;
+  margin: 18px auto 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+/* Section 9 (BUILT FOR) lead — sits under the H2 and above the four
+   audience cards. Left-aligned to match that section's grid. */
+.builtLead {
+  max-width: 720px;
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
 .center .kicker .deco {
   left: 50%;
   transform: translateX(-50%);
@@ -758,6 +818,16 @@
   line-height: 44px;
   letter-spacing: -0.5px;
   margin: 18px 0 26px;
+}
+/* H3-level lead paragraph that sits under the row title and above the item
+   list. Used when a brief includes a description under the module heading
+   rather than jumping straight to the H4 sub-items. */
+.featureRowLead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: -8px 0 28px;
+  max-width: 560px;
 }
 .fi {
   display: flex;
@@ -1749,6 +1819,14 @@
   line-height: 22px;
   color: var(--muted);
   margin-top: 2px;
+}
+/* Bold subtitle line (the brief's H4-style tagline) — sits between the
+   H3 name and the softer lead paragraph. */
+.modSubtitle {
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+  margin-top: 6px !important;
+  margin-bottom: 4px !important;
 }
 .mod ul {
   list-style: none;

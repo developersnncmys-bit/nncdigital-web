@@ -118,8 +118,8 @@ export default function TravelKeywordPage({ slug }) {
         <TravelDecisions page={page} />
         <TravelInside page={page} />
         <TravelFeatures page={page} />
-        <TravelHow />
-        <TravelPricing />
+        <TravelHow page={page} />
+        <TravelPricing page={page} />
         <TravelBuiltFor page={page} />
         <TravelFaq page={page} />
         <TravelCta page={page} />

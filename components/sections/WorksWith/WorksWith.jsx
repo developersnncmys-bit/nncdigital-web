@@ -7,7 +7,15 @@ export default function WorksWith() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
           <h2 className={styles.title}>{worksWith.title}</h2>
-          <p className={styles.body}>{worksWith.body}</p>
+          {Array.isArray(worksWith.body) ? (
+            worksWith.body.map((p, i) => (
+              <p key={i} className={styles.body}>
+                {p}
+              </p>
+            ))
+          ) : (
+            <p className={styles.body}>{worksWith.body}</p>
+          )}
         </div>
         <div className={styles.integrations}>
           <span className={styles.caption}>{worksWith.caption}:</span>

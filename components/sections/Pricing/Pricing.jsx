@@ -8,7 +8,15 @@ export default function Pricing() {
       <div className="container">
         <header className={styles.head}>
           <h2 className={styles.title}>{pricing.title}</h2>
-          <p className={styles.lead}>{pricing.lead}</p>
+          {Array.isArray(pricing.lead) ? (
+            pricing.lead.map((p, i) => (
+              <p key={i} className={styles.lead}>
+                {p}
+              </p>
+            ))
+          ) : (
+            <p className={styles.lead}>{pricing.lead}</p>
+          )}
           <a className={styles.explore} href="/pricing">
             {pricing.compareLabel}
           </a>

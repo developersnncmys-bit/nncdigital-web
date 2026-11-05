@@ -9,7 +9,20 @@ import {
 import { CheckBadge } from './TravelIcons'
 import { pricing } from '@/data/travel'
 
-export default function TravelPricing() {
+export default function TravelPricing({ page }) {
+  // Per-page overrides — brief can swap the H2, lead, the "under Rs. 20 a
+  // day" title + body, and the fine-print line. Falls back to the
+  // travel-crm defaults so the other 12 keyword pages are unaffected.
+  const p = page?.pricing || {}
+  const title = p.title || 'Travel CRM Pricing That Grows with Your Team'
+  const lead =
+    p.lead ||
+    'A straightforward per-user pricing model for tour operators, travel agencies, and DMCs. Start with a minimum of 10 users and add more as your travel business expands.'
+  const dailyTitle = p.dailyTitle
+  const dailyBody =
+    p.dailyBody ||
+    'Less than a cup of tea, for a seat that captures enquiries, sends quotes and collects payments.'
+  const fine = p.fine || pricing.fine
   return (
     <section className={s.pricing} id="pricing">
       <div className={s.wrap}>
@@ -21,11 +34,11 @@ export default function TravelPricing() {
             </span>
           </span>
           <h2>
-            One simple price per user, per month
+            {title}
             <span className={s.dot}>.</span>
           </h2>
           <p className={`${s.lead} ${s.muted}`} style={{ marginTop: 12 }}>
-            Pay only for the users on your team. Minimum 10 users. Add more as you grow.
+            {lead}
           </p>
         </div>
 
@@ -105,25 +118,26 @@ export default function TravelPricing() {
             </div>
 
             <div className={s.daily}>
-              <b>
-                Under{' '}
-                <span className={s.u}>
-                  Rs. 20 a day
-                  <span className={s.deco}>
-                    <UnderlineDaily />
-                  </span>
-                </span>{' '}
-                per user
-              </b>
-              <p>
-                Less than a cup of tea, for a seat that captures enquiries, sends quotes and collects
-                payments.
-              </p>
+              {dailyTitle ? (
+                <b>{dailyTitle}</b>
+              ) : (
+                <b>
+                  Under{' '}
+                  <span className={s.u}>
+                    Rs. 20 a day
+                    <span className={s.deco}>
+                      <UnderlineDaily />
+                    </span>
+                  </span>{' '}
+                  per user
+                </b>
+              )}
+              <p>{dailyBody}</p>
             </div>
           </div>
         </div>
 
-        <p className={s.fine}>{pricing.fine}</p>
+        <p className={s.fine}>{fine}</p>
       </div>
     </section>
   )

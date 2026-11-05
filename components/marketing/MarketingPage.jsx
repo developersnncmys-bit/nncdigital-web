@@ -105,13 +105,28 @@ function Ctas({ ctas, onLight }) {
   )
 }
 
+// Renders a block's `lead` field as either one <p> (string) or several
+// <p> blocks (array of strings). Array support lets a brief split long
+// SEO leads into multiple keyword-rich paragraphs with natural spacing.
+function BlockLead({ lead, className }) {
+  if (!lead) return null
+  if (Array.isArray(lead)) {
+    return lead.map((p, i) => (
+      <p key={i} className={className}>
+        {p}
+      </p>
+    ))
+  }
+  return <p className={className}>{lead}</p>
+}
+
 /* ---------- blocks ---------- */
 function FeatureGrid({ block }) {
   return (
     <section className={styles.block}>
       <div className="container">
         {block.title && <h2 className={styles.blockTitle}>{block.title}</h2>}
-        {block.lead && <p className={styles.blockLead}>{block.lead}</p>}
+        <BlockLead lead={block.lead} className={styles.blockLead} />
         <FeatureGridInner items={block.items} flat={block.flat} />
       </div>
     </section>
@@ -125,7 +140,7 @@ function Split({ block }) {
         <div className={styles.splitText}>
           {block.kicker && <span className={styles.kicker}>{block.kicker}</span>}
           <h2 className={styles.blockTitle} style={{ textAlign: 'left', margin: 0 }}>{block.title}</h2>
-          {block.body && <p className={styles.splitBody}>{block.body}</p>}
+          <BlockLead lead={block.body} className={styles.splitBody} />
           {block.bullets && (
             <ul className={styles.bullets}>
               {block.bullets.map((b) => (
@@ -151,7 +166,7 @@ function Steps({ block }) {
     <section className={styles.block}>
       <div className="container">
         {block.title && <h2 className={styles.blockTitle}>{block.title}</h2>}
-        {block.lead && <p className={styles.blockLead}>{block.lead}</p>}
+        <BlockLead lead={block.lead} className={styles.blockLead} />
         <ol className={styles.steps}>
           {block.items.map((s, i) => (
             <li className={styles.step} key={s.title}>
@@ -170,7 +185,8 @@ function Stats({ block }) {
   return (
     <section className={styles.block}>
       <div className="container">
-        {block.title && <p className={styles.statsTitle}>{block.title}</p>}
+        {block.title && <h2 className={styles.blockTitle}>{block.title}</h2>}
+        <BlockLead lead={block.lead} className={styles.blockLead} />
         <div className={styles.stats}>
           {block.items.map((s) => (
             <div className={styles.stat} key={s.label}>
@@ -196,7 +212,7 @@ function Cards({ block }) {
     <section className={styles.block + hl}>
       <div className="container">
         {block.title && <h2 className={styles.blockTitle}>{block.title}</h2>}
-        {block.lead && <p className={styles.blockLead}>{block.lead}</p>}
+        <BlockLead lead={block.lead} className={styles.blockLead} />
         <div className={styles.cgrid}>
           {block.items.map((it) => {
             const Tag = it.href ? 'a' : 'div'
@@ -222,9 +238,33 @@ function Prose({ block }) {
         {block.sections.map((s) => (
           <div key={s.h} className={styles.proseItem}>
             <h2 className={styles.proseH}>{s.h}</h2>
-            {s.p.map((para, i) => (
+            {s.p?.map((para, i) => (
               <p key={i} className={styles.proseP}>{para}</p>
             ))}
+            {s.subs?.length > 0 && (
+              <div className={styles.proseSubs}>
+                {s.subs.map((sub) => (
+                  <div key={sub.h} className={styles.proseSub}>
+                    <h3 className={styles.proseSubH}>{sub.h}</h3>
+                    {sub.p?.map((para, i) => (
+                      <p key={i} className={styles.proseP}>{para}</p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+            {s.cta && (
+              <div className={styles.proseCta}>
+                <a
+                  href={s.cta.href}
+                  data-trial={s.cta.trial ? '' : undefined}
+                  className={styles.btnPrimary}
+                >
+                  {s.cta.label}
+                  <Arrow />
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -242,7 +282,7 @@ function Faq({ block }) {
         <div className={styles.faqLayout}>
           <aside className={styles.faqSide}>
             {block.title && <h2 className={styles.faqSideTitle}>{block.title}</h2>}
-            {block.lead && <p className={styles.faqSideLead}>{block.lead}</p>}
+            <BlockLead lead={block.lead} className={styles.faqSideLead} />
             <div className={styles.faqContact}>
               <p className={styles.faqContactText}>Still have questions? Our team is here to help.</p>
               <a className={styles.faqContactLink} href="/company/contact">Contact us →</a>
@@ -279,7 +319,13 @@ function CtaBand({ cta }) {
         <div className={styles.ctaBand}>
           <span className={styles.ctaGlow} aria-hidden="true" />
           <h2 className={styles.ctaTitle}>{cta.title}</h2>
-          {cta.sub && <p className={styles.ctaSub}>{cta.sub}</p>}
+          {Array.isArray(cta.sub)
+            ? cta.sub.map((p, i) => (
+                <p key={i} className={styles.ctaSub}>
+                  {p}
+                </p>
+              ))
+            : cta.sub && <p className={styles.ctaSub}>{cta.sub}</p>}
           <div className={styles.ctaBtns}>
             <a href={cta.primary?.href || '#start'} data-trial className={styles.ctaPrimary}>
               {cta.primary?.label || 'Book a Demo'}<Arrow />
@@ -307,7 +353,7 @@ function LeadCapture({ block }) {
         <div className={styles.splitText}>
           {block.kicker && <span className={styles.kicker}>{block.kicker}</span>}
           <h2 className={styles.blockTitle} style={{ textAlign: 'left', margin: 0 }}>{block.title}</h2>
-          {block.body && <p className={styles.splitBody}>{block.body}</p>}
+          <BlockLead lead={block.body} className={styles.splitBody} />
           {block.bullets && (
             <ul className={styles.bullets}>
               {block.bullets.map((bl) => (
@@ -361,8 +407,16 @@ export default function MarketingPage({ page }) {
           >
             <div className={styles.heroText}>
               {page.hero.eyebrow && <span className={styles.eyebrow}>{page.hero.eyebrow}</span>}
-              <h1 className={styles.title}>{page.hero.title}</h1>
-              {page.hero.lead && <p className={styles.lead}>{page.hero.lead}</p>}
+              <h1 className={`${styles.title} ${Array.isArray(page.hero.lead) ? styles.titleCompact : ''}`}>{page.hero.title}</h1>
+              {Array.isArray(page.hero.lead)
+                ? page.hero.lead.map((p, i) => (
+                    <p key={i} className={`${styles.lead} ${styles.leadMulti}`}>
+                      {p}
+                    </p>
+                  ))
+                : page.hero.lead && (
+                    <p className={styles.lead}>{page.hero.lead}</p>
+                  )}
               <Ctas ctas={page.hero.ctas} />
             </div>
             {hasMedia && (

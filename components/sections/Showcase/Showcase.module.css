@@ -15,9 +15,9 @@
 }
 .lead {
   text-align: center;
-  max-width: 60ch;
-  margin: 18px auto 0;
-  font-size: clamp(16px, 1.2vw, 19px);
+  max-width: 580px;
+  margin: 20px auto 0;
+  font-size: clamp(14.5px, 1.1vw, 17px);
   line-height: 1.6;
   color: var(--grey);
 }

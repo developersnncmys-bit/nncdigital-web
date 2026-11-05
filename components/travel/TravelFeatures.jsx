@@ -46,6 +46,8 @@ function FeatureRow({ row, flip }) {
           <span className={s.dot}>.</span>
         </h3>
 
+        {row.lead && <p className={s.featureRowLead}>{row.lead}</p>}
+
         {row.items.map((it) => {
           const Icon = Icons[it.icon]
           return (
@@ -67,11 +69,17 @@ function FeatureRow({ row, flip }) {
 
 export default function TravelFeatures({ page }) {
   const c = page.features
+  // `featureRowOverrides` lets a page rename individual row titles / items
+  // without having to clone the whole featureRows array — the shared row is
+  // spread first, then the per-page fields win. Keyed by row.num.
+  const overrides = page.featureRowOverrides || {}
+  const applyOverride = (r) => (overrides[r.num] ? { ...r, ...overrides[r.num] } : r)
   // Each page can lead with the module that matters most to its reader. The
   // flip pattern is recomputed from position so rows always alternate sides.
-  const rows = page.featureOrder
+  const rows = (page.featureOrder
     ? page.featureOrder.map((num) => featureRows.find((r) => r.num === num)).filter(Boolean)
     : featureRows
+  ).map(applyOverride)
 
   return (
     <section className={s.features} id="features">
@@ -87,6 +95,7 @@ export default function TravelFeatures({ page }) {
             {c.title}
             <span className={s.dot}>.</span>
           </h2>
+          {c.lead && <p className={s.featuresLead}>{c.lead}</p>}
         </div>
 
         {rows.map((row, i) => (
