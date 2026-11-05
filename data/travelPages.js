@@ -1622,8 +1622,9 @@ export const travelPages = {
     metaTitle: 'Travel Itinerary Software for Tour Operators | NNC Digital',
     metaDescription:
       "Create day-wise travel plans with NNC Digital's Travel Itinerary Software. Manage hotels, transfers, activities and branded itineraries. Book a demo.",
-    pill: 'Travel Itinerary Software | Plan Day by Day',
+    pill: 'TRAVEL ITINERARY SOFTWARE | PLAN DAY BY DAY',
     h1: { lines: ['Travel Itinerary Software', 'for Travel Agencies'], tail: '', underline: 'and Tour Operators' },
+    tagline: 'Create detailed day-wise travel plans your customers can easily understand.',
     lead: "Create detailed day-wise travel plans with NNC Digital's Travel Itinerary Software. Organize hotels, meal plans, transfers and sightseeing activities into professional itineraries your customers can easily understand. Our Travel Itinerary Builder helps travel agencies and tour operators customize trip schedules, reuse existing itineraries and share branded travel plans. From itinerary creation to bookings and payments, simplify operations with one Travel Agency CRM Software.",
     secondaryCta: { label: 'See the Itinerary Builder', href: '#features' },
     heroNotes: ['add hotels and activities', 'reuse itineraries'],
@@ -1631,36 +1632,50 @@ export const travelPages = {
       kicker: 'WHAT GOES INTO A DAY',
       titleLines: ['Build Complete Travel Itineraries', 'with Five Essential Features'],
       lead: "NNC Digital's Travel Itinerary Software brings accommodation, transportation, sightseeing and branding into one organized trip plan. Create professional multi-day itineraries using our Day-Wise Itinerary Builder without repeatedly entering the same travel details.",
+      // Dashboard labels per brief (uses the "Trip Sales Stats" / sentence-
+      // case panel labels, not the travel-crm brief's newer variants).
+      morningScreen: {
+        greeting: 'Welcome back',
+        subheading: 'Your desk, this morning',
+        statsTitle: 'Trip Sales Stats',
+        panels: [
+          { title: 'Pending Follow-Ups', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
+          { title: 'Due Incoming', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
+          { title: 'Trips Starting', cols: ['Today', 'Next 7 Days'] },
+          { title: 'Trips Ending', cols: ['Today', 'Previous 7 Days'] },
+        ],
+      },
       cap: 'WHERE EACH ONE COMES FROM',
       note: 'one day at a time',
+      // H3 items numbered per brief (1-5).
       items: [
         {
           icon: 'Hotel',
-          q: 'Add Hotels and Accommodation Details',
+          q: '1. Add Hotels and Accommodation Details',
           where: 'BOOKINGS · HOTEL MASTER',
           a: 'Use our Travel Itinerary Planning Software to add hotels, star ratings, room categories, meal plans (CP, MAP, AP) and check-in/check-out timings to each day.',
         },
         {
           icon: 'Bus',
-          q: 'Plan Transport and Transfers',
+          q: '2. Plan Transport and Transfers',
           where: 'BOOKINGS · TRANSPORT',
           a: 'Organize ferries, cabs and transfers with Tour Itinerary Software. Add destination-specific transport services and travel arrangements to your itinerary.',
         },
         {
           icon: 'Ticket',
-          q: 'Include Sightseeing and Activities',
+          q: '3. Include Sightseeing and Activities',
           where: 'BOOKINGS · SIGHTSEEING',
           a: "Create engaging travel schedules with our Travel Itinerary Builder by adding sightseeing destinations, activities and experiences to each day's plan.",
         },
         {
           icon: 'Palette',
-          q: 'Create Branded Travel Itineraries',
+          q: '4. Create Branded Travel Itineraries',
           where: 'SETTINGS · BRANDING',
           a: 'Customize your Travel Itinerary PDF with your agency logo, contact details and destination images for a professional presentation.',
         },
         {
           icon: 'RefreshCw',
-          q: 'Reuse Existing Travel Itineraries',
+          q: '5. Reuse Existing Travel Itineraries',
           where: 'TRIPS · SUGGESTED QUOTES',
           a: 'Save time with Reusable Travel Itinerary Software. Access previous destination itineraries, update trip details and prepare new travel plans without starting from scratch.',
         },
@@ -1668,13 +1683,15 @@ export const travelPages = {
     },
     inside: {
       kicker: 'AROUND THE ITINERARY',
-      title: 'More than travel itinerary software — manage your travel operations',
+      title: 'More Than Travel Itinerary Software — Manage Your Travel Operations',
       lead: 'NNC Digital combines Travel Itinerary Software, Travel CRM Software and Travel Booking Management Software to manage itineraries, enquiries, bookings and payments from one platform.',
+      // Module subtitles Title Case + per brief's "Trips — Manage Travel
+      // Enquiries and Itineraries" pattern.
       modules: [
         {
           icon: 'ListChecks',
           name: 'Trips',
-          subtitle: 'Manage travel enquiries and itineraries.',
+          subtitle: 'Manage Travel Enquiries and Itineraries.',
           lead: 'Organize customer enquiries with Travel Agency CRM Software.',
           items: [
             'Track seven trip stages from new enquiry to completed trip',
@@ -1688,7 +1705,7 @@ export const travelPages = {
         {
           icon: 'Hotel',
           name: 'Bookings',
-          subtitle: 'Manage hotels and travel services.',
+          subtitle: 'Manage Hotels and Travel Services.',
           lead: 'Simplify reservations with Travel Booking Management Software.',
           items: [
             'Store hotel images, ratings, room types and meal plans',
@@ -1701,7 +1718,7 @@ export const travelPages = {
         {
           icon: 'Receipt',
           name: 'Accounting',
-          subtitle: 'Track travel payments.',
+          subtitle: 'Track Travel Payments.',
           lead: 'Manage finances with Travel Agency Accounting Software.',
           items: [
             'Track upcoming, paid, overdue and unverified payments',
@@ -1714,7 +1731,7 @@ export const travelPages = {
         {
           icon: 'CalendarCheck',
           name: 'Tasks',
-          subtitle: 'Manage follow-ups and daily activities.',
+          subtitle: 'Manage Follow-Ups and Daily Activities.',
           lead: 'Improve team coordination with Travel Task Management Software.',
           items: [
             'Assign customer follow-ups and deadlines',
@@ -1736,12 +1753,79 @@ export const travelPages = {
     },
     features: {
       kicker: 'MODULE BY MODULE',
-      title: 'Travel itinerary software with booking, CRM and payment management',
+      title: 'Travel Itinerary Software with Booking, CRM and Payment Management',
       lead: "Build professional itineraries and manage your travel business using NNC Digital's integrated Travel Agency Management Software.",
     },
     featureOrder: [ROW.QUOTES, ROW.BOOKINGS, ROW.TRIPS, ROW.ACCOUNTS, ROW.DASHBOARD],
+    // Section 5 feature-row overrides per brief (keyed by row.num).
+    featureRowOverrides: {
+      '01': {
+        title: 'Manage Travel Leads and Trip Itineraries Efficiently',
+        note: 'every lead has an owner',
+        items: [
+          { icon: 'ListChecks', title: 'Track Every Travel Enquiry', body: 'Use Travel CRM Software to organize enquiries across seven trip stages, from new queries to completed trips.' },
+          { icon: 'Users', title: 'Assign Sales Responsibilities', body: 'Manage customer enquiries with Travel Lead Management Software. Assign sales executives, follow-up dates and trip statuses.' },
+          { icon: 'Upload', title: 'Search and Import Travel Records', body: 'Find trips by ID, customer name or phone number and import existing enquiry lists through CSV.' },
+        ],
+      },
+      '02': {
+        title: 'Create Customized Day-Wise Travel Itineraries',
+        note: 'your logo, not ours',
+        items: [
+          { icon: 'RefreshCw', title: 'Reuse Successful Travel Plans', body: 'Our Travel Itinerary Builder suggests existing destination itineraries with hotels, transfers, sightseeing and pricing, helping you prepare new travel plans faster.' },
+          { icon: 'Palette', title: 'Build Personalized Trip Schedules', body: 'Create customized day-wise itineraries using Tour Itinerary Planning Software. Add hotels, activities and transfers based on customer preferences.' },
+          { icon: 'MessageCircle', title: 'Share Professional Travel Itineraries', body: 'Create branded Travel Itinerary PDFs and share them through WhatsApp, email, PDF download or print.' },
+        ],
+      },
+      '03': {
+        title: 'Manage Hotels, Transport and Sightseeing in One Place',
+        note: 'set up once, reuse again',
+        items: [
+          { icon: 'Hotel', title: 'Centralized Hotel Management', body: 'Store hotel details, room types, meal plans and check-in information using Hotel Booking Management Software.' },
+          { icon: 'Bus', title: 'Transport and Sightseeing Management', body: 'Save ferries, cabs and sightseeing activities by destination and reuse them in your Travel Itinerary Planning Software.' },
+          { icon: 'Ticket', title: 'Generate Travel Booking Vouchers', body: 'Create trip, hotel and activity vouchers with customizable branding, pricing and terms using Travel Booking Software.' },
+        ],
+      },
+      '04': {
+        title: 'Manage Travel Payments, GST Invoices and Trip Profitability',
+        note: 'simplify travel payment tracking',
+        items: [
+          { icon: 'Wallet', title: 'Track Payment Status', body: 'Use Travel Payment Tracking Software to monitor upcoming, paid, overdue and unverified payments.' },
+          { icon: 'Receipt', title: 'Manage Instalments and Invoices', body: 'Record advance payments, track balances and generate receipts and GST invoices with Travel Agency Billing Software.' },
+          { icon: 'FileText', title: 'Monitor Trip Profitability', body: 'Generate proforma invoices and review trip profit reports with Travel Agency Accounting Software.' },
+        ],
+      },
+      '05': {
+        title: 'Track Travel Sales, Itineraries and Business Performance',
+        note: 'your daily business overview',
+        items: [
+          { icon: 'LayoutDashboard', title: 'Monitor Sales and Quotations', body: 'View revenue, leads, quotations and conversion figures through the Travel Agency CRM Dashboard.' },
+          { icon: 'Bell', title: 'Track Follow-Ups and Payments', body: 'Monitor customer follow-ups, outstanding payments, booking alerts and team updates.' },
+          { icon: 'CalendarCheck', title: 'Manage Upcoming Trips', body: 'Track trips starting and ending to coordinate guest pickups, check-ins and departure arrangements.' },
+        ],
+      },
+    },
+    // Section 6 (HOW IT WORKS) override per brief.
+    how: {
+      title: 'Get Started with Travel Itinerary Software in Four Simple Steps',
+      lead: "Set up NNC Digital's Travel Itinerary Software and simplify itinerary planning, quotation creation and travel booking management.",
+      steps: [
+        { icon: 'Headset', step: 'STEP 1', title: 'Book a Live Demo', body: 'Explore our Travel Itinerary Builder through a demonstration using sample travel packages and trip schedules.' },
+        { icon: 'PaletteOnDark', step: 'STEP 2', title: 'Set Up Your Workspace', body: 'Add your travel agency logo, business details and user logins to your branded Travel CRM Software.' },
+        { icon: 'UploadOnDark', step: 'STEP 3', title: 'Import Your Travel Data', body: 'Add hotels, transport, sightseeing services and existing customer enquiries, including supported CSV imports.' },
+        { icon: 'UsersOnDark', step: 'STEP 4', title: 'Train Your Team and Go Live', body: 'Train sales, operations and accounts teams to manage itineraries, bookings and payments from one platform.' },
+      ],
+    },
+    // Section 7 (PRICING) override per brief. Shared pricing numbers.
+    pricing: {
+      title: 'Affordable Travel Itinerary Software Pricing for Travel Agencies',
+      lead: 'Get Travel Itinerary Software, Travel CRM Software and Travel Booking Management Software with flexible per-user pricing for growing travel businesses.',
+      dailyTitle: 'Travel Itinerary Software Starting at Under ₹20 a Day',
+      dailyBody: 'NNC Digital offers Travel Itinerary Software for Travel Agencies starting at approximately ₹19.67 per user per day before GST, based on a 30-day month, helping teams manage itineraries, quotations and bookings.',
+      fine: 'Pricing based on September 2026 rates and subject to change.',
+    },
     builtFor: {
-      title: 'Travel itinerary software for tour operators, DMCs and travel agencies',
+      title: 'Travel Itinerary Software for Tour Operators, DMCs and Travel Agencies',
       lead: 'Our Travel Itinerary Planning Software helps travel businesses create professional multi-day itineraries and manage destination-specific travel packages.',
       audiences: [
         { icon: 'MapPin', title: 'Tour Operators', body: 'Build domestic and international holiday itineraries with hotels, transfers and sightseeing using Tour Operator Itinerary Software.' },
@@ -1750,40 +1834,54 @@ export const travelPages = {
         { icon: 'Users', title: 'Growing Travel Agencies', body: 'Manage customer enquiries, trip planning and bookings with Cloud-Based Travel Agency Management Software for teams of 10 or more.' },
       ],
       caseStudy: {
-        title: 'How a leisure tour operator simplified travel itinerary management',
-        challengeLabel: 'The challenge.',
+        title: 'How a Leisure Tour Operator Simplified Travel Itinerary Management',
+        challengeLabel: 'The Challenge.',
         challenge: 'A leisure tour operator received enquiries through its website, calls and WhatsApp. Preparing travel packages required manually adding hotel details, ferry charges, transfers and day-wise activities.',
-        solutionLabel: 'Our solution.',
+        solutionLabel: 'Our Solution.',
         solution: 'NNC Digital implemented Travel Itinerary Software with reusable destination plans, branded quotations, hotel and ferry options, centralized trip management and payment tracking.',
-        outcomeLabel: 'The outcome.',
+        outcomeLabel: 'The Outcome.',
         outcome: 'The operator now manages travel enquiries, reusable itineraries, booking records and GST invoices through one Travel CRM Software workspace.',
         note: 'live and running today',
       },
     },
-    cta: { lines: ['Create your first travel itinerary'], underline: 'with NNC Digital' },
+    // Section 10 (FAQ) override.
+    faqTitle: 'Frequently Asked Questions About Travel Itinerary Software',
+    faqLead:
+      'Have more questions? Call +91 94227 99466 or WhatsApp +91 91645 66466.',
+    // Section 11 (FINAL CALL TO ACTION) override per brief.
+    cta: {
+      lines: ['Create Your First Travel Itinerary'],
+      underline: 'with NNC Digital',
+      leads: [
+        "Simplify travel planning with NNC Digital's Travel Itinerary Software. Build customized day-wise itineraries, organize bookings and share branded travel plans from one platform.",
+        'Explore how our Travel Itinerary Builder helps your agency manage trip schedules, customer enquiries and payments efficiently.',
+      ],
+      formTitle: 'Request Your Travel Itinerary Software Demo',
+      formLead: 'Tell us a little about your travel business.',
+    },
     faq: [
       {
-        q: 'Can we create day-wise travel itineraries?',
+        q: '1. Can we create day-wise travel itineraries?',
         a: "Yes. NNC Digital's Travel Itinerary Software lets you create day-wise travel plans with hotels, meal plans, transfers, sightseeing and activities.",
       },
       {
-        q: 'Does the itinerary builder include hotels and meal plans?',
+        q: '2. Does the itinerary builder include hotels and meal plans?',
         a: 'Yes. Our Travel Itinerary Builder uses saved hotel records containing room types, meal plans (CP, MAP, AP) and check-in/check-out details.',
       },
       {
-        q: 'Can we reuse existing travel itineraries?',
+        q: '3. Can we reuse existing travel itineraries?',
         a: 'Yes. Our Tour Itinerary Software keeps previous itineraries searchable by trip and suggests them for similar destinations, saving time on repeat enquiries.',
       },
       {
-        q: 'Can we add our travel agency branding?',
+        q: '4. Can we add our travel agency branding?',
         a: 'Yes. Create professional itineraries with your agency logo, contact details and destination images using Branded Travel Itinerary Software.',
       },
       {
-        q: 'How can we share itineraries with customers?',
+        q: '5. How can we share itineraries with customers?',
         a: 'You can share travel itineraries through WhatsApp, email, PDF download or print using our Online Travel Itinerary Software.',
       },
       {
-        q: 'What happens after the customer confirms the itinerary?',
+        q: '6. What happens after the customer confirms the itinerary?',
         a: 'Our Travel Booking Management Software helps manage bookings, generate hotel and activity vouchers, track instalments and issue GST invoices.',
       },
     ],
