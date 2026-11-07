@@ -81,7 +81,15 @@ export default function TravelDecisions({ page }) {
               {d.titleLines.map((line, i) => (
                 <Fragment key={line}>
                   {line}
-                  {i < d.titleLines.length - 1 && <br />}
+                  {/* Explicit space + <br> so headings-extractors that
+                      strip <br> still see word boundaries between lines
+                      (e.g. "Clear" + <br> + "View" → "ClearView"). */}
+                  {i < d.titleLines.length - 1 && (
+                    <>
+                      {' '}
+                      <br />
+                    </>
+                  )}
                 </Fragment>
               ))}
               <span className={s.dot}>.</span>

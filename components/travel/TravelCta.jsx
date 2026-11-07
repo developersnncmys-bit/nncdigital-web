@@ -123,6 +123,9 @@ export default function TravelCta({ page }) {
             {page.cta.lines.map((line) => (
               <Fragment key={line}>
                 {line}
+                {/* Explicit space + <br> so H2 text extraction keeps
+                    word boundaries intact (e.g. headings-audit tools). */}
+                {' '}
                 <br />
               </Fragment>
             ))}

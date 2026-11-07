@@ -28,6 +28,10 @@ const kalam = Kalam({
 export function buildMetadata(slug) {
   const page = travelPages[slug]
   const url = `${SITE_URL}/${slug}/`
+  // Pages that intentionally consolidate signals into another page (near-duplicate
+  // keyword targets) can set `canonical` in their data entry to point at the
+  // preferred URL. Defaults to the page's own URL.
+  const canonical = page.canonical || url
   const image = {
     url: `${SITE_URL}/og/${slug}.png`,
     width: 1200,
@@ -37,7 +41,7 @@ export function buildMetadata(slug) {
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    alternates: { canonical: url },
+    alternates: { canonical },
     // The site-wide default is noindex while the main site is pre-launch; the
     // Travel CRM landing pages opt back in. Kept in step with app/robots.js,
     // public/_headers and app/sitemap.js through lib/site.
@@ -57,7 +61,7 @@ export function buildMetadata(slug) {
       type: 'website',
       locale: 'en_IN',
       siteName: 'NNC Travel CRM',
-      url,
+      url: canonical,
       images: [image],
     },
     twitter: {

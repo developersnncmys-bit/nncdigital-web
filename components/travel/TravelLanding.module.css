@@ -363,9 +363,9 @@
   text-transform: uppercase;
 }
 .page h1 {
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -1.5px;
+  font-size: 52px;
+  line-height: 60px;
+  letter-spacing: -1.2px;
   margin: 26px 0;
 }
 .page h1 .u {

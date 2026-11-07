@@ -457,10 +457,18 @@ export const INDUSTRIES = {
   }),
   education: ind('education', {
     name: 'Education',
-    metaTitle: 'Education CRM | Admissions, Parents & Fees | NNC CRM',
-    metaDescription: 'Track admission enquiries, follow up with parents on WhatsApp and manage fees in one place. A CRM built for schools and academies.',
-    title: 'A CRM for coaching and education.',
-    lead: 'Admissions season is won by the institute that follows up fastest. NNC CRM captures every admission enquiry, keeps parents updated on WhatsApp and manages fees, so your counsellors convert more and your office runs calmer.',
+    metaTitle: 'Education CRM Software for Coaching Institutes | NNC',
+    metaDescription: 'Manage student admissions, enquiries, fees and follow-ups with education CRM software for coaching institutes, training centres and educational institutions.',
+    title: 'Education CRM Software for Coaching Institutes and Educational Institutions',
+    lead: [
+      'Admissions season is won by the institute that follows up fastest. NNC CRM is education CRM software for coaching institutes, training centres, and educational institutions to manage student enquiries, admissions, fees, and follow-ups.',
+      'Capture leads from websites, advertisements, referrals, and walk-ins. Assign enquiries to counsellors, automate follow-up reminders, and keep parents informed through WhatsApp.',
+      "With NNC's CRM for education, your team can convert more admission enquiries into enrolments while simplifying everyday administrative work.",
+    ],
+    heroCtas: [
+      { label: 'Book a Demo', href: '#start', trial: true },
+      { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
+    ],
     // Hero: reuse the animated TrainingInstitutesDashboard (admissions /
     // students / fees screens) framed on the scenic+glass panel — a direct
     // visual preview of what this industry page is selling.
@@ -470,14 +478,60 @@ export const INDUSTRIES = {
     // PERFORMANCE binders next to a laptop. Maps one-to-one onto "every
     // admission enquiry captured", "follow up reminders" and "fees tracked".
     img2: '/case-studies-images/training-challenge.webp',
-    splitTitle: 'Convert more admission enquiries',
-    splitBody: 'Enquiries come from ads, referrals and walk ins, then go cold without follow up. NNC keeps every prospective student warm until they join.',
-    bullets: ['Every admission enquiry captured and assigned', 'Follow up reminders for counsellors', 'Fees and instalments tracked per student'],
-    features: [
-      { icon: 'enquiries', title: 'Admissions pipeline', body: 'Move every enquiry from interested to enrolled.' },
-      { icon: 'whatsapp', title: 'Parent updates', body: 'Send reminders and updates to parents on WhatsApp.' },
-      { icon: 'invoice', title: 'Fee management', body: 'Track fees, instalments and dues without spreadsheets.' },
+    splitKicker: 'The Problem',
+    splitTitle: 'Convert More Admission Enquiries with Education CRM Software',
+    splitBody: [
+      'Coaching institutes receive student enquiries from advertisements, websites, referrals, WhatsApp, and walk-ins. Without a structured admission management system, missed calls, delayed follow-ups, and scattered records can lead to lost admissions.',
+      "NNC's education CRM software centralises student enquiry management, helping counsellors track prospective students, manage admission pipelines, and improve enquiry conversion rates.",
     ],
+    bullets: [
+      'Every Admission Enquiry Captured and Assigned',
+      'Follow-Up Reminders for Counsellors',
+      'Fees and Instalments Tracked Per Student',
+    ],
+    featuresTitle: 'A Coaching Institute CRM Built for Your Institution',
+    featuresLead: [
+      'NNC CRM brings student enquiry management, admission tracking, fee management, and communication together in one education CRM platform.',
+      'Whether you manage a coaching centre, training institute, or multi-centre educational business, NNC helps organise student information, improve parent communication, and simplify everyday operations.',
+    ],
+    features: [
+      {
+        icon: 'enquiries',
+        title: 'Manage Student Enquiries and Admissions',
+        body: 'Track prospective students from their first enquiry to enrolment with student admission management software.',
+      },
+      {
+        icon: 'invoice',
+        title: 'Simplify Student Fee Management',
+        body: 'Monitor fee collection, pending payments, and instalments through a centralised student fee management system.',
+      },
+      {
+        icon: 'whatsapp',
+        title: 'Improve Parent and Student Communication',
+        body: 'Keep parents and prospective students informed through WhatsApp communication and timely follow-ups.',
+      },
+      {
+        icon: 'education',
+        title: 'Manage Your Education Business from One Platform',
+        body: 'Organise student records, admission activities, and reporting with CRM software for educational institutions.',
+      },
+    ],
+    statsTitle: 'Built for Education',
+    stats: [
+      { value: '30 Days', label: 'Free trial on every plan' },
+      { value: '1 Day', label: 'Typical setup time' },
+      { value: '24x7', label: 'WhatsApp and email support' },
+    ],
+    cta: {
+      title: 'Run Your Education Business on What Is Next',
+      sub: [
+        "Manage student admissions, enquiries, fee collection, and counsellor follow-ups with NNC's education CRM software.",
+        'Discover how a CRM for coaching institutes can help improve admission enquiry conversion, organise student information, and simplify administrative tasks.',
+        'Book a 30-minute demo using your own data or explore flexible CRM pricing for your educational institution.',
+      ],
+      primary: { label: 'Book a Demo', href: '#start' },
+      secondary: { label: 'See Pricing', href: '/pricing' },
+    },
   }),
   'real-estate': ind('real-estate', {
     name: 'Real Estate',

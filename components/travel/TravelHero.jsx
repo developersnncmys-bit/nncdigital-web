@@ -38,6 +38,11 @@ export default function TravelHero({ page }) {
             {h1.lines.map((line) => (
               <Fragment key={line}>
                 {line}
+                {/* Explicit space + <br> so headings-extractors (e.g. SEO
+                    audit tools) that strip <br> still see word boundaries
+                    between lines — otherwise "Software" + <br> + "for"
+                    reads as "Softwarefor" in extracted H1 text. */}
+                {' '}
                 <br />
               </Fragment>
             ))}

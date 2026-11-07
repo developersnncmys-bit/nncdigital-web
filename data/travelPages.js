@@ -30,9 +30,10 @@ export const travelPages = {
   'travel-crm': {
     keyword: 'travel crm',
     angle: 'Flagship. The owner’s daily decisions, answered by the modules.',
+    // metaTitle + metaDescription per the current SEO brief.
     metaTitle: 'Travel CRM Software for Tour Operators & Travel Agencies | NNC Digital',
     metaDescription:
-      'Simplify travel business management with NNC Travel CRM. Manage tour enquiries, travel quotations, itineraries, bookings, payments and accounting in one platform.',
+      'Manage travel enquiries, quotations, itineraries, bookings, payments, and accounting with NNC Travel CRM, all in one easy-to-use platform.',
     pill: 'Travel CRM | Built for Tour Operators and DMCs',
     // H1 broken at natural phrase boundaries so no word orphans on its own
     // line. Previous split ("Travel CRM Software for" / "Tour Operators,
@@ -746,20 +747,22 @@ export const travelPages = {
 
   // -------------------------------------------------------------------------
   'tour-operator-crm': {
-    keyword: 'tour operator crm',
-    angle: 'Operator economics: multi-night packages, cost build-up, margin per departure.',
-    metaTitle: 'Travel Quotation Software for Travel Agencies | NNC Digital',
+    keyword: 'tour operator crm software',
+    angle: 'Tour operator economics: packages, bookings, payments, trip profitability.',
+    // metaTitle + metaDescription per the SEO brief (primary keyword is now
+    // "Tour Operator CRM Software"). Page self-canonicalizes.
+    metaTitle: 'Tour Operator CRM Software for Bookings & Business',
     metaDescription:
-      "Create branded travel quotations, day-wise itineraries and tour packages with NNC Digital's Travel Quotation Software. Manage bookings and payments. Book a demo.",
-    pill: 'Travel Quotation Software | Create, Quote & Send',
-    h1: { lines: ['Travel Quotation Software for', 'Travel Agencies and'], tail: '', underline: 'Tour Operators' },
-    lead: "Create professional travel quotations, customized tour packages and day-wise itineraries with NNC Digital's Travel Quotation Software. Built for travel agencies, DMCs and tour operators, our Travel Agency Quotation Software helps you reuse successful itineraries, calculate hotel and transport costs, and share branded travel proposals with customers. From enquiries and quotations to bookings and payments, manage your travel business with one Travel CRM Software.",
-    secondaryCta: { label: 'See the Quote Builder', href: '#features' },
-    heroNotes: ['start from one that won', 'send it any way'],
+      "Manage tour enquiries, packages, bookings, customer payments and trip profits with NNC Digital's Tour Operator CRM Software.",
+    pill: 'Tour Operator CRM Software | Travel Business Management',
+    h1: { lines: ['Tour Operator CRM Software to', 'Manage Packages, Bookings'], tail: '', underline: 'and Profits' },
+    lead: "Manage your complete travel business with NNC Digital's Tour Operator CRM Software. Organize customer enquiries, create tour package quotations, manage hotel and transport bookings, track payments and monitor trip profitability from one platform. Built for tour operators, travel agencies and DMCs, our Tour Operator Management Software simplifies daily operations and helps your team manage every customer journey efficiently. From the first travel enquiry to confirmed bookings and final payments, manage your tour business with one cloud-based Travel CRM Software.",
+    secondaryCta: { label: 'Explore the Software', href: '#features' },
+    heroNotes: ['enquiry to booking', 'profits in view'],
     decisions: {
-      kicker: 'FROM ENQUIRY TO SENT',
-      titleLines: ['Create and Send Travel Quotations', 'in Five Simple Steps'],
-      lead: "Preparing travel quotations manually takes time. NNC Digital's Travel Quotation Software simplifies itinerary creation, pricing, branding and customer communication so your team can respond to enquiries faster.",
+      kicker: 'FROM ENQUIRY TO DEPARTURE',
+      titleLines: ['Manage Every Tour Booking', 'in Five Simple Steps'],
+      lead: "Managing a tour business involves multiple activities, from handling customer enquiries and preparing travel proposals to confirming hotel reservations and collecting payments. NNC Digital's Tour Operator CRM Software brings these activities together, helping your team organize tour operations, reduce repetitive work and manage bookings with better visibility.",
       // Per-brief override for the dashboard mockup labels. Merged on top of
       // the shared base in data/travel.js, so only these fields change.
       morningScreen: {
@@ -767,65 +770,65 @@ export const travelPages = {
         statsTitle: 'Trip Sales Stats',
         panels: [
           { title: 'Pending Follow-Ups', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
-          { title: 'Due Incoming', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
+          { title: 'Due Incoming Payments', cols: ['Today', 'Yesterday', 'Next 7 Days'] },
           { title: 'Trips Starting', cols: ['Today', 'Next 7 Days'] },
           { title: 'Trips Ending', cols: ['Today', 'Previous 7 Days'] },
         ],
+        note: 'Sample figures displayed in the Tour Operator CRM dashboard layout.',
       },
       cap: 'WHERE EACH ONE HAPPENS',
-      note: 'minutes, not evenings',
+      capTitle: 'Stop Managing Your Tour Business Across Multiple Spreadsheets',
+      capLead: 'Your daily operations, organized.',
+      note: 'organized, not scattered',
       items: [
         {
+          icon: 'ListChecks',
+          q: 'Manage Every Customer Enquiry in One Place',
+          where: 'TRIPS · LEAD MANAGEMENT',
+          a: 'Use Tour Operator CRM Software to organize customer enquiries, assign sales executives, schedule follow-ups and track every trip through seven booking stages.',
+        },
+        {
           icon: 'RefreshCw',
-          q: 'Stop Creating Travel Quotations from Scratch',
+          q: 'Reuse Existing Tour Packages and Itineraries',
           where: 'TRIPS · SUGGESTED QUOTES',
-          a: 'Use existing quotations for similar destinations with our Travel Itinerary Software. Reuse day-wise itineraries, accommodation details, transport and package pricing instead of preparing every proposal manually.',
+          a: 'Find previous quotations for similar destinations with saved itineraries, hotel details, transport and package pricing. Prepare new tour proposals without starting from scratch.',
         },
         {
           icon: 'Hotel',
-          q: 'Access Hotel Rates and Accommodation Details',
-          where: 'BOOKINGS · HOTEL MASTER',
-          a: 'Manage hotel information, room categories, meal plans and check-in details in one place. Our Travel Agency Quotation Software helps your team prepare quotations using saved hotel records.',
+          q: 'Organize Hotel and Transport Bookings',
+          where: 'BOOKINGS · HOTEL AND TRANSPORT',
+          a: 'Maintain hotel information, room categories, meal plans, transportation services and sightseeing activities. Access saved records while managing tour reservations.',
         },
         {
-          icon: 'Bus',
-          q: 'Add Transport and Sightseeing Costs',
-          where: 'BOOKINGS · TRANSPORT',
-          a: 'Build complete Tour Package Quotations using saved transport, ferry, transfer and sightseeing details. Access destination-specific services without repeatedly entering the same information.',
+          icon: 'Wallet',
+          q: 'Track Customer Payments and Outstanding Balances',
+          where: 'ACCOUNTING · PAYMENTS',
+          a: 'Monitor advance payments, instalments, overdue balances and completed transactions. Maintain organized payment records for every tour booking.',
         },
         {
-          icon: 'Palette',
-          q: 'Create Professional Branded Travel Quotations',
-          where: 'SETTINGS · BRANDING',
-          a: 'Present your travel packages professionally with a Branded Travel Quotation Generator. Include your agency logo, business details and destination images on customer quotations.',
-        },
-        {
-          icon: 'MessageCircle',
-          q: 'Share Quotations Through Multiple Channels',
-          where: 'TRIPS · SHARE',
-          a: "Send your Travel Quotation PDF through email or WhatsApp, print proposals or download them directly from the trip page. Communicate package details in the customer's preferred format.",
+          icon: 'FileText',
+          q: 'Understand the Profitability of Every Tour',
+          where: 'ACCOUNTING · PROFIT REPORT',
+          a: 'Review individual trip profitability by comparing booking revenue with trip costs. Use tour profit tracking to understand business performance and make better pricing decisions.',
         },
       ],
     },
     inside: {
-      kicker: 'WHAT SURROUNDS THE QUOTE',
-      title: 'More than travel quotation software — manage your entire travel business',
-      lead: 'NNC Digital combines Travel Quotation Software, Travel Agency CRM Software and Travel Booking Management Software to organize the complete customer journey. Manage enquiries, bookings, suppliers, accounting and daily operations from one cloud-based platform.',
-      // Per-brief overrides. Replaces the shared Trips/Bookings/Accounting/
-      // Tasks module copy and the AND-AROUND-THEM workspace cards for this
-      // page only, so travel-crm etc. keep their own copy.
+      kicker: 'MORE THAN CUSTOMER MANAGEMENT',
+      title: 'One Tour Operator Management Software for Your Entire Travel Business',
+      lead: 'NNC Digital combines Tour Operator CRM Software, Tour Booking Management Software, Travel Quotation Software and Travel Agency Accounting Software to organize your complete business workflow. Manage customer enquiries, tour packages, hotel reservations, transportation, accounting and daily operations through one cloud-based travel management platform.',
       modules: [
         {
           icon: 'ListChecks',
           name: 'Trips',
-          subtitle: 'Manage Every Travel Enquiry',
-          lead: 'Track customer enquiries and travel bookings with Travel Lead Management Software.',
+          subtitle: 'Manage Every Tour Enquiry',
+          lead: 'Track customer enquiries and tour bookings with Travel Lead Management Software.',
           items: [
             'Manage seven trip stages: New Query, In Progress, Converted, On Trip, Past, Canceled and Dropped',
             'Assign sales executives and follow-up dates',
             'Search trips by ID, customer name or phone number',
             'Import existing travel leads through CSV',
-            'View quotations, itineraries and activity history',
+            'View quotations, itineraries and customer activity history',
             'Contact customers through WhatsApp from the trip page',
           ],
         },
@@ -833,12 +836,12 @@ export const travelPages = {
           icon: 'Hotel',
           name: 'Bookings',
           subtitle: 'Manage Hotels, Transport and Vouchers',
-          lead: 'Organize reservations with Travel Booking Management Software.',
+          lead: 'Organize travel reservations using Tour Booking Management Software.',
           items: [
-            'Maintain hotel masters with images, location and star ratings',
+            'Maintain hotel masters with images, locations and star ratings',
             'Store room categories, meal plans and hotel timings',
             'Manage child extra-bed eligibility and payment preferences',
-            'Save destination-specific transport and sightseeing details',
+            'Save destination-specific transportation and sightseeing details',
             'Generate trip, hotel and activity vouchers',
             'Customize voucher pricing, branding and terms',
           ],
@@ -846,8 +849,8 @@ export const travelPages = {
         {
           icon: 'Receipt',
           name: 'Accounting',
-          subtitle: 'Track Payments and Travel Revenue',
-          lead: 'Simplify financial operations with Travel Agency Accounting Software.',
+          subtitle: 'Track Payments and Tour Revenue',
+          lead: 'Simplify financial operations with Tour Operator Accounting Software.',
           items: [
             'Track upcoming, overdue, paid and unverified payments',
             'Record advance payments and instalments',
@@ -867,105 +870,126 @@ export const travelPages = {
             'Add internal comments to trip records',
             'Receive booking, payment and comment alerts',
             'Track guest arrival and departure information',
+            'Organize daily responsibilities across sales and operations teams',
           ],
         },
       ],
       workspace: {
         kicker: 'AND AROUND THEM',
         items: [
-          { icon: 'LayoutDashboard', title: 'Owner Dashboard', body: 'Monitor revenue, enquiries, pending payments and upcoming trips.' },
-          { icon: 'Palette', title: 'Your Branding', body: 'Add your agency logo and contact details to quotations and vouchers.' },
-          { icon: 'Users', title: 'Individual User Access', body: 'Give sales, operations and accounting teams their own logins.' },
-          { icon: 'Globe', title: 'Cloud-Based Workspace', body: 'Access your travel management platform through a browser at your branded address.' },
+          { icon: 'LayoutDashboard', title: 'Owner Dashboard', body: 'Monitor revenue, enquiries, quotations, pending payments and upcoming trips from one Tour Operator CRM Dashboard.' },
+          { icon: 'Palette', title: 'Your Branding', body: 'Add your agency logo and contact details to customer quotations and booking vouchers.' },
+          { icon: 'Users', title: 'Individual User Access', body: 'Give sales, operations and accounting teams their own logins to manage their responsibilities.' },
+          { icon: 'Globe', title: 'Cloud-Based Workspace', body: 'Access your Travel Business Management Software through a browser using your own branded address.' },
         ],
       },
     },
     features: {
-      kicker: 'MODULE BY MODULE',
-      // H2 Title Case + Section 6 lead both per the brief. Lead was missing.
-      title: 'Travel Quotation Software with Complete Booking and Business Management',
-      lead: "Create customized quotations, manage travel operations and keep your sales team organized with the essential modules of NNC Digital's Travel Agency Management Software.",
+      kicker: 'COMPLETE BUSINESS MANAGEMENT',
+      title: 'Tour Operator CRM Software with Complete Booking and Business Management',
+      lead: "Manage tour enquiries, prepare customized travel packages, organize hotel reservations, track payments and monitor business performance with NNC Digital's Tour Operator Management Software.",
     },
+    // Brief lists modules in this order: 02 Quotes, 03 Bookings, 01 Trips,
+    // 04 Accounting, 05 Owner Dashboard.
     featureOrder: [ROW.QUOTES, ROW.BOOKINGS, ROW.TRIPS, ROW.ACCOUNTS, ROW.DASHBOARD],
-    // Per-page overrides for individual feature-row titles / notes / items
-    // (keyed by row.num). Merged on top of the shared featureRows in
-    // data/travel.js, so travel-crm keeps its own H3s and sub-points while
-    // this page gets the tour-operator brief's wording for all five rows.
     featureRowOverrides: {
       '01': {
-        title: 'Manage Travel Leads, Customer Enquiries and Trip Status',
+        title: 'Manage Tour Leads, Customer Enquiries and Booking Status',
         note: 'every lead has an owner',
+        lead: 'Organize every customer enquiry with Tour Operator Lead Management Software. Track potential customers, assign sales responsibilities and monitor tour bookings through a structured travel sales pipeline.',
         items: [
           {
             icon: 'ListChecks',
-            title: 'Track Every Travel Enquiry',
-            body: 'Use Travel CRM Software to monitor enquiries across seven stages, from new customer requests to completed or dropped trips.',
+            title: 'Track Every Tour Enquiry',
+            body: 'Use Tour Operator CRM Software to monitor customer enquiries across seven stages, from new travel requests to completed or dropped trips.',
           },
           {
             icon: 'Users',
             title: 'Assign Leads and Follow-Ups',
-            body: 'Organize your sales team with Travel Lead Management Software. Assign a salesperson, follow-up date and tags to each trip to maintain clear responsibility.',
+            body: 'Organize your sales team with Travel Lead Management Software. Assign sales executives, follow-up dates and tags to every tour enquiry.',
           },
           {
             icon: 'Upload',
             title: 'Search, Filter and Import Enquiries',
-            body: 'Find customer records using trip ID, guest name or mobile number. Import existing lead lists through CSV and manage them using filters.',
+            body: 'Find customer records using trip ID, guest name or mobile number. Import existing travel enquiries through CSV and manage them using filters.',
           },
         ],
       },
       '02': {
-        title: 'Create Professional Travel Quotations and Day-Wise Itineraries',
+        title: 'Create Professional Tour Package Quotations and Travel Itineraries',
+        note: 'your logo, not ours',
+        lead: 'Prepare customized tour proposals using Tour Operator Quotation Software. Reuse successful travel packages, organize day-wise itineraries and share branded quotations with customers.',
+        items: [
+          {
+            icon: 'RefreshCw',
+            title: 'Reuse Successful Tour Package Quotations',
+            body: 'Find previous quotations for similar destinations with existing day-wise itineraries, hotels, transfers and pricing. Reuse saved travel proposals to prepare new customer quotations faster.',
+          },
+          {
+            icon: 'Palette',
+            title: 'Customize Every Tour Itinerary',
+            body: 'Add hotels, accommodation, transportation, transfers, activities and sightseeing to create personalized tour packages. Organize every travel itinerary according to customer preferences.',
+          },
+          {
+            icon: 'MessageCircle',
+            title: 'Share Professional Tour Quotations',
+            body: 'Create branded tour quotations with your agency logo and business details. Print, email or download proposals as PDFs and share them with customers through WhatsApp.',
+          },
+        ],
       },
       '03': {
         title: 'Simplify Hotel, Transport and Tour Booking Management',
-        note: 'set up once, quote again',
+        note: 'set up once, manage every booking',
+        lead: 'Organize travel reservations with Tour Operator Booking Software. Maintain hotel information, transportation services and sightseeing details in one centralized booking management system.',
         items: [
           {
             icon: 'Hotel',
-            title: 'Centralize Hotel Information',
-            body: 'Manage hotel images, ratings, room types, meal plans and check-in details using a structured Hotel Booking Management System.',
+            title: 'Centralize Hotel and Accommodation Details',
+            body: 'Manage hotel images, star ratings, room categories, meal plans, check-in and check-out timings and child extra-bed details using a structured Hotel Booking Management System.',
           },
           {
             icon: 'Bus',
-            title: 'Manage Transport and Sightseeing Services',
-            body: 'Store cabs, ferries, transfers and sightseeing activities by destination. Reuse these records while preparing Tour Package Quotations and travel itineraries.',
+            title: 'Manage Transportation and Sightseeing Services',
+            body: 'Store cabs, ferries, transfers and sightseeing activities by destination. Reuse these records while preparing tour quotations and travel itineraries.',
           },
           {
             icon: 'Ticket',
-            title: 'Generate Professional Booking Vouchers',
-            body: 'Create trip, hotel and activity vouchers with Travel Booking Software. Customize agency branding, prices and terms before sharing documents with guests or suppliers.',
+            title: 'Generate Professional Tour Booking Vouchers',
+            body: 'Create trip, hotel and activity vouchers directly from booking records. Customize agency branding, pricing and terms before sharing documents with customers or suppliers.',
           },
         ],
       },
       '04': {
-        title: 'Manage Travel Payments, GST Invoices and Trip Profit',
+        title: 'Manage Tour Payments, GST Invoices and Trip Profitability',
         note: 'no more manual payment ledgers',
+        lead: 'Keep your travel business finances organized with Tour Operator Accounting Software. Track customer payments, outstanding balances, booking receipts and individual trip profitability from one platform.',
         items: [
           {
             icon: 'Wallet',
             title: 'Monitor Incoming and Overdue Payments',
-            body: 'Use Travel Payment Tracking Software to view upcoming, overdue, paid and unverified payments with their booking references and due dates.',
+            body: 'Use Travel Payment Management Software to track upcoming, overdue, paid and unverified payments with booking references and due dates.',
           },
           {
             icon: 'Receipt',
             title: 'Manage Instalments and GST Invoices',
-            body: 'Record advance payments, track outstanding balances, issue receipts and generate GST invoices using your Travel Agency Billing Software.',
+            body: 'Record advance payments, track outstanding balances, issue receipts and generate GST invoices using Travel Agency Billing Software.',
           },
           {
             icon: 'FileText',
             title: 'Generate Proforma Invoices and Profit Reports',
-            body: 'Prepare proforma invoices before receiving payments and review individual trip profitability with Travel Agency Accounting Software.',
+            body: 'Prepare proforma invoices before receiving payments and review individual trip profitability. Understand the financial performance of every tour package.',
           },
         ],
       },
       '05': {
-        title: 'Monitor Travel Sales, Quotations and Business Performance',
+        title: 'Monitor Tour Sales, Bookings and Business Performance',
         note: 'your daily business overview',
+        lead: 'Get a complete overview of your travel business with the Tour Operator CRM Dashboard. Track sales performance, customer enquiries, quotations, payments and upcoming departures without checking multiple records.',
         items: [
           {
             icon: 'LayoutDashboard',
-            title: 'View Sales and Conversion Reports',
-            body: 'Track revenue, new leads, generated quotations and conversions using the Travel Agency CRM Dashboard, with daily, weekly and monthly views.',
+            title: 'View Tour Sales and Conversion Reports',
+            body: 'Track revenue, new enquiries, generated quotations and conversions using Travel Business Management Software, with daily, weekly and monthly views.',
           },
           {
             icon: 'Bell',
@@ -974,48 +998,38 @@ export const travelPages = {
           },
           {
             icon: 'CalendarCheck',
-            title: 'Track Upcoming and Completed Trips',
+            title: 'Track Upcoming and Completed Tours',
             body: 'View trips starting or ending to plan guest pickups, hotel check-ins, departure arrangements and customer follow-ups.',
           },
         ],
       },
     },
-    // Section 7 override — brief rewrites the H2, lead and all 4 step
-    // titles + bodies for the tour-operator audience.
     how: {
-      title: 'Get Started with Travel Quotation Software in Four Simple Steps',
-      lead: "Implement NNC Digital's Travel Quotation Software with a guided setup process for your travel agency, sales team and operations department.",
+      title: 'Get Started with Tour Operator CRM Software in Four Simple Steps',
+      lead: "Implement NNC Digital's Tour Operator Management Software with a guided setup process for your travel agency, sales team and operations department.",
       steps: [
-        { icon: 'Headset', step: 'STEP 1', title: 'Book a Live Demo', body: 'Explore our Travel Agency Quotation Software through a live demonstration featuring sample travel enquiries, itineraries, quotations and bookings.' },
+        { icon: 'Headset', step: 'STEP 1', title: 'Book a Live Demo', body: 'Explore our Tour Operator CRM Software through a live demonstration featuring sample travel enquiries, tour package quotations, itineraries and bookings.' },
         { icon: 'PaletteOnDark', step: 'STEP 2', title: 'Set Up Your Branded Workspace', body: 'Configure your agency logo, company details and individual user logins to create a professional Travel CRM Software workspace.' },
-        { icon: 'UploadOnDark', step: 'STEP 3', title: 'Add Your Travel Business Data', body: 'Organize hotel information, transport services, sightseeing activities and existing customer enquiries. Import supported lead data through CSV.' },
-        { icon: 'UsersOnDark', step: 'STEP 4', title: 'Train Your Team and Go Live', body: 'Get your sales, operations and accounts teams familiar with their workflows. Start preparing Tour Package Quotations and managing active trips.' },
+        { icon: 'UploadOnDark', step: 'STEP 3', title: 'Add Your Travel Business Data', body: 'Organize hotel information, transportation services, sightseeing activities and existing customer enquiries. Import supported lead data through CSV.' },
+        { icon: 'UsersOnDark', step: 'STEP 4', title: 'Train Your Team and Go Live', body: 'Get your sales, operations and accounts teams familiar with their workflows. Start managing tour bookings, preparing quotations and tracking customer payments.' },
       ],
     },
-    // Section 8 override — brief's H2 + lead for the pricing block. Pricing
-    // numbers themselves come from the shared `pricing` object in travel.js.
-    // `dailyTitle`, `dailyBody` and `fine` map to the brief's final sub-
-    // section ("Professional Travel Quotation Software at Under ₹20 a Day").
     pricing: {
-      title: 'Affordable Travel Quotation Software Pricing for Growing Travel Agencies',
-      lead: 'Get the essential features of Travel Quotation Software, Travel CRM Software and Travel Agency Management Software with straightforward per-user pricing. Pay according to your team size, starting with a minimum of 10 users.',
-      dailyTitle: 'Professional Travel Quotation Software at Under ₹20 a Day',
-      dailyBody: 'Starting at approximately ₹19.67 per user per day before GST, based on a 30-day month, NNC Digital provides Travel Quotation Software for Travel Agencies to organize enquiries, prepare quotations and track bookings and payments.',
-      fine: "Rates shown are based on the website's September 2026 pricing and are subject to change.",
+      title: 'Affordable Tour Operator CRM Software Pricing for Growing Travel Agencies',
+      lead: 'Get the essential features of Tour Operator CRM Software, Tour Booking Management Software and Travel Agency Management Software with straightforward per-user pricing. Pay according to your team size, starting with a minimum of 10 users.',
+      dailyTitle: 'Professional Tour Operator CRM Software at Under ₹20 a Day',
+      dailyBody: 'Starting at approximately ₹19.67 per user per day before GST, based on a 30-day month, NNC Digital provides Tour Operator Software to organize enquiries, manage bookings, prepare quotations and track trip profitability.',
+      fine: 'Rates shown are based on September 2026 pricing and are subject to change.',
     },
-    // Section 9 override — H2 Title Case + lead + 4 audience cards with the
-    // brief's wording. Section 10 case-study rewritten as well.
     builtFor: {
-      title: 'Travel Quotation Software for Travel Agents, Tour Operators and DMCs',
-      lead: "NNC Digital's Travel Agency Quotation Software supports businesses that manage recurring destinations, customized itineraries, multiple bookings and customer enquiries.",
+      title: 'Tour Operator CRM Software for Travel Agencies, Tour Operators and DMCs',
+      lead: "NNC Digital's Tour Operator Management Software supports businesses that manage recurring destinations, customized itineraries, multiple bookings and customer enquiries.",
       audiences: [
-        { icon: 'MapPin', title: 'Tour Operators', body: 'Create domestic and international tour package quotations with reusable itineraries, hotel options, transfers and sightseeing using Tour Operator Quotation Software.' },
-        { icon: 'Handshake', title: 'Destination Management Companies (DMCs)', body: 'Manage accommodation, transport, ground handling and supplier vouchers with DMC Management Software.' },
-        { icon: 'Globe', title: 'Destination Specialists', body: 'Reuse destination-specific itineraries, hotel details and sightseeing packages with Travel Itinerary and Quotation Software designed for repeat bookings.' },
-        { icon: 'Users', title: 'Growing Travel Agencies', body: 'Bring sales, bookings, accounting and operations together with Cloud-Based Travel Agency Management Software for teams of 10 or more.' },
+        { icon: 'MapPin', title: 'Tour Operators', body: 'Manage domestic and international tour packages with reusable itineraries, hotel options, transfers and sightseeing using Tour Operator Management Software.' },
+        { icon: 'Handshake', title: 'Destination Management Companies (DMCs)', body: 'Manage accommodation, transportation, ground handling, supplier details and booking vouchers with DMC Management Software.' },
+        { icon: 'Globe', title: 'Destination Specialists', body: 'Reuse destination-specific itineraries, hotel details and sightseeing packages with Tour Package Management Software.' },
+        { icon: 'Users', title: 'Growing Travel Agencies', body: 'Bring sales, bookings, accounting and operations together with Cloud-Based Tour Operator Software for teams of 10 or more.' },
       ],
-      // Case study uses the brief's three sub-section labels verbatim:
-      // The Challenge / Our Solution / The Outcome.
       caseStudy: {
         title: 'How a Leisure Tour Operator Simplified Travel Quotations and Booking Management',
         challengeLabel: 'The Challenge.',
@@ -1023,51 +1037,63 @@ export const travelPages = {
         solutionLabel: 'Our Solution.',
         solution: 'NNC Digital implemented a branded Travel CRM Software workspace with a centralized trip pipeline, reusable day-wise itineraries and customizable Tour Package Quotation Software. The solution brought hotel and ferry options, quotation sharing, booking details, instalment tracking and GST invoicing into one platform.',
         outcomeLabel: 'The Outcome.',
-        outcome: 'The operator now has a centralized workflow to manage enquiries, prepare branded quotations, maintain booking records and track customer payments.',
+        outcome: 'The operator now has a centralized workflow to manage enquiries, prepare branded quotations, maintain booking records and track customer payments. The team also has better visibility into individual trip profitability and daily travel operations.',
         note: 'live and running today',
       },
     },
-    // Section 11 (FAQ) override — brief-aligned H2 + support lead.
-    faqTitle: 'Frequently Asked Questions About Travel Quotation Software',
+    faqTitle: 'Frequently Asked Questions About Tour Operator CRM Software',
     faqLead:
-      "Get answers about NNC Digital's Travel Quotation Software, itinerary creation, branding, pricing and travel booking management. Have more questions? Call +91 94227 99466 or WhatsApp +91 91645 66466.",
-    // Section 12 (BOOK A DEMO) override — H2 + two paragraphs + form labels
-    // match the brief verbatim ("See How Travel Quotation Software Works
-    // for Your Agency" + request form intro).
+      'Find answers about Tour Operator CRM Software, travel bookings, tour package management, customer enquiries, pricing and business operations.',
     cta: {
-      lines: ['See How Travel Quotation Software'],
-      underline: 'Works for Your Agency',
+      lines: ['See How Tour Operator CRM Software'],
+      underline: 'Works for Your Travel Business',
       leads: [
-        "Discover how NNC Digital's Travel Quotation Software helps your team create branded tour quotations, manage day-wise itineraries, track bookings and organize customer payments.",
-        'Book a personalized live demonstration of our Travel Agency Management Software and explore the complete journey from a new enquiry to a confirmed and paid booking.',
+        "Discover how NNC Digital's Tour Operator CRM Software helps your team manage customer enquiries, create tour package quotations, organize bookings, track payments and monitor trip profitability.",
+        'Book a personalized live demonstration of our Tour Operator Management Software and explore the complete journey from a new enquiry to a confirmed and paid booking.',
       ],
-      formTitle: 'Request Your Travel Quotation Software Demo',
-      formLead: 'Tell us a little about your travel agency.',
+      formTitle: 'Request Your Tour Operator CRM Demo',
+      formLead: 'Tell us a little about your travel business.',
     },
     faq: [
       {
-        q: 'How quickly can we create and send a travel quotation?',
-        a: "NNC Digital's Travel Quotation Software helps agencies prepare proposals faster by reusing existing itineraries for similar destinations. Your team can update hotel selections, transport details, sightseeing activities and package pricing instead of starting from scratch.",
+        q: 'Can Tour Operator CRM Software manage multiple tour packages?',
+        a: "Yes. NNC Digital's Tour Operator CRM helps you manage multiple customer trips, customized tour packages, day-wise itineraries, hotel options, transportation details and booking records from one platform.",
       },
       {
-        q: 'Can we create customized travel quotations and itineraries?',
-        a: 'Yes. Our Travel Itinerary Software allows you to create customized day-wise travel plans with hotels, transfers, activities and sightseeing. You can prepare tour packages according to customer requirements.',
+        q: 'Can we manage customer enquiries and tour bookings in one place?',
+        a: 'Yes. You can track customer enquiries through seven trip stages, assign sales executives, schedule follow-ups and maintain quotations, itineraries and booking information in one centralized system.',
       },
       {
-        q: 'Can we add our travel agency branding to quotations?',
-        a: "Yes. NNC Digital's Travel Agency Quotation Software supports branded quotations with your agency logo, business contact details and destination images, helping you present professional travel proposals.",
+        q: 'Can we create customized tour package quotations?',
+        a: 'Yes. You can create tour package quotations by adding hotels, transfers, sightseeing activities and other travel services. You can also reuse previous quotations for similar destinations.',
       },
       {
-        q: 'How can we share travel quotations with customers?',
-        a: 'You can print quotations, download them as PDFs, send them by email or share them through WhatsApp from the trip page. This makes Travel Quotation Software useful for communicating with customers across multiple channels.',
+        q: 'Can we manage hotel and transportation bookings?',
+        a: 'Yes. You can maintain hotel information, room categories, meal plans, check-in timings, transportation services and sightseeing details for use in your quotations and bookings.',
       },
       {
-        q: 'Can we create multiple travel package options for customers?',
-        a: 'Yes. You can prepare different quotations by adjusting hotels, room types, transfers, activities and package pricing. Our Tour Quotation Software helps agencies offer suitable travel options based on customer preferences.',
+        q: 'Can we track customer payments and instalments?',
+        a: 'Yes. Record advance payments and instalments, monitor outstanding balances and track upcoming, overdue, paid and unverified payments. You can also generate payment receipts and GST invoices.',
       },
       {
-        q: 'What happens after a customer confirms a travel quotation?',
-        a: "NNC Digital's Travel Booking Management Software supports the next stages of the trip. Your team can manage bookings, generate hotel and activity vouchers, record instalments, issue payment receipts and prepare GST invoices.",
+        q: 'Can we track the profit of individual tour packages?',
+        a: 'Yes. NNC Digital provides individual trip profit reports that help you compare the billed amount against trip costs and understand the profitability of your bookings.',
+      },
+      {
+        q: 'Can we add our travel agency branding to quotations and vouchers?',
+        a: 'Yes. Add your agency logo and business details to quotations and booking vouchers. Customize document pricing, branding and terms before sharing them.',
+      },
+      {
+        q: 'Can we share tour quotations through WhatsApp?',
+        a: 'Yes. You can download or print quotations as PDFs, send them through email or share them with customers using WhatsApp directly from the trip page.',
+      },
+      {
+        q: 'Is Tour Operator CRM Software suitable for growing travel agencies?',
+        a: "Yes. NNC Digital's Tour Operator CRM is designed to support growing travel businesses with a minimum team size of 10 users. It brings customer enquiries, quotations, bookings, payments and team activities together.",
+      },
+      {
+        q: 'How much does Tour Operator CRM Software cost?',
+        a: "NNC Digital's Tour Operator CRM costs Rs. 590 per user per month, plus 18% GST, with a minimum requirement of 10 users. The starting monthly investment is Rs. 6,962 for 10 users, including GST.",
       },
     ],
   },
@@ -1253,7 +1279,7 @@ export const travelPages = {
     angle: 'The quote itself: speed to send, what is on it, how it goes out.',
     metaTitle: 'Travel Quotation Software for Tour Operators | NNC Digital',
     metaDescription:
-      'Create branded travel quotations faster with NNC Travel Quotation Software. Reuse itineraries, add hotel and transfer costs, and send quotes by PDF, email or WhatsApp.',
+      'Create travel quotations faster with NNC Travel Quotation Software. Reuse itineraries, add hotel costs, and share quotes via PDF, email or WhatsApp.',
     pill: 'Travel Quotation Software | Quote and Send',
     h1: { lines: ['Travel Quotation Software to', 'Create and Send Branded'], tail: '', underline: 'Tour Quotes Faster' },
     lead: "Travellers often compare quotations from several travel companies before choosing a package. NNC's Travel Quotation Software helps your team prepare customised, day-wise travel quotes using previously sent itineraries, saved hotel rates and transport details. Create professional travel quotations, calculate package costs and share branded proposals through email, PDF or WhatsApp. Manage every travel quote directly from its enquiry and keep the complete customer journey connected.",
