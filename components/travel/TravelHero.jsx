@@ -105,7 +105,6 @@ export default function TravelHero({ page }) {
               <i />
               <i />
               <i />
-              <span className={s.url}>yourbrand.nncdigital.in</span>
             </div>
             <img
               src={heroShots.dashboard.src}
