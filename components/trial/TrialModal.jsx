@@ -286,7 +286,13 @@ export default function TrialModal() {
       onMouseDown={(e) => e.target === e.currentTarget && setOpen(false)}
       aria-hidden={!open}
     >
-      <div className={styles.dialog} role="dialog" aria-modal="true" aria-label="Start your free trial">
+      <div
+        className={styles.dialog}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Start your free trial"
+        data-lenis-prevent
+      >
         {/* brand panel with cycling animated demos */}
         <aside className={styles.aside}>
           <span className={styles.glow} aria-hidden="true" />
