@@ -9,6 +9,30 @@ import { INDIA_STATES, INDIA_STATES_DISTRICTS } from '@/data/indiaGeo'
 const SIZES = ['Just me', '2 to 10', '11 to 50', '51 to 200', '200+']
 const SLIDE_MS = 5000
 
+// Per-country-code phone rules. `len` is the national subscriber length
+// (country code excluded), `starts` is a regex the first digit must match,
+// `hint` is the user-facing description used in error copy.
+const PHONE_RULES = {
+  '+91': { len: 10, starts: /^[6-9]/, hint: '10 digits starting with 6, 7, 8 or 9' },
+  '+1':  { len: 10, starts: /^[2-9]/, hint: '10 digits' },
+  '+44': { len: 10, starts: /^7/,     hint: '10 digits starting with 7 (mobile)' },
+  '+971': { len: 9, starts: /^5/,     hint: '9 digits starting with 5 (mobile)' },
+  '+65': { len: 8, starts: /^[89]/,   hint: '8 digits starting with 8 or 9' },
+}
+
+// Returns an error string, or '' if the current input is acceptable so far.
+// `final` = true means we want the completed-form verdict (used on blur /
+// submit). When false, we tolerate a short in-progress value.
+function validatePhoneInput(code, digits, final) {
+  const rule = PHONE_RULES[code]
+  if (!rule) return ''
+  if (!digits) return final ? 'Enter a valid mobile number.' : ''
+  if (!rule.starts.test(digits)) return 'Enter a valid mobile number.'
+  if (digits.length > rule.len) return 'Enter a valid mobile number.'
+  if (final && digits.length !== rule.len) return 'Enter a valid mobile number.'
+  return ''
+}
+
 // Enquiries are saved into the NNC CRM (under the "Enquire NNC Digital" tab) and
 // also emailed via FormSubmit as a backup.
 // Where enquiries are DELIVERED. Separate from the address shown to
@@ -105,9 +129,15 @@ export default function TrialModal() {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [nameInput, setNameInput] = useState('')
   const [slide, setSlide] = useState(0)
   // State needs to be lifted so the District dropdown can refresh its options.
   const [state, setState] = useState('')
+  const [phoneInput, setPhoneInput] = useState('')
+  const [countryCode, setCountryCode] = useState('+91')
   const firstRef = useRef(null)
 
   useEffect(() => {
@@ -152,8 +182,28 @@ export default function TrialModal() {
     if (fd.get('_honey')) return // bot trap
 
     const name = (fd.get('name') || '').toString().trim()
+    if (name.length < 2 || /[^\p{L}\s]/u.test(name)) {
+      setNameError('Enter a valid name.')
+      return
+    }
+    setNameError('')
     const email = (fd.get('email') || '').toString().trim()
-    const phone = `${fd.get('code') || ''} ${fd.get('phone') || ''}`.trim()
+    // Pragmatic email check — must have a local part, '@', a domain, and a TLD.
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
+    if (!emailOk) {
+      setEmailError('Please enter a valid email address.')
+      return
+    }
+    setEmailError('')
+    const phoneDigits = (fd.get('phone') || '').toString().replace(/\D/g, '')
+    const codeVal = (fd.get('code') || countryCode).toString()
+    const phoneMsg = validatePhoneInput(codeVal, phoneDigits, true)
+    if (phoneMsg) {
+      setPhoneError(phoneMsg)
+      return
+    }
+    setPhoneError('')
+    const phoneValue = `${codeVal} ${phoneDigits}`.trim()
     const company = (fd.get('company') || '').toString().trim()
     const teamSize = (fd.get('teamsize') || '').toString()
     const stateVal = (fd.get('state') || '').toString()
@@ -162,7 +212,7 @@ export default function TrialModal() {
     const payload = {
       Name: name,
       Email: email,
-      Phone: phone,
+      Phone: phoneValue,
       Company: company,
       'Team size': teamSize,
       State: stateVal,
@@ -175,7 +225,7 @@ export default function TrialModal() {
     // CRM payload — site:'nncdigital' routes it to the "Enquire NNC Digital" tab.
     const crmPayload = {
       name,
-      phone,
+      phone: phoneValue,
       email,
       company,
       requirements: [
@@ -285,24 +335,92 @@ export default function TrialModal() {
                 />
                 <label className={styles.field}>
                   <span>Full name</span>
-                  <input ref={firstRef} name="name" type="text" required placeholder="Priya Sharma" />
+                  <input
+                    ref={firstRef}
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Priya Sharma"
+                    autoComplete="name"
+                    value={nameInput}
+                    onChange={(e) => {
+                      // Letters (any script) and spaces only.
+                      const cleaned = e.target.value.replace(/[^\p{L}\s]/gu, '')
+                      setNameInput(cleaned)
+                      if (nameError) setNameError('')
+                    }}
+                    onBlur={(e) => {
+                      const v = e.target.value.trim()
+                      if (!v) return
+                      if (v.length < 2) setNameError('Enter a valid name.')
+                    }}
+                    aria-invalid={!!nameError}
+                  />
+                  {nameError && <p className={styles.formError}>{nameError}</p>}
                 </label>
                 <label className={styles.field}>
                   <span>Work email</span>
-                  <input name="email" type="email" required placeholder="you@company.com" />
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@company.com"
+                    autoComplete="email"
+                    onChange={() => emailError && setEmailError('')}
+                    onBlur={(e) => {
+                      const v = e.target.value.trim()
+                      if (!v) return
+                      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)
+                      setEmailError(ok ? '' : 'Please enter a valid email address.')
+                    }}
+                    aria-invalid={!!emailError}
+                  />
+                  {emailError && <p className={styles.formError}>{emailError}</p>}
                 </label>
                 <label className={styles.field}>
                   <span>Phone</span>
                   <div className={styles.phoneRow}>
-                    <select name="code" aria-label="Country code" defaultValue="+91">
+                    <select
+                      name="code"
+                      aria-label="Country code"
+                      value={countryCode}
+                      onChange={(e) => {
+                        const next = e.target.value
+                        setCountryCode(next)
+                        // Re-check the already-typed number against the new rule.
+                        const digits = phoneInput.replace(/\D/g, '')
+                        setPhoneError(validatePhoneInput(next, digits, false))
+                      }}
+                    >
                       <option>+91</option>
                       <option>+1</option>
                       <option>+44</option>
                       <option>+971</option>
                       <option>+65</option>
                     </select>
-                    <input name="phone" type="tel" required placeholder="98765 43210" />
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder={countryCode === '+91' ? '98765 43210' : 'Phone number'}
+                      inputMode="numeric"
+                      autoComplete="tel"
+                      maxLength={PHONE_RULES[countryCode]?.len ?? 15}
+                      value={phoneInput}
+                      onChange={(e) => {
+                        const cleaned = e.target.value.replace(/\D/g, '')
+                        setPhoneInput(cleaned)
+                        setPhoneError(validatePhoneInput(countryCode, cleaned, false))
+                      }}
+                      onBlur={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '')
+                        if (!digits) return
+                        setPhoneError(validatePhoneInput(countryCode, digits, true))
+                      }}
+                      aria-invalid={!!phoneError}
+                    />
                   </div>
+                  {phoneError && <p className={styles.formError}>{phoneError}</p>}
                 </label>
                 <div className={styles.row2}>
                   <label className={styles.field}>
