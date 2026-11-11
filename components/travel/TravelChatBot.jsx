@@ -251,17 +251,26 @@ export default function TravelChatBot({ inline = false }) {
   const content = (
     <>
       {!inline && !open && (
-        <button
-          type="button"
+        /* Direct WhatsApp hand-off. `https://wa.me/<number>` is the one URL
+           WhatsApp recommends: on phones with the app installed it opens the
+           app via the `whatsapp://` scheme, on desktop it falls through to
+           WhatsApp Web, and if neither is available it lands on wa.me's own
+           "download WhatsApp" screen. The previous in-page qualifying chat
+           was wrong here — the green WhatsApp bubble has to go to WhatsApp.
+           (The inline TravelChatBot variant above the footer still captures
+            leads for visitors who want to stay on-page.) */
+        <a
           className={s.chatFab}
-          onClick={() => setOpen(true)}
+          href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Hi NNC Digital, I would like to know more about your Travel CRM.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="Chat with us on WhatsApp"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.93 7.93 0 0 0 3.8.97h.01a7.94 7.94 0 0 0 5.59-13.55zM12.05 18.5a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.66-2.43-.16-.25a6.59 6.59 0 1 1 5.59 3.09zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.45.1-.51.64-.63.78-.23.15-.43.05a5.39 5.39 0 0 1-1.59-.98 6 6 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4s.2-.23.3-.35a1.3 1.3 0 0 0 .2-.34.37.37 0 0 0 0-.35c0-.1-.45-1.08-.62-1.48s-.33-.34-.45-.34h-.38a.74.74 0 0 0-.53.25 2.23 2.23 0 0 0-.7 1.66 3.86 3.86 0 0 0 .82 2.06 8.86 8.86 0 0 0 3.4 3c.47.2.84.33 1.13.42a2.73 2.73 0 0 0 1.25.08 2.04 2.04 0 0 0 1.34-.95 1.66 1.66 0 0 0 .12-.94c-.05-.09-.18-.14-.38-.24z" />
           </svg>
           <span className={s.chatFabPing} aria-hidden="true" />
-        </button>
+        </a>
       )}
 
       {open && (
