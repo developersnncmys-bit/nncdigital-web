@@ -699,13 +699,4 @@
   .row2 {
     grid-template-columns: 1fr;
   }
-  /* Stick the submit button to the bottom of the scrollable panel so users
-     always see the CTA — no scroll needed to find it. The small negative
-     bottom margin keeps it flush with the padded panel floor. */
-  .submit {
-    position: sticky;
-    bottom: 0;
-    margin-top: 10px;
-    box-shadow: 0 -10px 18px -10px rgba(10, 20, 50, 0.18);
-  }
 }
