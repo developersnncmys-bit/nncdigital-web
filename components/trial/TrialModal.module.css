@@ -677,6 +677,10 @@
      behind the browser chrome. `100dvh` tracks the actual visible viewport,
      so the submit button stays reachable without scrolling. */
     max-height: calc(100dvh - 24px);
+    /* Constrain the row to the dialog height so .panel's overflow-y actually
+       kicks in; without this the implicit row sizes to content and the form
+       spills out of the dialog clip, leaving the submit button unreachable. */
+    grid-template-rows: 1fr;
   }
   .aside {
     display: none;
@@ -686,8 +690,22 @@
      is hidden so the panel owns the whole dialog — tighter padding here
      claws back ~28px of vertical space for the form fields + submit. */
     padding: 24px 20px 20px;
+    /* Grid items default to min-height: auto, which prevents the panel from
+       shrinking below its content and blocks the overflow-y scroll. */
+    min-height: 0;
+    /* Respect the gesture-nav safe area on modern Androids / iPhones. */
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   }
   .row2 {
     grid-template-columns: 1fr;
+  }
+  /* Stick the submit button to the bottom of the scrollable panel so users
+     always see the CTA — no scroll needed to find it. The small negative
+     bottom margin keeps it flush with the padded panel floor. */
+  .submit {
+    position: sticky;
+    bottom: 0;
+    margin-top: 10px;
+    box-shadow: 0 -10px 18px -10px rgba(10, 20, 50, 0.18);
   }
 }
