@@ -8,7 +8,9 @@
   position: relative;
   overflow: hidden;
   color: #fff;
-  padding: clamp(72px, 9vw, 128px) 0 clamp(80px, 10vw, 140px);
+  /* Top min of 112px leaves ~48px breathing room under the fixed ~64px
+     navbar on mobile; 72px looked glued to the bar on narrow screens. */
+  padding: clamp(112px, 9vw, 128px) 0 clamp(80px, 10vw, 140px);
   background: linear-gradient(
     180deg,
     #0a1a33 0%,

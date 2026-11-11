@@ -1395,6 +1395,16 @@
   line-height: 22px;
   font-weight: 600;
 }
+
+/* Slim per-field validation error. Shown directly under the input, not as a
+   padded block like the submit-level `.err` above. */
+.form .fieldErr {
+  margin: 6px 0 0;
+  color: #d93b2d;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 500;
+}
 .cta .talk {
   position: absolute;
   right: -10px;
@@ -2038,7 +2048,10 @@
 
   /* ---- vertical rhythm: desktop padding is far too generous on a phone ---- */
   .hero {
-    padding: 34px 0 44px;
+    /* Top padding must clear the ~64px fixed navbar; otherwise the .pill
+       eyebrow ("TRAVEL CRM | BUILT FOR TOUR OPERATORS AND DMCS") renders
+       behind the bar and appears to be missing. */
+    padding: 104px 0 44px;
   }
   .problem,
   .pricing,
@@ -2085,6 +2098,28 @@
   .aud::-webkit-scrollbar,
   .aroundGrid::-webkit-scrollbar {
     display: none;
+  }
+  /* Dot indicator injected by TravelSwipeDots as a sibling of each row. The
+     active dot elongates into a pill — standard pattern (Apple, Instagram)
+     that reads as "position within a set" more clearly than binary dots. */
+  .swipeDots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .swipeDot,
+  .swipeDotOn {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(11, 92, 255, 0.22);
+    transition: background 0.22s ease, width 0.22s ease;
+  }
+  .swipeDotOn {
+    background: var(--blue-dark, #0b5cff);
+    width: 20px;
   }
   .decisionList > *,
   .modGrid > *,
@@ -2737,7 +2772,7 @@
 @media (max-width: 900px) {
   .chatFab {
     right: 16px;
-    bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     width: 54px;
     height: 54px;
   }

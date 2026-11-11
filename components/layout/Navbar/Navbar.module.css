@@ -183,6 +183,28 @@
 .scrolled .burger span,
 :global(html[data-scrolled]) .burger span { background: var(--ink); }
 
+/* Open state: three bars morph into an X. Top bar rotates 45° down, bottom
+   bar rotates -45° up, middle bar fades out. `gap: 5px` on the parent means
+   we need to translate each bar by (bar-height + gap)/2 = 3.5px so they meet
+   at the centre before rotating. Border tinted navy while open so the X
+   reads as a CTA on the white mobile-menu background. */
+.burgerOpen {
+  border-color: var(--line);
+  background: #fff;
+}
+.burgerOpen span {
+  background: var(--ink);
+}
+.burgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+.burgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .mobileMenu {
   display: flex;
   flex-direction: column;
@@ -190,6 +212,13 @@
   padding: 14px var(--pad) 24px;
   background: #fff;
   border-top: 1px solid var(--line);
+  /* Full-height drawer: fills the viewport below the bar. The `solid` state
+     is forced while open (see Navbar.jsx) so the bar is always 64px tall
+     (padding 11px * 2 + 42px mark), making this height exact. */
+  height: calc(100dvh - 64px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 /* Direct children only, so the nested .mobileSubItem cards (inside the
    Products accordion) can define their own padding, border and layout. */
@@ -208,7 +237,51 @@
   border-bottom: none;
 }
 .mobileCta {
-  margin-top: 14px;
+  /* AI Agent above us carries the `margin-top: auto` that pins this pair to
+     the bottom of the flex-column menu; here we just want a fixed 10px gap
+     below it. A second `auto` would split the free space between the two,
+     leaving a huge gap between them. */
+  margin-top: 10px;
+}
+
+/* AI Agent entry inside the mobile hamburger menu. Padding, border-radius
+   and font metrics match the shared Button component so this button and the
+   Book-a-Demo CTA below it sit the same height and line up when the mobile
+   menu stretches them both to full width (see `.mobileCta a` below).
+   `margin-top: auto` pins this pair to the bottom of the flex-column menu. */
+.mobileChatBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: auto;
+  padding: 14px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--navy);
+  background: var(--navy-soft, #e8f0ff);
+  border: 1.5px solid var(--navy);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.mobileChatBtn:hover {
+  background: var(--navy);
+  color: #fff;
+}
+.mobileChatBtn .chatBtnSpark {
+  width: 16px;
+  height: 16px;
+}
+
+/* Full-width CTA inside the mobile menu — the shared Button is `inline-flex`
+   by default so without this it sits at content width and reads narrower
+   than the AI Agent button above it. */
+.mobileCta a {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 @media (max-width: 940px) {

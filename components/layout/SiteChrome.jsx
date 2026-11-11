@@ -78,17 +78,17 @@ export default function SiteChrome({ children }) {
 
       <Footer />
 
-      {/* The WhatsApp chat: a sticky launcher in the bottom-right corner that
-          opens the conversation in place, on every page of the site. It also
-          supports an `inline` variant that renders the same conversation as a
-          band above the footer — kept because it is tested and may be wanted
-          again, but the sticky widget is what ships. */}
-      <TravelChatBot />
-
-      {/* "Call us" floating button — site-wide, stacked above the WhatsApp
-          bubble. Independent of HelpBot so it renders on travel routes too
-          (where HelpBot is suppressed via the `ownJsonLd` branch below). */}
-      <CallFab />
+      {/* The WhatsApp chat + Call FAB stack: sticky launchers in the bottom-right
+          corner on every page. On travel routes, the TravelMobileBar already
+          surfaces Call + WhatsApp + Book a demo at the bottom of the viewport,
+          so these FABs would duplicate those actions on mobile. Hide them at
+          the ≤900px breakpoint (same breakpoint the bar activates at) when
+          we're on a travel route; desktop still shows the FABs because there
+          is no bottom bar there. */}
+      <div className={ownJsonLd ? 'fabStackTravelMobileHide' : undefined}>
+        <TravelChatBot />
+        <CallFab />
+      </div>
 
       {/* The travel pages run their own demo flow plus the chat above, so the
           trial modal and help bot would be a third and fourth way to start the

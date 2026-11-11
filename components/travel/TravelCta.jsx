@@ -21,10 +21,35 @@ const PUBLIC_EMAIL = contact.email
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
 const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 
+// India-only phone validation for this form (single phone input, no country
+// code select — so we assume +91 and accept a user-typed +91 prefix). Mirrors
+// TrialModal/ContactForm's +91 rule: 10 digits starting with 6-9.
+const IN_PHONE_LEN = 10
+const IN_PHONE_STARTS = /^[6-9]/
+
+// Strip leading +91/91 if the user included the country code, then drop any
+// non-digit (spaces, dashes, parens). What's left is the subscriber number.
+function normalisePhone(value) {
+  const trimmed = (value || '').toString().trim().replace(/^\+?91[\s-]*/, '')
+  return trimmed.replace(/\D/g, '')
+}
+
+function validatePhoneDigits(digits, final) {
+  if (!digits) return final ? 'Enter a valid mobile number.' : ''
+  if (!IN_PHONE_STARTS.test(digits)) return 'Enter a valid mobile number.'
+  if (digits.length > IN_PHONE_LEN) return 'Enter a valid mobile number.'
+  if (final && digits.length !== IN_PHONE_LEN) return 'Enter a valid mobile number.'
+  return ''
+}
+
 export default function TravelCta({ page }) {
   const router = useRouter()
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [nameInput, setNameInput] = useState('')
+  const [phoneInput, setPhoneInput] = useState('')
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -33,15 +58,24 @@ export default function TravelCta({ page }) {
     if (fd.get('_honey')) return
 
     const name = (fd.get('name') || '').toString().trim()
-    const company = (fd.get('company') || '').toString().trim()
-    const phone = (fd.get('phone') || '').toString().trim()
-    const teamSize = (fd.get('teamsize') || '').toString()
-    const destinations = (fd.get('destinations') || '').toString().trim()
-
-    if (!name || !phone) {
-      setError('Please enter your name and phone number.')
+    if (name.length < 2 || /[^\p{L}\s]/u.test(name)) {
+      setNameError('Enter a valid name.')
       return
     }
+    setNameError('')
+
+    const phoneDigits = normalisePhone(fd.get('phone'))
+    const phoneMsg = validatePhoneDigits(phoneDigits, true)
+    if (phoneMsg) {
+      setPhoneError(phoneMsg)
+      return
+    }
+    setPhoneError('')
+
+    const company = (fd.get('company') || '').toString().trim()
+    const phone = `+91 ${phoneDigits}`
+    const teamSize = (fd.get('teamsize') || '').toString()
+    const destinations = (fd.get('destinations') || '').toString().trim()
 
     const requirements = [
       'Travel CRM demo request.',
@@ -216,7 +250,26 @@ export default function TravelCta({ page }) {
 
           <label>
             Full name
-            <input name="name" type="text" required placeholder="Your name" autoComplete="name" />
+            <input
+              name="name"
+              type="text"
+              required
+              placeholder="Your name"
+              autoComplete="name"
+              value={nameInput}
+              onChange={(e) => {
+                const cleaned = e.target.value.replace(/[^\p{L}\s]/gu, '')
+                setNameInput(cleaned)
+                if (nameError) setNameError('')
+              }}
+              onBlur={(e) => {
+                const v = e.target.value.trim()
+                if (!v) return
+                if (v.length < 2) setNameError('Enter a valid name.')
+              }}
+              aria-invalid={!!nameError}
+            />
+            {nameError && <p className={s.fieldErr}>{nameError}</p>}
           </label>
           <label>
             Company name
@@ -234,10 +287,24 @@ export default function TravelCta({ page }) {
               name="phone"
               type="tel"
               required
-              placeholder="+91"
-              pattern="(\+91)?[ ]?[6-9][0-9 ]{9,11}"
+              placeholder="98765 43210"
+              inputMode="numeric"
               autoComplete="tel"
+              maxLength={IN_PHONE_LEN}
+              value={phoneInput}
+              onChange={(e) => {
+                const digits = normalisePhone(e.target.value).slice(0, IN_PHONE_LEN)
+                setPhoneInput(digits)
+                setPhoneError(validatePhoneDigits(digits, false))
+              }}
+              onBlur={(e) => {
+                const digits = normalisePhone(e.target.value)
+                if (!digits) return
+                setPhoneError(validatePhoneDigits(digits, true))
+              }}
+              aria-invalid={!!phoneError}
             />
+            {phoneError && <p className={s.fieldErr}>{phoneError}</p>}
           </label>
           <label>
             Team size

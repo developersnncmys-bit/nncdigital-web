@@ -800,9 +800,23 @@
   .fgrid, .cgrid, .tgrid { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: 1fr 1fr; }
   .stats { grid-template-columns: 1fr; gap: 28px; }
+  /* The navbar is position:fixed at ~64px on mobile; the default 28px top
+     padding leaves the eyebrow tucked behind it. Bump the top so the first
+     text in the hero sits well below the bar. */
+  .heroWrap { padding-top: 96px; }
 }
 @media (max-width: 560px) {
   .fgrid, .cgrid, .tgrid, .steps { grid-template-columns: 1fr; }
+  /* The :has() rules above pin 2 and 4-card grids to two columns regardless
+     of viewport — they outweigh the default 1fr by specificity. Re-apply
+     single-column at the same specificity so phones get stacked cards. */
+  .cgrid:has(> :nth-child(4):last-child),
+  .cgrid:has(> :nth-child(2):last-child) { grid-template-columns: 1fr; }
+  /* Stacked CTA buttons: let both buttons share the full column width so
+     they size identically regardless of label length, instead of each
+     auto-sizing to its content and wrapping differently. */
+  .ctaBtns { flex-direction: column; align-items: stretch; }
+  .ctaPrimary, .ctaGhost { justify-content: center; }
   /* On narrow phones the chained padding (scenic card + glass panel +
      component wrapper) was squeezing the embedded dashboards enough that
      labels like "Dispatched" and KPI headers truncated mid-word. Tighten

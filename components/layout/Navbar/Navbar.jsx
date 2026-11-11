@@ -233,7 +233,7 @@ export default function Navbar() {
   // Off the homepage there's no dark hero, so always use the solid (dark-text)
   // bar. Also flip to solid while any drawer is open — the drawer background
   // is white and the dark-hero nav would otherwise fight it visually.
-  const solid = scrolled || pathname !== '/' || desktopDrawer !== null
+  const solid = scrolled || pathname !== '/' || desktopDrawer !== null || open
 
   useEffect(() => {
     // On non-homepage routes there is no dark hero to float over — always
@@ -275,6 +275,17 @@ export default function Navbar() {
   useEffect(() => () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
   }, [])
+
+  // Lock page scroll while the mobile drawer is open so wheel/touch events
+  // don't scroll the page underneath instead of the drawer contents.
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [open])
 
   const openDrawer = (name) => {
     if (closeTimer.current) {
@@ -534,11 +545,14 @@ export default function Navbar() {
         </div>
 
         <button
-          className={styles.burger}
-          aria-label="Toggle menu"
+          className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
+          {/* Three bars morph into an X when the menu opens — the top and
+              bottom bars rotate to form the cross, the middle bar fades out.
+              State driven by the `.burgerOpen` class added above. */}
           <span />
           <span />
           <span />
@@ -546,8 +560,30 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className={styles.mobileMenu} aria-label="Mobile">
+        <nav
+          className={styles.mobileMenu}
+          aria-label="Mobile"
+          data-lenis-prevent
+        >
           {nav.links.map(renderMobileItem)}
+          {/* AI assistant entry for phones — the desktop `.actions` pill is
+              hidden by the burger breakpoint, so without this the floating
+              HelpBot launcher is the only way in. HelpBot opens on any click
+              with [data-chat-open], same contract as the desktop button. */}
+          <button
+            type="button"
+            data-chat-open
+            className={styles.mobileChatBtn}
+            onClick={() => setOpen(false)}
+            aria-label="Open NNC AI assistant"
+          >
+            <svg className={styles.chatBtnSpark} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2 Q11 11 2 12 Q11 13 12 22 Q13 13 22 12 Q13 11 12 2 Z" />
+              <circle cx="19" cy="5" r="1.3" />
+              <circle cx="5" cy="18" r="1" opacity="0.75" />
+            </svg>
+            <span>AI Agent</span>
+          </button>
           <div className={styles.mobileCta}>
             <Button href={nav.cta.href} variant="primary" arrow={false}>
               {nav.cta.label}

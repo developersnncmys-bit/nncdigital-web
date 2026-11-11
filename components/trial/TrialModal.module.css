@@ -426,6 +426,21 @@
   padding: 12px 13px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+/* Strip the OS-default select chrome and paint our own chevron so the field
+   reads as a dropdown and matches the other inputs in weight. The native
+   open-panel is still the browser's own — on real mobile that's the system
+   bottom-sheet / wheel picker, which is the correct UX. */
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%235b6474' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
 .field input:focus,
 .field select:focus {
   outline: none;
@@ -437,7 +452,9 @@
   gap: 10px;
 }
 .phoneRow select {
-  width: 88px;
+  /* Wider than the content needs — leaves room for the chevron added above
+     (padding-right: 36px) without cramping "+971". */
+  width: 100px;
   flex: none;
 }
 .phoneRow input {
@@ -648,11 +665,27 @@
 }
 
 @media (max-width: 720px) {
+  .backdrop {
+    /* Tighter gutter so the dialog gets more of the viewport on phones; the
+     12px floor still prevents the dialog from touching the screen edge. */
+    padding: 12px;
+  }
   .dialog {
     grid-template-columns: 1fr;
+    /* `100vh` on mobile browsers includes the URL bar area that comes and
+     goes, so content at the bottom of a `100vh - X` container can hide
+     behind the browser chrome. `100dvh` tracks the actual visible viewport,
+     so the submit button stays reachable without scrolling. */
+    max-height: calc(100dvh - 24px);
   }
   .aside {
     display: none;
+  }
+  .panel {
+    /* 38/36 is right on desktop beside the brand aside; on phones the aside
+     is hidden so the panel owns the whole dialog — tighter padding here
+     claws back ~28px of vertical space for the form fields + submit. */
+    padding: 24px 20px 20px;
   }
   .row2 {
     grid-template-columns: 1fr;

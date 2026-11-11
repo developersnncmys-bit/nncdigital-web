@@ -295,3 +295,9 @@
   }
   .tocLink { border-left: 0; padding-left: 0; }
 }
+@media (max-width: 560px) {
+  /* The hero's default top padding (clamps to 56px on narrow screens) tucks
+     the "Back to all posts" link behind the fixed ~64px navbar. Give it
+     enough room to clear with breathing space. */
+  .hero { padding-top: 104px; }
+}

@@ -210,3 +210,20 @@ svg {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Travel routes render a bottom action bar (TravelMobileBar) with Call,
+   WhatsApp and Book-a-demo on mobile. The site-wide CallFab and WhatsApp
+   launcher (TravelChatBot) would duplicate those actions, so SiteChrome
+   wraps them in a div with this class on travel routes — hide the stack at
+   the same ≤900px breakpoint where the bar activates. Desktop still shows
+   the FABs because there is no bar there. */
+@media (max-width: 900px) {
+  .fabStackTravelMobileHide { display: none; }
+  /* Same bar overlaps the footer's last rows (copyright, legal links). The
+     TravelLanding `.page` pads its own content for the bar, but the Footer
+     is rendered outside .page, so it needs its own bottom padding. Target
+     the footer only when the travel-route marker div is in the DOM. */
+  body:has(.fabStackTravelMobileHide) footer {
+    padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px));
+  }
+}

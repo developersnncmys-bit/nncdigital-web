@@ -12,14 +12,31 @@ const ENQUIRY_EMAIL = contact.enquiryEmail
 // What visitors are told to write to.
 const PUBLIC_EMAIL = contact.email
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ENQUIRY_EMAIL}`
-// NNC CRM backend — public enquiry endpoint (same one the main NNC website uses).
-// Saves the enquiry into the CRM under the "Enquire NNC Digital" tab + sends the
-// admin/confirmation emails via the CRM's SMTP (info@nakshatranamahacreations.com).
-// NNC CRM backend — public enquiry endpoint. Saves the enquiry into the CRM under
-// the "Enquire NNC Digital" tab (site:'nncdigital') + sends the admin/confirmation
-// emails via the CRM's SMTP (info@nakshatranamahacreations.com).
+// NNC CRM backend — public enquiry endpoint. Saves the enquiry into the CRM
+// under the "Enquire NNC Digital" tab (site:'nncdigital') + sends the
+// admin/confirmation emails via the CRM's SMTP.
 const CRM_ENDPOINT = 'https://api.nakshatranamahacreations.com/api/website-enquiry'
 const SIZES = ['Just me', '2 to 10', '11 to 50', '51 to 200', '200+']
+
+// Per-country-code phone rules. Mirrors TrialModal.jsx so both forms accept
+// the same inputs and show the same hint text on failure.
+const PHONE_RULES = {
+  '+91': { len: 10, starts: /^[6-9]/, hint: '10 digits starting with 6, 7, 8 or 9' },
+  '+1':  { len: 10, starts: /^[2-9]/, hint: '10 digits' },
+  '+44': { len: 10, starts: /^7/,     hint: '10 digits starting with 7 (mobile)' },
+  '+971': { len: 9, starts: /^5/,     hint: '9 digits starting with 5 (mobile)' },
+  '+65': { len: 8, starts: /^[89]/,   hint: '8 digits starting with 8 or 9' },
+}
+
+function validatePhoneInput(code, digits, final) {
+  const rule = PHONE_RULES[code]
+  if (!rule) return ''
+  if (!digits) return final ? 'Enter a valid mobile number.' : ''
+  if (!rule.starts.test(digits)) return 'Enter a valid mobile number.'
+  if (digits.length > rule.len) return 'Enter a valid mobile number.'
+  if (final && digits.length !== rule.len) return 'Enter a valid mobile number.'
+  return ''
+}
 
 const Check = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -36,6 +53,12 @@ export default function ContactForm({
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [nameInput, setNameInput] = useState('')
+  const [phoneInput, setPhoneInput] = useState('')
+  const [countryCode, setCountryCode] = useState('+91')
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -44,17 +67,34 @@ export default function ContactForm({
     const fd = new FormData(form)
     if (fd.get('_honey')) return
 
-    const name    = (fd.get('name') || '').toString().trim()
-    const email   = (fd.get('email') || '').toString().trim()
-    const phone   = `${fd.get('code') || ''} ${fd.get('phone') || ''}`.trim()
+    const name = (fd.get('name') || '').toString().trim()
+    if (name.length < 2 || /[^\p{L}\s]/u.test(name)) {
+      setNameError('Enter a valid name.')
+      return
+    }
+    setNameError('')
+
+    const email = (fd.get('email') || '').toString().trim()
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
+    if (!emailOk) {
+      setEmailError('Please enter a valid email address.')
+      return
+    }
+    setEmailError('')
+
+    const phoneDigits = (fd.get('phone') || '').toString().replace(/\D/g, '')
+    const codeVal = (fd.get('code') || countryCode).toString()
+    const phoneMsg = validatePhoneInput(codeVal, phoneDigits, true)
+    if (phoneMsg) {
+      setPhoneError(phoneMsg)
+      return
+    }
+    setPhoneError('')
+
+    const phone = `${codeVal} ${phoneDigits}`.trim()
     const company = (fd.get('company') || '').toString().trim()
     const teamSize = (fd.get('teamsize') || '').toString()
     const message = (fd.get('message') || '').toString().trim()
-
-    if (!name || !phone) {
-      setError('Please enter your name and phone number.')
-      return
-    }
 
     // Requirements text combines the message + team size context for the CRM.
     const requirements = [message, teamSize ? `Team size: ${teamSize}` : '']
@@ -147,11 +187,45 @@ export default function ContactForm({
         <div className={styles.row2}>
           <label className={styles.field}>
             <span>Full name</span>
-            <input name="name" type="text" required placeholder="Priya Sharma" />
+            <input
+              name="name"
+              type="text"
+              required
+              placeholder="Priya Sharma"
+              autoComplete="name"
+              value={nameInput}
+              onChange={(e) => {
+                const cleaned = e.target.value.replace(/[^\p{L}\s]/gu, '')
+                setNameInput(cleaned)
+                if (nameError) setNameError('')
+              }}
+              onBlur={(e) => {
+                const v = e.target.value.trim()
+                if (!v) return
+                if (v.length < 2) setNameError('Enter a valid name.')
+              }}
+              aria-invalid={!!nameError}
+            />
+            {nameError && <p className={styles.error}>{nameError}</p>}
           </label>
           <label className={styles.field}>
             <span>Work email</span>
-            <input name="email" type="email" required placeholder="you@company.com" />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="you@company.com"
+              autoComplete="email"
+              onChange={() => emailError && setEmailError('')}
+              onBlur={(e) => {
+                const v = e.target.value.trim()
+                if (!v) return
+                const ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)
+                setEmailError(ok ? '' : 'Please enter a valid email address.')
+              }}
+              aria-invalid={!!emailError}
+            />
+            {emailError && <p className={styles.error}>{emailError}</p>}
           </label>
         </div>
 
@@ -159,15 +233,46 @@ export default function ContactForm({
           <label className={styles.field}>
             <span>Phone</span>
             <div className={styles.phoneRow}>
-              <select name="code" aria-label="Country code" defaultValue="+91">
+              <select
+                name="code"
+                aria-label="Country code"
+                value={countryCode}
+                onChange={(e) => {
+                  const next = e.target.value
+                  setCountryCode(next)
+                  const digits = phoneInput.replace(/\D/g, '')
+                  setPhoneError(validatePhoneInput(next, digits, false))
+                }}
+              >
                 <option>+91</option>
                 <option>+1</option>
                 <option>+44</option>
                 <option>+971</option>
                 <option>+65</option>
               </select>
-              <input name="phone" type="tel" required placeholder="98765 43210" />
+              <input
+                name="phone"
+                type="tel"
+                required
+                placeholder={countryCode === '+91' ? '98765 43210' : 'Phone number'}
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={PHONE_RULES[countryCode]?.len ?? 15}
+                value={phoneInput}
+                onChange={(e) => {
+                  const cleaned = e.target.value.replace(/\D/g, '')
+                  setPhoneInput(cleaned)
+                  setPhoneError(validatePhoneInput(countryCode, cleaned, false))
+                }}
+                onBlur={(e) => {
+                  const digits = e.target.value.replace(/\D/g, '')
+                  if (!digits) return
+                  setPhoneError(validatePhoneInput(countryCode, digits, true))
+                }}
+                aria-invalid={!!phoneError}
+              />
             </div>
+            {phoneError && <p className={styles.error}>{phoneError}</p>}
           </label>
           <label className={styles.field}>
             <span>Company</span>

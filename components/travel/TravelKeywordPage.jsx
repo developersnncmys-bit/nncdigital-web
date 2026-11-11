@@ -10,6 +10,7 @@ import TravelBuiltFor from './TravelBuiltFor'
 import TravelFaq from './TravelFaq'
 import TravelCta from './TravelCta'
 import TravelMobileBar from './TravelMobileBar'
+import TravelSwipeDots from './TravelSwipeDots'
 import { faqItems as baseFaq, pricing, contactDetails } from '@/data/travel'
 import { travelPages } from '@/data/travelPages'
 import { SITE_URL } from '@/lib/site'
@@ -129,6 +130,7 @@ export default function TravelKeywordPage({ slug }) {
         <TravelCta page={page} />
       </main>
       <TravelMobileBar />
+      <TravelSwipeDots />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(page, slug)) }}

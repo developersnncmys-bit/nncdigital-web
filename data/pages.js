@@ -402,7 +402,7 @@ export const INDUSTRIES = {
     heroSquare: true,
     squareSplitMedia: true,
     heroCtas: [
-      { label: 'Start Free Trial', href: '#start', trial: true },
+      { label: 'Book a Demo', href: '#start', trial: true },
       { label: 'See Pricing', href: '/pricing', variant: 'ghost' },
     ],
     splitKicker: 'The Problem',

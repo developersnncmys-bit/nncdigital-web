@@ -707,14 +707,37 @@
 .orbEnd svg { width: 11px; height: 11px; color: var(--grey); }
 
 @media (max-width: 480px) {
-  .fab { right: 16px; bottom: 16px; }
-  .wa { right: 18px; bottom: 84px; width: 52px; height: 52px; }
+  /* Floating launcher is hidden on phones — HelpBot is reachable from the
+     mobile hamburger menu's "AI Agent" button instead (Navbar.jsx). That
+     frees the bottom-right corner so the WhatsApp + Call bubbles can sit
+     low without stacking three FABs over the hero pricing card. */
+  .fab { display: none; }
+  .wa { right: 18px; bottom: 74px; width: 52px; height: 52px; }
   .wa svg { width: 28px; height: 28px; }
   /* Mobile: stack above the TravelChatBot `.chatFab` (same ~22/22 bottom-right). */
   .call { right: 18px; bottom: 92px; width: 52px; height: 52px; }
   .call svg { width: 24px; height: 24px; }
   .waTip { display: none; }
   .panel { right: 12px; left: 12px; bottom: 84px; width: auto; }
+  /* Re-anchor the expanded panel for phones. The desktop rule centers it with
+     left:50% + translate(-50%,-50%); without this mobile reset, the mobile
+     `.panel { left:12; right:12 }` above (same specificity, later in source)
+     wins for left/right but .panelExpanded's translate still applies — which
+     yanks the panel half off-screen. Centre it vertically with the horizontal
+     anchors doing the width work (no translateX needed). */
+  .panelExpanded {
+    right: 12px;
+    left: 12px;
+    top: 50%;
+    bottom: auto;
+    width: auto;
+    max-height: calc(100dvh - 48px);
+    transform-origin: center;
+    transform: translateY(calc(-50% + 8px)) scale(0.98);
+  }
+  .panelExpanded.panelOpen {
+    transform: translateY(-50%) scale(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
