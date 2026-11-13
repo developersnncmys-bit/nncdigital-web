@@ -83,6 +83,7 @@ export default function FeatureTabs({ block }) {
           </div>
           {active.media && (
             <div className={styles.panelMedia}>
+              {active.media.blurLogo && <div className={styles.logoBlur} aria-hidden="true" />}
               {/\.(mp4|webm|mov)(\?|$)/i.test(active.media.src) ? (
                 <video
                   key={active.media.src /* force reload when tab switches */}

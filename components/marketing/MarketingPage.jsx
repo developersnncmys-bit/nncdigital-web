@@ -441,6 +441,7 @@ export default function MarketingPage({ page }) {
               ) : page.hero.media.framed ? (
                 <div className={`${styles.heroMedia} ${styles.heroMediaFramed}`}>
                   <div className={styles.heroFrame}>
+                    {page.hero.media.blurLogo && <div className={styles.heroLogoBlur} aria-hidden="true" />}
                     <Media media={page.hero.media} className={styles.heroImg} containClassName={styles.heroImgContain} priority />
                   </div>
                 </div>

@@ -258,6 +258,20 @@
   border-radius: calc(var(--r) - 4px);
 }
 .heroFrame .heroImgContain { padding: 0; background: transparent; }
+/* Opt-in overlay blurring the top-left of the framed hero media — used to
+   hide a source studio's logo from screen recordings. Enabled via
+   `hero.media.blurLogo: true`. Inset matches the frame's 10px glass padding. */
+.heroLogoBlur {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: calc(16% - 20px);
+  height: 11%;
+  z-index: 3;
+  border-radius: calc(var(--r) - 4px) 0 0 0;
+  background: #fff;
+  pointer-events: none;
+}
 
 /* Component-framed variant — e.g. the Training Institutes CRM hero where
    the animated dashboard mockup renders inside the scenic+glass frame.

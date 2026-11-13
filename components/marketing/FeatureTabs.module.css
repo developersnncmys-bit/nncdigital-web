@@ -152,10 +152,24 @@
 }
 
 .panelMedia {
+  position: relative;
   border-radius: var(--r-lg);
   overflow: hidden;
   background: var(--paper);
   box-shadow: var(--sh);
+}
+/* Opt-in overlay to blur the top-left corner of the dashboard recordings
+   where the source studio's own logo is visible. Enabled via
+   `media.blurLogo: true` on the tab config. */
+.logoBlur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(16% - 20px);
+  height: 11%;
+  z-index: 2;
+  background: #fff;
+  pointer-events: none;
 }
 .mediaImg {
   display: block;

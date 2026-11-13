@@ -41,6 +41,7 @@ const PAGE = {
       type: 'video',
       src: '/videos/car-studio.mp4?v=3',
       framed: true,
+      blurLogo: true,
     },
   },
 
@@ -118,7 +119,7 @@ const PAGE = {
             'Categorize enquiries as Hot, Warm or Cold',
             'Schedule follow-up reminders and track lead status',
           ],
-          media: { src: '/img/product/cs-enquiries.mp4', alt: 'Enquiries list with hot and warm leads tagged by vehicle' },
+          media: { src: '/img/product/cs-enquiries.mp4', alt: 'Enquiries list with hot and warm leads tagged by vehicle', blurLogo: true },
         },
         {
           key: 'quotes',
@@ -130,7 +131,7 @@ const PAGE = {
             'Package bundling and discount management',
             'Quotation tracking: Sent, Viewed and Approved',
           ],
-          media: { src: '/img/product/cs-quotes.mp4', alt: 'A quote being prepared with services and package pricing' },
+          media: { src: '/img/product/cs-quotes.mp4', alt: 'A quote being prepared with services and package pricing', blurLogo: true },
         },
         {
           key: 'appointments',
@@ -142,7 +143,7 @@ const PAGE = {
             'Automated WhatsApp booking confirmations and reminders',
             'Easy rescheduling and technician reassignment with booking history',
           ],
-          media: { src: '/img/product/cs-appointments.mp4', alt: 'Appointment calendar showing today\'s bookings across bays' },
+          media: { src: '/img/product/cs-appointments.mp4', alt: 'Appointment calendar showing today\'s bookings across bays', blurLogo: true },
         },
         {
           key: 'jobcards',
@@ -154,7 +155,7 @@ const PAGE = {
             'Job status: Opened → In Progress → Work Completed → Delivered',
             'Overdue alerts and estimated delivery tracking',
           ],
-          media: { src: '/img/product/cs-jobcards.mp4', alt: 'A running job card with technician assigned and status updating' },
+          media: { src: '/img/product/cs-jobcards.mp4', alt: 'A running job card with technician assigned and status updating', blurLogo: true },
         },
         {
           key: 'billing',
@@ -166,7 +167,7 @@ const PAGE = {
             'Pending invoice and payment tracking',
             'Branch-wise petty cash and user wallet management',
           ],
-          media: { src: '/img/product/cs-billing.mp4', alt: 'Invoice and petty cash view with branch-wise cash flow' },
+          media: { src: '/Car-studio/Screenshot%20(10649).png', alt: 'Invoice and petty cash view with branch-wise cash flow', blurLogo: true },
         },
       ],
     },
