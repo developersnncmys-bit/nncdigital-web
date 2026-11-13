@@ -23,11 +23,18 @@ function initials(name) {
   return (name || 'NN').split(/\s+/).map((w) => w[0]).slice(0, 2).join('').toUpperCase()
 }
 
+// FAQ section is rendered as its own band below the article, with its H3 subs
+// turned into accordion items. Detect by heading prefix so both "Frequently
+// Asked Questions" and "Frequently Asked Questions (FAQs)" match.
+const isFaqSection = (s) => /^frequently asked questions/i.test((s.h || '').trim())
+
 export default function BlogPost({ post, related = [] }) {
-  const sections = (post.sections || []).map((s) => ({
+  const all = (post.sections || []).map((s) => ({
     ...s,
     id: slugify(s.h || ''),
   }))
+  const faqSection = all.find(isFaqSection)
+  const sections = all.filter((s) => !isFaqSection(s))
 
   return (
     <main className={styles.main}>
@@ -73,23 +80,48 @@ export default function BlogPost({ post, related = [] }) {
           </aside>
 
           <article className={styles.content}>
-            {post.excerpt && <p className={styles.lede}>{post.excerpt}</p>}
+            {post.lede ? (
+              (Array.isArray(post.lede) ? post.lede : [post.lede]).map((para, i) => (
+                <p
+                  key={i}
+                  className={styles.lede}
+                  dangerouslySetInnerHTML={{ __html: para }}
+                />
+              ))
+            ) : (
+              post.excerpt && <p className={styles.lede}>{post.excerpt}</p>
+            )}
             {sections.map((s) => (
               <section key={s.id} id={s.id} className={styles.section}>
                 <h2 className={styles.sectionTitle}>{s.h}</h2>
                 {(s.p || []).map((para, i) => (
-                  <p key={i} className={styles.p}>{para}</p>
+                  <p
+                    key={i}
+                    className={styles.p}
+                    dangerouslySetInnerHTML={{ __html: para }}
+                  />
                 ))}
                 {s.bullets && (
                   <ul className={styles.bullets}>
                     {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
                   </ul>
                 )}
+                {(s.pAfter || []).map((para, i) => (
+                  <p
+                    key={`a${i}`}
+                    className={styles.p}
+                    dangerouslySetInnerHTML={{ __html: para }}
+                  />
+                ))}
                 {(s.subs || []).map((sub, i) => (
                   <div key={i} className={styles.sub}>
                     <h3 className={styles.subTitle}>{sub.h}</h3>
                     {(sub.p || []).map((para, j) => (
-                      <p key={j} className={styles.p}>{para}</p>
+                      <p
+                        key={j}
+                        className={styles.p}
+                        dangerouslySetInnerHTML={{ __html: para }}
+                      />
                     ))}
                     {sub.bullets && (
                       <ul className={styles.bullets}>
@@ -103,6 +135,44 @@ export default function BlogPost({ post, related = [] }) {
           </article>
         </div>
       </section>
+
+      {faqSection && (
+        <section id={faqSection.id} className={styles.faq}>
+          <div className={`container ${styles.faqInner}`}>
+            <h2 className={styles.faqTitle}>{faqSection.h}</h2>
+            <div className={styles.faqList}>
+              {(faqSection.subs || []).map((q, i) => (
+                <details key={i} className={styles.faqItem}>
+                  <summary className={styles.faqQ}>
+                    <span>{q.h}</span>
+                    <svg
+                      className={styles.faqChevron}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </summary>
+                  <div className={styles.faqA}>
+                    {(q.p || []).map((para, j) => (
+                      <p
+                        key={j}
+                        className={styles.p}
+                        dangerouslySetInnerHTML={{ __html: para }}
+                      />
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className={styles.related}>

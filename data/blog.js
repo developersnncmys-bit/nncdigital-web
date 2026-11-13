@@ -6,16 +6,23 @@
 //   title            - H1 headline
 //   metaTitle        - optional; used for <title>. Falls back to title.
 //   metaDescription  - optional; used for <meta description>. Falls back to excerpt.
-//   excerpt          - 1–2 sentence lede shown on index cards and under the H1
+//   excerpt          - 1–2 sentence summary shown on index + related cards.
+//                      Keep it plain text (no HTML) — rendered verbatim.
+//   lede             - optional, array of opening paragraphs shown under the
+//                      H1 on the post page. Each entry renders as its own <p>.
+//                      Accepts inline HTML (links, bold). Falls back to
+//                      `excerpt` when not provided.
 //   category         - short label shown as a chip (Playbooks / Industry / Guide)
 //   publishedAt      - ISO date string ('2026-11-10')
 //   readMinutes      - rough read time in minutes (int)
 //   author           - { name } — no fake named customers; team byline is fine
 //   cover            - { src, alt } for a real image, OR { tone } for a
 //                      placeholder gradient (tones: navy / teal / amber / plum)
-//   sections         - [{ h, p: [string], bullets?: [string], subs?: [...] }]
-//                      where each sub is { h, p: [string], bullets?: [string] }
-//                      and renders as an H3 subsection inside the H2 section.
+//   sections         - [{ h, p, bullets?, pAfter?, subs? }] where:
+//                        p       - array of paragraphs before bullets
+//                        bullets - optional bullet list
+//                        pAfter  - optional paragraphs AFTER bullets
+//                        subs    - optional H3 subsections, each { h, p, bullets? }
 //
 // All posts default to noindex until /blog is added to INDEXABLE_PREFIXES in
 // lib/site.js.
@@ -29,7 +36,10 @@ export const POSTS = [
     metaDescription:
       'Explore the best CRM software in India for small businesses in 2026. Discover key features, benefits, pricing, and tips for choosing the right CRM.',
     excerpt:
-      'Running a small business involves more than attracting customers. Explore how the right CRM in 2026 helps you organise enquiries, automate follow-ups and improve sales visibility — plus what to look for before you sign.',
+      'The Best CRM Software in India helps small businesses organise customer information, automate daily tasks and improve sales visibility — here is what to look for in 2026.',
+    lede: [
+      'Running a small business involves more than attracting customers. Managing enquiries, tracking sales, maintaining customer records and ensuring timely follow-ups are equally important. When these activities depend on spreadsheets or disconnected applications, opportunities can easily slip away. The <a href="/small-business-crm/">Best CRM Software in India</a> helps businesses organise customer information, automate daily tasks and improve sales visibility. In 2026, choosing the right CRM is no longer limited to large enterprises. Small businesses can also access practical, affordable solutions that support customer relationships, simplify operations and create a stronger foundation for sustainable growth.',
+    ],
     category: 'Guide',
     publishedAt: '2026-11-10',
     readMinutes: 8,
@@ -49,7 +59,7 @@ export const POSTS = [
       {
         h: 'Essential Features to Look for in CRM Software in 2026',
         p: [
-          'Not every CRM offers the same functionality. The Best CRM Software in India should provide features that directly support everyday business operations.',
+          'Not every CRM offers the same functionality. The <a href="/small-business-crm/">Best CRM Software in India</a> should provide features that directly support everyday business operations.',
         ],
         subs: [
           {
@@ -138,7 +148,7 @@ export const POSTS = [
       {
         h: 'CRM Software Pricing in India: What to Expect in 2026',
         p: [
-          'Pricing is an important consideration when evaluating the Best CRM Software in India, particularly for startups and growing businesses.',
+          'Pricing is an important consideration when evaluating the <a href="/small-business-crm/">Best CRM Software in India</a>, particularly for startups and growing businesses.',
           'CRM providers generally offer three pricing approaches.',
         ],
         subs: [
@@ -179,7 +189,7 @@ export const POSTS = [
       {
         h: 'Custom CRM Development vs Ready-Made CRM Software',
         p: [
-          'Businesses searching for the Best CRM Software in India often need to decide between ready-made platforms and customised solutions.',
+          'Businesses searching for the <a href="/small-business-crm/">Best CRM Software in India</a> often need to decide between ready-made platforms and customised solutions.',
           'Ready-made CRM software is generally faster to implement and offers predefined features suitable for common sales processes.',
           'However, businesses with specialised approval processes, industry-specific workflows or unique reporting requirements may need greater flexibility.',
           'Custom CRM development allows organisations to build features around their operations instead of adapting every process to existing software.',
@@ -243,7 +253,7 @@ export const POSTS = [
       {
         h: 'Conclusion',
         p: [
-          'Choosing the Best CRM Software in India involves evaluating business requirements, essential features, usability and long-term affordability.',
+          'Choosing the <a href="/small-business-crm/">Best CRM Software in India</a> involves evaluating business requirements, essential features, usability and long-term affordability.',
           'The right CRM can improve customer communication, simplify sales management and provide greater visibility into daily operations. Whether a business selects an established subscription platform or invests in custom development, successful implementation begins with clearly defined processes.',
           'For businesses requiring tailored workflows, NNC Digital offers custom CRM development solutions designed to support operational efficiency and future growth.',
           'Explore custom CRM development solutions that align with your business goals.',
@@ -260,6 +270,10 @@ export const POSTS = [
       'Discover how lead management software helps businesses track enquiries, automate follow-ups, manage sales pipelines and improve conversions.',
     excerpt:
       'Every customer enquiry is a potential sale, but managing calls, emails, WhatsApp and web forms by hand lets opportunities slip. Here is how lead management software centralises enquiries, automates follow-ups and improves sales visibility.',
+    lede: [
+      'Every customer enquiry represents a potential sales opportunity, but managing multiple enquiries across calls, emails, WhatsApp and websites can quickly become challenging. Businesses often lose potential customers because of delayed responses, missed follow-ups and disorganised customer information.',
+      '<a href="/industries/sales-teams/">Lead Management Software</a> helps businesses overcome these challenges by centralising customer enquiries, improving sales coordination and simplifying follow-up activities. With an organised approach to lead tracking, companies can respond faster, manage customer relationships more effectively and create better opportunities for consistent sales growth.',
+    ],
     category: 'Playbooks',
     publishedAt: '2026-11-05',
     readMinutes: 7,
@@ -283,7 +297,7 @@ export const POSTS = [
           'Many businesses invest in digital marketing campaigns, social media advertising and website development to attract potential customers. However, poor enquiry management can reduce the effectiveness of these investments.',
           'Sales representatives may forget scheduled callbacks, customer information may become difficult to locate, and managers may struggle to identify pending opportunities.',
           'Without proper lead tracking software, businesses can experience delayed responses, inconsistent communication and longer sales cycles.',
-          'Lead Management Software helps minimise these challenges by establishing a structured process for enquiry tracking, team coordination and customer follow-ups.',
+          '<a href="/industries/sales-teams/">Lead Management Software</a> helps minimise these challenges by establishing a structured process for enquiry tracking, team coordination and customer follow-ups.',
         ],
       },
       {
@@ -304,7 +318,7 @@ export const POSTS = [
             p: [
               'Consistent follow-ups play an important role in maintaining customer interest and progressing sales opportunities.',
               'However, manually tracking numerous callbacks, meetings and quotation deadlines can become difficult for growing sales teams.',
-              'Lead Management Software supports automated lead follow-up through scheduled reminders, task notifications and defined follow-up workflows.',
+              '<a href="/industries/sales-teams/">Lead Management Software</a> supports automated lead follow-up through scheduled reminders, task notifications and defined follow-up workflows.',
               'For example, when a customer requests a quotation, the system can create a reminder for the assigned representative to reconnect at the appropriate time.',
               'This helps reduce missed follow-ups while allowing sales teams to focus on meaningful customer interactions.',
             ],
@@ -386,7 +400,7 @@ export const POSTS = [
         h: 'Conclusion',
         p: [
           'Generating enquiries is only one part of increasing sales. Businesses must also respond promptly, maintain communication and manage every opportunity throughout the customer journey.',
-          'Lead Management Software helps streamline these activities by improving enquiry visibility, reducing manual tracking and supporting consistent follow-ups.',
+          '<a href="/industries/sales-teams/">Lead Management Software</a> helps streamline these activities by improving enquiry visibility, reducing manual tracking and supporting consistent follow-ups.',
           'Businesses exploring smarter customer management can connect with NNC Digital to understand how custom CRM solutions can support their sales operations and long-term growth.',
         ],
       },
@@ -454,6 +468,11 @@ export const POSTS = [
       'Discover how CRM software with WhatsApp integration improves lead management, customer communication, sales follow-ups and business efficiency.',
     excerpt:
       'Customer communication now decides how businesses attract, engage and retain customers. See how connecting your CRM with WhatsApp organises conversations, automates follow-ups and keeps lead management in one place.',
+    lede: [
+      'Customer communication has become a deciding factor in how businesses attract, engage and retain customers. While WhatsApp makes conversations convenient, managing hundreds of enquiries, follow-ups and customer records manually can become challenging.',
+      '<a href="/case-studies/small-business-whatsapp-first/">CRM Software with WhatsApp Integration</a> connects customer conversations with a centralized management system, helping businesses organize enquiries and improve response efficiency. Instead of switching between applications, teams can manage communication, track leads and maintain customer information from one platform.',
+      'For businesses handling multiple customer interactions daily, this combination creates a more structured and reliable communication process.',
+    ],
     category: 'Industry',
     publishedAt: '2026-10-28',
     readMinutes: 7,
@@ -472,7 +491,7 @@ export const POSTS = [
       {
         h: 'Key Benefits of CRM Software with WhatsApp Integration',
         p: [
-          'Businesses adopting CRM Software with WhatsApp Integration can improve operational efficiency while creating more organized customer experiences.',
+          'Businesses adopting <a href="/case-studies/small-business-whatsapp-first/">CRM Software with WhatsApp Integration</a> can improve operational efficiency while creating more organized customer experiences.',
         ],
         subs: [
           {
@@ -562,7 +581,7 @@ export const POSTS = [
       {
         h: 'How CRM Software with WhatsApp Integration Improves Customer Management',
         p: [
-          'The value of CRM Software with WhatsApp Integration becomes clearer when examining an everyday business scenario.',
+          'The value of <a href="/case-studies/small-business-whatsapp-first/">CRM Software with WhatsApp Integration</a> becomes clearer when examining an everyday business scenario.',
           'Consider a car service company receiving enquiries about ceramic coating, paint protection film and interior detailing.',
           'Without a centralized CRM, employees may record enquiries in spreadsheets, communicate through separate WhatsApp accounts and manually remember follow-ups.',
           'With an integrated system, the workflow becomes more organized:',
@@ -574,6 +593,9 @@ export const POSTS = [
           'Follow-Up Management: Employees receive reminders for pending quotations and customer responses.',
           'Customer Updates: Eligible service notifications are sent through approved WhatsApp messaging workflows.',
           'Performance Tracking: Managers monitor enquiries, sales progress and completed conversions.',
+        ],
+        pAfter: [
+          'This structured process reduces overlooked enquiries and helps businesses deliver consistent customer experiences.',
         ],
       },
       {
@@ -590,7 +612,7 @@ export const POSTS = [
       {
         h: 'How to Choose the Right CRM Software for Your Business',
         p: [
-          'Before implementing CRM Software with WhatsApp Integration, businesses should evaluate their communication requirements, customer volumes and existing workflows.',
+          'Before implementing <a href="/case-studies/small-business-whatsapp-first/">CRM Software with WhatsApp Integration</a>, businesses should evaluate their communication requirements, customer volumes and existing workflows.',
           'A suitable solution should provide practical lead management, reliable integration options, role-based access and reporting capabilities.',
           'Compatibility with the WhatsApp Business Platform is important, particularly when businesses require automated messaging or shared team inboxes.',
           'Organizations should also consider integration expenses, messaging charges, data security, scalability and future customization requirements.',
@@ -603,16 +625,17 @@ export const POSTS = [
           'Every business manages customers differently. A standardized CRM may include unnecessary features while missing industry-specific requirements.',
           'Custom CRM Software Development allows organizations to build workflows around their actual operations, including enquiry management, sales tracking, automated communication and reporting.',
           'NNC Digital Solutions provides custom CRM development services, including WhatsApp and SMS automation, lead management, sales dashboards, role-based access and third-party API integrations.',
+          'NNC Digital+1',
           'A tailored solution can connect these functions with existing business processes and support future operational requirements.',
         ],
       },
       {
         h: 'Conclusion',
         p: [
-          'CRM Software with WhatsApp Integration offers businesses a more organized approach to customer communication, lead tracking and sales management.',
+          '<a href="/case-studies/small-business-whatsapp-first/">CRM Software with WhatsApp Integration</a> offers businesses a more organized approach to customer communication, lead tracking and sales management.',
           'By combining messaging capabilities with centralized customer records and automated workflows, organizations can reduce repetitive tasks and improve their responsiveness.',
           'However, successful implementation depends on choosing features that match business needs, following messaging policies and maintaining secure customer information.',
-          'Businesses exploring tailored CRM solutions can connect with the NNC Digital CRM development team to understand suitable integration options and implementation requirements.',
+          'Businesses exploring tailored CRM solutions can connect with NNC Digital CRM development team to understand suitable integration options and implementation requirements.',
         ],
       },
       {

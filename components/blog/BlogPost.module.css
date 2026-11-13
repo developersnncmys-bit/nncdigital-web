@@ -188,6 +188,25 @@
   color: var(--grey, #3d4654);
 }
 .p:last-child { margin-bottom: 0; }
+/* Inline anchor inside body paragraphs — authored via `<a>` tags in blog
+   post content (keyword interlinks to product pages, etc.). Navy + bold so
+   the keyword still visually pops the way the source brief bolded it,
+   underline on hover for standard link affordance. Applies to both the
+   opening `.lede` paragraphs (styled larger) and the regular `.p` body
+   paragraphs — the first interlink of the brief usually lives in the lede,
+   so leaving .lede out meant the top-of-post link rendered as plain text. */
+.p a,
+.lede a {
+  color: var(--navy, #0b5cff);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.p a:hover,
+.lede a:hover {
+  color: var(--navy-deep, #0a4fe0);
+  text-decoration: underline;
+}
 .bullets {
   margin: 20px 0 0;
   padding: 0;
@@ -225,6 +244,74 @@
   letter-spacing: -0.015em;
   line-height: 1.35;
   color: var(--ink, #0a0b0f);
+}
+
+/* ===== faq band ===== */
+/* Rendered outside the article/TOC grid so it reads as a distinct section.
+   Each Q&A is a native <details> accordion — closed by default to keep the
+   page scannable, no JS needed, and still SEO-visible (crawlers read the
+   content of <details> regardless of open state). */
+.faq {
+  background: #fff;
+  border-top: 1px solid var(--line, #eef1f7);
+  padding: clamp(56px, 7vw, 96px) 0;
+}
+.faqInner { max-width: 820px; }
+.faqTitle {
+  margin: 0 0 clamp(28px, 3.5vw, 40px);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0a0b0f);
+  text-align: center;
+}
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faqItem {
+  border: 1px solid var(--line, #eef1f7);
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.faqItem[open] {
+  border-color: var(--navy-3, #87b3ff);
+  box-shadow: 0 6px 20px rgba(11, 92, 255, 0.06);
+}
+.faqQ {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink, #0a0b0f);
+  cursor: pointer;
+  list-style: none;
+}
+/* Strip native triangle marker across engines. */
+.faqQ::-webkit-details-marker { display: none; }
+.faqQ::marker { content: ''; }
+.faqChevron {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--grey, #5b6474);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.faqItem[open] .faqChevron {
+  transform: rotate(180deg);
+  color: var(--navy, #0b5cff);
+}
+.faqA {
+  padding: 0 24px 22px;
+}
+.faqA .p {
+  font-size: 15.5px;
 }
 
 /* ===== related ===== */
