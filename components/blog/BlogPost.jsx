@@ -85,6 +85,19 @@ export default function BlogPost({ post, related = [] }) {
                     {s.bullets.map((b, i) => <li key={i}>{b}</li>)}
                   </ul>
                 )}
+                {(s.subs || []).map((sub, i) => (
+                  <div key={i} className={styles.sub}>
+                    <h3 className={styles.subTitle}>{sub.h}</h3>
+                    {(sub.p || []).map((para, j) => (
+                      <p key={j} className={styles.p}>{para}</p>
+                    ))}
+                    {sub.bullets && (
+                      <ul className={styles.bullets}>
+                        {sub.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                      </ul>
+                    )}
+                  </div>
+                ))}
               </section>
             ))}
           </article>

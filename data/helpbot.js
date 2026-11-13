@@ -1779,7 +1779,7 @@ export const KB = [
       "reasons to choose nnc"
     ],
     "question": "Why should I choose NNC CRM?",
-    "answer": "NNC is built for Indian businesses with GST ready invoicing, WhatsApp engagement and forecasting in one place. We stand for clarity, serving every business, and trust. Over 2,000 businesses use NNC with a 4.8/5 average rating.",
+    "answer": "NNC is built for Indian businesses with GST ready invoicing, WhatsApp engagement and forecasting in one place. We stand for clarity, serving every business, and trust.",
     "link": {
       "label": "About us",
       "href": "/company/about"
@@ -1800,7 +1800,7 @@ export const KB = [
       "user count"
     ],
     "question": "How many businesses use NNC CRM?",
-    "answer": "Over 2,000 businesses across India trust NNC CRM, spanning 15 industries, with an average customer rating of 4.8 out of 5. From factories to clinics, teams use NNC to capture more and close faster.",
+    "answer": "NNC CRM serves businesses across India in industries from manufacturing and retail to clinics, academies and professional services. For a current customer list or references, contact our team on 94227 99466.",
     "link": {
       "label": "Customer stories",
       "href": "/company/customers"
@@ -1822,7 +1822,7 @@ export const KB = [
       "case study"
     ],
     "question": "Do you have customer stories or case studies?",
-    "answer": "Yes. Customers see 32% more enquiries converted on average, save 5 hours per rep each week and follow up 2x faster. Read stories from manufacturers, retailers and builders growing with NNC.",
+    "answer": "Yes — our Case Studies section walks through typical scenarios across manufacturing, retail, real estate, education, clinics and services, showing how teams in each vertical set up NNC CRM. For specific customer references, ask our team on 94227 99466.",
     "link": {
       "label": "Customer stories",
       "href": "/company/customers"
@@ -1955,7 +1955,7 @@ export const KB = [
       "office location"
     ],
     "question": "Where is NNC based?",
-    "answer": "NNC Digital is built for and based in India, serving over 2,000 businesses across the country. Our team works remotely across India. Reach us at 94227 99466 or hello@nncdigital.co.in.",
+    "answer": "NNC Digital is built for and based in India. Our team works remotely across the country. Reach us at 94227 99466 or hello@nncdigital.co.in.",
     "link": {
       "label": "About us",
       "href": "/company/about"

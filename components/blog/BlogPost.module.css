@@ -214,6 +214,19 @@
   background: var(--navy, #0b5cff);
 }
 
+/* H3 subsection inside an H2 section — used for feature lists, FAQ Q&A and
+   any grouped sub-points under a section title. */
+.sub { margin-top: clamp(24px, 2.6vw, 32px); }
+.sub:first-of-type { margin-top: clamp(20px, 2.2vw, 28px); }
+.subTitle {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 1.5vw, 20px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--ink, #0a0b0f);
+}
+
 /* ===== related ===== */
 .related {
   background: var(--paper, #f6f8fc);

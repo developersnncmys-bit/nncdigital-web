@@ -213,22 +213,11 @@ const PAGE = {
     },
 
     // -----------------------------------------------------------------------
-    // Customer quote. Reuses an existing sample testimonial from data/pages.js
-    // (owner-at-retail persona, WhatsApp angle — fits the Small Business
-    // audience). Flagged as sample content there — swap for a verified
-    // customer quote + photo before launch.
+    // (A customer testimonial block used to sit here — Sneha Patil / Trenz
+    // Retail — but it was placeholder content and was removed on 2026-11-13
+    // along with the rest of the site's fabricated social proof. Re-add a
+    // `type: 'testimonial'` block here once a real quote + consent exists.)
     // -----------------------------------------------------------------------
-    {
-      type: 'testimonial',
-      quote:
-        'WhatsApp campaigns from NNC bring our customers back every month. Repeat sales have doubled since we switched.',
-      author: 'Sneha Patil',
-      role: 'Owner',
-      company: 'Trenz Retail',
-      initials: 'SP',
-      // Add `photo: '/small-business-crm/images/testimonial-sneha.jpg'` when
-      // a real customer photo is available. The initials circle is the fallback.
-    },
 
     // -----------------------------------------------------------------------
     // "Get started" 3-up CTA block (Start free / Talk to expert / Watch demo)

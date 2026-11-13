@@ -939,32 +939,25 @@ export const COMPANY = {
     },
   },
   customers: {
-    ...cb('Customer stories', { lead: 'See how businesses grow with NNC CRM.', metaTitle: 'Customer Stories | NNC CRM Results & Reviews', metaDescription: 'See how academies, manufacturers, clinics and sales teams grow with NNC CRM. Real businesses, real results, verified reviews.' }),
-    hero: { eyebrow: 'Customers', title: 'Businesses that stopped losing leads.', lead: 'The proof of a CRM is not its feature list. It is what happens to the businesses that use it. Here are the institutes, factories and teams that run on NNC CRM.', ctas: heroCtas, media: { type: 'component', name: 'crmDashboardFlat', framed: true } },
+    ...cb('Customer stories', { lead: 'See how businesses use NNC CRM.', metaTitle: 'Customer Stories | NNC CRM', metaDescription: 'How academies, manufacturers, clinics and sales teams use NNC CRM to manage leads, follow-ups and billing in one place.' }),
+    hero: { eyebrow: 'Customers', title: 'Built for teams that cannot afford to lose leads.', lead: 'The proof of a CRM is not its feature list — it is how a team uses it day to day. These are the kinds of businesses that run on NNC CRM.', ctas: heroCtas, media: { type: 'component', name: 'crmDashboardFlat', framed: true } },
     blocks: [
-      { type: 'stats', items: [
-        { value: '32%', label: 'more enquiries converted on average' },
-        { value: '5 hrs', label: 'saved per rep each week' },
-        { value: '2x', label: 'faster follow up response' },
-        { value: '1 day', label: 'to go live' },
-      ] },
       { type: 'featureGrid', flat: true, title: 'What every story has in common', lead: 'Different industries, the same pattern: catch every lead, follow up fast, and decide with real numbers.', items: [
         { icon: 'enquiries', title: 'The challenge', body: 'Leads scattered across WhatsApp, calls and spreadsheets, with no follow up and no clear numbers.' },
         { icon: 'integrations', title: 'The solution', body: 'One CRM with the right modules turned on for their business, live in about a day.' },
         { icon: 'forecast', title: 'The result', body: 'More leads converted, faster collections, and decisions backed by real numbers.' },
       ] },
-      { type: 'testimonials', title: 'In their words', lead: 'Sample quotes shown here. Replace with your real customer quotes and verified Google reviews before launch.', items: [
-        { quote: 'We stopped losing enquiries overnight. Every lead now gets a follow up, and our conversions are up within the first month.', name: 'Rohit Mehta', role: 'Director', company: 'Steelline Industries', result: '1.4× conversions', initials: 'RM' },
-        { quote: 'WhatsApp campaigns from NNC bring our customers back every month. Repeat sales have doubled since we switched.', name: 'Sneha Patil', role: 'Owner', company: 'Trenz Retail', result: '2× repeat sales', initials: 'SP' },
-        { quote: 'Our agents respond before the lead goes cold. We are closing far more site visits than we ever did before.', name: 'Arjun Reddy', role: 'Sales Head', company: 'Skyline Realty', result: '+30% site visits', initials: 'AR' },
-      ] },
-      { type: 'cards', title: 'Customer stories by industry', lead: 'Read how teams in your sector grow with NNC CRM.', items: [
-        { icon: 'manufacturing', title: 'A manufacturer cut dues by half', body: 'How a mid size unit brought order to cash under control with NNC.', href: '#' },
-        { icon: 'retail', title: 'A retailer doubled repeat sales', body: 'Using WhatsApp campaigns to bring customers back every month.', href: '#' },
-        { icon: 'realestate', title: 'A builder closed 30% more', body: 'Faster follow up turned cold property leads into bookings.', href: '#' },
-        { icon: 'education', title: 'An academy filled more seats', body: 'A coaching institute converted more admission enquiries every season.', href: '#' },
-        { icon: 'service', title: 'A service firm protected renewals', body: 'Automatic reminders brought back AMC and repeat work on time.', href: '#' },
-        { icon: 'sales', title: 'A sales team beat its target', body: 'A daily call list and live pipeline lifted close rates across the team.', href: '#' },
+      /* The six cards below mirror /case-studies and point to the real
+         scenario pages. The previous card set claimed specific outcomes
+         (cut dues by half, doubled sales, +30%) and linked to dead hrefs,
+         which was removed with the other fabricated social proof. */
+      { type: 'cards', title: 'How teams use NNC CRM, by industry', lead: 'Read the scenario that is closest to your business.', items: [
+        { icon: 'globe', title: 'Travel agency scaling across branches', body: 'From spreadsheet quotes to a branded workspace that every branch shares.', href: '/case-studies/travel-agency-multi-branch' },
+        { icon: 'users', title: 'Training institute, every center in one view', body: 'Admissions, attendance and fees across every branch, on one dashboard.', href: '/case-studies/training-institute-multi-center' },
+        { icon: 'whatsapp', title: 'Small business, WhatsApp-first sales', body: 'A one-person team catching every WhatsApp lead and closing more deals.', href: '/case-studies/small-business-whatsapp-first' },
+        { icon: 'manufacturing', title: 'Manufacturer tightening order-to-cash', body: 'Enquiry, quote, dispatch and payment on the same screen — no handoff gaps.', href: '/case-studies/manufacturing-order-to-cash' },
+        { icon: 'service', title: 'Service business protecting renewals', body: 'Turning one-time jobs into repeat revenue with reminders nobody has to send.', href: '/case-studies/service-business-renewals' },
+        { icon: 'retail', title: 'Retail distributor cutting outstanding dues', body: 'Dealers, orders and collections on one profile, chased automatically.', href: '/case-studies/retail-distribution-collections' },
       ] },
     ],
     cta: startCta,

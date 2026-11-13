@@ -295,16 +295,6 @@ const PAGE = {
       ],
     },
     {
-      type: 'testimonials',
-      title: 'Loved by institutes that run multiple centers',
-      lead: 'Sample stories shown here. Replace with your own customer quotes before launch.',
-      items: [
-        { quote: 'We finally see every center in one place. Enquiries stopped slipping and our admissions went up within the first term.', name: 'Ananya Rao', role: 'Director', company: 'BrightPath Academy', result: '+24% admissions', initials: 'AR' },
-        { quote: 'Counsellors across five centers now follow the same process. Follow ups are automatic and nothing falls through.', name: 'Imran Sheikh', role: 'Operations Head', company: 'SkillForge', result: '5 centers unified', initials: 'IS' },
-        { quote: 'Center by center analytics showed us exactly where to focus. Setup took a day and the team adopted it instantly.', name: 'Meera Nair', role: 'Founder', company: 'TopRankers', result: '1-day setup', initials: 'MN' },
-      ],
-    },
-    {
       type: 'faq',
       title: 'Frequently Asked Questions About CRM for Training Institutes',
       lead: "Find answers about NNC Digital's CRM for Training Institutes, admissions, coaching center management and LMS features.",

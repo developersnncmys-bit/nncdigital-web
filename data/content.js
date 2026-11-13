@@ -302,12 +302,12 @@ export const finalCta = {
     { label: 'Book a Demo', href: '#start', variant: 'invert-primary' },
     { label: 'Try the WhatsApp Demo', href: 'https://wa.me/919164566466?text=I%20want%20to%20try%20the%20NNC%20CRM%20WhatsApp%20demo', variant: 'invert-ghost' },
   ],
-  // Trust figures per the client-supplied content brief (Section 11 —
-  // "Trusted by Businesses Across India"). Verify the "2,000+" and
-  // "4.8/5" claims have a source document before public launch.
+  // Only verifiable claims ship here. The "2,000+ businesses" and "4.8/5
+  // rating" figures from the original brief were removed on 2026-11-13
+  // because no source document exists to back them — reinstate them only
+  // once a verified reference (Google Reviews export, customer list, etc.)
+  // is available. Free-trial duration is a product fact and stays.
   stats: [
-    { value: '2,000+', label: 'Businesses across India' },
-    { value: '4.8 / 5', label: 'Average customer rating' },
     { value: '30 Days', label: 'Free trial, no credit card required' },
   ],
 }

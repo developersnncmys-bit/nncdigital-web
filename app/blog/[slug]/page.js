@@ -11,8 +11,10 @@ export async function generateMetadata({ params }) {
   const p = POSTS_BY_SLUG[slug]
   if (!p) return {}
   return {
-    title: `${p.title} | NNC Digital`,
-    description: p.excerpt,
+    // Prefer the SEO brief's short meta title when provided; fall back to the
+    // long H1-style title for posts that don't ship a shorter alternative.
+    title: p.metaTitle ? `${p.metaTitle} | NNC Digital` : `${p.title} | NNC Digital`,
+    description: p.metaDescription || p.excerpt,
     robots: { index: false, follow: false },
   }
 }
