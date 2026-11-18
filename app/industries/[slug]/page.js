@@ -11,7 +11,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params
   const p = CATEGORIES[CATEGORY][slug]
-  return p ? { title: p.metaTitle, description: p.metaDescription } : {}
+  return p
+    ? {
+        title: p.metaTitle,
+        description: p.metaDescription,
+        alternates: { canonical: `/industries/${slug}/` },
+      }
+    : {}
 }
 
 export default async function Page({ params }) {

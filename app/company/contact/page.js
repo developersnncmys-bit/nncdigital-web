@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Contact Sales | NNC CRM',
   description:
     'Talk to the NNC team about the right plan for your business. Call 94227 99466, email hello@nncdigital.co.in, or send us a message.',
+  alternates: { canonical: '/company/contact/' },
 }
 
 const METHODS = [

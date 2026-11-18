@@ -3,20 +3,12 @@ import MarketingPage from '@/components/marketing/MarketingPage'
 // NNC Small Business CRM landing page.
 //
 // Scaffolded in the Salesforce "Starter Suite" style using the data-driven
-// MarketingPage block system. All copy marked with [brackets] is placeholder,
-// following the project convention — swap in real figures and language before
-// adding this page to lib/site.js INDEXABLE_PREFIXES.
-//
-// Noindex: this page inherits the site-wide `robots: { index: false }` set in
-// app/layout.js, and the page metadata below reinforces that. It will not
-// appear in the sitemap or robots allowlist until /small-business-crm/ is
-// explicitly added to INDEXABLE_PREFIXES.
+// MarketingPage block system.
 export const metadata = {
   title: 'Small Business CRM Software for Sales & Leads | NNC',
   description:
     "Manage leads, sales pipelines, WhatsApp conversations and GST invoices with NNC Digital's Small Business CRM Software. Explore plans and book a demo.",
   alternates: { canonical: '/small-business-crm/' },
-  robots: { index: false, follow: false },
 }
 
 const PAGE = {

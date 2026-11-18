@@ -1266,9 +1266,9 @@ export const INDUSTRIES_OVERVIEW = {
       "NNC Digital's Industry Specific CRM Software combines Business CRM Software, CRM Workflow Automation and customer management tools.",
       'Our Industry Based CRM Software for Small Businesses helps teams organize sales, communication and reporting.',
     ], items: [
-      { icon: 'pipeline', title: 'Ready-Built CRM Workflows', body: 'Manage industry-specific sales stages, business fields and automated tasks with CRM Software with Industry Specific Workflows.', image: '/Industries/card1-sm.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
-      { icon: 'reports', title: 'Reports That Match Your Business', body: 'Track performance through Industry CRM Analytics, customizable dashboards and Business CRM Reporting Software.', image: '/Industries/card2-sm.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
-      { icon: 'whatsapp', title: 'WhatsApp Follow-Up Management', body: 'Connect with customers, patients, parents and buyers using WhatsApp Integrated CRM and Customer Follow-Up Management Software.', image: '/Industries/card3-sm.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
+      { icon: 'pipeline', title: 'Ready-Built CRM Workflows', body: 'Manage industry-specific sales stages, business fields and automated tasks with CRM Software with Industry Specific Workflows.', image: '/industries/card1-sm.webp', imageAlt: 'Industry-specific CRM workflow with pre-configured pipeline stages and automations' },
+      { icon: 'reports', title: 'Reports That Match Your Business', body: 'Track performance through Industry CRM Analytics, customizable dashboards and Business CRM Reporting Software.', image: '/industries/card2-sm.webp', imageAlt: 'Pre-built industry reports dashboard showing the metrics your sector tracks' },
+      { icon: 'whatsapp', title: 'WhatsApp Follow-Up Management', body: 'Connect with customers, patients, parents and buyers using WhatsApp Integrated CRM and Customer Follow-Up Management Software.', image: '/industries/card3-sm.webp', imageAlt: 'WhatsApp conversation with a customer, patient or parent for industry-specific follow-up' },
     ] },
     // Section: FAQ — 5 questions per brief.
     { type: 'faq', title: 'Industry Specific CRM Software – Frequently Asked Questions', items: [

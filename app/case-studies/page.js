@@ -4,7 +4,7 @@ import { CASE_STUDIES_OVERVIEW } from '@/data/pages'
 export const metadata = {
   title: CASE_STUDIES_OVERVIEW.metaTitle,
   description: CASE_STUDIES_OVERVIEW.metaDescription,
-  robots: { index: false, follow: false },
+  alternates: { canonical: '/case-studies/' },
 }
 
 export default function Page() {

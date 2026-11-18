@@ -4,6 +4,7 @@ import { INDUSTRIES_OVERVIEW } from '@/data/pages'
 export const metadata = {
   title: INDUSTRIES_OVERVIEW.metaTitle,
   description: INDUSTRIES_OVERVIEW.metaDescription,
+  alternates: { canonical: '/industries/' },
 }
 
 export default function Page() {

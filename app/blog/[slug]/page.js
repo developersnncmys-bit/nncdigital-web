@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
     // long H1-style title for posts that don't ship a shorter alternative.
     title: p.metaTitle ? `${p.metaTitle} | NNC Digital` : `${p.title} | NNC Digital`,
     description: p.metaDescription || p.excerpt,
-    robots: { index: false, follow: false },
+    alternates: { canonical: `/blog/${slug}/` },
   }
 }
 

@@ -12,7 +12,11 @@ export async function generateMetadata({ params }) {
   const { slug } = await params
   const p = CATEGORIES[CATEGORY][slug]
   return p
-    ? { title: p.metaTitle, description: p.metaDescription, robots: { index: false, follow: false } }
+    ? {
+        title: p.metaTitle,
+        description: p.metaDescription,
+        alternates: { canonical: `/case-studies/${slug}/` },
+      }
     : {}
 }
 

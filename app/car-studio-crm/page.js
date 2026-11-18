@@ -8,14 +8,11 @@ import MarketingPage from '@/components/marketing/MarketingPage'
 // → job cards → invoices + branch-wise petty cash + attendance).
 //
 // We deliberately do NOT reference any specific studio or brand name on-page.
-// All placeholder numbers wrap in [brackets] per project convention; replace
-// before adding /car-studio-crm/ to lib/site.js INDEXABLE_PREFIXES.
 export const metadata = {
   title: 'Car Studio CRM Software for Detailing Studios | NNC',
   description:
     "Manage bookings, quotations, job cards, billing and branches with NNC Digital's Car Studio CRM. Explore car detailing management features and book a demo.",
   alternates: { canonical: '/car-studio-crm/' },
-  robots: { index: false, follow: false },
 }
 
 const PAGE = {
